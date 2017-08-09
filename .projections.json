@@ -1,0 +1,113 @@
+{
+  "lib/ptr_web/channels/*_channel.ex": {
+    "type": "channel",
+    "alternate": "test/ptr_web/channels/{}_channel_test.exs"
+  },
+
+  "lib/ptr_web/controllers/*_controller.ex": {
+    "type": "controller",
+    "alternate": "test/ptr_web/controllers/{}_controller_test.exs"
+  },
+
+  "lib/ptr_web/views/*_view.ex": {
+    "type": "view",
+    "alternate": "test/ptr_web/views/{}_view_test.exs"
+  },
+
+  "lib/ptr_web/views/*_helpers.ex": {
+    "type": "helper",
+    "alternate": "test/ptr_web/views/{}_helpers_test.exs"
+  },
+
+  "lib/ptr_web/plugs/*_plug.ex": {
+    "type": "plug",
+    "alternate": "test/ptr_web/plugs/{}_plug_test.exs"
+  },
+
+  "priv/gettext/*.po": {
+    "type": "locale"
+  },
+
+  "test/ptr_web/channels/*_channel_test.exs": {
+    "type": "tchannel",
+    "alternate": "lib/ptr_web/channels/{}_channel.ex"
+  },
+
+  "test/ptr_web/controllers/*_controller_test.exs": {
+    "type": "tcontroller",
+    "alternate": "lib/ptr_web/controllers/{}_controller.ex"
+  },
+
+  "test/ptr_web/views/*_view_test.exs": {
+    "type": "tview",
+    "alternate": "lib/ptr_web/views/{}_view.ex"
+  },
+
+  "test/ptr_web/views/*_helpers_test.exs": {
+    "type": "thelper",
+    "alternate": "lib/ptr_web/views/{}_helpers.ex"
+  },
+
+  "test/ptr_web/plugs/*_plug_test.exs": {
+    "type": "tplug",
+    "alternate": "lib/ptr_web/plugs/{}_plug.ex"
+  },
+
+  "test/ptr/*_test.exs": {
+    "type": "tapp",
+    "alternate": "lib/ptr/{}.ex"
+  },
+
+  "test/support/*.ex": {
+    "type": "tsupport"
+  },
+
+  "lib/ptr_web/templates/*.eex": {
+    "type": "template"
+  },
+
+  "lib/ptr_web/router.ex": {
+    "type": "router"
+  },
+
+  "assets/css/*": {
+    "type": "stylesheet"
+  },
+
+  "assets/js/*": {
+    "type": "javascript"
+  },
+
+  "config/*.exs": {
+    "type": "environment"
+  },
+
+  "lib/ptr.ex": {
+    "type": "app"
+  },
+
+  "lib/ptr/*.ex": {
+    "type": "app",
+    "alternate": "test/ptr/{}_test.exs"
+  },
+
+  "lib/ptr_web.ex": {
+    "type": "web"
+  },
+
+  "lib/ptr_web/*": {
+    "type": "web"
+  },
+
+  "priv/repo/seeds.exs": {
+    "type": "seed"
+  },
+
+  "priv/repo/migrations/*.exs": {
+    "type": "migration"
+  },
+
+  "mix.exs": {
+    "type": "mix"
+  }
+}

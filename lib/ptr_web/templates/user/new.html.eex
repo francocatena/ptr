@@ -1,0 +1,17 @@
+<section class="section">
+  <div class="container">
+    <h2 class="title">
+      <%= gettext "New user" %>
+    </h2>
+
+    <%= render "_form.html", Map.put(assigns, :action, user_path(@conn, :create)) %>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p>
+      <span><%= link gettext("Back"), to: user_path(@conn, :index) %></span>
+    </p>
+  </div>
+</footer>

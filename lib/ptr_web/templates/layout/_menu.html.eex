@@ -1,0 +1,43 @@
+<div class="container">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <%= link to: root_path(@conn, :index), class: "navbar-item" do %>
+        <span class="icon">
+          <i class="fa fa-home" aria-hidden="true"></i>
+        </span>
+      <% end %>
+
+      <div class="navbar-burger" data-target="main-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <div id="main-menu" class="navbar-menu">
+      <div class="navbar-start">
+        <%= link to: user_path(@conn, :index), class: "navbar-item" do %>
+          <%= gettext("Users") %>
+        <% end %>
+      </div>
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <div class="navbar-link">
+            <span class="icon">
+              <i class="fa fa-user" aria-hidden="true"></i>
+            </span>
+          </div>
+
+          <div id="user-dropdown" class="navbar-dropdown">
+            <%= link to: session_path(@conn, :delete), method: :delete, class: "navbar-item" do %>
+              <%= gettext("Logout") %>
+              <span class="icon">
+                <i class="fa fa-sign-out" aria-hidden="true"></i>
+              </span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>

@@ -1,0 +1,21 @@
+<section class="section">
+  <div class="container">
+    <h2 class="title"><%= fullname @user %></h2>
+
+    <ul>
+      <li>
+        <strong><%= gettext("Email") %>:</strong>
+        <%= link @user.email, to: "mailto:#{@user.email}" %>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p>
+      <span><%= link gettext("Edit"), to: user_path(@conn, :edit, @user) %></span> |
+      <span><%= link gettext("Back"), to: user_path(@conn, :index) %></span>
+    </p>
+  </div>
+</footer>

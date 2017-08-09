@@ -1,0 +1,45 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="notification is-danger">
+      <p><%= gettext("Oops, something went wrong! Please check the errors below.") %></p>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= label f, :name, gettext("Name"), class: "label" %>
+    <div class="control">
+      <%= text_input f, :name, class: "input", autofocus: true %>
+    </div>
+    <%= error_tag f, :name %>
+  </div>
+
+  <div class="field">
+    <%= label f, :lastname, gettext("Lastname"), class: "label" %>
+    <div class="control">
+      <%= text_input f, :lastname, class: "input" %>
+    </div>
+    <%= error_tag f, :lastname %>
+  </div>
+
+  <div class="field">
+    <%= label f, :email, gettext("Email"), class: "label" %>
+    <div class="control">
+      <%= text_input f, :email, class: "input" %>
+    </div>
+    <%= error_tag f, :email %>
+  </div>
+
+  <div class="field">
+    <%= label f, :password, gettext("Password"), class: "label" %>
+    <div class="control">
+      <%= password_input f, :password, class: "input" %>
+    </div>
+    <%= error_tag f, :password %>
+  </div>
+
+  <div class="field">
+    <p class="control">
+      <%= submit gettext("Submit"), class: "button is-primary" %>
+    </p>
+  </div>
+<% end %>

@@ -1,0 +1,20 @@
+defmodule Ptr.Repo.Migrations.CreateUsers do
+  use Ptr, :migration
+
+  def change do
+    unless prefix() do
+      create table(:users) do
+        add :name, :string, null: false
+        add :lastname, :string, null: false
+        add :email, :string, null: false
+        add :password_hash, :string, null: false
+        add :account_id, references(:accounts, on_delete: :delete_all), null: false
+
+        timestamps()
+      end
+
+      create unique_index(:users, [:email])
+      create index(:users, [:account_id])
+    end
+  end
+end

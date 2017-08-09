@@ -1,0 +1,45 @@
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-half is-offset-one-quarter">
+        <article class="message">
+          <div class="message-header has-text-centered">
+            <%= gettext("Login") %>
+          </div>
+
+          <div class="message-body">
+            <%= form_for @conn, session_path(@conn, :create), [as: :session], fn f -> %>
+              <div class="field">
+                <%= label f, :email, gettext("Email"), class: "label is-sr" %>
+                <div class="control has-icons-left">
+                  <%= text_input f, :email, class: "input is-medium", autofocus: true, placeholder: gettext("Email") %>
+                  <span class="icon is-left">
+                    <i class="fa fa-envelope"></i>
+                  </span>
+                </div>
+                <%= error_tag f, :email %>
+              </div>
+
+              <div class="field">
+                <%= label f, :password, gettext("Password"), class: "label is-sr" %>
+                <div class="control has-icons-left">
+                  <%= password_input f, :password, class: "input is-medium", placeholder: gettext("Password") %>
+                  <span class="icon is-left">
+                    <i class="fa fa-lock"></i>
+                  </span>
+                </div>
+                <%= error_tag f, :password %>
+              </div>
+
+              <div class="field">
+                <p class="control has-text-right">
+                  <%= submit gettext("Login"), class: "button is-medium" %>
+                </p>
+              </div>
+            <% end %>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
