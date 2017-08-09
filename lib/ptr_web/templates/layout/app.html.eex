@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title><%= gettext "Ptr App" %></title>
+    <link rel="icon" type="image/x-icon" href="<%= static_path(@conn, "/images/favicon.ico") %>">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
