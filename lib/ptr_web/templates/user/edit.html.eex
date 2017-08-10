@@ -1,14 +1,10 @@
-<section class="section">
+<section class="section is-primary">
   <div class="container">
-    <h2 class="title">
-      <%= gettext "Edit user" %>
-    </h2>
-
     <%= render "_form.html", Map.put(assigns, :action, user_path(@conn, :update, @user)) %>
   </div>
 </section>
 
-<footer class="footer">
+<footer class="footer is-primary">
   <div class="container">
     <p>
       <span><%= link gettext("Back"), to: user_path(@conn, :index) %></span>

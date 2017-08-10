@@ -1,9 +1,5 @@
-<section class="section">
+<section class="section is-primary">
   <div class="container">
-    <h2 class="title">
-      <%= gettext "Users" %>
-    </h2>
-
     <table class="table is-striped is-narrow is-fullwidth">
       <thead>
         <tr>
@@ -33,7 +29,7 @@
   </div>
 </section>
 
-<footer class="footer">
+<footer class="footer is-primary">
   <div class="container">
     <p>
       <span><%= link gettext("New user"), to: user_path(@conn, :new) %></span>

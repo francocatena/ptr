@@ -1,4 +1,4 @@
-<section class="section">
+<section class="section is-primary">
   <div class="container">
     <h2 class="title"><%= fullname @user %></h2>
 
@@ -11,7 +11,7 @@
   </div>
 </section>
 
-<footer class="footer">
+<footer class="footer is-primary">
   <div class="container">
     <p>
       <span><%= link gettext("Edit"), to: user_path(@conn, :edit, @user) %></span> |
