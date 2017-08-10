@@ -13,6 +13,7 @@
   <body>
     <%= if @current_user do %>
       <%= render "_menu.html", conn: @conn %>
+      <%= render "_breadcrumb.html", breadcrumbs: @breadcrumbs %>
     <% end %>
 
     <%= render_flash @conn %>

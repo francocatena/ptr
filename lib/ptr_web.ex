@@ -23,6 +23,7 @@ defmodule PtrWeb do
       import Plug.Conn
       import PtrWeb.Router.Helpers
       import PtrWeb.Gettext
+      import PtrWeb.BreadcrumbPlug, only: [put_breadcrumb: 2]
       import PtrWeb.SessionPlug, only: [authenticate: 2]
     end
   end
@@ -49,6 +50,7 @@ defmodule PtrWeb do
       use Phoenix.Router
       import Plug.Conn
       import Phoenix.Controller
+      import PtrWeb.BreadcrumbPlug, only: [put_breadcrumb: 2]
       import PtrWeb.SessionPlug, only: [fetch_current_account: 2, fetch_current_user: 2]
       import PtrWeb.CacheControlPlug, only: [put_cache_control_headers: 2]
     end

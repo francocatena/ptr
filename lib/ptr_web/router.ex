@@ -10,6 +10,7 @@ defmodule PtrWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :put_cache_control_headers
+    plug :put_breadcrumb, name: "≡", url: "/"
   end
 
   pipeline :api do
