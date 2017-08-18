@@ -41,6 +41,7 @@ defmodule PtrWeb do
 
       import PtrWeb.Router.Helpers
       import PtrWeb.ErrorHelpers
+      import PtrWeb.InputHelpers
       import PtrWeb.Gettext
     end
   end
