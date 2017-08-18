@@ -42,7 +42,9 @@ defmodule Ptr.Mixfile do
       {:gettext,             ">= 0.11.0"},
       {:cowboy,              ">= 1.0.0"},
       {:comeonin,            ">= 4.0.0"},
-      {:bcrypt_elixir,       ">= 0.12.0"}
+      {:bcrypt_elixir,       ">= 0.12.0"},
+      {:scrivener_ecto,      ">= 1.2.0"},
+      {:scrivener_html,      ">= 1.7.0"}
     ]
   end
 

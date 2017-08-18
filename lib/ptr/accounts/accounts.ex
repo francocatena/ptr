@@ -122,8 +122,11 @@ defmodule Ptr.Accounts do
       [%User{}, ...]
 
   """
-  def list_users(account_id) do
-    Repo.all(from u in User, where: [account_id: ^account_id])
+  def list_users(account_id, params) do
+    User
+    |> where(account_id: ^account_id)
+    |> order_by(asc: :email)
+    |> Repo.paginate(params)
   end
 
   @doc """

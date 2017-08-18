@@ -1,5 +1,6 @@
 defmodule PtrWeb.UserView do
   use PtrWeb, :view
+  use Scrivener.HTML
 
   def fullname(user) do
     Enum.join([user.name, user.lastname], " ")

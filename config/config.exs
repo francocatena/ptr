@@ -20,6 +20,9 @@ config :ptr, PtrWeb.Endpoint,
 # Gettext config
 config :ptr, PtrWeb.Gettext, default_locale: "es_AR"
 
+# Scrivener config
+config :scrivener_html, routes_helper: PtrWeb.Router.Helpers
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

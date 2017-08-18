@@ -77,18 +77,18 @@ defmodule Ptr.AccountsTest do
     @update_attrs  %{email: "new@email.com", lastname: "some updated lastname", name: "some updated name"}
     @invalid_attrs %{email: "wrong@email", lastname: nil, name: nil, password: "123"}
 
-    test "list_users/1 returns all users on the specified account" do
+    test "list_users/2 returns all users on the specified account" do
       user = fixture(:user)
 
-      assert Accounts.list_users(user.account_id) == [user]
+      assert Accounts.list_users(user.account_id, %{}).entries == [user]
     end
 
-    test "list_users/1 returns empty list for empty account" do
+    test "list_users/2 returns empty list for empty account" do
       account = fixture(:account, %{db_prefix: "accounts_user_test"})
 
       fixture(:user) # Unlisted user
 
-      assert Accounts.list_users(account.id) == []
+      assert Accounts.list_users(account.id, %{}).entries == []
     end
 
     test "get_user!/2 returns the user with given id and account_id" do

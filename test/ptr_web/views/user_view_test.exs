@@ -8,10 +8,11 @@ defmodule PtrWeb.UserViewTest do
   import Phoenix.View
 
   test "renders index.html", %{conn: conn} do
+    page    = %Scrivener.Page{total_pages: 1, page_number: 1}
     users   = [%User{id: "1", name: "John", lastname: "Doe", email: "j@doe.com"},
                %User{id: "2", name: "Jane", lastname: "Doe", email: "jd@doe.com"}]
     content = render_to_string(UserView, "index.html",
-                               conn: conn, users: users)
+                               conn: conn, users: users, page: page)
 
     for user <- users do
       assert String.contains?(content, user.email)

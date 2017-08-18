@@ -7,10 +7,10 @@ defmodule PtrWeb.UserController do
   plug :authenticate
   plug :put_breadcrumb, name: gettext("Users"), url: "/users"
 
-  def index(%{assigns: %{current_account: account}} = conn, _params) do
-    users = Accounts.list_users(account.id)
+  def index(%{assigns: %{current_account: account}} = conn, params) do
+    page = Accounts.list_users(account.id, params)
 
-    render(conn, "index.html", users: users)
+    render(conn, "index.html", users: page.entries, page: page)
   end
 
   def new(conn, _params) do

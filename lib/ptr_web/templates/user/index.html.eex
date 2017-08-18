@@ -26,6 +26,8 @@
         <% end %>
       </tbody>
     </table>
+
+    <%= pagination_links @conn, @page, view_style: :bulma %>
   </div>
 </section>
 
