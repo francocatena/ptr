@@ -28,5 +28,16 @@ defmodule PtrWeb.InputHelpersTest do
         ""
       end)
     end
+
+    test "with using option", %{conn: conn} do
+      form_for(conn, "/", [as: :test], fn form ->
+        input =
+          input(form, :name, "Test label", using: :password_input)
+          |> safe_to_string()
+
+        assert input =~ "type=\"password\""
+        ""
+      end)
+    end
   end
 end
