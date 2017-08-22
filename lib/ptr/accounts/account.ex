@@ -2,7 +2,7 @@ defmodule Ptr.Accounts.Account do
   use Ecto.Schema
 
   import Ecto.Changeset
-  import Mix.Ecto, only: [build_repo_priv: 1]
+  import Mix.Ecto, only: [migrations_path: 1]
 
   alias Ecto.Adapters.{Postgres, SQL}
   alias Ptr.Repo
@@ -87,7 +87,7 @@ defmodule Ptr.Accounts.Account do
   defp migrate(account) do
     prefix = build_prefix(account)
     opts   = [all: true, prefix: prefix]
-    path   = Path.join(build_repo_priv(Repo), "migrations")
+    path   = migrations_path(Repo)
 
     handle_database_exceptions fn ->
       Ecto.Migrator.run(Repo, path, :up, opts)
