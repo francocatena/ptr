@@ -36,6 +36,7 @@ defmodule PtrWeb.InputHelpersTest do
           |> safe_to_string()
 
         assert input =~ "type=\"password\""
+        refute input =~ "using"
         ""
       end)
     end
