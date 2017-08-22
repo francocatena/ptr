@@ -1,7 +1,10 @@
 defmodule Ptr.Accounts.User do
   use Ecto.Schema
+
   import Ecto.Changeset
+
   alias Ptr.Accounts.{Account, User}
+  alias Ptr.Repo
 
 
   schema "users" do
@@ -39,8 +42,9 @@ defmodule Ptr.Accounts.User do
     |> validate_length(:lastname, max: 255)
     |> validate_length(:email, max: 255)
     |> validate_length(:password, min: 6, max: 100)
-    |> assoc_constraint(:account)
+    |> unsafe_validate_unique(:email, Repo)
     |> unique_constraint(:email)
+    |> assoc_constraint(:account)
     |> put_password_hash()
   end
 

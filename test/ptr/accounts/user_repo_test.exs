@@ -10,9 +10,12 @@ defmodule Ptr.Accounts.UserRepoTest do
       user      = fixture(:user, @valid_attrs)
       attrs     = Map.put(@valid_attrs, :email, user.email)
       changeset = User.create_changeset(%User{account_id: user.account_id}, attrs)
+      expected  = {
+        "has already been taken",
+        [validation: :unsafe_unique, fields: [:email]]
+      }
 
-      assert {:error, changeset} = Repo.insert(changeset)
-      assert "has already been taken" in errors_on(changeset).email
+      assert expected == changeset.errors[:email]
     end
   end
 end
