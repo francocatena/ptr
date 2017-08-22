@@ -5,7 +5,7 @@
     </div>
   <% end %>
 
-  <%= input f, :name,     gettext("Name"), autofocus: true %>
+  <%= input f, :name,     gettext("Name"), input_html: [autofocus: true] %>
   <%= input f, :lastname, gettext("Lastname") %>
   <%= input f, :email,    gettext("Email") %>
   <%= input f, :password, gettext("Password") %>
