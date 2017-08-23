@@ -10,14 +10,6 @@ msgid ""
 msgstr ""
 "Language: es_AR\n"
 
-#: lib/ptr_web/controllers/session_controller.ex:26
-msgid "Invalid email/password combination"
-msgstr "El usuario y/o contraseña no es válido"
-
-#: lib/ptr_web/templates/layout/_menu.html.eex:33
-msgid "Logout"
-msgstr "Cerrar sesión"
-
 #: lib/ptr_web/templates/layout/app.html.eex:8
 msgid "Ptr App"
 msgstr "Ptr App"
@@ -29,7 +21,3 @@ msgstr "Hasta la próxima..."
 #: lib/ptr_web/controllers/session_controller.ex:19
 msgid "Welcome!"
 msgstr "¡Bienvenido!"
-
-#: lib/ptr_web/plugs/session_plug.ex:38
-msgid "You must be logged in."
-msgstr "Debe ingresar para acceder al contenido."

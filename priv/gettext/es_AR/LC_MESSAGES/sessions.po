@@ -27,3 +27,15 @@ msgstr "Contraseña"
 #: lib/ptr_web/templates/session/new.html.eex:7
 msgid "Log In"
 msgstr "Ingreso"
+
+#: lib/ptr_web/controllers/session_controller.ex:26
+msgid "Invalid email/password combination"
+msgstr "El usuario y/o contraseña no es válido"
+
+#: lib/ptr_web/templates/layout/_menu.html.eex:33
+msgid "Logout"
+msgstr "Cerrar sesión"
+
+#: lib/ptr_web/plugs/session_plug.ex:38
+msgid "You must be logged in."
+msgstr "Debe ingresar para acceder al contenido."

@@ -10,14 +10,6 @@
 msgid ""
 msgstr ""
 
-#: lib/ptr_web/controllers/session_controller.ex:26
-msgid "Invalid email/password combination"
-msgstr ""
-
-#: lib/ptr_web/templates/layout/_menu.html.eex:33
-msgid "Logout"
-msgstr ""
-
 #: lib/ptr_web/templates/layout/app.html.eex:8
 msgid "Ptr App"
 msgstr ""
@@ -28,8 +20,4 @@ msgstr ""
 
 #: lib/ptr_web/controllers/session_controller.ex:19
 msgid "Welcome!"
-msgstr ""
-
-#: lib/ptr_web/plugs/session_plug.ex:38
-msgid "You must be logged in."
 msgstr ""

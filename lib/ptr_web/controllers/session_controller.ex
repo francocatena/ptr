@@ -23,7 +23,7 @@ defmodule PtrWeb.SessionController do
         |> redirect(to: root_path(conn, :index))
       {:error, :unauthorized} ->
         conn
-        |> put_flash(:error, gettext("Invalid email/password combination"))
+        |> put_flash(:error, dgettext("sessions", "Invalid email/password combination"))
         |> render("new.html")
     end
   end

@@ -27,3 +27,15 @@ msgstr ""
 #: lib/ptr_web/templates/session/new.html.eex:7
 msgid "Log In"
 msgstr ""
+
+#: lib/ptr_web/controllers/session_controller.ex:26
+msgid "Invalid email/password combination"
+msgstr ""
+
+#: lib/ptr_web/templates/layout/_menu.html.eex:33
+msgid "Logout"
+msgstr ""
+
+#: lib/ptr_web/plugs/session_plug.ex:38
+msgid "You must be logged in."
+msgstr ""
