@@ -10,47 +10,48 @@ msgid ""
 msgstr ""
 "Language: es_AR\n"
 
-#: lib/ptr_web/views/user_view.ex:19
+#: lib/ptr_web/views/user_view.ex:20
 msgid "Are you sure?"
 msgstr "¿Está seguro?"
 
-#: lib/ptr_web/templates/user/edit.html.eex:14
-#: lib/ptr_web/templates/user/new.html.eex:14
-#: lib/ptr_web/templates/user/show.html.eex:18
+#: lib/ptr_web/templates/user/edit.html.eex:18
+#: lib/ptr_web/templates/user/new.html.eex:18
+#: lib/ptr_web/templates/user/show.html.eex:28
 msgid "Back"
 msgstr "Volver"
 
-#: lib/ptr_web/views/user_view.ex:17
+#: lib/ptr_web/views/user_view.ex:18
 msgid "Delete"
 msgstr "Eliminar"
 
-#: lib/ptr_web/templates/user/show.html.eex:17 lib/ptr_web/views/user_view.ex:13
+#: lib/ptr_web/templates/user/show.html.eex:27 lib/ptr_web/views/user_view.ex:14
 msgid "Edit"
 msgstr "Editar"
 
-#: lib/ptr_web/templates/user/edit.html.eex:4
+#: lib/ptr_web/controllers/user_controller.ex:83
+#: lib/ptr_web/templates/user/edit.html.eex:6
 msgid "Edit user"
 msgstr "Editar usuario"
 
+#: lib/ptr_web/templates/session/new.html.eex:12
 #: lib/ptr_web/templates/session/new.html.eex:13
-#: lib/ptr_web/templates/session/new.html.eex:15
-#: lib/ptr_web/templates/user/_form.html.eex:25
-#: lib/ptr_web/templates/user/index.html.eex:12
-#: lib/ptr_web/templates/user/show.html.eex:7
+#: lib/ptr_web/templates/user/_form.html.eex:11
+#: lib/ptr_web/templates/user/index.html.eex:8
+#: lib/ptr_web/templates/user/show.html.eex:15
 msgid "Email"
 msgstr "Correo"
 
-#: lib/ptr_web/controllers/session_controller.ex:25
+#: lib/ptr_web/controllers/session_controller.ex:26
 msgid "Invalid email/password combination"
 msgstr "El usuario y/o contraseña no es válido"
 
-#: lib/ptr_web/templates/user/_form.html.eex:17
-#: lib/ptr_web/templates/user/index.html.eex:11
+#: lib/ptr_web/templates/user/_form.html.eex:10
+#: lib/ptr_web/templates/user/index.html.eex:7
 msgid "Lastname"
 msgstr "Apellido"
 
 #: lib/ptr_web/templates/session/new.html.eex:7
-#: lib/ptr_web/templates/session/new.html.eex:36
+#: lib/ptr_web/templates/session/new.html.eex:24
 msgid "Login"
 msgstr "Ingreso"
 
@@ -59,62 +60,67 @@ msgid "Logout"
 msgstr "Cerrar sesión"
 
 #: lib/ptr_web/templates/user/_form.html.eex:9
-#: lib/ptr_web/templates/user/index.html.eex:10
+#: lib/ptr_web/templates/user/index.html.eex:6
 msgid "Name"
 msgstr "Nombre"
 
-#: lib/ptr_web/templates/user/index.html.eex:39
-#: lib/ptr_web/templates/user/new.html.eex:4
+#: lib/ptr_web/controllers/user_controller.ex:75
+#: lib/ptr_web/templates/user/index.html.eex:37
+#: lib/ptr_web/templates/user/new.html.eex:6
 msgid "New user"
 msgstr "Nuevo usuario"
 
-#: lib/ptr_web/templates/user/_form.html.eex:4
+#: lib/ptr_web/templates/user/_form.html.eex:5
 msgid "Oops, something went wrong! Please check the errors below."
 msgstr "Oops, algo salió mal, por favor verifique los errores debajo."
 
-#: lib/ptr_web/templates/session/new.html.eex:24
-#: lib/ptr_web/templates/session/new.html.eex:26
-#: lib/ptr_web/templates/user/_form.html.eex:33
+#: lib/ptr_web/templates/session/new.html.eex:17
+#: lib/ptr_web/templates/session/new.html.eex:18
+#: lib/ptr_web/templates/user/_form.html.eex:12
 msgid "Password"
 msgstr "Contraseña"
-
-#: lib/ptr_web/controllers/session_controller.ex:33
-msgid "See you soon!"
-msgstr "Hasta la próxima..."
-
-#: lib/ptr_web/views/user_view.ex:9
-msgid "Show"
-msgstr "Ver"
 
 #: lib/ptr_web/templates/layout/app.html.eex:8
 msgid "Ptr App"
 msgstr "Ptr App"
 
-#: lib/ptr_web/templates/user/_form.html.eex:42
+#: lib/ptr_web/controllers/session_controller.ex:34
+msgid "See you soon!"
+msgstr "Hasta la próxima..."
+
+#: lib/ptr_web/views/user_view.ex:10
+msgid "Show"
+msgstr "Ver"
+
+#: lib/ptr_web/templates/user/_form.html.eex:16
 msgid "Submit"
 msgstr "Enviar"
 
-#: lib/ptr_web/controllers/user_controller.ex:23
+#: lib/ptr_web/controllers/user_controller.ex:28
 msgid "User created successfully."
 msgstr "Usuario creado correctamete."
 
-#: lib/ptr_web/controllers/user_controller.ex:59
+#: lib/ptr_web/controllers/user_controller.ex:70
 msgid "User deleted successfully."
 msgstr "Usuario eliminado correctamente."
 
-#: lib/ptr_web/controllers/user_controller.ex:47
+#: lib/ptr_web/controllers/user_controller.ex:58
 msgid "User updated successfully."
 msgstr "Usuario actualizado correctamente."
 
+#: lib/ptr_web/controllers/user_controller.ex:8
 #: lib/ptr_web/templates/layout/_menu.html.eex:20
-#: lib/ptr_web/templates/user/index.html.eex:4
 msgid "Users"
 msgstr "Usuarios"
 
-#: lib/ptr_web/controllers/session_controller.ex:18
+#: lib/ptr_web/controllers/session_controller.ex:19
 msgid "Welcome!"
 msgstr "¡Bienvenido!"
 
 #: lib/ptr_web/plugs/session_plug.ex:38
 msgid "You must be logged in."
 msgstr "Debe ingresar para acceder al contenido."
+
+#: lib/ptr_web/templates/user/show.html.eex:6
+msgid "User"
+msgstr "Usuario"

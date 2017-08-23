@@ -1,33 +1,43 @@
 <section class="section is-primary">
   <div class="container">
-    <table class="table is-striped is-narrow is-fullwidth">
-      <thead>
-        <tr>
-          <th><%= gettext "Name" %></th>
-          <th><%= gettext "Lastname" %></th>
-          <th class="is-hidden-mobile"><%= gettext "Email" %></th>
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          <%= gettext("Users") %>
+        </p>
+      </header>
 
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <%= for user <- @users do %>
-          <tr>
-            <td><%= user.name %></td>
-            <td><%= user.lastname %></td>
-            <td class="is-hidden-mobile"><%= user.email %></td>
+      <div class="card-content">
+        <table class="table is-striped is-narrow is-fullwidth">
+          <thead>
+            <tr>
+              <th><%= gettext "Name" %></th>
+              <th><%= gettext "Lastname" %></th>
+              <th class="is-hidden-mobile"><%= gettext "Email" %></th>
 
-            <td class="has-text-right">
-              <span><%= link_to_show   @conn, user %></span>
-              <span><%= link_to_edit   @conn, user %></span>
-              <span><%= link_to_delete @conn, user %></span>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= for user <- @users do %>
+              <tr>
+                <td><%= user.name %></td>
+                <td><%= user.lastname %></td>
+                <td class="is-hidden-mobile"><%= user.email %></td>
 
-    <%= pagination_links @conn, @page, view_style: :bulma %>
+                <td class="has-text-right">
+                  <span><%= link_to_show   @conn, user %></span>
+                  <span><%= link_to_edit   @conn, user %></span>
+                  <span><%= link_to_delete @conn, user %></span>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <%= pagination_links @conn, @page, view_style: :bulma %>
+      </div>
+    </div>
   </div>
 </section>
 

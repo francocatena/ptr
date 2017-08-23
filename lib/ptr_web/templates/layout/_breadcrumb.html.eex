@@ -1,5 +1,5 @@
 <div class="container">
-  <nav class="breadcrumb is-primary">
+  <nav class="breadcrumb is-primary is-small">
     <ul>
       <%= for breadcrumb <- @breadcrumbs do %>
         <li <%= breadcrumb.active && {:safe, "class=\"is-active\""} %>>

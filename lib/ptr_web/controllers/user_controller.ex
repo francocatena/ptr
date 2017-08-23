@@ -76,7 +76,7 @@ defmodule PtrWeb.UserController do
   end
 
   defp put_show_breadcrumb(conn, user) do
-    put_breadcrumb(conn, name: user.email, url: user_path(conn, :show, user), active: true)
+    put_breadcrumb(conn, name: gettext("User"), url: user_path(conn, :show, user), active: true)
   end
 
   defp put_edit_breadcrumb(conn, user) do

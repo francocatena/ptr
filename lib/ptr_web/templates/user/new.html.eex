@@ -1,6 +1,14 @@
 <section class="section is-primary">
   <div class="container">
-    <%= render "_form.html", Map.put(assigns, :action, user_path(@conn, :create)) %>
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          <%= gettext("New user") %>
+        </p>
+      </header>
+
+      <%= render "_form.html", Map.put(assigns, :action, user_path(@conn, :create)) %>
+    </div>
   </div>
 </section>
 

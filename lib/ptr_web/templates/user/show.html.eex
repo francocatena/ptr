@@ -1,20 +1,33 @@
 <section class="section is-primary">
   <div class="container">
-    <h2 class="title"><%= fullname @user %></h2>
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          <%= gettext("User") %>
+        </p>
+      </header>
 
-    <ul>
-      <li>
-        <strong><%= gettext("Email") %>:</strong>
-        <%= link @user.email, to: "mailto:#{@user.email}" %>
-      </li>
-    </ul>
+      <div class="card-content">
+        <h2 class="title"><%= fullname @user %></h2>
+
+        <ul>
+          <li>
+            <strong><%= gettext("Email") %>:</strong>
+            <%= link @user.email, to: "mailto:#{@user.email}" %>
+          </li>
+        </ul>
+      </div>
+
+      <footer class="card-footer">
+        <%= link gettext("Edit"), to: user_path(@conn, :edit, @user), class: "card-footer-item" %>
+      </footer>
+    </div>
   </div>
 </section>
 
 <footer class="footer is-primary">
   <div class="container">
     <p>
-      <span><%= link gettext("Edit"), to: user_path(@conn, :edit, @user) %></span> |
       <span><%= link gettext("Back"), to: user_path(@conn, :index) %></span>
     </p>
   </div>

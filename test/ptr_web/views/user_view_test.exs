@@ -24,7 +24,7 @@ defmodule PtrWeb.UserViewTest do
     content   = render_to_string(UserView, "new.html",
                                  conn: conn, changeset: changeset)
 
-    assert String.contains?(content, "Lastname")
+    assert String.contains?(content, "New user")
   end
 
   test "renders edit.html", %{conn: conn} do
