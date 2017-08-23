@@ -4,24 +4,24 @@
       <div class="column is-half is-offset-one-quarter">
         <article class="message">
           <div class="message-header has-text-centered">
-            <%= gettext("Login") %>
+            <%= dgettext("sessions", "Log In") %>
           </div>
 
           <div class="message-body">
             <%= form_for @conn, session_path(@conn, :create), [as: :session], fn f -> %>
-              <%= input f, :email, gettext("Email"),
-                input_html: [autofocus: true, class: "input is-medium", placeholder: gettext("Email")],
+              <%= input f, :email, dgettext("sessions", "Email"),
+                input_html: [autofocus: true, class: "input is-medium", placeholder: dgettext("sessions", "Email")],
                 icons:      [left: "envelope"],
                 label_html: [class: "label is-sr"] %>
 
-              <%= input f, :password, gettext("Password"),
-                input_html: [class: "input is-medium", placeholder: gettext("Password")],
+              <%= input f, :password, dgettext("sessions", "Password"),
+                input_html: [class: "input is-medium", placeholder: dgettext("sessions", "Password")],
                 icons:      [left: "lock"],
                 label_html: [class: "label is-sr"] %>
 
               <div class="field">
                 <p class="control has-text-right">
-                  <%= submit gettext("Login"), class: "button is-medium" %>
+                  <%= submit dgettext("sessions", "Login"), class: "button" %>
                 </p>
               </div>
             <% end %>

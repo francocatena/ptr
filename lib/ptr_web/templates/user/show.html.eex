@@ -3,7 +3,7 @@
     <div class="card">
       <header class="card-header">
         <p class="card-header-title">
-          <%= gettext("User") %>
+          <%= dgettext("users", "User") %>
         </p>
       </header>
 
@@ -12,14 +12,14 @@
 
         <ul>
           <li>
-            <strong><%= gettext("Email") %>:</strong>
+            <strong><%= dgettext("users", "Email") %>:</strong>
             <%= link @user.email, to: "mailto:#{@user.email}" %>
           </li>
         </ul>
       </div>
 
       <footer class="card-footer">
-        <%= link gettext("Edit"), to: user_path(@conn, :edit, @user), class: "card-footer-item" %>
+        <%= link dgettext("users", "Edit"), to: user_path(@conn, :edit, @user), class: "card-footer-item" %>
       </footer>
     </div>
   </div>
@@ -28,7 +28,7 @@
 <footer class="footer is-primary">
   <div class="container">
     <p>
-      <span><%= link gettext("Back"), to: user_path(@conn, :index) %></span>
+      <span><%= link dgettext("users", "Back"), to: user_path(@conn, :index) %></span>
     </p>
   </div>
 </footer>

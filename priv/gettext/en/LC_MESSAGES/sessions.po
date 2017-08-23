@@ -1,0 +1,29 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+
+#: lib/ptr_web/templates/session/new.html.eex:12
+#: lib/ptr_web/templates/session/new.html.eex:13
+msgid "Email"
+msgstr ""
+
+#: lib/ptr_web/templates/session/new.html.eex:24
+msgid "Login"
+msgstr ""
+
+#: lib/ptr_web/templates/session/new.html.eex:17
+#: lib/ptr_web/templates/session/new.html.eex:18
+msgid "Password"
+msgstr ""
+
+#: lib/ptr_web/templates/session/new.html.eex:7
+msgid "Log In"
+msgstr ""

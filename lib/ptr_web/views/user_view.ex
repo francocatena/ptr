@@ -7,17 +7,18 @@ defmodule PtrWeb.UserView do
   end
 
   def link_to_show(conn, user) do
-    link gettext("Show"), to: user_path(conn, :show, user), class: "button is-small"
+    link dgettext("users", "Show"), to: user_path(conn, :show, user), class: "button is-small"
   end
 
   def link_to_edit(conn, user) do
-    link gettext("Edit"), to: user_path(conn, :edit, user), class: "button is-small"
+    link dgettext("users", "Edit"), to: user_path(conn, :edit, user), class: "button is-small"
   end
 
   def link_to_delete(conn, user) do
-    link gettext("Delete"), to:     user_path(conn, :delete, user),
-                            method: :delete,
-                            data:   [confirm: gettext("Are you sure?")],
-                            class:  "button is-small is-danger"
+    link dgettext("users", "Delete"),
+      to:     user_path(conn, :delete, user),
+      method: :delete,
+      data:   [confirm: dgettext("users", "Are you sure?")],
+      class:  "button is-small is-danger"
   end
 end

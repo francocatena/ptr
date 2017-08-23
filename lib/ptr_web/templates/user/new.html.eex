@@ -3,7 +3,7 @@
     <div class="card">
       <header class="card-header">
         <p class="card-header-title">
-          <%= gettext("New user") %>
+          <%= dgettext("users", "New user") %>
         </p>
       </header>
 
@@ -15,7 +15,7 @@
 <footer class="footer is-primary">
   <div class="container">
     <p>
-      <span><%= link gettext("Back"), to: user_path(@conn, :index) %></span>
+      <span><%= link dgettext("users", "Back"), to: user_path(@conn, :index) %></span>
     </p>
   </div>
 </footer>

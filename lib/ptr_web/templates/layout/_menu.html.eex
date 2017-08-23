@@ -17,7 +17,7 @@
     <div id="main-menu" class="navbar-menu">
       <div class="navbar-start">
         <%= link to: user_path(@conn, :index), class: "navbar-item" do %>
-          <%= gettext("Users") %>
+          <%= dgettext("users", "Users") %>
         <% end %>
       </div>
       <div class="navbar-end">

@@ -5,7 +5,7 @@ defmodule PtrWeb.UserController do
   alias Ptr.Accounts.User
 
   plug :authenticate
-  plug :put_breadcrumb, name: gettext("Users"), url: "/users"
+  plug :put_breadcrumb, name: dgettext("users", "Users"), url: "/users"
 
   def index(%{assigns: %{current_account: account}} = conn, params) do
     page = Accounts.list_users(account.id, params)
@@ -25,7 +25,7 @@ defmodule PtrWeb.UserController do
     case Accounts.create_user(user_params, account.id) do
       {:ok, user} ->
         conn
-        |> put_flash(:info, gettext("User created successfully."))
+        |> put_flash(:info, dgettext("users", "User created successfully."))
         |> redirect(to: user_path(conn, :show, user))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -55,7 +55,7 @@ defmodule PtrWeb.UserController do
     case Accounts.update_user(user, user_params) do
       {:ok, user} ->
         conn
-        |> put_flash(:info, gettext("User updated successfully."))
+        |> put_flash(:info, dgettext("users", "User updated successfully."))
         |> redirect(to: user_path(conn, :show, user))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", user: user, changeset: changeset)
@@ -67,19 +67,28 @@ defmodule PtrWeb.UserController do
     {:ok, _user} = Accounts.delete_user(user)
 
     conn
-    |> put_flash(:info, gettext("User deleted successfully."))
+    |> put_flash(:info, dgettext("users", "User deleted successfully."))
     |> redirect(to: user_path(conn, :index))
   end
 
   defp put_new_breadcrumb(conn) do
-    put_breadcrumb(conn, name: gettext("New user"), url: user_path(conn, :new), active: true)
+    name = dgettext("users", "New user")
+    url  = user_path(conn, :new)
+
+    conn |> put_breadcrumb(name, url)
   end
 
   defp put_show_breadcrumb(conn, user) do
-    put_breadcrumb(conn, name: gettext("User"), url: user_path(conn, :show, user), active: true)
+    name = dgettext("users", "User")
+    url  = user_path(conn, :show, user)
+
+    conn |> put_breadcrumb(name, url)
   end
 
   defp put_edit_breadcrumb(conn, user) do
-    put_breadcrumb(conn, name: gettext("Edit user"), url: user_path(conn, :edit, user), active: true)
+    name = dgettext("users", "Edit user")
+    url  = user_path(conn, :edit, user)
+
+    conn |> put_breadcrumb(name, url)
   end
 end

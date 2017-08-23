@@ -3,7 +3,7 @@
     <div class="card">
       <header class="card-header">
         <p class="card-header-title">
-          <%= gettext("Users") %>
+          <%= dgettext("users", "Users") %>
         </p>
       </header>
 
@@ -11,9 +11,9 @@
         <table class="table is-striped is-narrow is-fullwidth">
           <thead>
             <tr>
-              <th><%= gettext "Name" %></th>
-              <th><%= gettext "Lastname" %></th>
-              <th class="is-hidden-mobile"><%= gettext "Email" %></th>
+              <th><%= dgettext "users", "Name" %></th>
+              <th><%= dgettext "users", "Lastname" %></th>
+              <th class="is-hidden-mobile"><%= dgettext "users", "Email" %></th>
 
               <th></th>
             </tr>
@@ -44,7 +44,7 @@
 <footer class="footer is-primary">
   <div class="container">
     <p>
-      <span><%= link gettext("New user"), to: user_path(@conn, :new) %></span>
+      <span><%= link dgettext("users", "New user"), to: user_path(@conn, :new) %></span>
     </p>
   </div>
 </footer>
