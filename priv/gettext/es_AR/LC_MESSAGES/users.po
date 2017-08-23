@@ -90,6 +90,10 @@ msgstr "Usuarios"
 msgid "Password"
 msgstr "Contraseña"
 
-#: lib/ptr_web/templates/user/_form.html.eex:16
-msgid "Submit"
-msgstr "Guardar usuario"
+#: lib/ptr_web/views/user_view.ex:35
+msgid "Create"
+msgstr "Crear nuevo usuario"
+
+#: lib/ptr_web/views/user_view.ex:36
+msgid "Update"
+msgstr "Actualizar usuario"

@@ -21,4 +21,17 @@ defmodule PtrWeb.UserView do
       data:   [confirm: dgettext("users", "Are you sure?")],
       class:  "button is-small is-danger"
   end
+
+  def lock_version_input(_, nil), do: nil
+  def lock_version_input(form, user) do
+    hidden_input form, :lock_version, [value: user.lock_version]
+  end
+
+  def submit_button(user) do
+    submit_label(user)
+    |> submit(class: "button is-medium is-white is-paddingless card-footer-item")
+  end
+
+  defp submit_label(nil), do: dgettext("users", "Create")
+  defp submit_label(_),   do: dgettext("users", "Update")
 end

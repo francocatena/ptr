@@ -11,12 +11,10 @@
     <%= input f, :email,    dgettext("users", "Email") %>
     <%= input f, :password, dgettext("users", "Password") %>
 
-    <%= if assigns[:user] do %>
-      <%= hidden_input f, :lock_version, [value: @user.lock_version] %>
-    <% end %>
+    <%= lock_version_input f, assigns[:user] %>
   </div>
 
   <footer class="card-footer">
-    <%= submit dgettext("users", "Submit"), class: "button is-medium is-white is-paddingless card-footer-item" %>
+    <%= submit_button assigns[:user] %>
   </footer>
 <% end %>
