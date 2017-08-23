@@ -12,6 +12,7 @@ defmodule Ptr.Accounts.Account do
   schema "accounts" do
     field :db_prefix, :string
     field :name, :string
+    field :lock_version, :integer, default: 1
 
     has_many :users, User
 
@@ -21,17 +22,16 @@ defmodule Ptr.Accounts.Account do
   @doc false
   def changeset(%Account{} = account, attrs) do
     account
-    |> cast(attrs, [:name])
+    |> cast(attrs, [:name, :lock_version])
     |> validation
   end
 
   @doc false
   def create_changeset(%Account{} = account, attrs) do
     account
-    |> cast(attrs, [:name, :db_prefix])
+    |> cast(attrs, [:name, :db_prefix, :lock_version])
     |> validation
   end
-
 
   @doc false
   def after_create({:ok, account}) do
@@ -62,6 +62,7 @@ defmodule Ptr.Accounts.Account do
     |> validate_length(:db_prefix, max: 61)
     |> validate_format(:db_prefix, ~r/^[a-z_][a-z0-9_]*$/)
     |> unique_constraint(:db_prefix)
+    |> optimistic_lock(:lock_version)
   end
 
   defp create_schema(account) do

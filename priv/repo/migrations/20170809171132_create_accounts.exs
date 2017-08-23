@@ -6,6 +6,7 @@ defmodule Ptr.Repo.Migrations.CreateAccounts do
       create table(:accounts) do
         add :name, :string, null: false
         add :db_prefix, :string, null: false
+        add :lock_version, :integer, default: 1, null: false
 
         timestamps()
       end

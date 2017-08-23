@@ -8,6 +8,8 @@ defmodule Ptr.Repo.Migrations.CreateUsers do
         add :lastname, :string, null: false
         add :email, :string, null: false
         add :password_hash, :string, null: false
+        add :lock_version, :integer, default: 1, null: false
+
         add :account_id, references(:accounts, on_delete: :delete_all), null: false
 
         timestamps()

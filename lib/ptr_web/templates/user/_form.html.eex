@@ -10,6 +10,10 @@
     <%= input f, :lastname, dgettext("users", "Lastname") %>
     <%= input f, :email,    dgettext("users", "Email") %>
     <%= input f, :password, dgettext("users", "Password") %>
+
+    <%= if assigns[:user] do %>
+      <%= hidden_input f, :lock_version, [value: @user.lock_version] %>
+    <% end %>
   </div>
 
   <footer class="card-footer">

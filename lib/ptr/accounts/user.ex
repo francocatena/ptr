@@ -13,23 +13,26 @@ defmodule Ptr.Accounts.User do
     field :name, :string
     field :password_hash, :string
     field :password, :string, virtual: true
+    field :lock_version, :integer, default: 1
 
     belongs_to :account, Account
 
     timestamps()
   end
 
+  @cast_attrs [:name, :lastname, :email, :password, :lock_version]
+
   @doc false
   def changeset(%User{} = user, attrs) do
     user
-    |> cast(attrs, [:name, :lastname, :email, :password])
+    |> cast(attrs, @cast_attrs)
     |> validation
   end
 
   @doc false
   def create_changeset(%User{} = user, attrs) do
     user
-    |> cast(attrs, [:name, :lastname, :email, :password])
+    |> cast(attrs, @cast_attrs)
     |> validate_required([:password, :account_id])
     |> validation
   end
@@ -45,6 +48,7 @@ defmodule Ptr.Accounts.User do
     |> unsafe_validate_unique(:email, Repo)
     |> unique_constraint(:email)
     |> assoc_constraint(:account)
+    |> optimistic_lock(:lock_version)
     |> put_password_hash()
   end
 
