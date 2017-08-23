@@ -6,4 +6,8 @@ defmodule PtrWeb.BreadcrumbPlug do
 
     %{conn | assigns: Map.put(conn.assigns, :breadcrumbs, breadcrumbs)}
   end
+
+  def put_breadcrumb(conn, name, url) do
+    put_breadcrumb(conn, name: name, url: url, active: true)
+  end
 end

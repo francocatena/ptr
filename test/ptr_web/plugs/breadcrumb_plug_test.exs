@@ -10,5 +10,12 @@ defmodule PtrWeb.BreadcrumbPlugTest do
       assert conn.assigns.breadcrumbs ==
         [%{name: "Test", url: "/test", active: nil}]
     end
+
+    test "add breadcrumb by name and url", %{conn: conn} do
+      conn = BreadcrumbPlug.put_breadcrumb(conn, "Test", "/test")
+
+      assert conn.assigns.breadcrumbs ==
+        [%{name: "Test", url: "/test", active: true}]
+    end
   end
 end

@@ -23,7 +23,7 @@ defmodule PtrWeb do
       import Plug.Conn
       import PtrWeb.Router.Helpers
       import PtrWeb.Gettext
-      import PtrWeb.BreadcrumbPlug, only: [put_breadcrumb: 2]
+      import PtrWeb.BreadcrumbPlug, only: [put_breadcrumb: 2, put_breadcrumb: 3]
       import PtrWeb.SessionPlug, only: [authenticate: 2]
     end
   end
