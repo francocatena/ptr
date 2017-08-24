@@ -1,6 +1,6 @@
 defmodule PtrWeb.InputHelpers do
-  use Phoenix.HTML
-
+  import Phoenix.HTML.Form,   only: [humanize: 1, input_type: 2, input_validations: 2, label: 4]
+  import Phoenix.HTML.Tag,    only: [content_tag: 3]
   import PtrWeb.ErrorHelpers, only: [error_tag: 2]
 
   def input(form, field, label \\ nil, opts \\ []) do
