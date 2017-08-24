@@ -22,11 +22,11 @@ msgstr "Listado de usuarios"
 
 #: lib/ptr_web/views/user_view.ex:18
 msgid "Delete"
-msgstr "Borrar"
+msgstr "Borrar usuario"
 
 #: lib/ptr_web/templates/user/show.html.eex:22 lib/ptr_web/views/user_view.ex:14
 msgid "Edit"
-msgstr "Editar"
+msgstr "Editar usuario"
 
 #: lib/ptr_web/controllers/user_controller.ex:89
 #: lib/ptr_web/templates/user/edit.html.eex:6
@@ -61,7 +61,7 @@ msgstr "Oops, algo salió mal, por favor verifique los errores debajo."
 
 #: lib/ptr_web/views/user_view.ex:10
 msgid "Show"
-msgstr "Ver"
+msgstr "Ver usuario"
 
 #: lib/ptr_web/controllers/user_controller.ex:82
 #: lib/ptr_web/templates/user/show.html.eex:6
