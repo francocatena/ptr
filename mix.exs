@@ -44,7 +44,8 @@ defmodule Ptr.Mixfile do
       {:comeonin,            ">= 4.0.0"},
       {:bcrypt_elixir,       ">= 1.0.0"},
       {:scrivener_ecto,      ">= 1.2.0"},
-      {:scrivener_html,      ">= 1.7.0"}
+      {:scrivener_html,      ">= 1.7.0"},
+      {:bamboo,              ">= 0.8.0"}
     ]
   end
 

@@ -73,7 +73,7 @@ defmodule Ptr.AccountsTest do
   describe "users" do
     alias Ptr.Accounts.User
 
-    @valid_attrs   %{email: "some@email.com", lastname: "some lastname", name: "some name", password: "123456"}
+    @valid_attrs   %{email: "some@email.com", lastname: "some lastname", name: "some name", password: "123456", password_confirmation: "123456"}
     @update_attrs  %{email: "new@email.com", lastname: "some updated lastname", name: "some updated name"}
     @invalid_attrs %{email: "wrong@email", lastname: nil, name: nil, password: "123"}
 
@@ -106,6 +106,29 @@ defmodule Ptr.AccountsTest do
       end
     end
 
+    test "get_user/1 returns user when email option is correct" do
+      user = fixture(:user)
+
+      assert Accounts.get_user(email: user.email) == user
+    end
+
+    test "get_user/1 returns nil when email option is incorrect" do
+      refute Accounts.get_user(email: "no@user.com")
+    end
+
+    test "get_user/1 returns user when token option is correct" do
+    user =
+      fixture(:user)
+      |> User.password_reset_token_changeset()
+      |> Repo.update!()
+
+      assert Accounts.get_user(token: user.password_reset_token) == user
+    end
+
+    test "get_user/1 returns nil when token option is incorrect" do
+      refute Accounts.get_user(token: "wrong-token")
+    end
+
     test "create_user/2 with valid data creates a user" do
       account = fixture(:account)
 
@@ -133,6 +156,23 @@ defmodule Ptr.AccountsTest do
       user = fixture(:user)
 
       assert {:error, %Ecto.Changeset{}} = Accounts.update_user(user, @invalid_attrs)
+      assert user == Accounts.get_user!(user.id, user.account_id)
+    end
+
+    test "update_user_password/2 with valid data updates the user" do
+      attrs = %{password: "newpass", password_confirmation: "newpass"}
+      user  = fixture(:user, @valid_attrs)
+
+      assert {:ok, user} = Accounts.update_user_password(user, attrs)
+      assert %User{} = user
+      assert Comeonin.Bcrypt.checkpw(attrs.password, user.password_hash)
+    end
+
+    test "update_user_password/2 with invalid data returns error changeset" do
+      attrs = %{password: "newpass", password_confirmation: "wrong"}
+      user  = fixture(:user)
+
+      assert {:error, %Ecto.Changeset{}} = Accounts.update_user_password(user, attrs)
       assert user == Accounts.get_user!(user.id, user.account_id)
     end
 
@@ -179,6 +219,19 @@ defmodule Ptr.AccountsTest do
 
       assert {:error, :unauthorized} ==
         Accounts.authenticate_by_email_and_password(email, password)
+    end
+  end
+
+  describe "password" do
+    alias Ptr.Notifications.Email
+    use Bamboo.Test
+
+    test "reset" do
+      user = fixture(:user)
+
+      Accounts.password_reset(user)
+
+      assert_delivered_email Email.password_reset(user)
     end
   end
 

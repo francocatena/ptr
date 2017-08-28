@@ -3,7 +3,7 @@ defmodule Ptr.Support.FixtureHelper do
 
   def fixture(type, attributes \\ %{}, opts \\ [])
 
-  @user_attrs %{email: "some@email.com", lastname: "some lastname", name: "some name", password: "123456"}
+  @user_attrs %{email: "some@email.com", lastname: "some lastname", name: "some name", password: "123456", password_confirmation: "123456"}
 
   def fixture(:user, attributes, account_id) when is_integer(account_id) do
     {:ok, user} =

@@ -4,7 +4,7 @@ defmodule Ptr.Accounts.UserTest do
   describe "user" do
     alias Ptr.Accounts.User
 
-    @valid_attrs   %{email: "some@email.com", lastname: "some lastname", name: "some name", password: "123456"}
+    @valid_attrs   %{email: "some@email.com", lastname: "some lastname", name: "some name", password: "123456", password_confirmation: "123456"}
     @invalid_attrs %{email: "wrong@email", lastname: nil, name: nil, password: "123", account_id: nil}
 
     test "changeset with valid attributes" do
@@ -52,6 +52,14 @@ defmodule Ptr.Accounts.UserTest do
       assert "has invalid format" in errors_on(changeset).email
     end
 
+    test "changeset check password confirmation" do
+      attrs     = Map.put(@valid_attrs, :password_confirmation, "wrong")
+      changeset = User.changeset(%User{}, attrs)
+
+      assert "does not match confirmation" in
+        errors_on(changeset).password_confirmation
+    end
+
     test "changeset hashes password when present" do
       changeset = User.changeset(%User{}, @valid_attrs)
       %{password: password, password_hash: password_hash} = changeset.changes
@@ -60,7 +68,8 @@ defmodule Ptr.Accounts.UserTest do
     end
 
     test "changeset ignores blank password" do
-      changeset = User.changeset(%User{}, %{@valid_attrs | password: nil})
+      attrs     = %{@valid_attrs | password: nil, password_confirmation: nil}
+      changeset = User.changeset(%User{}, attrs)
 
       assert changeset.valid?
       refute changeset.changes[:password_hash]
@@ -77,6 +86,28 @@ defmodule Ptr.Accounts.UserTest do
 
       refute changeset.valid?
       assert "can't be blank" in errors_on(changeset).password
+    end
+
+    test "password reset changeset with valid attributes" do
+      changeset = User.password_reset_changeset(%User{}, @valid_attrs)
+
+      assert changeset.valid?
+    end
+
+    test "password reset changeset with invalid attributes" do
+      attrs     = %{@valid_attrs | password: nil, password_confirmation: nil}
+      changeset = User.password_reset_changeset(%User{}, attrs)
+
+      refute changeset.valid?
+      assert "can't be blank" in errors_on(changeset).password
+    end
+
+    test "password reset token changeset" do
+      changeset = User.password_reset_token_changeset(%User{})
+
+      assert changeset.valid?
+      assert changeset.changes[:password_reset_token]
+      assert changeset.changes[:password_reset_sent_at]
     end
   end
 end

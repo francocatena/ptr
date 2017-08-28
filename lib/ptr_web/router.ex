@@ -17,6 +17,10 @@ defmodule PtrWeb.Router do
     plug :accepts, ["json"]
   end
 
+  if Mix.env == :dev do
+    forward "/sent_emails", Bamboo.EmailPreviewPlug
+  end
+
   scope "/", PtrWeb do
     pipe_through :browser
 

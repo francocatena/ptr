@@ -111,7 +111,7 @@ defmodule Ptr.Accounts do
     Account.changeset(account, %{})
   end
 
-  alias Ptr.Accounts.{Auth, User}
+  alias Ptr.Accounts.{Auth, User, Password}
 
   @doc """
   Returns the list of users for the account.
@@ -148,6 +148,26 @@ defmodule Ptr.Accounts do
   end
 
   @doc """
+  Gets a single user by his token or email.
+
+  Returns nil if a User with this token does not exist or the token is expired.
+
+  ## Examples
+
+      iex> get_user(token: "qCRc-NABnQgqX2oPiOThY..")
+      %User{}
+
+      iex> get_user(email: "some@email.com")
+      %User{}
+
+      iex> get_user(token: "qQdvYYT8gpHJVXrIdcDDc..")
+      nil
+
+  """
+  def get_user(token: token), do: Password.get_user_by_token(token)
+  def get_user(email: email), do: Repo.get_by(User, email: email)
+
+  @doc """
   Creates a user.
 
   ## Examples
@@ -180,6 +200,24 @@ defmodule Ptr.Accounts do
   def update_user(%User{} = user, attrs) do
     user
     |> User.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Updates a user password.
+
+  ## Examples
+
+      iex> update_user_password(user, %{password: "newpass", password_confirmation: "newpass"})
+      {:ok, %User{}}
+
+      iex> update_user_password(user, %{password: "newpass", password_confirmation: "wrong"})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_user_password(%User{} = user, attrs) do
+    user
+    |> User.password_reset_changeset(attrs)
     |> Repo.update()
   end
 
@@ -228,4 +266,14 @@ defmodule Ptr.Accounts do
     Auth.authenticate_by_email_and_password(email, password)
   end
 
+  @doc """
+  Sends password reset email to a user.
+
+  ## Examples
+
+      iex> password_reset(user)
+      {:ok, %User{}}
+
+  """
+  def password_reset(user), do: Password.reset(user)
 end

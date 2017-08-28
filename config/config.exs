@@ -23,6 +23,9 @@ config :ptr, PtrWeb.Gettext, default_locale: "es_AR"
 # Scrivener config
 config :scrivener_html, routes_helper: PtrWeb.Router.Helpers
 
+# Ecto timestamps
+config :ptr, Ptr.Repo, migration_timestamps: [type: :utc_datetime]
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
