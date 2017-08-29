@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Language: en\n"
 
-#: lib/ptr_web/templates/error/404.html.eex:30
-#: lib/ptr_web/templates/error/500.html.eex:30
+#: lib/ptr_web/templates/error/404.html.eex:31
+#: lib/ptr_web/templates/error/500.html.eex:31
 msgid "Go to start"
 msgstr ""
 
@@ -19,7 +19,7 @@ msgstr ""
 msgid "Internal server error"
 msgstr ""
 
-#: lib/ptr_web/templates/error/404.html.eex:27
+#: lib/ptr_web/templates/error/404.html.eex:22
 msgid "Maybe you get the wrong address or the page was moved"
 msgstr ""
 
@@ -27,14 +27,14 @@ msgstr ""
 msgid "Page not found"
 msgstr ""
 
-#: lib/ptr_web/templates/error/500.html.eex:22
+#: lib/ptr_web/templates/error/500.html.eex:19
 msgid "Sorry, something went wrong"
 msgstr ""
 
-#: lib/ptr_web/templates/error/500.html.eex:27
+#: lib/ptr_web/templates/error/500.html.eex:22
 msgid "The error was logged, we will fix it soon!"
 msgstr ""
 
-#: lib/ptr_web/templates/error/404.html.eex:22
+#: lib/ptr_web/templates/error/404.html.eex:19
 msgid "The page you are looking for does not exists"
 msgstr ""
