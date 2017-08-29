@@ -62,9 +62,9 @@ defmodule Ptr.Accounts.UserTest do
 
     test "changeset hashes password when present" do
       changeset = User.changeset(%User{}, @valid_attrs)
-      %{password: password, password_hash: password_hash} = changeset.changes
+      %{password_hash: password_hash} = changeset.changes
 
-      assert Comeonin.Argon2.checkpw(password, password_hash)
+      assert Comeonin.Argon2.checkpw(@valid_attrs.password, password_hash)
     end
 
     test "changeset ignores blank password" do
