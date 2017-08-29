@@ -12,27 +12,24 @@
   </head>
 
   <body>
+    <section class="hero is-medium is-danger is-bold has-text-centered">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            <%= dgettext("error_pages", "Sorry, something went wrong") %>
+          </h1>
+          <h2 class="subtitle">
+            <%= dgettext("error_pages", "The error was logged, we will fix it soon!") %>
+          </h2>
+        </div>
+      </div>
+    </section>
+
     <section class="section">
       <div class="container">
-        <div class="columns">
-          <div class="column is-half is-offset-one-quarter">
-            <article class="message is-danger is-large">
-              <div class="message-header">
-                <p>
-                  <%= dgettext("error_pages", "Sorry, something went wrong") %>
-                </p>
-              </div>
-              <div class="message-body">
-                <p>
-                  <%= dgettext("error_pages", "The error was logged, we will fix it soon!") %>
-                </p>
-                <p class="has-text-centered">
-                  <%= link dgettext("error_pages", "Go to start"), to: root_path(PtrWeb.Endpoint, :index) %>
-                </p>
-              </div>
-            </article>
-          </div>
-        </div>
+        <p class="has-text-centered is-size-5">
+          <%= link dgettext("error_pages", "Go to start"), to: root_path(PtrWeb.Endpoint, :index) %>
+        </p>
       </div>
     </section>
   </body>

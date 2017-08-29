@@ -12,27 +12,24 @@
   </head>
 
   <body>
+    <section class="hero is-medium is-dark is-bold has-text-centered">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            <%= dgettext("error_pages", "The page you are looking for does not exists") %>
+          </h1>
+          <h2 class="subtitle">
+            <%= dgettext("error_pages", "Maybe you get the wrong address or the page was moved") %>
+          </h2>
+        </div>
+      </div>
+    </section>
+
     <section class="section">
       <div class="container">
-        <div class="columns">
-          <div class="column is-half is-offset-one-quarter">
-            <article class="message is-dark is-large">
-              <div class="message-header">
-                <p>
-                  <%= dgettext("error_pages", "The page you are looking for does not exists") %>
-                </p>
-              </div>
-              <div class="message-body">
-                <p>
-                  <%= dgettext("error_pages", "Maybe you get the wrong address or the page was moved") %>
-                </p>
-                <p class="has-text-centered">
-                  <%= link dgettext("error_pages", "Go to start"), to: root_path(PtrWeb.Endpoint, :index) %>
-                </p>
-              </div>
-            </article>
-          </div>
-        </div>
+        <p class="has-text-centered is-size-5">
+          <%= link dgettext("error_pages", "Go to start"), to: root_path(PtrWeb.Endpoint, :index) %>
+        </p>
       </div>
     </section>
   </body>
