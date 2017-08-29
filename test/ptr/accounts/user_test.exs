@@ -64,7 +64,7 @@ defmodule Ptr.Accounts.UserTest do
       changeset = User.changeset(%User{}, @valid_attrs)
       %{password: password, password_hash: password_hash} = changeset.changes
 
-      assert Comeonin.Bcrypt.checkpw(password, password_hash)
+      assert Comeonin.Argon2.checkpw(password, password_hash)
     end
 
     test "changeset ignores blank password" do

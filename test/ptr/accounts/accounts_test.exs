@@ -165,7 +165,7 @@ defmodule Ptr.AccountsTest do
 
       assert {:ok, user} = Accounts.update_user_password(user, attrs)
       assert %User{} = user
-      assert Comeonin.Bcrypt.checkpw(attrs.password, user.password_hash)
+      assert Comeonin.Argon2.checkpw(attrs.password, user.password_hash)
     end
 
     test "update_user_password/2 with invalid data returns error changeset" do

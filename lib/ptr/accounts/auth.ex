@@ -2,7 +2,7 @@ defmodule Ptr.Accounts.Auth do
   alias Ptr.Repo
   alias Ptr.Accounts.User
 
-  import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
+  import Comeonin.Argon2, only: [checkpw: 2, dummy_checkpw: 0]
 
   @doc false
   def authenticate_by_email_and_password(email, password) do
