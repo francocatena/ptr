@@ -190,6 +190,12 @@ defmodule Ptr.AccountsTest do
 
       assert %Ecto.Changeset{} = Accounts.change_user(user)
     end
+
+    test "change_user_password/1 returns a user changeset" do
+      user = fixture(:user)
+
+      assert %Ecto.Changeset{} = Accounts.change_user_password(user)
+    end
   end
 
   describe "auth" do
@@ -229,7 +235,7 @@ defmodule Ptr.AccountsTest do
     test "reset" do
       user = fixture(:user)
 
-      Accounts.password_reset(user)
+      {:ok, user} = Accounts.password_reset(user)
 
       assert_delivered_email Email.password_reset(user)
     end

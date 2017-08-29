@@ -6,10 +6,11 @@
       </div>
     <% end %>
 
-    <%= input f, :name,     dgettext("users", "Name"), input_html: [autofocus: true] %>
-    <%= input f, :lastname, dgettext("users", "Lastname") %>
-    <%= input f, :email,    dgettext("users", "Email") %>
-    <%= input f, :password, dgettext("users", "Password") %>
+    <%= input f, :name,                  dgettext("users", "Name"), input_html: [autofocus: true] %>
+    <%= input f, :lastname,              dgettext("users", "Lastname") %>
+    <%= input f, :email,                 dgettext("users", "Email") %>
+    <%= input f, :password,              dgettext("users", "Password") %>
+    <%= input f, :password_confirmation, dgettext("users", "Password confirmation") %>
 
     <%= lock_version_input f, assigns[:user] %>
   </div>

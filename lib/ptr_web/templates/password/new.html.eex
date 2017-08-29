@@ -1,0 +1,37 @@
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-half is-offset-one-quarter">
+        <article class="message">
+          <div class="message-header has-text-centered">
+            <%= dgettext("passwords", "Forgot your password?") %>
+          </div>
+
+          <div class="message-body">
+            <p><%= dgettext("passwords", "Enter your email address") %></p>
+
+            <%= form_for @conn, password_path(@conn, :create), [as: :user], fn f -> %>
+              <%= input f, :email, dgettext("users", "Email"),
+                input_html: [autofocus: true, class: "input is-medium", placeholder: dgettext("users", "Email")],
+                icons:      [left: "envelope"],
+                label_html: [class: "label is-sr"] %>
+
+              <div class="field">
+                <p class="control has-text-right">
+                  <%= submit dgettext("passwords", "Send verification email"), class: "button is-primary" %>
+                </p>
+              </div>
+            <% end %>
+          </div>
+        </article>
+
+        <section class="section">
+          <p class="has-text-centered">
+            <%= dgettext("passwords", "Nevermind") %>,
+            <%= link dgettext("passwords", "go back to login"), to: session_path(@conn, :new) %>
+          </p>
+        </section>
+      </div>
+    </div>
+  </div>
+</section>

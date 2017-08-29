@@ -27,6 +27,12 @@
             <% end %>
           </div>
         </article>
+
+        <section class="section">
+          <p class="has-text-centered">
+            <%= link dgettext("sessions", "Forgot password?"), to: password_path(@conn, :new) %>
+          </p>
+        </section>
       </div>
     </div>
   </div>

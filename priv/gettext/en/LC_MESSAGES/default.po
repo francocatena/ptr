@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Language: en\n"
 
-#: lib/ptr_web/templates/layout/app.html.eex:8
+#: lib/ptr/notifications/email.ex:19 lib/ptr_web/templates/layout/app.html.eex:8
 msgid "Ptr App"
 msgstr ""
 

@@ -39,3 +39,7 @@ msgstr ""
 #: lib/ptr_web/plugs/session_plug.ex:38
 msgid "You must be logged in."
 msgstr ""
+
+#: lib/ptr_web/templates/session/new.html.eex:33
+msgid "Forgot password?"
+msgstr ""

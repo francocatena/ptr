@@ -246,8 +246,19 @@ defmodule Ptr.Accounts do
       %Ecto.Changeset{source: %User{}}
 
   """
-  def change_user(%User{} = user) do
-    User.changeset(user, %{})
+  def change_user(%User{} = user), do: User.changeset(user, %{})
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking user password changes.
+
+  ## Examples
+
+      iex> change_user_password(user)
+      %Ecto.Changeset{source: %User{}}
+
+  """
+  def change_user_password(%User{} = user) do
+    User.password_reset_changeset(user, %{})
   end
 
   @doc """

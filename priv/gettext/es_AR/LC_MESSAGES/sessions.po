@@ -39,3 +39,7 @@ msgstr "Cerrar sesión"
 #: lib/ptr_web/plugs/session_plug.ex:38
 msgid "You must be logged in."
 msgstr "Debe ingresar para acceder al contenido."
+
+#: lib/ptr_web/templates/session/new.html.eex:33
+msgid "Forgot password?"
+msgstr "¿Olvidaste tu contraseña?"

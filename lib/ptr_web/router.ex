@@ -26,8 +26,13 @@ defmodule PtrWeb.Router do
 
     get "/", RootController, :index
 
-    resources "/sessions", SessionController, only: [:new, :create, :delete],
-                                              singleton: true
+    resources "/sessions", SessionController,
+      only: [:new, :create, :delete],
+      singleton: true
+
+    resources "/passwords", PasswordController,
+      only: [:new, :create, :edit, :update]
+
     resources "/users", UserController
   end
 

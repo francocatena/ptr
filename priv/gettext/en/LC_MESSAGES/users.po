@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Language: en\n"
 
-#: lib/ptr_web/views/user_view.ex:21
+#: lib/ptr_web/views/user_view.ex:28
 msgid "Are you sure?"
 msgstr ""
 
@@ -20,11 +20,11 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: lib/ptr_web/views/user_view.ex:18
+#: lib/ptr_web/views/user_view.ex:25
 msgid "Delete"
 msgstr ""
 
-#: lib/ptr_web/templates/user/show.html.eex:22 lib/ptr_web/views/user_view.ex:14
+#: lib/ptr_web/templates/user/show.html.eex:22 lib/ptr_web/views/user_view.ex:18
 msgid "Edit"
 msgstr ""
 
@@ -33,6 +33,8 @@ msgstr ""
 msgid "Edit user"
 msgstr ""
 
+#: lib/ptr_web/templates/password/new.html.eex:14
+#: lib/ptr_web/templates/password/new.html.eex:15
 #: lib/ptr_web/templates/user/_form.html.eex:11
 #: lib/ptr_web/templates/user/index.html.eex:16
 #: lib/ptr_web/templates/user/show.html.eex:15
@@ -59,7 +61,7 @@ msgstr ""
 msgid "Oops, something went wrong! Please check the errors below."
 msgstr ""
 
-#: lib/ptr_web/views/user_view.ex:10
+#: lib/ptr_web/views/user_view.ex:11
 msgid "Show"
 msgstr ""
 
@@ -86,14 +88,22 @@ msgstr ""
 msgid "Users"
 msgstr ""
 
+#: lib/ptr_web/templates/password/edit.html.eex:12
+#: lib/ptr_web/templates/password/edit.html.eex:13
 #: lib/ptr_web/templates/user/_form.html.eex:12
 msgid "Password"
 msgstr ""
 
-#: lib/ptr_web/views/user_view.ex:35
+#: lib/ptr_web/views/user_view.ex:42
 msgid "Create"
 msgstr ""
 
-#: lib/ptr_web/views/user_view.ex:36
+#: lib/ptr_web/views/user_view.ex:43
 msgid "Update"
+msgstr ""
+
+#: lib/ptr_web/templates/password/edit.html.eex:17
+#: lib/ptr_web/templates/password/edit.html.eex:18
+#: lib/ptr_web/templates/user/_form.html.eex:13
+msgid "Password confirmation"
 msgstr ""
