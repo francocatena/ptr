@@ -92,6 +92,7 @@ defmodule PtrWeb.SessionPlugTest do
       conn = SessionPlug.authenticate(conn, [])
 
       assert conn.halted
+      refute get_session(conn, :previous_url)
     end
 
     test "authenticate continues when the current_user exists", %{conn: conn} do
@@ -101,6 +102,15 @@ defmodule PtrWeb.SessionPlugTest do
         |> SessionPlug.authenticate([])
 
       refute conn.halted
+    end
+
+    test "authenticate stores request path when no current_user exists", %{conn: conn} do
+      refute conn.halted
+
+      conn = SessionPlug.authenticate(%{conn | request_path: "/test"}, [])
+
+      assert conn.halted
+      assert get_session(conn, :previous_url) == "/test"
     end
   end
 end

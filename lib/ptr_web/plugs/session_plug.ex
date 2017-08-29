@@ -35,8 +35,16 @@ defmodule PtrWeb.SessionPlug do
 
   def authenticate(conn, _opts) do
     conn
+    |> put_return_path()
     |> put_flash(:error, dgettext("sessions", "You must be logged in."))
     |> redirect(to: Helpers.session_path(conn, :new))
     |> halt()
   end
+
+  defp put_return_path(%{method: "GET", request_path: request_path} = conn)
+  when request_path != "/" do
+    put_session(conn, :previous_url, current_path(conn))
+  end
+
+  defp put_return_path(conn), do: conn
 end

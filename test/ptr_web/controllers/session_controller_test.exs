@@ -42,6 +42,21 @@ defmodule PtrWeb.SessionControllerTest do
       assert redirected_to(conn) == root_path(conn, :index)
     end
 
+    @tag :skip # TODO: implement some sort of check for this
+    test "redirects to previous_url when credentials are valid", %{conn: conn} do
+      conn =
+        conn
+        |> bypass_through(PtrWeb.Router, :browser)
+        |> get("/")
+        |> put_session(:previous_url, "/test")
+
+      user = fixture(:user, @valid_user)
+      conn = post conn, session_path(conn, :create), session: @valid_user
+
+      assert user.id == get_session(conn, :user_id)
+      assert redirected_to(conn) == "/test"
+    end
+
     test "renders errors when credentials are invalid", %{conn: conn} do
       conn = post conn, session_path(conn, :create), session: @invalid_user
 

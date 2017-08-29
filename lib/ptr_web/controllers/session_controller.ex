@@ -20,7 +20,7 @@ defmodule PtrWeb.SessionController do
         |> put_session(:user_id, user.id)
         |> put_session(:account_id, user.account_id)
         |> configure_session(renew: true)
-        |> redirect(to: root_path(conn, :index))
+        |> redirect_to_next_path()
       {:error, :unauthorized} ->
         conn
         |> put_flash(:error, dgettext("sessions", "Invalid email/password combination"))
@@ -33,5 +33,13 @@ defmodule PtrWeb.SessionController do
     |> clear_session()
     |> put_flash(:info, gettext("See you soon!"))
     |> redirect(to: root_path(conn, :index))
+  end
+
+  defp redirect_to_next_path(conn) do
+    path = get_session(conn, :previous_url) || root_path(conn, :index)
+
+    conn
+    |> delete_session(:previous_url)
+    |> redirect(to: path)
   end
 end
