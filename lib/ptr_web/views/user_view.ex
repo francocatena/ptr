@@ -10,14 +10,14 @@ defmodule PtrWeb.UserView do
     icon_link "eye",
       title: dgettext("users", "Show"),
       to:    user_path(conn, :show, user),
-      class: "button is-small"
+      class: "button is-small is-outlined"
   end
 
   def link_to_edit(conn, user) do
     icon_link "pencil",
       title: dgettext("users", "Edit"),
       to:    user_path(conn, :edit, user),
-      class: "button is-small"
+      class: "button is-small is-outlined"
   end
 
   def link_to_delete(conn, user) do
@@ -26,7 +26,7 @@ defmodule PtrWeb.UserView do
       to:     user_path(conn, :delete, user),
       method: :delete,
       data:   [confirm: dgettext("users", "Are you sure?")],
-      class:  "button is-small is-danger"
+      class:  "button is-small is-danger is-outlined"
   end
 
   def lock_version_input(_, nil), do: nil
