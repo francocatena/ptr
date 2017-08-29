@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="<%= locale() %>">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>
+      500 :: <%= dgettext("error_pages", "Internal server error") %>
+    </title>
+    <link rel="stylesheet" href="<%= static_path(PtrWeb.Endpoint, "/css/app.css") %>">
+  </head>
+
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="columns">
+          <div class="column is-half is-offset-one-quarter">
+            <article class="message is-danger is-large">
+              <div class="message-header">
+                <p>
+                  <%= dgettext("error_pages", "Sorry, something went wrong") %>
+                </p>
+              </div>
+              <div class="message-body">
+                <p>
+                  <%= dgettext("error_pages", "The error was logged, we will fix it soon!") %>
+                </p>
+                <p class="has-text-centered">
+                  <%= link dgettext("error_pages", "Go to start"), to: root_path(PtrWeb.Endpoint, :index) %>
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

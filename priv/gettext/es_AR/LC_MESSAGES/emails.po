@@ -28,7 +28,7 @@ msgid "Hello %{name},"
 msgstr "Hola %{name},"
 
 #: lib/ptr_web/templates/email/password_reset.html.eex:10
-#: lib/ptr_web/templates/email/password_reset.text.eex:9
+#: lib/ptr_web/templates/email/password_reset.text.eex:10
 msgid "If you didn't ask for this you can safely disregard this message"
 msgstr "Si no pediste este cambio, puedes ignorar este correo"
 

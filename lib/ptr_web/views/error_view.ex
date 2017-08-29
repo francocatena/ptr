@@ -1,13 +1,7 @@
 defmodule PtrWeb.ErrorView do
   use PtrWeb, :view
 
-  def render("404.html", _assigns) do
-    "Page not found"
-  end
-
-  def render("500.html", _assigns) do
-    "Internal server error"
-  end
+  import PtrWeb.LayoutView, only: [locale: 0]
 
   # In case no render clause matches or no
   # template is found, let's render it as 500
