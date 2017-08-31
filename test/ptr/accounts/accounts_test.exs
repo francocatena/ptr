@@ -11,13 +11,13 @@ defmodule Ptr.AccountsTest do
     @invalid_attrs %{db_prefix: "db prefix", name: nil}
 
     test "list_accounts/0 returns all accounts" do
-      account = fixture(:account, @valid_attrs)
+      account = fixture(:seed_account)
 
       assert Accounts.list_accounts() == [account]
     end
 
     test "get_account!/1 returns the account with given id" do
-      account = fixture(:account, @valid_attrs)
+      account = fixture(:seed_account)
 
       assert Accounts.get_account!(account.id) == account
     end
@@ -50,7 +50,7 @@ defmodule Ptr.AccountsTest do
     end
 
     test "update_account/2 with invalid data returns error changeset" do
-      account = fixture(:account, @valid_attrs)
+      account = fixture(:seed_account)
 
       assert {:error, %Ecto.Changeset{}} = Accounts.update_account(account, @invalid_attrs)
       assert account == Accounts.get_account!(account.id)
@@ -64,7 +64,7 @@ defmodule Ptr.AccountsTest do
     end
 
     test "change_account/1 returns a account changeset" do
-      account = fixture(:account, @valid_attrs)
+      account = fixture(:seed_account)
 
       assert %Ecto.Changeset{} = Accounts.change_account(account)
     end
@@ -132,7 +132,7 @@ defmodule Ptr.AccountsTest do
     end
 
     test "create_user/2 with valid data creates a user" do
-      account = fixture(:account)
+      account = fixture(:seed_account)
 
       assert {:ok, %User{} = user} = Accounts.create_user(@valid_attrs, account)
       assert user.email == "some@email.com"

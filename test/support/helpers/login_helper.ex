@@ -18,7 +18,7 @@ defmodule Ptr.Support.LoginHelper do
 
   def do_setup(_, nil), do: :ok
   def do_setup(conn, email) do
-    account = fixture(:account, %{}, create_schema: true)
+    account = fixture(:seed_account)
     user    = %User{email: email, account_id: account.id}
     conn    =
       conn

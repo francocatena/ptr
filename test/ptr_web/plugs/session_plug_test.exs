@@ -53,7 +53,7 @@ defmodule PtrWeb.SessionPlugTest do
 
   describe "fetch current account" do
     test "fetch current account from session", %{conn: conn} do
-      account = fixture(:account)
+      account = fixture(:seed_account)
 
       refute conn.assigns.current_account
 

@@ -87,11 +87,10 @@ defmodule Ptr.Accounts.Account do
 
   defp migrate(account) do
     prefix = build_prefix(account)
-    opts   = [all: true, prefix: prefix]
     path   = migrations_path(Repo)
 
     handle_database_exceptions fn ->
-      Ecto.Migrator.run(Repo, path, :up, opts)
+      Ecto.Migrator.run(Repo, path, :up, all: true, prefix: prefix)
     end
   end
 

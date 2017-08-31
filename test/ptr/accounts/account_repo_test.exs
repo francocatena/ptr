@@ -10,7 +10,7 @@ defmodule Ptr.Accounts.AccountRepoTest do
     @valid_attrs %{name: "some name", db_prefix: "db_prefix"}
 
     test "converts unique constraint on db prefix to error" do
-      account   = fixture(:account, @valid_attrs)
+      account   = fixture(:seed_account)
       attrs     = Map.put(@valid_attrs, :db_prefix, account.db_prefix)
       changeset = Account.create_changeset(%Account{}, attrs)
 

@@ -1,5 +1,6 @@
 defmodule Ptr.Support.FixtureHelper do
-  alias Ptr.{Accounts, Ownerships}
+  alias Ptr.Accounts.Account
+  alias Ptr.{Accounts, Repo, Ownerships}
 
   def fixture(type, attributes \\ %{}, opts \\ [])
 
@@ -15,7 +16,7 @@ defmodule Ptr.Support.FixtureHelper do
   end
 
   def fixture(:user, attributes, _) do
-    account = fixture(:account)
+    account = fixture(:seed_account)
 
     fixture(:user, attributes, account)
   end
@@ -31,10 +32,14 @@ defmodule Ptr.Support.FixtureHelper do
     account
   end
 
+  def fixture(:seed_account, _, _) do
+    Repo.get_by!(Account, db_prefix: "test_account")
+  end
+
   @owner_attrs %{name: "some name", tax_id: "some tax_id"}
 
   def fixture(:owner, attributes, opts) do
-    account = opts[:account] || fixture(:account, %{}, create_schema: true)
+    account = opts[:account] || fixture(:seed_account)
 
     {:ok, owner} =
       attributes

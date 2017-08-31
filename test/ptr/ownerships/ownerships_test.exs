@@ -23,7 +23,7 @@ defmodule Ptr.OwnershipsTest do
     end
 
     test "create_owner/2 with valid data creates a owner" do
-      account = fixture(:account, %{}, create_schema: true)
+      account = fixture(:seed_account)
 
       assert {:ok, %Owner{} = owner} = Ownerships.create_owner(@valid_attrs, account)
       assert owner.name == "some name"
@@ -31,7 +31,7 @@ defmodule Ptr.OwnershipsTest do
     end
 
     test "create_owner/2 with invalid data returns error changeset" do
-      account = fixture(:account)
+      account = fixture(:seed_account)
 
       assert {:error, %Ecto.Changeset{}} = Ownerships.create_owner(@invalid_attrs, account)
     end
