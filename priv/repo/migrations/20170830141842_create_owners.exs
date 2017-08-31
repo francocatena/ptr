@@ -3,13 +3,13 @@ defmodule Ptr.Repo.Migrations.CreateOwners do
 
   def change do
     if prefix = prefix() do
-      do_create(prefix)
+      do_change(prefix)
     else
-      for prefix <- account_prefixes(), do: do_create(prefix)
+      for prefix <- account_prefixes(), do: do_change(prefix)
     end
   end
 
-  defp do_create(prefix) do
+  defp do_change(prefix) do
     create table(:owners, prefix: prefix) do
       add :name, :string, null: false
       add :tax_id, :string, null: false
