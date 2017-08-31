@@ -18,7 +18,7 @@ defmodule Ptr.Ownerships.Owner do
   @doc false
   def changeset(%Owner{} = owner, attrs) do
     owner
-    |> cast(attrs, [:name, :tax_id])
+    |> cast(attrs, [:name, :tax_id, :lock_version])
     |> validate_required([:name, :tax_id])
     |> validate_length(:name, max: 255)
     |> validate_length(:tax_id, max: 255)
