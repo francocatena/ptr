@@ -14,7 +14,7 @@ msgstr ""
 msgid "Are you sure?"
 msgstr "¿Está seguro de borrar este propietario?"
 
-#: lib/ptr_web/templates/owner/edit.html.eex:18
+#: lib/ptr_web/templates/owner/edit.html.eex:22
 #: lib/ptr_web/templates/owner/new.html.eex:22
 #: lib/ptr_web/templates/owner/show.html.eex:31
 msgid "Back"
@@ -34,7 +34,7 @@ msgid "Edit"
 msgstr "Editar propietario"
 
 #: lib/ptr_web/controllers/owner_controller.ex:89
-#: lib/ptr_web/templates/owner/edit.html.eex:6
+#: lib/ptr_web/templates/owner/edit.html.eex:8
 msgid "Edit owner"
 msgstr "Editar propietario"
 
@@ -77,3 +77,15 @@ msgstr "CUIT/CUIL"
 #: lib/ptr_web/views/owner_view.ex:39
 msgid "Update"
 msgstr "Actualizar propietario"
+
+#: lib/ptr_web/controllers/owner_controller.ex:28
+msgid "Owner created successfully."
+msgstr "Propietario creado correctamete."
+
+#: lib/ptr_web/controllers/owner_controller.ex:70
+msgid "Owner deleted successfully."
+msgstr "Propietario eliminado correctamete."
+
+#: lib/ptr_web/controllers/owner_controller.ex:58
+msgid "Owner updated successfully."
+msgstr "Propietario actualizado correctamete."

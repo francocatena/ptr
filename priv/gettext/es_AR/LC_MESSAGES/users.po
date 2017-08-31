@@ -14,7 +14,7 @@ msgstr ""
 msgid "Are you sure?"
 msgstr "¿Está seguro de borrar este usuario?"
 
-#: lib/ptr_web/templates/user/edit.html.eex:18
+#: lib/ptr_web/templates/user/edit.html.eex:22
 #: lib/ptr_web/templates/user/new.html.eex:22
 #: lib/ptr_web/templates/user/show.html.eex:31
 msgid "Back"
@@ -29,7 +29,7 @@ msgid "Edit"
 msgstr "Editar usuario"
 
 #: lib/ptr_web/controllers/user_controller.ex:89
-#: lib/ptr_web/templates/user/edit.html.eex:6
+#: lib/ptr_web/templates/user/edit.html.eex:8
 msgid "Edit user"
 msgstr "Editar usuario"
 

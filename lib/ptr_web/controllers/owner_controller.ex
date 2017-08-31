@@ -25,7 +25,7 @@ defmodule PtrWeb.OwnerController do
     case Ownerships.create_owner(owner_params, account) do
       {:ok, owner} ->
         conn
-        |> put_flash(:info, "Owner created successfully.")
+        |> put_flash(:info, dgettext("owners", "Owner created successfully."))
         |> redirect(to: owner_path(conn, :show, owner))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -55,7 +55,7 @@ defmodule PtrWeb.OwnerController do
     case Ownerships.update_owner(owner, owner_params) do
       {:ok, owner} ->
         conn
-        |> put_flash(:info, "Owner updated successfully.")
+        |> put_flash(:info, dgettext("owners", "Owner updated successfully."))
         |> redirect(to: owner_path(conn, :show, owner))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", owner: owner, changeset: changeset)
@@ -67,7 +67,7 @@ defmodule PtrWeb.OwnerController do
     {:ok, _owner} = Ownerships.delete_owner(owner)
 
     conn
-    |> put_flash(:info, "Owner deleted successfully.")
+    |> put_flash(:info, dgettext("owners", "Owner deleted successfully."))
     |> redirect(to: owner_path(conn, :index))
   end
 
