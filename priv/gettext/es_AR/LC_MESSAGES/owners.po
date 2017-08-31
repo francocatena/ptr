@@ -1,0 +1,79 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: es_AR\n"
+
+#: lib/ptr_web/views/owner_view.ex:24
+msgid "Are you sure?"
+msgstr "¿Está seguro de borrar este propietario?"
+
+#: lib/ptr_web/templates/owner/edit.html.eex:18
+#: lib/ptr_web/templates/owner/new.html.eex:22
+#: lib/ptr_web/templates/owner/show.html.eex:31
+msgid "Back"
+msgstr "Listado de propietarios"
+
+#: lib/ptr_web/views/owner_view.ex:38
+msgid "Create"
+msgstr "Crear nuevo propietario"
+
+#: lib/ptr_web/views/owner_view.ex:21
+msgid "Delete"
+msgstr "Borrar propietario"
+
+#: lib/ptr_web/templates/owner/show.html.eex:22
+#: lib/ptr_web/views/owner_view.ex:14
+msgid "Edit"
+msgstr "Editar propietario"
+
+#: lib/ptr_web/controllers/owner_controller.ex:89
+#: lib/ptr_web/templates/owner/edit.html.eex:6
+msgid "Edit owner"
+msgstr "Editar propietario"
+
+#: lib/ptr_web/templates/owner/_form.html.eex:9
+#: lib/ptr_web/templates/owner/index.html.eex:14
+msgid "Name"
+msgstr "Nombre"
+
+#: lib/ptr_web/controllers/owner_controller.ex:75
+#: lib/ptr_web/templates/owner/index.html.eex:45
+#: lib/ptr_web/templates/owner/new.html.eex:8
+msgid "New owner"
+msgstr "Nuevo propietario"
+
+#: lib/ptr_web/templates/owner/_form.html.eex:5
+msgid "Oops, something went wrong! Please check the errors below."
+msgstr "Oops, algo salió mal, por favor verifique los errores debajo."
+
+#: lib/ptr_web/controllers/owner_controller.ex:82
+#: lib/ptr_web/templates/owner/show.html.eex:6
+msgid "Owner"
+msgstr "Propietario"
+
+#: lib/ptr_web/controllers/owner_controller.ex:8
+#: lib/ptr_web/templates/layout/_menu.html.eex:23
+#: lib/ptr_web/templates/owner/index.html.eex:6
+msgid "Owners"
+msgstr "Propietarios"
+
+#: lib/ptr_web/views/owner_view.ex:7
+msgid "Show"
+msgstr "Ver propietario"
+
+#: lib/ptr_web/templates/owner/_form.html.eex:10
+#: lib/ptr_web/templates/owner/index.html.eex:15
+#: lib/ptr_web/templates/owner/show.html.eex:15
+msgid "Tax ID"
+msgstr "CUIT/CUIL"
+
+#: lib/ptr_web/views/owner_view.ex:39
+msgid "Update"
+msgstr "Actualizar propietario"

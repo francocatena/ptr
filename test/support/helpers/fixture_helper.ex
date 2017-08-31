@@ -1,5 +1,5 @@
 defmodule Ptr.Support.FixtureHelper do
-  alias Ptr.Accounts
+  alias Ptr.{Accounts, Ownerships}
 
   def fixture(type, attributes \\ %{}, opts \\ [])
 
@@ -29,5 +29,18 @@ defmodule Ptr.Support.FixtureHelper do
       |> Accounts.create_account(opts)
 
     account
+  end
+
+  @owner_attrs %{name: "some name", tax_id: "some tax_id"}
+
+  def fixture(:owner, attributes, opts) do
+    account = opts[:account] || fixture(:account, %{}, create_schema: true)
+
+    {:ok, owner} =
+      attributes
+      |> Enum.into(@owner_attrs)
+      |> Ownerships.create_owner(account)
+
+    {:ok, owner, account}
   end
 end

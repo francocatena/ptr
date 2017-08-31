@@ -1,0 +1,34 @@
+<section class="section is-primary">
+  <div class="container">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          <%= dgettext("owners", "Owner") %>
+        </p>
+      </header>
+
+      <div class="card-content">
+        <h2 class="title"><%= @owner.name %></h2>
+
+        <ul>
+          <li>
+            <strong><%= dgettext("owners", "Tax ID") %>:</strong>
+            <%= @owner.tax_id %>
+          </li>
+        </ul>
+      </div>
+
+      <footer class="card-footer">
+        <%= link dgettext("owners", "Edit"), to: owner_path(@conn, :edit, @owner), class: "card-footer-item" %>
+      </footer>
+    </div>
+  </div>
+</section>
+
+<footer class="footer is-primary">
+  <div class="container">
+    <p>
+      <span><%= link dgettext("owners", "Back"), to: owner_path(@conn, :index) %></span>
+    </p>
+  </div>
+</footer>

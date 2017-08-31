@@ -30,14 +30,15 @@ defmodule PtrWeb.Router do
       only: [:new, :create, :delete],
       singleton: true
 
+    # Accounts
+
     resources "/passwords", PasswordController,
       only: [:new, :create, :edit, :update]
 
     resources "/users", UserController
-  end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", PtrWeb do
-  #   pipe_through :api
-  # end
+    # Ownerships
+
+    resources "/owners", OwnerController
+  end
 end

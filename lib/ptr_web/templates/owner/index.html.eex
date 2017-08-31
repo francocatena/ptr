@@ -1,0 +1,48 @@
+<section class="section is-primary">
+  <div class="container">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          <%= dgettext("owners", "Owners") %>
+        </p>
+      </header>
+
+      <div class="card-content">
+        <table class="table is-striped is-narrow is-fullwidth">
+          <thead>
+            <tr>
+              <th><%= dgettext "owners", "Name" %></th>
+              <th><%= dgettext "owners", "Tax ID" %></th>
+
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= for owner <- @owners do %>
+              <tr>
+                <td><%= owner.name %></td>
+                <td><%= owner.tax_id %></td>
+
+                <td class="has-text-right">
+                  <span><%= link_to_show   @conn, owner %></span>
+                  <span><%= link_to_edit   @conn, owner %></span>
+                  <span><%= link_to_delete @conn, owner %></span>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <%= pagination_links @conn, @page, view_style: :bulma %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer is-primary">
+  <div class="container">
+    <p>
+      <span><%= link dgettext("owners", "New owner"), to: owner_path(@conn, :new) %></span>
+    </p>
+  </div>
+</footer>

@@ -32,11 +32,11 @@ msgstr ""
 msgid "Invalid email/password combination"
 msgstr ""
 
-#: lib/ptr_web/templates/layout/_menu.html.eex:33
+#: lib/ptr_web/templates/layout/_menu.html.eex:36
 msgid "Logout"
 msgstr ""
 
-#: lib/ptr_web/plugs/session_plug.ex:38
+#: lib/ptr_web/plugs/session_plug.ex:39
 msgid "You must be logged in."
 msgstr ""
 
