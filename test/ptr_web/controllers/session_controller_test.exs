@@ -34,8 +34,8 @@ defmodule PtrWeb.SessionControllerTest do
 
   describe "create session" do
     test "assigns current user when credentials are valid", %{conn: conn} do
-      user = fixture(:user, @valid_user)
-      conn = post conn, session_path(conn, :create), session: @valid_user
+      {:ok, user, _} = fixture(:user, @valid_user)
+      conn           = post conn, session_path(conn, :create), session: @valid_user
 
       assert user.id == get_session(conn, :user_id)
       assert user.account_id == get_session(conn, :account_id)
@@ -50,8 +50,8 @@ defmodule PtrWeb.SessionControllerTest do
         |> get("/")
         |> put_session(:previous_url, "/test")
 
-      user = fixture(:user, @valid_user)
-      conn = post conn, session_path(conn, :create), session: @valid_user
+      {:ok, user, _} = fixture(:user, @valid_user)
+      conn           = post conn, session_path(conn, :create), session: @valid_user
 
       assert user.id == get_session(conn, :user_id)
       assert redirected_to(conn) == "/test"

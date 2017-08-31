@@ -78,9 +78,9 @@ defmodule Ptr.AccountsTest do
     @invalid_attrs %{email: "wrong@email", lastname: nil, name: nil, password: "123"}
 
     test "list_users/2 returns all users on the specified account" do
-      user = fixture(:user)
+      {:ok, user, account} = fixture(:user)
 
-      assert Accounts.list_users(user.account_id, %{}).entries == [user]
+      assert Accounts.list_users(account, %{}).entries == [user]
     end
 
     test "list_users/2 returns empty list for empty account" do
@@ -88,26 +88,26 @@ defmodule Ptr.AccountsTest do
 
       fixture(:user) # Unlisted user
 
-      assert Accounts.list_users(account.id, %{}).entries == []
+      assert Accounts.list_users(account, %{}).entries == []
     end
 
-    test "get_user!/2 returns the user with given id and account_id" do
-      user = fixture(:user)
+    test "get_user!/2 returns the user with given id and account" do
+      {:ok, user, account} = fixture(:user)
 
-      assert Accounts.get_user!(user.id, user.account_id) == user
+      assert Accounts.get_user!(user.id, account) == user
     end
 
-    test "get_user!/2 returns no result when user id and account_id mismatch" do
-      account = fixture(:account, %{db_prefix: "accounts_user_test"})
-      user    = fixture(:user)
+    test "get_user!/2 returns no result when user id and account mismatch" do
+      account        = fixture(:account, %{db_prefix: "accounts_user_test"})
+      {:ok, user, _} = fixture(:user)
 
       assert_raise Ecto.NoResultsError, fn ->
-        Accounts.get_user!(user.id, account.id)
+        Accounts.get_user!(user.id, account)
       end
     end
 
     test "get_user/1 returns user when email option is correct" do
-      user = fixture(:user)
+      {:ok, user, _} = fixture(:user)
 
       assert Accounts.get_user(email: user.email) == user
     end
@@ -117,10 +117,12 @@ defmodule Ptr.AccountsTest do
     end
 
     test "get_user/1 returns user when token option is correct" do
-    user =
-      fixture(:user)
-      |> User.password_reset_token_changeset()
-      |> Repo.update!()
+      {:ok, user, _} = fixture(:user)
+
+      user =
+        user
+        |> User.password_reset_token_changeset()
+        |> Repo.update!()
 
       assert Accounts.get_user(token: user.password_reset_token) == user
     end
@@ -132,18 +134,19 @@ defmodule Ptr.AccountsTest do
     test "create_user/2 with valid data creates a user" do
       account = fixture(:account)
 
-      assert {:ok, %User{} = user} = Accounts.create_user(@valid_attrs, account.id)
+      assert {:ok, %User{} = user} = Accounts.create_user(@valid_attrs, account)
       assert user.email == "some@email.com"
       assert user.lastname == "some lastname"
       assert user.name == "some name"
     end
 
     test "create_user/2 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Accounts.create_user(@invalid_attrs, nil)
+      assert {:error, %Ecto.Changeset{}} =
+        Accounts.create_user(@invalid_attrs, %Ptr.Accounts.Account{})
     end
 
     test "update_user/2 with valid data updates the user" do
-      user = fixture(:user, @valid_attrs)
+      {:ok, user, _} = fixture(:user, @valid_attrs)
 
       assert {:ok, user} = Accounts.update_user(user, @update_attrs)
       assert %User{} = user
@@ -153,15 +156,15 @@ defmodule Ptr.AccountsTest do
     end
 
     test "update_user/2 with invalid data returns error changeset" do
-      user = fixture(:user)
+      {:ok, user, account} = fixture(:user)
 
       assert {:error, %Ecto.Changeset{}} = Accounts.update_user(user, @invalid_attrs)
-      assert user == Accounts.get_user!(user.id, user.account_id)
+      assert user == Accounts.get_user!(user.id, account)
     end
 
     test "update_user_password/2 with valid data updates the user" do
-      attrs = %{password: "newpass", password_confirmation: "newpass"}
-      user  = fixture(:user, @valid_attrs)
+      attrs          = %{password: "newpass", password_confirmation: "newpass"}
+      {:ok, user, _} = fixture(:user, @valid_attrs)
 
       assert {:ok, user} = Accounts.update_user_password(user, attrs)
       assert %User{} = user
@@ -169,30 +172,30 @@ defmodule Ptr.AccountsTest do
     end
 
     test "update_user_password/2 with invalid data returns error changeset" do
-      attrs = %{password: "newpass", password_confirmation: "wrong"}
-      user  = fixture(:user)
+      attrs                = %{password: "newpass", password_confirmation: "wrong"}
+      {:ok, user, account} = fixture(:user)
 
       assert {:error, %Ecto.Changeset{}} = Accounts.update_user_password(user, attrs)
-      assert user == Accounts.get_user!(user.id, user.account_id)
+      assert user == Accounts.get_user!(user.id, account)
     end
 
     test "delete_user/1 deletes the user" do
-      user = fixture(:user)
+      {:ok, user, account} = fixture(:user)
 
       assert {:ok, %User{}} = Accounts.delete_user(user)
       assert_raise Ecto.NoResultsError, fn ->
-        Accounts.get_user!(user.id, user.account_id)
+        Accounts.get_user!(user.id, account)
       end
     end
 
     test "change_user/1 returns a user changeset" do
-      user = fixture(:user)
+      {:ok, user, _} = fixture(:user)
 
       assert %Ecto.Changeset{} = Accounts.change_user(user)
     end
 
     test "change_user_password/1 returns a user changeset" do
-      user = fixture(:user)
+      {:ok, user, _} = fixture(:user)
 
       assert %Ecto.Changeset{} = Accounts.change_user_password(user)
     end
@@ -200,9 +203,9 @@ defmodule Ptr.AccountsTest do
 
   describe "auth" do
     test "authenticate_by_email_and_password/2 returns :ok with valid credentials" do
-      user     = fixture(:user, @valid_attrs)
-      email    = @valid_attrs.email
-      password = @valid_attrs.password
+      {:ok, user, _} = fixture(:user, @valid_attrs)
+      email          = @valid_attrs.email
+      password       = @valid_attrs.password
 
       {:ok, auth_user} = Accounts.authenticate_by_email_and_password(email, password)
 
@@ -233,9 +236,8 @@ defmodule Ptr.AccountsTest do
     use Bamboo.Test
 
     test "reset" do
-      user = fixture(:user)
-
-      {:ok, user} = Accounts.password_reset(user)
+      {:ok, user, _} = fixture(:user)
+      {:ok, user}    = Accounts.password_reset(user)
 
       assert_delivered_email Email.password_reset(user)
     end

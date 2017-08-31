@@ -16,7 +16,7 @@ defmodule PtrWeb.SessionPlugTest do
 
   describe "fetch current user" do
     test "fetch current user from session", %{conn: conn} do
-      user = fixture(:user)
+      {:ok, user, _} = fixture(:user)
 
       refute conn.assigns.current_user
 
@@ -24,6 +24,7 @@ defmodule PtrWeb.SessionPlugTest do
         conn
         |> put_session(:account_id, user.account_id)
         |> put_session(:user_id, user.id)
+        |> SessionPlug.fetch_current_account([])
         |> SessionPlug.fetch_current_user([])
         |> send_resp(:ok, "")
 

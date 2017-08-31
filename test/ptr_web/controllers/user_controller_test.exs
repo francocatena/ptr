@@ -101,7 +101,7 @@ defmodule PtrWeb.UserControllerTest do
   end
 
   defp create_user(%{account: account}) do
-    user = fixture(:user, @create_attrs, account.id)
+    {:ok, user, _} = fixture(:user, @create_attrs, account)
 
     {:ok, user: user}
   end

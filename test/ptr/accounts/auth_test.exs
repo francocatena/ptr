@@ -7,10 +7,9 @@ defmodule Ptr.Accounts.AuthTest do
     @valid_attrs %{email: "some@email.com", lastname: "some lastname", name: "some name", password: "123456"}
 
     test "authenticate_by_email_and_password/2 returns :ok with valid credentials" do
-      user     = fixture(:user, @valid_attrs)
-      email    = @valid_attrs.email
-      password = @valid_attrs.password
-
+      {:ok, user, _}   = fixture(:user, @valid_attrs)
+      email            = @valid_attrs.email
+      password         = @valid_attrs.password
       {:ok, auth_user} = Auth.authenticate_by_email_and_password(email, password)
 
       assert auth_user == user

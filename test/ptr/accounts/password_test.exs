@@ -18,8 +18,10 @@ defmodule Ptr.Accounts.PasswordTest do
     end
 
     test "get_user_by_token/1 returns no result when token is expired" do
+      {:ok, user, _} = fixture(:user)
+
       user =
-        fixture(:user)
+        user
         |> expired_password_reset_changeset()
         |> Repo.update!()
 
@@ -32,7 +34,7 @@ defmodule Ptr.Accounts.PasswordTest do
     use Bamboo.Test
 
     test "reset" do
-      user = fixture(:user)
+      {:ok, user, _} = fixture(:user)
 
       refute user.password_reset_token
 
@@ -47,7 +49,9 @@ defmodule Ptr.Accounts.PasswordTest do
   end
 
   defp user_with_password_reset_token do
-    fixture(:user)
+    {:ok, user, _} = fixture(:user)
+
+    user
     |> User.password_reset_token_changeset()
     |> Repo.update!()
   end

@@ -5,19 +5,19 @@ defmodule Ptr.Support.FixtureHelper do
 
   @user_attrs %{email: "some@email.com", lastname: "some lastname", name: "some name", password: "123456", password_confirmation: "123456"}
 
-  def fixture(:user, attributes, account_id) when is_integer(account_id) do
+  def fixture(:user, attributes, account) when is_map(account) do
     {:ok, user} =
       attributes
       |> Enum.into(@user_attrs)
-      |> Accounts.create_user(account_id)
+      |> Accounts.create_user(account)
 
-    %{user | password: nil}
+    {:ok, %{user | password: nil}, account}
   end
 
   def fixture(:user, attributes, _) do
     account = fixture(:account)
 
-    fixture(:user, attributes, account.id)
+    fixture(:user, attributes, account)
   end
 
   @account_attrs %{name: "fixture name", db_prefix: "fixture_prefix"}

@@ -122,9 +122,9 @@ defmodule Ptr.Accounts do
       [%User{}, ...]
 
   """
-  def list_users(account_id, params) do
+  def list_users(account, params) do
     User
-    |> where(account_id: ^account_id)
+    |> where(account_id: ^account.id)
     |> order_by(asc: :email)
     |> Repo.paginate(params)
   end
@@ -143,8 +143,8 @@ defmodule Ptr.Accounts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_user!(id, account_id) do
-    Repo.get_by!(User, id: id, account_id: account_id)
+  def get_user!(id, account) do
+    Repo.get_by!(User, id: id, account_id: account.id)
   end
 
   @doc """
@@ -179,8 +179,8 @@ defmodule Ptr.Accounts do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_user(attrs, account_id) do
-    %User{account_id: account_id}
+  def create_user(attrs, account) do
+    %User{account_id: account.id}
     |> User.create_changeset(attrs)
     |> Repo.insert()
   end

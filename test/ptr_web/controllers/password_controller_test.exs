@@ -19,8 +19,8 @@ defmodule PtrWeb.PasswordControllerTest do
     use Bamboo.Test
 
     test "sends instructions when email exist", %{conn: conn} do
-      user = fixture(:user)
-      conn = post conn, password_path(conn, :create), user: %{email: user.email}
+      {:ok, user, _} = fixture(:user)
+      conn           = post conn, password_path(conn, :create), user: %{email: user.email}
 
       assert redirected_to(conn) == root_path(conn, :index)
 
@@ -86,7 +86,9 @@ defmodule PtrWeb.PasswordControllerTest do
   end
 
   defp user_with_password_reset_token do
-    fixture(:user)
+    {:ok, user, _} = fixture(:user)
+
+    user
     |> User.password_reset_token_changeset()
     |> Repo.update!()
   end
