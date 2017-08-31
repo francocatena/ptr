@@ -41,7 +41,7 @@ defmodule PtrWeb.UserController do
   end
 
   def edit(%{assigns: %{current_account: account}} = conn, %{"id" => id}) do
-    user = Accounts.get_user!(id, account)
+    user      = Accounts.get_user!(id, account)
     changeset = Accounts.change_user(user)
 
     conn
