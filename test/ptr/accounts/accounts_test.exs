@@ -41,11 +41,11 @@ defmodule Ptr.AccountsTest do
     end
 
     test "update_account/2 with valid data updates the account" do
-      account = fixture(:account, @valid_attrs)
+      account = fixture(:seed_account)
 
       assert {:ok, account} = Accounts.update_account(account, @update_attrs)
       assert %Account{} = account
-      assert account.db_prefix == "db_prefix" # Ignored on update
+      assert account.db_prefix == "test_account" # Ignored on update
       assert account.name == "some updated name"
     end
 
