@@ -100,8 +100,8 @@ defmodule PtrWeb.OwnerControllerTest do
     end
   end
 
-  defp create_owner(config) do
-    {:ok, owner, _} = fixture(:owner, %{}, account: config[:account])
+  defp create_owner(_) do
+    {:ok, owner, _} = fixture(:owner)
 
     {:ok, owner: owner}
   end

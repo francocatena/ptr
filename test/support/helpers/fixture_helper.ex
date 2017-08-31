@@ -38,8 +38,8 @@ defmodule Ptr.Support.FixtureHelper do
 
   @owner_attrs %{name: "some name", tax_id: "some tax_id"}
 
-  def fixture(:owner, attributes, opts) do
-    account = opts[:account] || fixture(:seed_account)
+  def fixture(:owner, attributes, _opts) do
+    account = fixture(:seed_account)
 
     {:ok, owner} =
       attributes
