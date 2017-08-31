@@ -20,4 +20,4 @@
   lastname: "Admin",
   email:    "admin@ptr.com",
   password: "123456"
-}, account.id)
+}, account)
