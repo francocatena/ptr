@@ -24,7 +24,7 @@ defmodule PtrWeb.SessionPlug do
   def fetch_current_user(conn, _opts) do
     account = conn.assigns[:current_account]
     user_id = get_session(conn, :user_id)
-    user    = user_id && account && Accounts.get_user!(user_id, account)
+    user    = user_id && account && Accounts.get_user!(account, user_id)
 
     assign(conn, :current_user, user)
   end

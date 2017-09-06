@@ -91,18 +91,18 @@ defmodule Ptr.AccountsTest do
       assert Accounts.list_users(account, %{}).entries == []
     end
 
-    test "get_user!/2 returns the user with given id and account" do
+    test "get_user!/2 returns the user with given account and id" do
       {:ok, user, account} = fixture(:user)
 
-      assert Accounts.get_user!(user.id, account) == user
+      assert Accounts.get_user!(account, user.id) == user
     end
 
-    test "get_user!/2 returns no result when user id and account mismatch" do
+    test "get_user!/2 returns no result when user account and id mismatch" do
       account        = fixture(:account, %{db_prefix: "accounts_user_test"})
       {:ok, user, _} = fixture(:user)
 
       assert_raise Ecto.NoResultsError, fn ->
-        Accounts.get_user!(user.id, account)
+        Accounts.get_user!(account, user.id)
       end
     end
 
@@ -134,7 +134,7 @@ defmodule Ptr.AccountsTest do
     test "create_user/2 with valid data creates a user" do
       account = fixture(:seed_account)
 
-      assert {:ok, %User{} = user} = Accounts.create_user(@valid_attrs, account)
+      assert {:ok, %User{} = user} = Accounts.create_user(account, @valid_attrs)
       assert user.email == "some@email.com"
       assert user.lastname == "some lastname"
       assert user.name == "some name"
@@ -142,7 +142,7 @@ defmodule Ptr.AccountsTest do
 
     test "create_user/2 with invalid data returns error changeset" do
       assert {:error, %Ecto.Changeset{}} =
-        Accounts.create_user(@invalid_attrs, %Ptr.Accounts.Account{})
+        Accounts.create_user(%Ptr.Accounts.Account{}, @invalid_attrs)
     end
 
     test "update_user/2 with valid data updates the user" do
@@ -159,7 +159,7 @@ defmodule Ptr.AccountsTest do
       {:ok, user, account} = fixture(:user)
 
       assert {:error, %Ecto.Changeset{}} = Accounts.update_user(user, @invalid_attrs)
-      assert user == Accounts.get_user!(user.id, account)
+      assert user == Accounts.get_user!(account, user.id)
     end
 
     test "update_user_password/2 with valid data updates the user" do
@@ -176,7 +176,7 @@ defmodule Ptr.AccountsTest do
       {:ok, user, account} = fixture(:user)
 
       assert {:error, %Ecto.Changeset{}} = Accounts.update_user_password(user, attrs)
-      assert user == Accounts.get_user!(user.id, account)
+      assert user == Accounts.get_user!(account, user.id)
     end
 
     test "delete_user/1 deletes the user" do
@@ -184,7 +184,7 @@ defmodule Ptr.AccountsTest do
 
       assert {:ok, %User{}} = Accounts.delete_user(user)
       assert_raise Ecto.NoResultsError, fn ->
-        Accounts.get_user!(user.id, account)
+        Accounts.get_user!(account, user.id)
       end
     end
 

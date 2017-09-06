@@ -7,10 +7,8 @@ defmodule Ptr.Support.FixtureHelper do
   @user_attrs %{email: "some@email.com", lastname: "some lastname", name: "some name", password: "123456", password_confirmation: "123456"}
 
   def fixture(:user, attributes, account) when is_map(account) do
-    {:ok, user} =
-      attributes
-      |> Enum.into(@user_attrs)
-      |> Accounts.create_user(account)
+    attributes  = Enum.into(attributes, @user_attrs)
+    {:ok, user} = Accounts.create_user(account, attributes)
 
     {:ok, %{user | password: nil}, account}
   end

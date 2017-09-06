@@ -148,14 +148,14 @@ defmodule Ptr.Accounts do
 
   ## Examples
 
-      iex> get_user!(123, 1)
+      iex> get_user!(%Account{id: 1}, 123)
       %User{}
 
-      iex> get_user!(123, 2)
+      iex> get_user!(%Account{id: 2}, 123)
       ** (Ecto.NoResultsError)
 
   """
-  def get_user!(id, account) do
+  def get_user!(account, id) do
     Repo.get_by!(User, id: id, account_id: account.id)
   end
 
@@ -184,14 +184,14 @@ defmodule Ptr.Accounts do
 
   ## Examples
 
-      iex> create_user(%{field: value})
+      iex> create_user(%Account{}, %{field: value})
       {:ok, %User{}}
 
-      iex> create_user(%{field: bad_value})
+      iex> create_user(%Account{}, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_user(attrs, account) do
+  def create_user(account, attrs) do
     %User{account_id: account.id}
     |> User.create_changeset(attrs)
     |> Trail.insert()

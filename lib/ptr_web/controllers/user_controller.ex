@@ -22,7 +22,7 @@ defmodule PtrWeb.UserController do
   end
 
   def create(%{assigns: %{current_account: account}} = conn, %{"user" => user_params}) do
-    case Accounts.create_user(user_params, account) do
+    case Accounts.create_user(account, user_params) do
       {:ok, user} ->
         conn
         |> put_flash(:info, dgettext("users", "User created successfully."))
@@ -33,7 +33,7 @@ defmodule PtrWeb.UserController do
   end
 
   def show(%{assigns: %{current_account: account}} = conn, %{"id" => id}) do
-    user = Accounts.get_user!(id, account)
+    user = Accounts.get_user!(account, id)
 
     conn
     |> put_show_breadcrumb(user)
@@ -41,7 +41,7 @@ defmodule PtrWeb.UserController do
   end
 
   def edit(%{assigns: %{current_account: account}} = conn, %{"id" => id}) do
-    user      = Accounts.get_user!(id, account)
+    user      = Accounts.get_user!(account, id)
     changeset = Accounts.change_user(user)
 
     conn
@@ -50,7 +50,7 @@ defmodule PtrWeb.UserController do
   end
 
   def update(%{assigns: %{current_account: account}} = conn, %{"id" => id, "user" => user_params}) do
-    user = Accounts.get_user!(id, account)
+    user = Accounts.get_user!(account, id)
 
     case Accounts.update_user(user, user_params) do
       {:ok, user} ->
@@ -63,7 +63,7 @@ defmodule PtrWeb.UserController do
   end
 
   def delete(%{assigns: %{current_account: account}} = conn, %{"id" => id}) do
-    user = Accounts.get_user!(id, account)
+    user = Accounts.get_user!(account, id)
     {:ok, _user} = Accounts.delete_user(user)
 
     conn
