@@ -10,7 +10,7 @@ defmodule Ptr.Ownerships.OwnerRepoTest do
       {:ok, owner, account} = fixture(:owner, @valid_attrs)
       attrs                 = Map.put(@valid_attrs, :tax_id, owner.tax_id)
       changeset             = Owner.changeset(%Owner{}, attrs)
-      prefix                = "t_#{account.db_prefix}"
+      prefix                = Ptr.Accounts.prefix(account)
       {:error, changeset}   = Repo.insert(changeset, prefix: prefix)
 
       assert "has already been taken" in errors_on(changeset).tax_id

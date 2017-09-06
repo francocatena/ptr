@@ -3,7 +3,7 @@ defmodule Ptr.Accounts.Password do
 
   alias Ptr.Accounts.User
   alias Ptr.Notifications
-  alias Ptr.Repo
+  alias Ptr.{Repo, Trail}
 
   def get_user_by_token(token) do
     user_by_token = from u in User,
@@ -14,10 +14,10 @@ defmodule Ptr.Accounts.Password do
   end
 
   def reset(%User{} = user) do
-    {:ok, %{model: user_with_token}} =
+    {:ok, user_with_token} =
       user
       |> User.password_reset_token_changeset()
-      |> PaperTrail.update()
+      |> Trail.update()
 
     Notifications.send_password_reset(user_with_token)
 

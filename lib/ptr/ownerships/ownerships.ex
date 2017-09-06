@@ -4,8 +4,10 @@ defmodule Ptr.Ownerships do
   """
 
   import Ecto.Query, warn: false
-  alias Ptr.Repo
+  import Ptr.Accounts.Account, only: [prefix: 1]
+  import Ptr.Helpers
 
+  alias Ptr.{Repo, Trail}
   alias Ptr.Ownerships.Owner
 
   @doc """
@@ -59,8 +61,7 @@ defmodule Ptr.Ownerships do
     %Owner{}
     |> Owner.changeset(attrs)
     |> Map.put(:repo_opts, prefix: prefix(account))
-    |> PaperTrail.insert(prefix: prefix(account))
-    |> extract_model()
+    |> Trail.insert(prefix: prefix(account))
   end
 
   @doc """
@@ -78,8 +79,7 @@ defmodule Ptr.Ownerships do
   def update_owner(%Owner{} = owner, attrs, account) do
     owner
     |> Owner.changeset(attrs)
-    |> PaperTrail.update(prefix: prefix(account))
-    |> extract_model()
+    |> Trail.update(prefix: prefix(account))
   end
 
   @doc """
@@ -95,9 +95,7 @@ defmodule Ptr.Ownerships do
 
   """
   def delete_owner(%Owner{} = owner, account) do
-    owner
-    |> PaperTrail.delete(prefix: prefix(account))
-    |> extract_model()
+    Trail.delete(owner, prefix: prefix(account))
   end
 
   @doc """
@@ -112,17 +110,4 @@ defmodule Ptr.Ownerships do
   def change_owner(%Owner{} = owner) do
     Owner.changeset(owner, %{})
   end
-
-  defp prefixed(query, account) do
-    query
-    |> Ecto.Queryable.to_query()
-    |> Map.put(:prefix, prefix(account))
-  end
-
-  defp prefix(account) do
-    "t_#{account.db_prefix}"
-  end
-
-  defp extract_model({:ok, %{model: model}}), do: {:ok, model}
-  defp extract_model(error),                  do: error
 end

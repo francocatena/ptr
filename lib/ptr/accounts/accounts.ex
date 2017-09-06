@@ -5,8 +5,19 @@ defmodule Ptr.Accounts do
 
   import Ecto.Query
 
-  alias Ptr.Repo
+  alias Ptr.{Repo, Trail}
   alias Ptr.Accounts.Account
+
+  @doc """
+  Returns the account prefix (Database schema name)
+
+  ## Examples
+
+      iex> prefix(%Account{})
+      "t_account_prefix"
+
+  """
+  defdelegate prefix(account), to: Account
 
   @doc """
   Returns the list of accounts.
@@ -60,8 +71,7 @@ defmodule Ptr.Accounts do
   def create_account(attrs, _) do
     %Account{}
     |> Account.create_changeset(attrs)
-    |> PaperTrail.insert()
-    |> extract_model()
+    |> Trail.insert()
   end
 
   @doc """
@@ -79,8 +89,7 @@ defmodule Ptr.Accounts do
   def update_account(%Account{} = account, attrs) do
     account
     |> Account.changeset(attrs)
-    |> PaperTrail.update()
-    |> extract_model()
+    |> Trail.update()
   end
 
   @doc """
@@ -97,8 +106,7 @@ defmodule Ptr.Accounts do
   """
   def delete_account(%Account{} = account) do
     account
-    |> PaperTrail.delete()
-    |> extract_model()
+    |> Trail.delete()
     |> Account.after_delete()
   end
 
@@ -186,8 +194,7 @@ defmodule Ptr.Accounts do
   def create_user(attrs, account) do
     %User{account_id: account.id}
     |> User.create_changeset(attrs)
-    |> PaperTrail.insert()
-    |> extract_model()
+    |> Trail.insert()
   end
 
   @doc """
@@ -205,8 +212,7 @@ defmodule Ptr.Accounts do
   def update_user(%User{} = user, attrs) do
     user
     |> User.changeset(attrs)
-    |> PaperTrail.update()
-    |> extract_model()
+    |> Trail.update()
   end
 
   @doc """
@@ -224,8 +230,7 @@ defmodule Ptr.Accounts do
   def update_user_password(%User{} = user, attrs) do
     user
     |> User.password_reset_changeset(attrs)
-    |> PaperTrail.update()
-    |> extract_model()
+    |> Trail.update()
   end
 
   @doc """
@@ -241,9 +246,7 @@ defmodule Ptr.Accounts do
 
   """
   def delete_user(%User{} = user) do
-    user
-    |> PaperTrail.delete()
-    |> extract_model()
+    Trail.delete(user)
   end
 
   @doc """
@@ -296,7 +299,4 @@ defmodule Ptr.Accounts do
 
   """
   def password_reset(user), do: Password.reset(user)
-
-  defp extract_model({:ok, %{model: model}}), do: {:ok, model}
-  defp extract_model(error),                  do: error
 end

@@ -1,7 +1,6 @@
 defmodule Ptr.Accounts.Migration do
-  import Ecto.Query
-
   alias Ptr.Repo
+  alias Ptr.Accounts
   alias Ptr.Accounts.Account
 
   @doc """
@@ -14,7 +13,8 @@ defmodule Ptr.Accounts.Migration do
 
   """
   def account_prefixes do
-    Repo.all(from a in Account, select: a.db_prefix)
-    |> Enum.map(&("t_#{&1}"))
+    Account
+    |> Repo.all()
+    |> Enum.map(&Accounts.prefix(&1))
   end
 end

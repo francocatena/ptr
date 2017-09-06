@@ -55,6 +55,11 @@ defmodule Ptr.Accounts.Account do
   @doc false
   def after_delete(error), do: error
 
+  @doc false
+  def prefix(account) do
+    "t_#{account.db_prefix}"
+  end
+
   defp validation(changeset) do
     changeset
     |> validate_required([:name, :db_prefix])
@@ -66,7 +71,7 @@ defmodule Ptr.Accounts.Account do
   end
 
   defp create_schema(account) do
-    prefix = build_prefix(account)
+    prefix = prefix(account)
 
     case Repo.__adapter__ do
       Postgres -> SQL.query(Repo, "CREATE SCHEMA \"#{prefix}\"")
@@ -76,7 +81,7 @@ defmodule Ptr.Accounts.Account do
   end
 
   defp drop_schema(account) do
-    prefix = build_prefix(account)
+    prefix = prefix(account)
 
     case Repo.__adapter__ do
       Postgres -> SQL.query(Repo, "DROP SCHEMA \"#{prefix}\" CASCADE")
@@ -86,16 +91,12 @@ defmodule Ptr.Accounts.Account do
   end
 
   defp migrate(account) do
-    prefix = build_prefix(account)
+    prefix = prefix(account)
     path   = migrations_path(Repo)
 
     handle_database_exceptions fn ->
       Ecto.Migrator.run(Repo, path, :up, all: true, prefix: prefix)
     end
-  end
-
-  defp build_prefix(account) do
-    "t_#{account.db_prefix}"
   end
 
   defp handle_database_exceptions(fun) do
