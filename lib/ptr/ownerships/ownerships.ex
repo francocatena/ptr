@@ -58,7 +58,9 @@ defmodule Ptr.Ownerships do
   def create_owner(attrs, account) do
     %Owner{}
     |> Owner.changeset(attrs)
-    |> Repo.insert(prefix: "t_#{account.db_prefix}")
+    |> Map.put(:repo_opts, prefix: prefix(account))
+    |> PaperTrail.insert(prefix: prefix(account))
+    |> extract_model()
   end
 
   @doc """
@@ -66,17 +68,18 @@ defmodule Ptr.Ownerships do
 
   ## Examples
 
-      iex> update_owner(owner, %{field: new_value})
+      iex> update_owner(owner, %{field: new_value}, %Account{})
       {:ok, %Owner{}}
 
-      iex> update_owner(owner, %{field: bad_value})
+      iex> update_owner(owner, %{field: bad_value}, %Account{})
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_owner(%Owner{} = owner, attrs) do
+  def update_owner(%Owner{} = owner, attrs, account) do
     owner
     |> Owner.changeset(attrs)
-    |> Repo.update()
+    |> PaperTrail.update(prefix: prefix(account))
+    |> extract_model()
   end
 
   @doc """
@@ -84,15 +87,17 @@ defmodule Ptr.Ownerships do
 
   ## Examples
 
-      iex> delete_owner(owner)
+      iex> delete_owner(owner, %Account{})
       {:ok, %Owner{}}
 
-      iex> delete_owner(owner)
+      iex> delete_owner(owner, %Account{})
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_owner(%Owner{} = owner) do
-    Repo.delete(owner)
+  def delete_owner(%Owner{} = owner, account) do
+    owner
+    |> PaperTrail.delete(prefix: prefix(account))
+    |> extract_model()
   end
 
   @doc """
@@ -110,7 +115,14 @@ defmodule Ptr.Ownerships do
 
   defp prefixed(query, account) do
     query
-    |> Ecto.Queryable.to_query
-    |> Map.put(:prefix, "t_#{account.db_prefix}")
+    |> Ecto.Queryable.to_query()
+    |> Map.put(:prefix, prefix(account))
   end
+
+  defp prefix(account) do
+    "t_#{account.db_prefix}"
+  end
+
+  defp extract_model({:ok, %{model: model}}), do: {:ok, model}
+  defp extract_model(error),                  do: error
 end

@@ -60,7 +60,8 @@ defmodule Ptr.Accounts do
   def create_account(attrs, _) do
     %Account{}
     |> Account.create_changeset(attrs)
-    |> Repo.insert()
+    |> PaperTrail.insert()
+    |> extract_model()
   end
 
   @doc """
@@ -78,7 +79,8 @@ defmodule Ptr.Accounts do
   def update_account(%Account{} = account, attrs) do
     account
     |> Account.changeset(attrs)
-    |> Repo.update()
+    |> PaperTrail.update()
+    |> extract_model()
   end
 
   @doc """
@@ -94,7 +96,9 @@ defmodule Ptr.Accounts do
 
   """
   def delete_account(%Account{} = account) do
-    Repo.delete(account)
+    account
+    |> PaperTrail.delete()
+    |> extract_model()
     |> Account.after_delete()
   end
 
@@ -182,7 +186,8 @@ defmodule Ptr.Accounts do
   def create_user(attrs, account) do
     %User{account_id: account.id}
     |> User.create_changeset(attrs)
-    |> Repo.insert()
+    |> PaperTrail.insert()
+    |> extract_model()
   end
 
   @doc """
@@ -200,7 +205,8 @@ defmodule Ptr.Accounts do
   def update_user(%User{} = user, attrs) do
     user
     |> User.changeset(attrs)
-    |> Repo.update()
+    |> PaperTrail.update()
+    |> extract_model()
   end
 
   @doc """
@@ -218,7 +224,8 @@ defmodule Ptr.Accounts do
   def update_user_password(%User{} = user, attrs) do
     user
     |> User.password_reset_changeset(attrs)
-    |> Repo.update()
+    |> PaperTrail.update()
+    |> extract_model()
   end
 
   @doc """
@@ -234,7 +241,9 @@ defmodule Ptr.Accounts do
 
   """
   def delete_user(%User{} = user) do
-    Repo.delete(user)
+    user
+    |> PaperTrail.delete()
+    |> extract_model()
   end
 
   @doc """
@@ -287,4 +296,7 @@ defmodule Ptr.Accounts do
 
   """
   def password_reset(user), do: Password.reset(user)
+
+  defp extract_model({:ok, %{model: model}}), do: {:ok, model}
+  defp extract_model(error),                  do: error
 end

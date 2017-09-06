@@ -45,7 +45,8 @@ defmodule Ptr.Mixfile do
       {:argon2_elixir,       ">= 1.2.0"},
       {:scrivener_ecto,      ">= 1.2.0"},
       {:scrivener_html,      ">= 1.7.0"},
-      {:bamboo,              ">= 0.8.0"}
+      {:bamboo,              ">= 0.8.0"},
+      {:paper_trail,         ">= 0.7.0"}
     ]
   end
 

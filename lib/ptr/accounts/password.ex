@@ -14,10 +14,10 @@ defmodule Ptr.Accounts.Password do
   end
 
   def reset(%User{} = user) do
-    {:ok, user_with_token} =
+    {:ok, %{model: user_with_token}} =
       user
       |> User.password_reset_token_changeset()
-      |> Repo.update()
+      |> PaperTrail.update()
 
     Notifications.send_password_reset(user_with_token)
 

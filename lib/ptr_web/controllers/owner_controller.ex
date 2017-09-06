@@ -52,7 +52,7 @@ defmodule PtrWeb.OwnerController do
   def update(%{assigns: %{current_account: account}} = conn, %{"id" => id, "owner" => owner_params}) do
     owner = Ownerships.get_owner!(id, account)
 
-    case Ownerships.update_owner(owner, owner_params) do
+    case Ownerships.update_owner(owner, owner_params, account) do
       {:ok, owner} ->
         conn
         |> put_flash(:info, dgettext("owners", "Owner updated successfully."))
@@ -64,7 +64,7 @@ defmodule PtrWeb.OwnerController do
 
   def delete(%{assigns: %{current_account: account}} = conn, %{"id" => id}) do
     owner = Ownerships.get_owner!(id, account)
-    {:ok, _owner} = Ownerships.delete_owner(owner)
+    {:ok, _owner} = Ownerships.delete_owner(owner, account)
 
     conn
     |> put_flash(:info, dgettext("owners", "Owner deleted successfully."))
