@@ -1,6 +1,6 @@
 defmodule Ptr.Trail do
-  def insert(changeset, opts \\ []) do
-    changeset
+  def insert(struct_or_changeset, opts \\ []) do
+    struct_or_changeset
     |> PaperTrail.insert(opts)
     |> extract_model()
   end
