@@ -22,7 +22,7 @@ defmodule PtrWeb.OwnerController do
   end
 
   def create(%{assigns: %{current_account: account}} = conn, %{"owner" => owner_params}) do
-    case Ownerships.create_owner(owner_params, account) do
+    case Ownerships.create_owner(account, owner_params) do
       {:ok, owner} ->
         conn
         |> put_flash(:info, dgettext("owners", "Owner created successfully."))
@@ -33,7 +33,7 @@ defmodule PtrWeb.OwnerController do
   end
 
   def show(%{assigns: %{current_account: account}} = conn, %{"id" => id}) do
-    owner = Ownerships.get_owner!(id, account)
+    owner = Ownerships.get_owner!(account, id)
 
     conn
     |> put_show_breadcrumb(owner)
@@ -41,7 +41,7 @@ defmodule PtrWeb.OwnerController do
   end
 
   def edit(%{assigns: %{current_account: account}} = conn, %{"id" => id}) do
-    owner     = Ownerships.get_owner!(id, account)
+    owner     = Ownerships.get_owner!(account, id)
     changeset = Ownerships.change_owner(owner)
 
     conn
@@ -50,9 +50,9 @@ defmodule PtrWeb.OwnerController do
   end
 
   def update(%{assigns: %{current_account: account}} = conn, %{"id" => id, "owner" => owner_params}) do
-    owner = Ownerships.get_owner!(id, account)
+    owner = Ownerships.get_owner!(account, id)
 
-    case Ownerships.update_owner(owner, owner_params, account) do
+    case Ownerships.update_owner(account, owner, owner_params) do
       {:ok, owner} ->
         conn
         |> put_flash(:info, dgettext("owners", "Owner updated successfully."))
@@ -63,8 +63,8 @@ defmodule PtrWeb.OwnerController do
   end
 
   def delete(%{assigns: %{current_account: account}} = conn, %{"id" => id}) do
-    owner = Ownerships.get_owner!(id, account)
-    {:ok, _owner} = Ownerships.delete_owner(owner, account)
+    owner = Ownerships.get_owner!(account, id)
+    {:ok, _owner} = Ownerships.delete_owner(account, owner)
 
     conn
     |> put_flash(:info, dgettext("owners", "Owner deleted successfully."))

@@ -37,12 +37,9 @@ defmodule Ptr.Support.FixtureHelper do
   @owner_attrs %{name: "some name", tax_id: "some tax_id"}
 
   def fixture(:owner, attributes, _opts) do
-    account = fixture(:seed_account)
-
-    {:ok, owner} =
-      attributes
-      |> Enum.into(@owner_attrs)
-      |> Ownerships.create_owner(account)
+    account      = fixture(:seed_account)
+    attributes   = Enum.into(attributes, @owner_attrs)
+    {:ok, owner} = Ownerships.create_owner(account, attributes)
 
     {:ok, owner, account}
   end

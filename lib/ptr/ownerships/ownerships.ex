@@ -32,14 +32,14 @@ defmodule Ptr.Ownerships do
 
   ## Examples
 
-      iex> get_owner!(123, %Account{})
+      iex> get_owner!(%Account{}, 123)
       %Owner{}
 
-      iex> get_owner!(456, %Account{})
+      iex> get_owner!(%Account{}, 456)
       ** (Ecto.NoResultsError)
 
   """
-  def get_owner!(id, account) do
+  def get_owner!(account, id) do
     Owner
     |> prefixed(account)
     |> Repo.get!(id)
@@ -50,14 +50,14 @@ defmodule Ptr.Ownerships do
 
   ## Examples
 
-      iex> create_owner(%{field: value}, %Account{})
+      iex> create_owner(%Account{}, %{field: value})
       {:ok, %Owner{}}
 
-      iex> create_owner(%{field: bad_value})
+      iex> create_owner(%Account{}, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_owner(attrs, account) do
+  def create_owner(account, attrs) do
     %Owner{}
     |> Owner.changeset(attrs)
     |> Map.put(:repo_opts, prefix: prefix(account))
@@ -69,14 +69,14 @@ defmodule Ptr.Ownerships do
 
   ## Examples
 
-      iex> update_owner(owner, %{field: new_value}, %Account{})
+      iex> update_owner(%Account{}, owner, %{field: new_value})
       {:ok, %Owner{}}
 
-      iex> update_owner(owner, %{field: bad_value}, %Account{})
+      iex> update_owner(%Account{}, owner, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_owner(%Owner{} = owner, attrs, account) do
+  def update_owner(account, %Owner{} = owner, attrs) do
     owner
     |> Owner.changeset(attrs)
     |> Trail.update(prefix: prefix(account))
@@ -87,14 +87,14 @@ defmodule Ptr.Ownerships do
 
   ## Examples
 
-      iex> delete_owner(owner, %Account{})
+      iex> delete_owner(%Account{}, owner)
       {:ok, %Owner{}}
 
-      iex> delete_owner(owner, %Account{})
+      iex> delete_owner(%Account{}, owner)
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_owner(%Owner{} = owner, account) do
+  def delete_owner(account, %Owner{} = owner) do
     Trail.delete(owner, prefix: prefix(account))
   end
 
