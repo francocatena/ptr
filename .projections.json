@@ -1,26 +1,31 @@
 {
   "lib/ptr_web/channels/*_channel.ex": {
     "type": "channel",
+    "dispatch": "mix test test/ptr_web/channels/{}_channel_test.exs",
     "alternate": "test/ptr_web/channels/{}_channel_test.exs"
   },
 
   "lib/ptr_web/controllers/*_controller.ex": {
     "type": "controller",
+    "dispatch": "mix test test/ptr_web/controllers/{}_controller_test.exs",
     "alternate": "test/ptr_web/controllers/{}_controller_test.exs"
   },
 
   "lib/ptr_web/views/*_view.ex": {
     "type": "view",
+    "dispatch": "mix test test/ptr_web/views/{}_view_test.exs",
     "alternate": "test/ptr_web/views/{}_view_test.exs"
   },
 
   "lib/ptr_web/views/*_helpers.ex": {
     "type": "helper",
+    "dispatch": "mix test test/ptr_web/views/{}_helpers_test.exs",
     "alternate": "test/ptr_web/views/{}_helpers_test.exs"
   },
 
   "lib/ptr_web/plugs/*_plug.ex": {
     "type": "plug",
+    "dispatch": "mix test test/ptr_web/plugs/{}_plug_test.exs",
     "alternate": "test/ptr_web/plugs/{}_plug_test.exs"
   },
 
@@ -30,31 +35,37 @@
 
   "test/ptr_web/channels/*_channel_test.exs": {
     "type": "tchannel",
+    "dispatch": "mix test {file}",
     "alternate": "lib/ptr_web/channels/{}_channel.ex"
   },
 
   "test/ptr_web/controllers/*_controller_test.exs": {
     "type": "tcontroller",
+    "dispatch": "mix test {file}",
     "alternate": "lib/ptr_web/controllers/{}_controller.ex"
   },
 
   "test/ptr_web/views/*_view_test.exs": {
     "type": "tview",
+    "dispatch": "mix test {file}",
     "alternate": "lib/ptr_web/views/{}_view.ex"
   },
 
   "test/ptr_web/views/*_helpers_test.exs": {
     "type": "thelper",
+    "dispatch": "mix test {file}",
     "alternate": "lib/ptr_web/views/{}_helpers.ex"
   },
 
   "test/ptr_web/plugs/*_plug_test.exs": {
     "type": "tplug",
+    "dispatch": "mix test {file}",
     "alternate": "lib/ptr_web/plugs/{}_plug.ex"
   },
 
   "test/ptr/*_test.exs": {
     "type": "tapp",
+    "dispatch": "mix test {file}",
     "alternate": "lib/ptr/{}.ex"
   },
 
@@ -88,6 +99,7 @@
 
   "lib/ptr/*.ex": {
     "type": "app",
+    "dispatch": "mix test test/ptr/{}_test.exs",
     "alternate": "test/ptr/{}_test.exs"
   },
 
