@@ -6,6 +6,7 @@ defmodule PtrWeb.UserViewTest do
   alias Ptr.Accounts.User
 
   import Phoenix.View
+  import Phoenix.HTML, only: [safe_to_string: 1]
 
   test "renders index.html", %{conn: conn} do
     page    = %Scrivener.Page{total_pages: 1, page_number: 1}
@@ -42,5 +43,26 @@ defmodule PtrWeb.UserViewTest do
                                  conn: conn, user: user)
 
     assert String.contains?(content, user.email)
+  end
+
+  test "link to delete user is disabled when current user", %{conn: conn} do
+    user    = %User{id: "1"}
+    content =
+      conn
+      |> Plug.Conn.assign(:current_session, %{user: user})
+      |> UserView.link_to_delete(user)
+      |> safe_to_string
+
+    assert content =~ "disabled"
+  end
+
+  test "link to delete user is not disabled when no current user", %{conn: conn} do
+    user    = %User{id: "1"}
+    content =
+      conn
+      |> UserView.link_to_delete(user)
+      |> safe_to_string
+
+    refute content =~ "disabled"
   end
 end

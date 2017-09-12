@@ -1,3 +1,7 @@
+a[disabled="disabled"] {
+  pointer-events: none;
+}
+
 .is-sr {
   position: absolute;
   width: 1px;
