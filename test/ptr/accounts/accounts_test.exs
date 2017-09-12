@@ -70,6 +70,8 @@ defmodule Ptr.AccountsTest do
     end
   end
 
+  alias Ptr.Accounts.Session
+
   describe "users" do
     alias Ptr.Accounts.User
 
@@ -133,8 +135,9 @@ defmodule Ptr.AccountsTest do
 
     test "create_user/2 with valid data creates a user" do
       account = fixture(:seed_account)
+      session = %Session{account: account}
 
-      assert {:ok, %User{} = user} = Accounts.create_user(account, @valid_attrs)
+      assert {:ok, %User{} = user} = Accounts.create_user(session, @valid_attrs)
       assert user.email == "some@email.com"
       assert user.lastname == "some lastname"
       assert user.name == "some name"
@@ -142,23 +145,25 @@ defmodule Ptr.AccountsTest do
 
     test "create_user/2 with invalid data returns error changeset" do
       assert {:error, %Ecto.Changeset{}} =
-        Accounts.create_user(%Ptr.Accounts.Account{}, @invalid_attrs)
+        Accounts.create_user(%Session{}, @invalid_attrs)
     end
 
-    test "update_user/2 with valid data updates the user" do
-      {:ok, user, _} = fixture(:user, @valid_attrs)
+    test "update_user/3 with valid data updates the user" do
+      {:ok, user, account} = fixture(:user, @valid_attrs)
+      session              = %Session{account: account, user: user}
 
-      assert {:ok, user} = Accounts.update_user(user, @update_attrs)
+      assert {:ok, user} = Accounts.update_user(session, user, @update_attrs)
       assert %User{} = user
       assert user.email == "new@email.com"
       assert user.lastname == "some updated lastname"
       assert user.name == "some updated name"
     end
 
-    test "update_user/2 with invalid data returns error changeset" do
+    test "update_user/3 with invalid data returns error changeset" do
       {:ok, user, account} = fixture(:user)
+      session              = %Session{account: account, user: user}
 
-      assert {:error, %Ecto.Changeset{}} = Accounts.update_user(user, @invalid_attrs)
+      assert {:error, %Ecto.Changeset{}} = Accounts.update_user(session, user, @invalid_attrs)
       assert user == Accounts.get_user!(account, user.id)
     end
 
@@ -181,8 +186,9 @@ defmodule Ptr.AccountsTest do
 
     test "delete_user/1 deletes the user" do
       {:ok, user, account} = fixture(:user)
+      session              = %Session{account: account, user: user}
 
-      assert {:ok, %User{}} = Accounts.delete_user(user)
+      assert {:ok, %User{}} = Accounts.delete_user(session, user)
       assert_raise Ecto.NoResultsError, fn ->
         Accounts.get_user!(account, user.id)
       end
@@ -198,6 +204,18 @@ defmodule Ptr.AccountsTest do
       {:ok, user, _} = fixture(:user)
 
       assert %Ecto.Changeset{} = Accounts.change_user_password(user)
+    end
+  end
+
+  describe "session" do
+    alias Ptr.Accounts.Session
+
+    test "get_current_session/2 returns the session with given account and user id" do
+      {:ok, user, account} = fixture(:user)
+      %Session{} = session = Accounts.get_current_session(account.id, user.id)
+
+      assert user    == session.user
+      assert account == session.account
     end
   end
 

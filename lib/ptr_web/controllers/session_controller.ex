@@ -3,8 +3,8 @@ defmodule PtrWeb.SessionController do
 
   plug :authenticate when action in [:delete]
 
-  def new(%{assigns: %{current_account: account}} = conn, _params)
-  when is_map(account) do
+  def new(%{assigns: %{current_session: session}} = conn, _params)
+  when is_map(session) do
     redirect(conn, to: root_path(conn, :index))
   end
 

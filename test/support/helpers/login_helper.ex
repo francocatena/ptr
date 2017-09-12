@@ -4,7 +4,7 @@ defmodule Ptr.Support.LoginHelper do
 
   import Ptr.Support.FixtureHelper
 
-  alias Ptr.Accounts.User
+  alias Ptr.Accounts.{Session, User}
 
   using do
     quote do
@@ -20,10 +20,8 @@ defmodule Ptr.Support.LoginHelper do
   def do_setup(conn, email) do
     account = fixture(:seed_account)
     user    = %User{email: email, account_id: account.id}
-    conn    =
-      conn
-      |> assign(:current_account, account)
-      |> assign(:current_user, user)
+    session = %Session{account: account, user: user}
+    conn    = assign(conn, :current_session, session)
 
     {:ok, conn: conn, account: account, user: user}
   end

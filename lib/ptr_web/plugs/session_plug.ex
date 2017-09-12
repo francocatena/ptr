@@ -6,31 +6,20 @@ defmodule PtrWeb.SessionPlug do
   alias Ptr.Accounts
   alias PtrWeb.Router.Helpers
 
-  def fetch_current_account(%{assigns: %{current_account: account}} = conn, _opts)
-  when is_map(account),
+  def fetch_current_session(%{assigns: %{current_session: session}} = conn, _opts)
+  when is_map(session),
     do: conn
 
-  def fetch_current_account(conn, _opts) do
+  def fetch_current_session(conn, _opts) do
     account_id = get_session(conn, :account_id)
-    account    = account_id && Accounts.get_account!(account_id)
+    user_id    = get_session(conn, :user_id)
+    session    = Accounts.get_current_session(account_id, user_id)
 
-    assign(conn, :current_account, account)
+    assign(conn, :current_session, session)
   end
 
-  def fetch_current_user(%{assigns: %{current_user: user}} = conn, _opts)
-  when is_map(user),
-    do: conn
-
-  def fetch_current_user(conn, _opts) do
-    account = conn.assigns[:current_account]
-    user_id = get_session(conn, :user_id)
-    user    = user_id && account && Accounts.get_user!(account, user_id)
-
-    assign(conn, :current_user, user)
-  end
-
-  def authenticate(%{assigns: %{current_user: user}} = conn, _opts)
-  when is_map(user),
+  def authenticate(%{assigns: %{current_session: session}} = conn, _opts)
+  when is_map(session),
     do: conn
 
   def authenticate(conn, _opts) do

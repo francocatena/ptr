@@ -1,8 +1,8 @@
 defmodule PtrWeb.RootController do
   use PtrWeb, :controller
 
-  def index(%{assigns: %{current_account: account}} = conn, _params)
-  when is_map(account) do
+  def index(%{assigns: %{current_session: session}} = conn, _params)
+  when is_map(session) do
     redirect(conn, to: user_path(conn, :index))
   end
 

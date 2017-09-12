@@ -8,6 +8,7 @@ defmodule Ptr.Ownerships do
   import Ptr.Helpers
 
   alias Ptr.{Repo, Trail}
+  alias Ptr.Accounts.Session
   alias Ptr.Ownerships.Owner
 
   @doc """
@@ -50,18 +51,18 @@ defmodule Ptr.Ownerships do
 
   ## Examples
 
-      iex> create_owner(%Account{}, %{field: value})
+      iex> create_owner(%Session{}, %{field: value})
       {:ok, %Owner{}}
 
-      iex> create_owner(%Account{}, %{field: bad_value})
+      iex> create_owner(%Session{}, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_owner(account, attrs) do
+  def create_owner(%Session{account: account, user: user}, attrs) do
     %Owner{}
     |> Owner.changeset(attrs)
     |> Map.put(:repo_opts, prefix: prefix(account))
-    |> Trail.insert(prefix: prefix(account))
+    |> Trail.insert(prefix: prefix(account), originator: user)
   end
 
   @doc """
@@ -69,17 +70,17 @@ defmodule Ptr.Ownerships do
 
   ## Examples
 
-      iex> update_owner(%Account{}, owner, %{field: new_value})
+      iex> update_owner(%Session{}, owner, %{field: new_value})
       {:ok, %Owner{}}
 
-      iex> update_owner(%Account{}, owner, %{field: bad_value})
+      iex> update_owner(%Session{}, owner, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_owner(account, %Owner{} = owner, attrs) do
+  def update_owner(%Session{account: account, user: user}, %Owner{} = owner, attrs) do
     owner
     |> Owner.changeset(attrs)
-    |> Trail.update(prefix: prefix(account))
+    |> Trail.update(prefix: prefix(account), originator: user)
   end
 
   @doc """
@@ -87,15 +88,15 @@ defmodule Ptr.Ownerships do
 
   ## Examples
 
-      iex> delete_owner(%Account{}, owner)
+      iex> delete_owner(%Session{}, owner)
       {:ok, %Owner{}}
 
-      iex> delete_owner(%Account{}, owner)
+      iex> delete_owner(%Session{}, owner)
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_owner(account, %Owner{} = owner) do
-    Trail.delete(owner, prefix: prefix(account))
+  def delete_owner(%Session{account: account, user: user}, %Owner{} = owner) do
+    Trail.delete(owner, prefix: prefix(account), originator: user)
   end
 
   @doc """

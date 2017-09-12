@@ -22,10 +22,10 @@ defmodule PtrWeb.SessionControllerTest do
       assert html_response(conn, 200) =~ ~r/Login/
     end
 
-    test "redirects when current account", %{conn: conn} do
+    test "redirects when current session", %{conn: conn} do
       conn =
         conn
-        |> assign(:current_account, %Ptr.Accounts.Account{})
+        |> assign(:current_session, %Ptr.Accounts.Session{})
         |> get(session_path(conn, :new))
 
       assert redirected_to(conn) == root_path(conn, :index)
@@ -71,7 +71,7 @@ defmodule PtrWeb.SessionControllerTest do
     test "clear session", %{conn: conn} do
       conn =
         conn
-        |> assign(:current_user, %Ptr.Accounts.User{})
+        |> assign(:current_session, %Ptr.Accounts.Session{})
         |> delete(session_path(conn, :delete))
 
       refute get_session(conn, :user_id)

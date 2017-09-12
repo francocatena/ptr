@@ -2,6 +2,7 @@ defmodule Ptr.OwnershipsTest do
   use Ptr.DataCase
 
   alias Ptr.Ownerships
+  alias Ptr.Accounts.Session
 
   describe "owners" do
     alias Ptr.Ownerships.Owner
@@ -24,22 +25,23 @@ defmodule Ptr.OwnershipsTest do
 
     test "create_owner/2 with valid data creates a owner" do
       account = fixture(:seed_account)
+      session = %Session{account: account}
 
-      assert {:ok, %Owner{} = owner} = Ownerships.create_owner(account, @valid_attrs)
+      assert {:ok, %Owner{} = owner} = Ownerships.create_owner(session, @valid_attrs)
       assert owner.name == "some name"
       assert owner.tax_id == "some tax_id"
     end
 
     test "create_owner/2 with invalid data returns error changeset" do
-      account = fixture(:seed_account)
-
-      assert {:error, %Ecto.Changeset{}} = Ownerships.create_owner(account, @invalid_attrs)
+      assert {:error, %Ecto.Changeset{}} =
+        Ownerships.create_owner(%Session{}, @invalid_attrs)
     end
 
     test "update_owner/3 with valid data updates the owner" do
       {:ok, owner, account} = fixture(:owner)
+      session               = %Session{account: account}
 
-      assert {:ok, owner} = Ownerships.update_owner(account, owner, @update_attrs)
+      assert {:ok, owner} = Ownerships.update_owner(session, owner, @update_attrs)
       assert %Owner{} = owner
       assert owner.name == "some updated name"
       assert owner.tax_id == "some updated tax_id"
@@ -47,15 +49,17 @@ defmodule Ptr.OwnershipsTest do
 
     test "update_owner/3 with invalid data returns error changeset" do
       {:ok, owner, account} = fixture(:owner)
+      session               = %Session{account: account}
 
-      assert {:error, %Ecto.Changeset{}} = Ownerships.update_owner(account, owner, @invalid_attrs)
+      assert {:error, %Ecto.Changeset{}} = Ownerships.update_owner(session, owner, @invalid_attrs)
       assert owner == Ownerships.get_owner!(account, owner.id)
     end
 
     test "delete_owner/2 deletes the owner" do
       {:ok, owner, account} = fixture(:owner)
+      session               = %Session{account: account}
 
-      assert {:ok, %Owner{}} = Ownerships.delete_owner(account, owner)
+      assert {:ok, %Owner{}} = Ownerships.delete_owner(session, owner)
       assert_raise Ecto.NoResultsError, fn ->
         Ownerships.get_owner!(account, owner.id)
       end

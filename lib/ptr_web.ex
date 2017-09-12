@@ -53,7 +53,7 @@ defmodule PtrWeb do
       import Plug.Conn
       import Phoenix.Controller
       import PtrWeb.BreadcrumbPlug, only: [put_breadcrumb: 2]
-      import PtrWeb.SessionPlug, only: [fetch_current_account: 2, fetch_current_user: 2]
+      import PtrWeb.SessionPlug, only: [fetch_current_session: 2]
       import PtrWeb.CacheControlPlug, only: [put_cache_control_headers: 2]
     end
   end

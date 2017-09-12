@@ -15,7 +15,9 @@
   db_prefix: "default"
 })
 
-{:ok, _} = Ptr.Accounts.create_user(account, %{
+session  = %Ptr.Accounts.Session{account: account}
+
+{:ok, _} = Ptr.Accounts.create_user(session, %{
   name:     "Admin",
   lastname: "Admin",
   email:    "admin@ptr.com",

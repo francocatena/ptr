@@ -123,18 +123,18 @@ defmodule Ptr.Accounts do
     Account.changeset(account, %{})
   end
 
-  alias Ptr.Accounts.{Auth, User, Password}
+  alias Ptr.Accounts.{Password, Session, User}
 
   @doc """
   Returns the list of users for the account.
 
   ## Examples
 
-      iex> list_users(1)
+      iex> list_users(%Account{}, %{})
       [%User{}, ...]
 
   """
-  def list_users(account, params) do
+  def list_users(%Account{} = account, params) do
     User
     |> where(account_id: ^account.id)
     |> order_by(asc: :email)
@@ -155,9 +155,11 @@ defmodule Ptr.Accounts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_user!(account, id) do
+  def get_user!(%Account{} = account, id) do
     Repo.get_by!(User, id: id, account_id: account.id)
   end
+
+  alias Ptr.Accounts.Password
 
   @doc """
   Gets a single user by his token or email.
@@ -184,17 +186,17 @@ defmodule Ptr.Accounts do
 
   ## Examples
 
-      iex> create_user(%Account{}, %{field: value})
+      iex> create_user(%Session{}, %{field: value})
       {:ok, %User{}}
 
-      iex> create_user(%Account{}, %{field: bad_value})
+      iex> create_user(%Session{}, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_user(account, attrs) do
+  def create_user(%Session{account: account, user: user}, attrs) do
     %User{account_id: account.id}
     |> User.create_changeset(attrs)
-    |> Trail.insert()
+    |> Trail.insert(originator: user, meta: %{account_id: account.id})
   end
 
   @doc """
@@ -202,17 +204,17 @@ defmodule Ptr.Accounts do
 
   ## Examples
 
-      iex> update_user(user, %{field: new_value})
+      iex> update_user(%Session{}, user, %{field: new_value})
       {:ok, %User{}}
 
-      iex> update_user(user, %{field: bad_value})
+      iex> update_user(%Session{}, user, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_user(%User{} = user, attrs) do
+  def update_user(%Session{account: account, user: current_user}, %User{} = user, attrs) do
     user
     |> User.changeset(attrs)
-    |> Trail.update()
+    |> Trail.update(originator: current_user, meta: %{account_id: account.id})
   end
 
   @doc """
@@ -230,7 +232,7 @@ defmodule Ptr.Accounts do
   def update_user_password(%User{} = user, attrs) do
     user
     |> User.password_reset_changeset(attrs)
-    |> Trail.update()
+    |> Trail.update(originator: user)
   end
 
   @doc """
@@ -238,15 +240,15 @@ defmodule Ptr.Accounts do
 
   ## Examples
 
-      iex> delete_user(user)
+      iex> delete_user(%Session{}, user)
       {:ok, %User{}}
 
-      iex> delete_user(user)
+      iex> delete_user(%Session{}, user)
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_user(%User{} = user) do
-    Trail.delete(user)
+  def delete_user(%Session{account: account, user: current_user}, %User{} = user) do
+    Trail.delete(user, originator: current_user, meta: %{account_id: account.id})
   end
 
   @doc """
@@ -272,6 +274,31 @@ defmodule Ptr.Accounts do
   def change_user_password(%User{} = user) do
     User.password_reset_changeset(user, %{})
   end
+
+  @doc """
+  Gets a session with the given account and user id
+
+  Returns nil when any of the arguments is nil
+
+  Raises `Ecto.NoResultsError` if the User or the Account does not exist.
+
+  ## Examples
+
+      iex> get_current_session(1, 2)
+      %Session{}
+
+      iex> get_current_session(nil, 1)
+      nil
+
+      iex> get_current_session(2, 2)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_current_session(account_id, user_id) do
+    Session.get_session(account_id, user_id)
+  end
+
+  alias Ptr.Accounts.Auth
 
   @doc """
   Authenticates a user.

@@ -7,8 +7,8 @@ defmodule PtrWeb.OwnerController do
   plug :authenticate
   plug :put_breadcrumb, name: dgettext("owners", "Owners"), url: "/owners"
 
-  def index(%{assigns: %{current_account: account}} = conn, params) do
-    page = Ownerships.list_owners(account, params)
+  def index(%{assigns: %{current_session: session}} = conn, params) do
+    page = Ownerships.list_owners(session.account, params)
 
     render(conn, "index.html", owners: page.entries, page: page)
   end
@@ -21,8 +21,8 @@ defmodule PtrWeb.OwnerController do
     |> render("new.html", changeset: changeset)
   end
 
-  def create(%{assigns: %{current_account: account}} = conn, %{"owner" => owner_params}) do
-    case Ownerships.create_owner(account, owner_params) do
+  def create(%{assigns: %{current_session: session}} = conn, %{"owner" => owner_params}) do
+    case Ownerships.create_owner(session, owner_params) do
       {:ok, owner} ->
         conn
         |> put_flash(:info, dgettext("owners", "Owner created successfully."))
@@ -32,16 +32,16 @@ defmodule PtrWeb.OwnerController do
     end
   end
 
-  def show(%{assigns: %{current_account: account}} = conn, %{"id" => id}) do
-    owner = Ownerships.get_owner!(account, id)
+  def show(%{assigns: %{current_session: session}} = conn, %{"id" => id}) do
+    owner = Ownerships.get_owner!(session.account, id)
 
     conn
     |> put_show_breadcrumb(owner)
     |> render("show.html", owner: owner)
   end
 
-  def edit(%{assigns: %{current_account: account}} = conn, %{"id" => id}) do
-    owner     = Ownerships.get_owner!(account, id)
+  def edit(%{assigns: %{current_session: session}} = conn, %{"id" => id}) do
+    owner     = Ownerships.get_owner!(session.account, id)
     changeset = Ownerships.change_owner(owner)
 
     conn
@@ -49,10 +49,10 @@ defmodule PtrWeb.OwnerController do
     |> render("edit.html", owner: owner, changeset: changeset)
   end
 
-  def update(%{assigns: %{current_account: account}} = conn, %{"id" => id, "owner" => owner_params}) do
-    owner = Ownerships.get_owner!(account, id)
+  def update(%{assigns: %{current_session: session}} = conn, %{"id" => id, "owner" => owner_params}) do
+    owner = Ownerships.get_owner!(session.account, id)
 
-    case Ownerships.update_owner(account, owner, owner_params) do
+    case Ownerships.update_owner(session, owner, owner_params) do
       {:ok, owner} ->
         conn
         |> put_flash(:info, dgettext("owners", "Owner updated successfully."))
@@ -62,9 +62,9 @@ defmodule PtrWeb.OwnerController do
     end
   end
 
-  def delete(%{assigns: %{current_account: account}} = conn, %{"id" => id}) do
-    owner = Ownerships.get_owner!(account, id)
-    {:ok, _owner} = Ownerships.delete_owner(account, owner)
+  def delete(%{assigns: %{current_session: session}} = conn, %{"id" => id}) do
+    owner = Ownerships.get_owner!(session.account, id)
+    {:ok, _owner} = Ownerships.delete_owner(session, owner)
 
     conn
     |> put_flash(:info, dgettext("owners", "Owner deleted successfully."))

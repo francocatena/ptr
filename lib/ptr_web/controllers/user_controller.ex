@@ -7,8 +7,8 @@ defmodule PtrWeb.UserController do
   plug :authenticate
   plug :put_breadcrumb, name: dgettext("users", "Users"), url: "/users"
 
-  def index(%{assigns: %{current_account: account}} = conn, params) do
-    page = Accounts.list_users(account, params)
+  def index(%{assigns: %{current_session: session}} = conn, params) do
+    page = Accounts.list_users(session.account, params)
 
     render(conn, "index.html", users: page.entries, page: page)
   end
@@ -21,8 +21,8 @@ defmodule PtrWeb.UserController do
     |> render("new.html", changeset: changeset)
   end
 
-  def create(%{assigns: %{current_account: account}} = conn, %{"user" => user_params}) do
-    case Accounts.create_user(account, user_params) do
+  def create(%{assigns: %{current_session: session}} = conn, %{"user" => user_params}) do
+    case Accounts.create_user(session, user_params) do
       {:ok, user} ->
         conn
         |> put_flash(:info, dgettext("users", "User created successfully."))
@@ -32,16 +32,16 @@ defmodule PtrWeb.UserController do
     end
   end
 
-  def show(%{assigns: %{current_account: account}} = conn, %{"id" => id}) do
-    user = Accounts.get_user!(account, id)
+  def show(%{assigns: %{current_session: session}} = conn, %{"id" => id}) do
+    user = Accounts.get_user!(session.account, id)
 
     conn
     |> put_show_breadcrumb(user)
     |> render("show.html", user: user)
   end
 
-  def edit(%{assigns: %{current_account: account}} = conn, %{"id" => id}) do
-    user      = Accounts.get_user!(account, id)
+  def edit(%{assigns: %{current_session: session}} = conn, %{"id" => id}) do
+    user      = Accounts.get_user!(session.account, id)
     changeset = Accounts.change_user(user)
 
     conn
@@ -49,10 +49,10 @@ defmodule PtrWeb.UserController do
     |> render("edit.html", user: user, changeset: changeset)
   end
 
-  def update(%{assigns: %{current_account: account}} = conn, %{"id" => id, "user" => user_params}) do
-    user = Accounts.get_user!(account, id)
+  def update(%{assigns: %{current_session: session}} = conn, %{"id" => id, "user" => user_params}) do
+    user = Accounts.get_user!(session.account, id)
 
-    case Accounts.update_user(user, user_params) do
+    case Accounts.update_user(session, user, user_params) do
       {:ok, user} ->
         conn
         |> put_flash(:info, dgettext("users", "User updated successfully."))
@@ -62,9 +62,9 @@ defmodule PtrWeb.UserController do
     end
   end
 
-  def delete(%{assigns: %{current_account: account}} = conn, %{"id" => id}) do
-    user = Accounts.get_user!(account, id)
-    {:ok, _user} = Accounts.delete_user(user)
+  def delete(%{assigns: %{current_session: session}} = conn, %{"id" => id}) do
+    user = Accounts.get_user!(session.account, id)
+    {:ok, _user} = Accounts.delete_user(session, user)
 
     conn
     |> put_flash(:info, dgettext("users", "User deleted successfully."))

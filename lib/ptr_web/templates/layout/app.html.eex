@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    <%= if @current_user do %>
+    <%= if @current_session do %>
       <%= render "_menu.html", conn: @conn %>
       <%= render "_breadcrumb.html", breadcrumbs: @breadcrumbs %>
     <% end %>
