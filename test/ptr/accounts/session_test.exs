@@ -1,4 +1,4 @@
-defmodule Ptr.Accounts.AccountTest do
+defmodule Ptr.Accounts.SessionTest do
   use Ptr.DataCase
 
   alias Ptr.Accounts.Session
