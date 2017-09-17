@@ -11,7 +11,7 @@ config :ptr, PtrWeb.Endpoint,
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
-  watchers: [node: ["node_modules/webpack/bin/webpack.js", "--watch", "--progress", "--color",
+  watchers: [yarn: ["run", "watch",
                     cd: Path.expand("../assets", __DIR__)]]
 
 # ## SSL Support
