@@ -2,15 +2,16 @@ const Path              = require('path')
 const UglifyJSPlugin    = require('uglifyjs-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const isProduction      = process.env.MIX_ENV === 'prod'
 
 const config = {
-  entry: './js/app.js',
+  entry: ['./js/app.js', './css/app.scss'],
 
   devtool: 'source-map',
 
   output: {
     path:     Path.resolve(__dirname, '../priv/static'),
-    filename: 'js/app.js'
+    filename: 'js/[name].js'
   },
 
   module: {
@@ -35,15 +36,16 @@ const config = {
             {
               loader:  'css-loader',
               options: {
-                minimize:  true,
-                sourceMap: true
+                minimize:  isProduction,
+                sourceMap: !isProduction
               }
             },
 
             {
               loader:  'sass-loader',
               options: {
-                includePaths: [
+                sourceComments: !isProduction,
+                includePaths:   [
                   Path.resolve(__dirname, 'node_modules/bulma'),
                   Path.resolve(__dirname, 'node_modules/font-awesome/scss')
                 ]
@@ -56,7 +58,7 @@ const config = {
   },
 
   plugins: [
-    new UglifyJSPlugin({ sourceMap: true }),
+    new UglifyJSPlugin({ sourceMap: !isProduction }),
     new CopyWebpackPlugin([{ from: './static' }]),
     new ExtractTextPlugin('css/app.css')
   ],
