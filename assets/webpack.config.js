@@ -11,7 +11,7 @@ const config = {
 
   output: {
     path:     Path.resolve(__dirname, '../priv/static'),
-    filename: 'js/[name].js'
+    filename: 'js/app.js'
   },
 
   module: {
