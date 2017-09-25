@@ -1,4 +1,3 @@
-
   alias <%= inspect schema.module %>
 
   @doc """
