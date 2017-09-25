@@ -10,8 +10,7 @@
         <table class="table is-striped is-narrow is-fullwidth">
           <thead>
             <tr>
-<%= for {k, _} <- schema.attrs do %>
-              <th><%%= dgettext "<%= schema.plural %>", "<%= Phoenix.Naming.humanize(Atom.to_string(k)) %>" %></th>
+<%= for {k, _} <- schema.attrs do %>              <th><%%= dgettext "<%= schema.plural %>", "<%= Phoenix.Naming.humanize(Atom.to_string(k)) %>" %></th>
 <% end %>
               <th></th>
             </tr>
@@ -19,8 +18,7 @@
           <tbody>
             <%%= for <%= schema.singular %> <- @<%= schema.plural %> do %>
               <tr>
-<%= for {k, _} <- schema.attrs do %>
-                <td><%%= <%= schema.singular %>.<%= k %> %></td>
+<%= for {k, _} <- schema.attrs do %>                <td><%%= <%= schema.singular %>.<%= k %> %></td>
 <% end %>
                 <td class="has-text-right">
                   <span><%%= link_to_show   @conn, <%= schema.singular %> %></span>

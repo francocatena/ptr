@@ -5,8 +5,8 @@
         <p><%%= dgettext("<%= schema.plural %>", "Oops, something went wrong! Please check the errors below.") %></p>
       </div>
     <%% end %>
-<%= for {attr, _type} <- schema.attrs do %>
-    <%%= input f, <%= inspect attr %>, dgettext("<%= schema.plural %>", "<%= Phoenix.Naming.humanize(Atom.to_string(attr)) %>") %>
+
+<%= for {attr, _type} <- schema.attrs do %>    <%%= input f, <%= inspect attr %>, dgettext("<%= schema.plural %>", "<%= Phoenix.Naming.humanize(Atom.to_string(attr)) %>") %>
 <% end %>
     <%%= lock_version_input f, assigns[:<%= schema.singular %>] %>
   </div>
