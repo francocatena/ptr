@@ -11,8 +11,8 @@ defmodule <%= inspect schema.module %> do
   schema <%= inspect schema.table %> do
 <%= for {k, v} <- schema.types do %>    field <%= inspect k %>, <%= inspect v %><%= schema.defaults[k] %>
 <% end %><%= for {_, k, _, _} <- schema.assocs do %>    field <%= inspect k %>, <%= if schema.binary_id do %>:binary_id<% else %>:id<% end %>
-<% end %>
-    field :lock_version, :integer, default: 1
+<% end %>    field :lock_version, :integer, default: 1
+
     timestamps()
   end
 
