@@ -1,0 +1,47 @@
+<section class="section is-primary">
+  <div class="container">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          <%= dgettext("cellars", "Cellars") %>
+        </p>
+      </header>
+      <div class="card-content">
+        <table class="table is-striped is-narrow is-fullwidth">
+          <thead>
+            <tr>
+              <th><%= dgettext "cellars", "Name" %></th>
+              <th><%= dgettext "cellars", "Identifier" %></th>
+
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= for cellar <- @cellars do %>
+              <tr>
+                <td><%= cellar.name %></td>
+                <td><%= cellar.identifier %></td>
+
+                <td class="has-text-right">
+                  <span><%= link_to_show   @conn, cellar %></span>
+                  <span><%= link_to_edit   @conn, cellar %></span>
+                  <span><%= link_to_delete @conn, cellar %></span>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <%= pagination_links @conn, @page, view_style: :bulma %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer is-primary">
+  <div class="container">
+    <p>
+      <span><%= link dgettext("cellars", "New cellar"), to: cellar_path(@conn, :new) %></span>
+    </p>
+  </div>
+</footer>

@@ -39,5 +39,9 @@ defmodule PtrWeb.Router do
     # Ownerships
 
     resources "/owners", OwnerController
+
+    # Cellars
+
+    resources "/cellars", CellarController
   end
 end

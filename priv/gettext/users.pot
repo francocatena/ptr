@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 
-#: lib/ptr_web/views/user_view.ex:28
+#: lib/ptr_web/views/user_view.ex:36
 msgid "Are you sure?"
 msgstr ""
 
@@ -20,7 +20,7 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: lib/ptr_web/views/user_view.ex:25
+#: lib/ptr_web/views/user_view.ex:25 lib/ptr_web/views/user_view.ex:33
 msgid "Delete"
 msgstr ""
 
@@ -94,11 +94,11 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-#: lib/ptr_web/views/user_view.ex:42
+#: lib/ptr_web/views/user_view.ex:50
 msgid "Create"
 msgstr ""
 
-#: lib/ptr_web/views/user_view.ex:43
+#: lib/ptr_web/views/user_view.ex:51
 msgid "Update"
 msgstr ""
 

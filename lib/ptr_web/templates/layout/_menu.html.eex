@@ -22,6 +22,9 @@
         <%= link to: owner_path(@conn, :index), class: "navbar-item" do %>
           <%= dgettext("owners", "Owners") %>
         <% end %>
+        <%= link to: cellar_path(@conn, :index), class: "navbar-item" do %>
+          <%= dgettext("cellars", "Cellars") %>
+        <% end %>
       </div>
       <div class="navbar-end">
         <div class="navbar-item has-dropdown is-hoverable">

@@ -1,0 +1,18 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <div class="card-content">
+    <%= if @changeset.action do %>
+      <div class="notification is-danger">
+        <p><%= dgettext("cellars", "Oops, something went wrong! Please check the errors below.") %></p>
+      </div>
+    <% end %>
+
+    <%= input f, :name,       dgettext("cellars", "Name"), input_html: [autofocus: true] %>
+    <%= input f, :identifier, dgettext("cellars", "Identifier") %>
+
+    <%= lock_version_input f, assigns[:cellar] %>
+  </div>
+
+  <footer class="card-footer">
+    <%= submit_button assigns[:cellar] %>
+  </footer>
+<% end %>

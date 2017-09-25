@@ -1,0 +1,91 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: es_AR\n"
+
+#: lib/ptr_web/views/cellar_view.ex:24
+msgid "Are you sure?"
+msgstr "¿Está seguro de borrar esta bodega?"
+
+#: lib/ptr_web/templates/cellar/edit.html.eex:22
+#: lib/ptr_web/templates/cellar/new.html.eex:22
+#: lib/ptr_web/templates/cellar/show.html.eex:31
+msgid "Back"
+msgstr "Listado de bodegas"
+
+#: lib/ptr_web/controllers/cellar_controller.ex:82
+#: lib/ptr_web/templates/cellar/show.html.eex:6
+msgid "Cellar"
+msgstr "Bodega"
+
+#: lib/ptr_web/controllers/cellar_controller.ex:28
+msgid "Cellar created successfully."
+msgstr "Bodega creada correctamente."
+
+#: lib/ptr_web/controllers/cellar_controller.ex:70
+msgid "Cellar deleted successfully."
+msgstr "Bodega eliminada correctamente."
+
+#: lib/ptr_web/controllers/cellar_controller.ex:58
+msgid "Cellar updated successfully."
+msgstr "Bodega actualizada correctamente."
+
+#: lib/ptr_web/controllers/cellar_controller.ex:8
+#: lib/ptr_web/templates/cellar/index.html.eex:6
+#: lib/ptr_web/templates/layout/_menu.html.eex:26
+msgid "Cellars"
+msgstr "Bodegas"
+
+#: lib/ptr_web/views/cellar_view.ex:38
+msgid "Create"
+msgstr "Crear nueva bodega"
+
+#: lib/ptr_web/views/cellar_view.ex:21
+msgid "Delete"
+msgstr "Borrar bodega"
+
+#: lib/ptr_web/templates/cellar/show.html.eex:22
+#: lib/ptr_web/views/cellar_view.ex:14
+msgid "Edit"
+msgstr "Editar bodega"
+
+#: lib/ptr_web/controllers/cellar_controller.ex:89
+#: lib/ptr_web/templates/cellar/edit.html.eex:8
+msgid "Edit cellar"
+msgstr "Editar bodega"
+
+#: lib/ptr_web/templates/cellar/_form.html.eex:10
+#: lib/ptr_web/templates/cellar/index.html.eex:14
+#: lib/ptr_web/templates/cellar/show.html.eex:15
+msgid "Identifier"
+msgstr "Identificador"
+
+#: lib/ptr_web/templates/cellar/_form.html.eex:9
+#: lib/ptr_web/templates/cellar/index.html.eex:13
+msgid "Name"
+msgstr "Nombre"
+
+#: lib/ptr_web/controllers/cellar_controller.ex:75
+#: lib/ptr_web/templates/cellar/index.html.eex:44
+#: lib/ptr_web/templates/cellar/new.html.eex:8
+msgid "New cellar"
+msgstr "Nueva bodega"
+
+#: lib/ptr_web/templates/cellar/_form.html.eex:5
+msgid "Oops, something went wrong! Please check the errors below."
+msgstr "Oops, algo salió mal, por favor verifique los errores debajo."
+
+#: lib/ptr_web/views/cellar_view.ex:7
+msgid "Show"
+msgstr "Ver bodega"
+
+#: lib/ptr_web/views/cellar_view.ex:39
+msgid "Update"
+msgstr "Actualizar bodega"

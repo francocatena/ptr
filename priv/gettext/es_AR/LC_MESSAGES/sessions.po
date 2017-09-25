@@ -32,11 +32,11 @@ msgstr "Ingreso"
 msgid "Invalid email/password combination"
 msgstr "El usuario y/o contraseña no es válido"
 
-#: lib/ptr_web/templates/layout/_menu.html.eex:36
+#: lib/ptr_web/templates/layout/_menu.html.eex:39
 msgid "Logout"
 msgstr "Cerrar sesión"
 
-#: lib/ptr_web/plugs/session_plug.ex:39
+#: lib/ptr_web/plugs/session_plug.ex:28
 msgid "You must be logged in."
 msgstr "Debe ingresar para acceder al contenido."
 
