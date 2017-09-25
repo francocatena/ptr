@@ -22,5 +22,6 @@ defmodule <%= inspect schema.module %> do
     |> cast(attrs, [<%= Enum.map_join(schema.attrs ++ [{:lock_version, :integer}], ", ", &inspect(elem(&1, 0))) %>])
     |> validate_required([<%= Enum.map_join(schema.attrs, ", ", &inspect(elem(&1, 0))) %>])
 <%= for k <- schema.uniques do %>    |> unique_constraint(<%= inspect k %>)
-<% end %>  end
+<% end %>    |> optimistic_lock(:lock_version)
+  end
 end
