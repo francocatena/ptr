@@ -9,7 +9,7 @@
     test "list_<%= schema.plural %>/2 returns all <%= schema.plural %>" do
       {:ok, <%= schema.singular %>, account} = fixture(:<%= schema.singular %>)
 
-      assert <%= inspect context.alias %>.list_<%= schema.plural %>(account, %{}) == [<%= schema.singular %>]
+      assert <%= inspect context.alias %>.list_<%= schema.plural %>(account, %{}).entries == [<%= schema.singular %>]
     end
 
     test "get_<%= schema.singular %>!/2 returns the <%= schema.singular %> with given id" do

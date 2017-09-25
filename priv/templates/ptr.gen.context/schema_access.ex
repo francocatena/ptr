@@ -30,7 +30,7 @@
       ** (Ecto.NoResultsError)
 
   """
-  def get_<%= schema.singular %>!(id) do
+  def get_<%= schema.singular %>!(account, id) do
     <%= inspect schema.alias %>
     |> prefixed(account)
     |> Repo.get!(id)

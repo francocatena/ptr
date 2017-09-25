@@ -78,14 +78,14 @@ defmodule <%= inspect context.web_module %>.<%= inspect Module.concat(schema.web
     conn |> put_breadcrumb(name, url)
   end
 
-  defp put_show_breadcrumb(conn, owner) do
+  defp put_show_breadcrumb(conn, <%= schema.singular %>) do
     name = dgettext("<%= schema.plural %>", "<%= schema.human_singular%>")
     url  = <%= schema.route_helper %>_path(conn, :show, <%= schema.singular %>)
 
     conn |> put_breadcrumb(name, url)
   end
 
-  defp put_edit_breadcrumb(conn, owner) do
+  defp put_edit_breadcrumb(conn, <%= schema.singular %>) do
     name = dgettext("<%= schema.plural %>", "Edit <%= schema.singular %>")
     url  = <%= schema.route_helper %>_path(conn, :edit, <%= schema.singular %>)
 

@@ -10,26 +10,25 @@
         <table class="table is-striped is-narrow is-fullwidth">
           <thead>
             <tr>
-              <%= for {k, _} <- schema.attrs do %>
+<%= for {k, _} <- schema.attrs do %>
               <th><%%= dgettext "<%= schema.plural %>", "<%= Phoenix.Naming.humanize(Atom.to_string(k)) %>" %></th>
-              <% end %>
-
+<% end %>
               <th></th>
             </tr>
           </thead>
           <tbody>
-        <%%= for <%= schema.singular %> <- @<%= schema.plural %> do %>
-            <tr>
-        <%= for {k, _} <- schema.attrs do %>      <td><%%= <%= schema.singular %>.<%= k %> %></td>
-        <% end %>
-
-              <td class="has-text-right">
-                <span><%%= link_to_show   @conn, <%= schema.singular %> %></span>
-                <span><%%= link_to_edit   @conn, <%= schema.singular %> %></span>
-                <span><%%= link_to_delete @conn, <%= schema.singular %> %></span>
-              </td>
-            </tr>
-        <%% end %>
+            <%%= for <%= schema.singular %> <- @<%= schema.plural %> do %>
+              <tr>
+<%= for {k, _} <- schema.attrs do %>
+                <td><%%= <%= schema.singular %>.<%= k %> %></td>
+<% end %>
+                <td class="has-text-right">
+                  <span><%%= link_to_show   @conn, <%= schema.singular %> %></span>
+                  <span><%%= link_to_edit   @conn, <%= schema.singular %> %></span>
+                  <span><%%= link_to_delete @conn, <%= schema.singular %> %></span>
+                </td>
+              </tr>
+            <%% end %>
           </tbody>
         </table>
 
