@@ -13,7 +13,7 @@ defmodule PtrWeb.OwnerController do
     render(conn, "index.html", owners: page.entries, page: page)
   end
 
-  def new(conn, _params) do
+  def new(%{assigns: %{current_session: _}} = conn, _params) do
     changeset = Ownerships.change_owner(%Owner{})
 
     conn

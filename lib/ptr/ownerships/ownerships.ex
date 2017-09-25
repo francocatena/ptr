@@ -16,7 +16,7 @@ defmodule Ptr.Ownerships do
 
   ## Examples
 
-      iex> list_owners(%Account{})
+      iex> list_owners(%Account{}, %{})
       [%Owner{}, ...]
 
   """
