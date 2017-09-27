@@ -1,7 +1,7 @@
 document.addEventListener('click', event => {
-  let element  = event.target
-  let selector = element.dataset['delete']
-  let parent   = selector && element.closest && element.closest(selector)
+  const element  = event.target
+  const selector = element.dataset['delete']
+  const parent   = selector && element.closest && element.closest(selector)
 
   parent && parent.remove()
 })
