@@ -7,7 +7,7 @@
         </span>
       <% end %>
 
-      <div class="navbar-burger" data-target="main-menu">
+      <div class="navbar-burger" data-target="#main-menu">
         <span></span>
         <span></span>
         <span></span>

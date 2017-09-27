@@ -1,15 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-  let burgerList     = document.querySelectorAll('.navbar-burger')
-  let $navbarBurgers = Array.prototype.slice.call(burgerList, 0)
+  const burgers = document.querySelectorAll('.navbar-burger')
 
-  if ($navbarBurgers.length) {
-    $navbarBurgers.forEach($el => {
-      $el.addEventListener('click', () => {
-        let $target = document.getElementById($el.dataset.target)
+  burgers.forEach($el => {
+    $el.addEventListener('click', () => {
+      const $target = document.querySelector($el.dataset.target)
 
-        $el.classList.toggle('is-active')
-        $target.classList.toggle('is-active')
-      })
+      $el.classList.toggle('is-active')
+      $target.classList.toggle('is-active')
     })
-  }
+  })
 })
