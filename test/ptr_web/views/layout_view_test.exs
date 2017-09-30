@@ -40,6 +40,26 @@ defmodule PtrWeb.LayoutViewTest do
     end
   end
 
+  describe "menu item" do
+    test "should return active when root path matches", %{conn: conn} do
+      result =
+        %{conn | request_path: "/test/1"}
+        |> LayoutView.menu_item([to: "/test"], do: "test")
+        |> safe_to_string
+
+      assert result =~ "is-active"
+    end
+
+    test "should not return active when root path mismatches", %{conn: conn} do
+      result =
+        %{conn | request_path: "/other/1"}
+        |> LayoutView.menu_item([to: "/test"], do: "test")
+        |> safe_to_string
+
+      refute result =~ "is-active"
+    end
+  end
+
   describe "flash class" do
     test "return CSS class name" do
       assert LayoutView.flash_class("info")  == "is-info"

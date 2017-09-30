@@ -1,7 +1,7 @@
 defmodule PtrWeb.LayoutView do
   use PtrWeb, :view
 
-  import Phoenix.Controller, only: [get_flash: 1]
+  import Phoenix.Controller, only: [get_flash: 1, current_path: 1]
 
   def locale do
     PtrWeb.Gettext
@@ -18,12 +18,24 @@ defmodule PtrWeb.LayoutView do
     end
   end
 
+  def menu_item(conn, [to: to], do: content) do
+    current    = current_path(conn)
+    html_class =
+      if String.starts_with?(current, to) do
+        "navbar-item is-active"
+      else
+        "navbar-item"
+      end
+
+    link to: to, class: html_class, do: content
+  end
+
   def flash_class("info"),  do: "is-info"
   def flash_class("error"), do: "is-danger"
 
   defp get_flash_message(conn) do
     conn
-    |> get_flash
+    |> get_flash()
     |> Enum.at(0)
   end
 end

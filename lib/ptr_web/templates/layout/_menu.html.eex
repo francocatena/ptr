@@ -16,13 +16,13 @@
 
     <div id="main-menu" class="navbar-menu">
       <div class="navbar-start">
-        <%= link to: user_path(@conn, :index), class: "navbar-item" do %>
+        <%= menu_item @conn, to: user_path(@conn, :index) do %>
           <%= dgettext("users", "Users") %>
         <% end %>
-        <%= link to: owner_path(@conn, :index), class: "navbar-item" do %>
+        <%= menu_item @conn, to: owner_path(@conn, :index) do %>
           <%= dgettext("owners", "Owners") %>
         <% end %>
-        <%= link to: cellar_path(@conn, :index), class: "navbar-item" do %>
+        <%= menu_item @conn, to: cellar_path(@conn, :index) do %>
           <%= dgettext("cellars", "Cellars") %>
         <% end %>
       </div>
