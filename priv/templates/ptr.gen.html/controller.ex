@@ -13,8 +13,8 @@ defmodule <%= inspect context.web_module %>.<%= inspect Module.concat(schema.web
     render(conn, "index.html", <%= schema.plural %>: page.entries, page: page)
   end
 
-  def new(%{assigns: %{current_session: _}} = conn, _params) do
-    changeset = <%= inspect context.alias %>.change_<%= schema.singular %>(%<%= inspect schema.alias %>{})
+  def new(%{assigns: %{current_session: session}} = conn, _params) do
+    changeset = <%= inspect context.alias %>.change_<%= schema.singular %>(session.account, %<%= inspect schema.alias %>{})
 
     conn
     |> put_new_breadcrumb
@@ -42,7 +42,7 @@ defmodule <%= inspect context.web_module %>.<%= inspect Module.concat(schema.web
 
   def edit(%{assigns: %{current_session: session}} = conn, %{"id" => id}) do
     <%= schema.singular %> = <%= inspect context.alias %>.get_<%= schema.singular %>!(session.account, id)
-    changeset = <%= inspect context.alias %>.change_<%= schema.singular %>(<%= schema.singular %>)
+    changeset = <%= inspect context.alias %>.change_<%= schema.singular %>(session.account, <%= schema.singular %>)
 
     conn
     |> put_edit_breadcrumb(<%= schema.singular %>)

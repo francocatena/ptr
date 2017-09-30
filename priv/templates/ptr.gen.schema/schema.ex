@@ -2,8 +2,10 @@ defmodule <%= inspect schema.module %> do
   use Ecto.Schema
 
   import Ecto.Changeset
+  import <%= inspect context.base_module %>.Accounts.Account, only: [prefix: 1]
 
   alias <%= inspect schema.module %>
+  alias <%= inspect context.base_module %>.Accounts.Account
 
 <%= if schema.binary_id do %>
   @primary_key {:id, :binary_id, autogenerate: true}
@@ -17,11 +19,12 @@ defmodule <%= inspect schema.module %> do
   end
 
   @doc false
-  def changeset(%<%= inspect schema.alias %>{} = <%= schema.singular %>, attrs) do
+  def changeset(%Account{} = account, %<%= inspect schema.alias %>{} = <%= schema.singular %>, attrs) do
     <%= schema.singular %>
     |> cast(attrs, [<%= Enum.map_join(schema.attrs ++ [{:lock_version, :integer}], ", ", &inspect(elem(&1, 0))) %>])
     |> validate_required([<%= Enum.map_join(schema.attrs, ", ", &inspect(elem(&1, 0))) %>])
 <%= for k <- schema.uniques do %>    |> unique_constraint(<%= inspect k %>)
+    |> unsafe_validate_unique(<%= inspect k %>, <%= inspect context.base_module %>.Repo, prefix: prefix(account))
 <% end %>    |> optimistic_lock(:lock_version)
   end
 end

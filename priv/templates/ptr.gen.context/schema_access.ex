@@ -48,8 +48,8 @@
 
   """
   def create_<%= schema.singular %>(%Session{account: account, user: user}, attrs) do
-    %<%= inspect schema.alias %>{}
-    |> <%= inspect schema.alias %>.changeset(attrs)
+    account
+    |> <%= inspect schema.alias %>.changeset(%<%= inspect schema.alias %>{}, attrs)
     |> Map.put(:repo_opts, prefix: prefix(account))
     |> Trail.insert(prefix: prefix(account), originator: user)
   end
@@ -67,8 +67,8 @@
 
   """
   def update_<%= schema.singular %>(%Session{account: account, user: user}, %<%= inspect schema.alias %>{} = <%= schema.singular %>, attrs) do
-    <%= schema.singular %>
-    |> <%= inspect schema.alias %>.changeset(attrs)
+    account
+    |> <%= inspect schema.alias %>.changeset(<%= schema.singular %>, attrs)
     |> Trail.update(prefix: prefix(account), originator: user)
   end
 
@@ -93,10 +93,10 @@
 
   ## Examples
 
-      iex> change_<%= schema.singular %>(<%= schema.singular %>)
+      iex> change_<%= schema.singular %>(%Account{}, <%= schema.singular %>)
       %Ecto.Changeset{source: %<%= inspect schema.alias %>{}}
 
   """
-  def change_<%= schema.singular %>(%<%= inspect schema.alias %>{} = <%= schema.singular %>) do
-    <%= inspect schema.alias %>.changeset(<%= schema.singular %>, %{})
+  def change_<%= schema.singular %>(%Account{} = account, %<%= inspect schema.alias %>{} = <%= schema.singular %>) do
+    <%= inspect schema.alias %>.changeset(account, <%= schema.singular %>, %{})
   end

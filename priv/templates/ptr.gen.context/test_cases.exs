@@ -55,9 +55,9 @@
       assert_raise Ecto.NoResultsError, fn -> <%= inspect context.alias %>.get_<%= schema.singular %>!(account, <%= schema.singular %>.id) end
     end
 
-    test "change_<%= schema.singular %>/1 returns a <%= schema.singular %> changeset" do
-      {:ok, <%= schema.singular %>, _} = fixture(:<%= schema.singular %>)
+    test "change_<%= schema.singular %>/2 returns a <%= schema.singular %> changeset" do
+      {:ok, <%= schema.singular %>, account} = fixture(:<%= schema.singular %>)
 
-      assert %Ecto.Changeset{} = <%= inspect context.alias %>.change_<%= schema.singular %>(<%= schema.singular %>)
+      assert %Ecto.Changeset{} = <%= inspect context.alias %>.change_<%= schema.singular %>(account, <%= schema.singular %>)
     end
   end

@@ -9,5 +9,5 @@ defmodule <%= inspect context.module %> do
 
   alias <%= inspect schema.repo %>
   alias <%= inspect context.base_module %>.Trail
-  alias <%= inspect context.base_module %>.Accounts.Session
+  alias <%= inspect context.base_module %>.Accounts.{Account, Session}
 end
