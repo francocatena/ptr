@@ -13,8 +13,8 @@ defmodule PtrWeb.OwnerController do
     render(conn, "index.html", owners: page.entries, page: page)
   end
 
-  def new(%{assigns: %{current_session: _}} = conn, _params) do
-    changeset = Ownerships.change_owner(%Owner{})
+  def new(%{assigns: %{current_session: session}} = conn, _params) do
+    changeset = Ownerships.change_owner(session.account, %Owner{})
 
     conn
     |> put_new_breadcrumb
@@ -42,7 +42,7 @@ defmodule PtrWeb.OwnerController do
 
   def edit(%{assigns: %{current_session: session}} = conn, %{"id" => id}) do
     owner     = Ownerships.get_owner!(session.account, id)
-    changeset = Ownerships.change_owner(owner)
+    changeset = Ownerships.change_owner(session.account, owner)
 
     conn
     |> put_edit_breadcrumb(owner)

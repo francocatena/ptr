@@ -8,7 +8,7 @@ defmodule Ptr.Cellars do
   import Ptr.Helpers
 
   alias Ptr.{Repo, Trail}
-  alias Ptr.Accounts.Session
+  alias Ptr.Accounts.{Account, Session}
   alias Ptr.Cellars.Cellar
 
   @doc """
@@ -59,8 +59,8 @@ defmodule Ptr.Cellars do
 
   """
   def create_cellar(%Session{account: account, user: user}, attrs) do
-    %Cellar{}
-    |> Cellar.changeset(attrs)
+    account
+    |> Cellar.changeset(%Cellar{}, attrs)
     |> Map.put(:repo_opts, prefix: prefix(account))
     |> Trail.insert(prefix: prefix(account), originator: user)
   end
@@ -78,8 +78,8 @@ defmodule Ptr.Cellars do
 
   """
   def update_cellar(%Session{account: account, user: user}, %Cellar{} = cellar, attrs) do
-    cellar
-    |> Cellar.changeset(attrs)
+    account
+    |> Cellar.changeset(cellar, attrs)
     |> Trail.update(prefix: prefix(account), originator: user)
   end
 
@@ -108,7 +108,7 @@ defmodule Ptr.Cellars do
       %Ecto.Changeset{source: %Cellar{}}
 
   """
-  def change_cellar(%Cellar{} = cellar) do
-    Cellar.changeset(cellar, %{})
+  def change_cellar(%Account{} = account, %Cellar{} = cellar) do
+    Cellar.changeset(account, cellar, %{})
   end
 end

@@ -65,10 +65,10 @@ defmodule Ptr.OwnershipsTest do
       end
     end
 
-    test "change_owner/1 returns a owner changeset" do
-      {:ok, owner, _} = fixture(:owner)
+    test "change_owner/2 returns a owner changeset" do
+      {:ok, owner, account} = fixture(:owner)
 
-      assert %Ecto.Changeset{} = Ownerships.change_owner(owner)
+      assert %Ecto.Changeset{} = Ownerships.change_owner(account, owner)
     end
   end
 end

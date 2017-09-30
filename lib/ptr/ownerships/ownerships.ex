@@ -8,7 +8,7 @@ defmodule Ptr.Ownerships do
   import Ptr.Helpers
 
   alias Ptr.{Repo, Trail}
-  alias Ptr.Accounts.Session
+  alias Ptr.Accounts.{Account, Session}
   alias Ptr.Ownerships.Owner
 
   @doc """
@@ -59,8 +59,8 @@ defmodule Ptr.Ownerships do
 
   """
   def create_owner(%Session{account: account, user: user}, attrs) do
-    %Owner{}
-    |> Owner.changeset(attrs)
+    account
+    |> Owner.changeset(%Owner{}, attrs)
     |> Map.put(:repo_opts, prefix: prefix(account))
     |> Trail.insert(prefix: prefix(account), originator: user)
   end
@@ -78,8 +78,8 @@ defmodule Ptr.Ownerships do
 
   """
   def update_owner(%Session{account: account, user: user}, %Owner{} = owner, attrs) do
-    owner
-    |> Owner.changeset(attrs)
+    account
+    |> Owner.changeset(owner, attrs)
     |> Trail.update(prefix: prefix(account), originator: user)
   end
 
@@ -108,7 +108,7 @@ defmodule Ptr.Ownerships do
       %Ecto.Changeset{source: %Owner{}}
 
   """
-  def change_owner(%Owner{} = owner) do
-    Owner.changeset(owner, %{})
+  def change_owner(%Account{} = account, %Owner{} = owner) do
+    Owner.changeset(account, owner, %{})
   end
 end

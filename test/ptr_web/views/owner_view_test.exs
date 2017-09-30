@@ -20,7 +20,7 @@ defmodule PtrWeb.OwnerViewTest do
   end
 
   test "renders new.html", %{conn: conn} do
-    changeset = Ownerships.change_owner(%Owner{})
+    changeset = test_account() |> Ownerships.change_owner(%Owner{})
     content   = render_to_string(OwnerView, "new.html",
                                  conn: conn, changeset: changeset)
 
@@ -29,7 +29,7 @@ defmodule PtrWeb.OwnerViewTest do
 
   test "renders edit.html", %{conn: conn} do
     owner     = %Owner{id: "1", name: "Google", tax_id: "123"}
-    changeset = Ownerships.change_owner(owner)
+    changeset = test_account() |> Ownerships.change_owner(owner)
     content   = render_to_string(OwnerView, "edit.html",
                                  conn: conn, owner: owner, changeset: changeset)
 
@@ -42,5 +42,9 @@ defmodule PtrWeb.OwnerViewTest do
                                  conn: conn, owner: owner)
 
     assert String.contains?(content, owner.tax_id)
+  end
+
+  defp test_account do
+    %Ptr.Accounts.Account{db_prefix: "test_account"}
   end
 end

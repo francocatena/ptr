@@ -8,13 +8,13 @@ defmodule Ptr.Ownerships.OwnerTest do
     @invalid_attrs %{name: nil, tax_id: nil}
 
     test "changeset with valid attributes" do
-      changeset = Owner.changeset(%Owner{}, @valid_attrs)
+      changeset = test_account() |> Owner.changeset(%Owner{}, @valid_attrs)
 
       assert changeset.valid?
     end
 
     test "changeset with invalid attributes" do
-      changeset = Owner.changeset(%Owner{}, @invalid_attrs)
+      changeset = test_account() |> Owner.changeset(%Owner{}, @invalid_attrs)
 
       refute changeset.valid?
     end
@@ -25,11 +25,15 @@ defmodule Ptr.Ownerships.OwnerTest do
         |> Map.put(:name, String.duplicate("a", 256))
         |> Map.put(:tax_id, String.duplicate("a", 256))
 
-      changeset = Owner.changeset(%Owner{}, attrs)
+      changeset = test_account() |> Owner.changeset(%Owner{}, attrs)
 
       assert "should be at most 255 character(s)" in errors_on(changeset).name
       assert "should be at most 255 character(s)" in errors_on(changeset).tax_id
     end
+  end
+
+  defp test_account do
+    %Ptr.Accounts.Account{db_prefix: "test_account"}
   end
 end
 

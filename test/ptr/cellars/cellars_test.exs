@@ -62,10 +62,10 @@ defmodule Ptr.CellarsTest do
       assert_raise Ecto.NoResultsError, fn -> Cellars.get_cellar!(account, cellar.id) end
     end
 
-    test "change_cellar/1 returns a cellar changeset" do
-      {:ok, cellar, _} = fixture(:cellar)
+    test "change_cellar/2 returns a cellar changeset" do
+      {:ok, cellar, account} = fixture(:cellar)
 
-      assert %Ecto.Changeset{} = Cellars.change_cellar(cellar)
+      assert %Ecto.Changeset{} = Cellars.change_cellar(account, cellar)
     end
   end
 end

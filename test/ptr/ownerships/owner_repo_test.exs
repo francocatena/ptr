@@ -9,12 +9,15 @@ defmodule Ptr.Ownerships.OwnerRepoTest do
     test "converts unique constraint on tax id to error" do
       {:ok, owner, account} = fixture(:owner, @valid_attrs)
       attrs                 = Map.put(@valid_attrs, :tax_id, owner.tax_id)
-      changeset             = Owner.changeset(%Owner{}, attrs)
+      changeset             = Owner.changeset(account, %Owner{}, attrs)
       prefix                = Ptr.Accounts.prefix(account)
       {:error, changeset}   = Repo.insert(changeset, prefix: prefix)
+      expected              = {
+        "has already been taken",
+        [validation: :unsafe_unique, fields: [:tax_id]]
+      }
 
-      assert "has already been taken" in errors_on(changeset).tax_id
+      assert expected == changeset.errors[:tax_id]
     end
   end
 end
-

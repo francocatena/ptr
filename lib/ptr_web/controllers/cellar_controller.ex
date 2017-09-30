@@ -13,8 +13,8 @@ defmodule PtrWeb.CellarController do
     render(conn, "index.html", cellars: page.entries, page: page)
   end
 
-  def new(%{assigns: %{current_session: _}} = conn, _params) do
-    changeset = Cellars.change_cellar(%Cellar{})
+  def new(%{assigns: %{current_session: session}} = conn, _params) do
+    changeset = Cellars.change_cellar(session.account, %Cellar{})
 
     conn
     |> put_new_breadcrumb
@@ -42,7 +42,7 @@ defmodule PtrWeb.CellarController do
 
   def edit(%{assigns: %{current_session: session}} = conn, %{"id" => id}) do
     cellar = Cellars.get_cellar!(session.account, id)
-    changeset = Cellars.change_cellar(cellar)
+    changeset = Cellars.change_cellar(session.account, cellar)
 
     conn
     |> put_edit_breadcrumb(cellar)
