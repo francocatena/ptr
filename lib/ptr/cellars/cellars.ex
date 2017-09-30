@@ -104,7 +104,7 @@ defmodule Ptr.Cellars do
 
   ## Examples
 
-      iex> change_cellar(cellar)
+      iex> change_cellar(%Account{}, cellar)
       %Ecto.Changeset{source: %Cellar{}}
 
   """

@@ -104,7 +104,7 @@ defmodule Ptr.Ownerships do
 
   ## Examples
 
-      iex> change_owner(owner)
+      iex> change_owner(%Account{}, owner)
       %Ecto.Changeset{source: %Owner{}}
 
   """
