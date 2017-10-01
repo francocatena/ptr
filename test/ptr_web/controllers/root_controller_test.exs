@@ -13,7 +13,7 @@ defmodule PtrWeb.RootControllerTest do
     test "redirect to user's index when logged in", %{conn: conn} do
       conn = get(conn, root_path(conn, :index))
 
-      assert redirected_to(conn) == user_path(conn, :index)
+      assert redirected_to(conn) == cellar_path(conn, :index)
     end
   end
 end
