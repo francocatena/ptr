@@ -23,8 +23,8 @@ defmodule <%= inspect schema.module %> do
     <%= schema.singular %>
     |> cast(attrs, [<%= Enum.map_join(schema.attrs ++ [{:lock_version, :integer}], ", ", &inspect(elem(&1, 0))) %>])
     |> validate_required([<%= Enum.map_join(schema.attrs, ", ", &inspect(elem(&1, 0))) %>])
-<%= for k <- schema.uniques do %>    |> unique_constraint(<%= inspect k %>)
-    |> unsafe_validate_unique(<%= inspect k %>, <%= inspect context.base_module %>.Repo, prefix: prefix(account))
+<%= for k <- schema.uniques do %>    |> unsafe_validate_unique(<%= inspect k %>, <%= inspect schema.repo %>, prefix: prefix(account))
+    |> unique_constraint(<%= inspect k %>)
 <% end %>    |> optimistic_lock(:lock_version)
   end
 end
