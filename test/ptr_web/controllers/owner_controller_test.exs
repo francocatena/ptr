@@ -40,7 +40,7 @@ defmodule PtrWeb.OwnerControllerTest do
 
   describe "empty index" do
     @tag login_as: "test@user.com"
-    test "lists all owners", %{conn: conn} do
+    test "lists no owners", %{conn: conn} do
       conn = get conn, owner_path(conn, :index)
 
       assert html_response(conn, 200) =~ "you have no owners"

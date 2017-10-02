@@ -40,7 +40,7 @@ defmodule PtrWeb.CellarControllerTest do
 
   describe "empty index" do
     @tag login_as: "test@user.com"
-    test "lists all cellars", %{conn: conn} do
+    test "lists no cellars", %{conn: conn} do
       conn = get conn, cellar_path(conn, :index)
 
       assert html_response(conn, 200) =~ "you have no cellars"
