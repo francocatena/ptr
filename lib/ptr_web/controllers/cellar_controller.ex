@@ -10,7 +10,7 @@ defmodule PtrWeb.CellarController do
   def index(%{assigns: %{current_session: session}} = conn, params) do
     page = Cellars.list_cellars(session.account, params)
 
-    render(conn, "index.html", cellars: page.entries, page: page)
+    render_index(conn, page)
   end
 
   def new(%{assigns: %{current_session: session}} = conn, _params) do
@@ -69,6 +69,11 @@ defmodule PtrWeb.CellarController do
     conn
     |> put_flash(:info, dgettext("cellars", "Cellar deleted successfully."))
     |> redirect(to: cellar_path(conn, :index))
+  end
+
+  defp render_index(conn, %{total_entries: 0}), do: render(conn, "empty.html")
+  defp render_index(conn, page) do
+    render(conn, "index.html", cellars: page.entries, page: page)
   end
 
   defp put_new_breadcrumb(conn) do

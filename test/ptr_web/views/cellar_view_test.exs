@@ -7,6 +7,12 @@ defmodule PtrWeb.CellarViewTest do
 
   import Phoenix.View
 
+  test "renders empty.html", %{conn: conn} do
+    content = render_to_string(CellarView, "empty.html", conn: conn)
+
+    assert String.contains?(content, "you have no cellars")
+  end
+
   test "renders index.html", %{conn: conn} do
     page    = %Scrivener.Page{total_pages: 1, page_number: 1}
     cellars = [%Cellar{id: "1", identifier: "gallo", name: "Gallo"},

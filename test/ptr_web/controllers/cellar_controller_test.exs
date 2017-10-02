@@ -26,11 +26,24 @@ defmodule PtrWeb.CellarControllerTest do
   end
 
   describe "index" do
+    setup [:create_cellar]
+
+    @tag login_as: "test@user.com"
+    test "lists all cellars", %{conn: conn, cellar: cellar} do
+      conn     = get conn, cellar_path(conn, :index)
+      response = html_response(conn, 200)
+
+      assert response =~ "Cellars"
+      assert response =~ cellar.name
+    end
+  end
+
+  describe "empty index" do
     @tag login_as: "test@user.com"
     test "lists all cellars", %{conn: conn} do
       conn = get conn, cellar_path(conn, :index)
 
-      assert html_response(conn, 200) =~ "Cellars"
+      assert html_response(conn, 200) =~ "you have no cellars"
     end
   end
 

@@ -17,10 +17,11 @@
   <body>
     <%= if @current_session do %>
       <%= render "_menu.html", conn: @conn %>
+      <%= render_flash @conn %>
       <%= render "_breadcrumb.html", breadcrumbs: @breadcrumbs %>
+    <% else %>
+      <%= render_flash @conn %>
     <% end %>
-
-    <%= render_flash @conn %>
 
     <%= render @view_module, @view_template, assigns %>
 
