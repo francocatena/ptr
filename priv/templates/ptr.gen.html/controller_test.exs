@@ -26,11 +26,24 @@ defmodule <%= inspect context.web_module %>.<%= inspect Module.concat(schema.web
   end
 
   describe "index" do
+    setup [:create_cellar]
+
     @tag login_as: "test@user.com"
-    test "lists all <%= schema.plural %>", %{conn: conn} do
+    test "lists all <%= schema.plural %>", %{conn: conn, <%= schema.singular %>: <%= schema.singular %>} do
+      conn     = get conn, <%= schema.route_helper %>_path(conn, :index)
+      response = html_response(conn, 200)
+
+      assert response =~ "<%= schema.human_plural %>"
+      assert response =~ <%= schema.singular %>.<%= schema.types |> Enum.at(0) |> Tuple.to_list() |> hd() %>
+    end
+  end
+
+  describe "empty index" do
+    @tag login_as: "test@user.com"
+    test "lists no <%= schema.plural %>", %{conn: conn} do
       conn = get conn, <%= schema.route_helper %>_path(conn, :index)
 
-      assert html_response(conn, 200) =~ "<%= schema.human_plural %>"
+      assert html_response(conn, 200) =~ "you have no <%= schema.plural %>"
     end
   end
 
