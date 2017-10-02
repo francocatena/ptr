@@ -10,7 +10,7 @@ defmodule PtrWeb.OwnerController do
   def index(%{assigns: %{current_session: session}} = conn, params) do
     page = Ownerships.list_owners(session.account, params)
 
-    render(conn, "index.html", owners: page.entries, page: page)
+    render_index(conn, page)
   end
 
   def new(%{assigns: %{current_session: session}} = conn, _params) do
@@ -69,6 +69,11 @@ defmodule PtrWeb.OwnerController do
     conn
     |> put_flash(:info, dgettext("owners", "Owner deleted successfully."))
     |> redirect(to: owner_path(conn, :index))
+  end
+
+  defp render_index(conn, %{total_entries: 0}), do: render(conn, "empty.html")
+  defp render_index(conn, page) do
+    render(conn, "index.html", owners: page.entries, page: page)
   end
 
   defp put_new_breadcrumb(conn) do

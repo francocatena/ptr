@@ -33,7 +33,7 @@ msgstr "Borrar propietario"
 msgid "Edit"
 msgstr "Editar propietario"
 
-#: lib/ptr_web/controllers/owner_controller.ex:89
+#: lib/ptr_web/controllers/owner_controller.ex:94
 #: lib/ptr_web/templates/owner/edit.html.eex:8
 msgid "Edit owner"
 msgstr "Editar propietario"
@@ -43,7 +43,8 @@ msgstr "Editar propietario"
 msgid "Name"
 msgstr "Nombre"
 
-#: lib/ptr_web/controllers/owner_controller.ex:75
+#: lib/ptr_web/controllers/owner_controller.ex:80
+#: lib/ptr_web/templates/owner/empty.html.eex:13
 #: lib/ptr_web/templates/owner/index.html.eex:45
 #: lib/ptr_web/templates/owner/new.html.eex:8
 msgid "New owner"
@@ -53,7 +54,7 @@ msgstr "Nuevo propietario"
 msgid "Oops, something went wrong! Please check the errors below."
 msgstr "Oops, algo salió mal, por favor verifique los errores debajo."
 
-#: lib/ptr_web/controllers/owner_controller.ex:82
+#: lib/ptr_web/controllers/owner_controller.ex:87
 #: lib/ptr_web/templates/owner/show.html.eex:6
 msgid "Owner"
 msgstr "Propietario"
@@ -89,3 +90,11 @@ msgstr "Propietario eliminado correctamete."
 #: lib/ptr_web/controllers/owner_controller.ex:58
 msgid "Owner updated successfully."
 msgstr "Propietario actualizado correctamete."
+
+#: lib/ptr_web/templates/owner/empty.html.eex:9
+msgid "Let's create one..."
+msgstr "Vamos, agrega uno..."
+
+#: lib/ptr_web/templates/owner/empty.html.eex:5
+msgid "Looks like you have no owners."
+msgstr "Parece que no hay ningún propietario."

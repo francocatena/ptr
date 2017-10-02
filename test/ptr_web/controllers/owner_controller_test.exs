@@ -26,11 +26,24 @@ defmodule PtrWeb.OwnerControllerTest do
   end
 
   describe "index" do
+    setup [:create_owner]
+
+    @tag login_as: "test@user.com"
+    test "lists all owners", %{conn: conn, owner: owner} do
+      conn     = get conn, owner_path(conn, :index)
+      response = html_response(conn, 200)
+
+      assert response =~ "Owners"
+      assert response =~ owner.name
+    end
+  end
+
+  describe "empty index" do
     @tag login_as: "test@user.com"
     test "lists all owners", %{conn: conn} do
       conn = get conn, owner_path(conn, :index)
 
-      assert html_response(conn, 200) =~ "Owners"
+      assert html_response(conn, 200) =~ "you have no owners"
     end
   end
 

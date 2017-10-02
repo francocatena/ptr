@@ -7,6 +7,12 @@ defmodule PtrWeb.OwnerViewTest do
 
   import Phoenix.View
 
+  test "renders empty.html", %{conn: conn} do
+    content = render_to_string(OwnerView, "empty.html", conn: conn)
+
+    assert String.contains?(content, "you have no owners")
+  end
+
   test "renders index.html", %{conn: conn} do
     page    = %Scrivener.Page{total_pages: 1, page_number: 1}
     owners  = [%Owner{id: "1", name: "Google", tax_id: "123"},
