@@ -138,6 +138,7 @@ defmodule Mix.Tasks.Ptr.Gen.Html do
       {:eex, "edit.html.eex",       Path.join([web_prefix, "templates", web_path, schema.singular, "edit.html.eex"])},
       {:eex, "_form.html.eex",      Path.join([web_prefix, "templates", web_path, schema.singular, "_form.html.eex"])},
       {:eex, "index.html.eex",      Path.join([web_prefix, "templates", web_path, schema.singular, "index.html.eex"])},
+      {:eex, "empty.html.eex",      Path.join([web_prefix, "templates", web_path, schema.singular, "empty.html.eex"])},
       {:eex, "new.html.eex",        Path.join([web_prefix, "templates", web_path, schema.singular, "new.html.eex"])},
       {:eex, "show.html.eex",       Path.join([web_prefix, "templates", web_path, schema.singular, "show.html.eex"])},
       {:eex, "view.ex",             Path.join([web_prefix, "views", web_path, "#{schema.singular}_view.ex"])},

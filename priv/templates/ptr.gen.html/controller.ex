@@ -10,7 +10,7 @@ defmodule <%= inspect context.web_module %>.<%= inspect Module.concat(schema.web
   def index(%{assigns: %{current_session: session}} = conn, params) do
     page = <%= inspect context.alias %>.list_<%= schema.plural %>(session.account, params)
 
-    render(conn, "index.html", <%= schema.plural %>: page.entries, page: page)
+    render_index(conn, page)
   end
 
   def new(%{assigns: %{current_session: session}} = conn, _params) do
@@ -69,6 +69,11 @@ defmodule <%= inspect context.web_module %>.<%= inspect Module.concat(schema.web
     conn
     |> put_flash(:info, dgettext("<%= schema.plural %>", "<%= schema.human_singular %> deleted successfully."))
     |> redirect(to: <%= schema.route_helper %>_path(conn, :index))
+  end
+
+  defp render_index(conn, %{total_entries: 0}), do: render(conn, "empty.html")
+  defp render_index(conn, page) do
+    render(conn, "index.html", <%= schema.plural %>: page.entries, page: page)
   end
 
   defp put_new_breadcrumb(conn) do
