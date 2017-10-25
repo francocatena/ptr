@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const burgers = document.querySelectorAll('.navbar-burger')
+  const burgers = Array.from(document.querySelectorAll('.navbar-burger'))
 
   for (const burger of burgers) {
     burger.addEventListener('click', () => {
