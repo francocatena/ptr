@@ -1,3 +1,5 @@
+/* global module, process, require, __dirname */
+
 const Path              = require('path')
 const UglifyJSPlugin    = require('uglifyjs-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -58,9 +60,12 @@ const config = {
   },
 
   plugins: [
-    new UglifyJSPlugin({ sourceMap: !isProduction }),
-    new CopyWebpackPlugin([{ from: './static' }]),
-    new ExtractTextPlugin('css/app.css')
+    new CopyWebpackPlugin([{from: './static'}]),
+    new ExtractTextPlugin('css/app.css'),
+    new UglifyJSPlugin({
+      sourceMap:       !isProduction,
+      extractComments: !isProduction
+    })
   ],
 
   resolve: {
