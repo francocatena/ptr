@@ -7,7 +7,7 @@
         </p>
       </header>
       <div class="card-content">
-        <table class="table is-striped is-narrow is-fullwidth">
+        <table class="table is-striped is-hoverable is-narrow is-fullwidth">
           <thead>
             <tr>
               <th><%= dgettext "cellars", "Name" %></th>
