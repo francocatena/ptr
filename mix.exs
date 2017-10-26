@@ -20,7 +20,7 @@ defmodule Ptr.Mixfile do
   def application do
     [
       mod:                {Ptr.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :elixir_make]
     ]
   end
 
@@ -46,7 +46,8 @@ defmodule Ptr.Mixfile do
       {:scrivener_ecto,      ">= 1.2.0"},
       {:scrivener_html,      ">= 1.7.0"},
       {:bamboo,              ">= 0.8.0"},
-      {:paper_trail,         ">= 0.7.0"}
+      {:paper_trail,         ">= 0.7.0"},
+      {:distillery,          ">= 1.5.0", runtime: false}
     ]
   end
 

@@ -11,11 +11,10 @@ config :ptr,
 
 # Configures the endpoint
 config :ptr, PtrWeb.Endpoint,
-  url: [host: "localhost"],
+  url:             [host: "localhost"],
   secret_key_base: "+5uJsn8iBpaUpQeRSLPjD7Yfie6r6A9bijONBcFXxh9P7M26BNEQp/EIiKD+D/jW",
-  render_errors: [view: PtrWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Ptr.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+  render_errors:   [view: PtrWeb.ErrorView, accepts: ~w(html json)],
+  pubsub:          [name: Ptr.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Gettext config
 config :ptr, PtrWeb.Gettext, default_locale: "es_AR"
