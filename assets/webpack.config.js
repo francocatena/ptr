@@ -62,10 +62,7 @@ const config = {
   plugins: [
     new CopyWebpackPlugin([{from: './static'}]),
     new ExtractTextPlugin('css/app.css'),
-    new UglifyJSPlugin({
-      sourceMap:       !isProduction,
-      extractComments: !isProduction
-    })
+    new UglifyJSPlugin({sourceMap: !isProduction})
   ],
 
   resolve: {
