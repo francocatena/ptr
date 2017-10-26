@@ -54,23 +54,15 @@ config :logger, level: :info
 #
 # If you are doing OTP releases, you need to instruct Phoenix
 # to start the server for all endpoints:
-#
+
 config :phoenix, :serve_endpoints, true
-#
+
 # Alternatively, you can configure exactly which server to
 # start per endpoint:
 #
 #     config :ptr, PtrWeb.Endpoint, server: true
 #
 
-config :ptr, PtrWeb.Endpoint,
-  secret_key_base: System.get_env("ELIXIR_APP_SECRET_KEY_BASE")
-
-# Configure your database
-config :ptr, Ptr.Repo,
-  adapter:   Ecto.Adapters.Postgres,
-  username:  System.get_env("ELIXIR_APP_DB_USERNAME"),
-  password:  System.get_env("ELIXIR_APP_DB_PASSWORD"),
-  database:  System.get_env("ELIXIR_APP_DB_DATABASE"),
-  hostname:  System.get_env("ELIXIR_APP_DB_HOSTNAME"),
-  pool_size: 15
+# Finally import the config/prod.secret.exs
+# which should be versioned separately.
+import_config "prod.secret.exs"
