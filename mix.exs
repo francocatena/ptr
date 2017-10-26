@@ -20,7 +20,7 @@ defmodule Ptr.Mixfile do
   def application do
     [
       mod:                {Ptr.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :mix]
     ]
   end
 
