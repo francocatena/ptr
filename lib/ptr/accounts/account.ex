@@ -2,7 +2,6 @@ defmodule Ptr.Accounts.Account do
   use Ecto.Schema
 
   import Ecto.Changeset
-  import Mix.Ecto, only: [migrations_path: 1]
 
   alias Ecto.Adapters.{Postgres, SQL}
   alias Ptr.Repo
@@ -23,21 +22,21 @@ defmodule Ptr.Accounts.Account do
   def changeset(%Account{} = account, attrs) do
     account
     |> cast(attrs, [:name, :lock_version])
-    |> validation
+    |> validation()
   end
 
   @doc false
   def create_changeset(%Account{} = account, attrs) do
     account
     |> cast(attrs, [:name, :db_prefix, :lock_version])
-    |> validation
+    |> validation()
   end
 
   @doc false
   def after_create({:ok, account}) do
     account
-    |> create_schema
-    |> migrate
+    |> create_schema()
+    |> migrate()
 
     {:ok, account}
   end
@@ -106,5 +105,24 @@ defmodule Ptr.Accounts.Account do
       e in Postgrex.Error ->
         {:error, Postgrex.Error.message(e)}
     end
+  end
+
+  defp migrations_path(repo) do
+    repo
+    |> source_repo_priv()
+    |> Path.join("migrations")
+  end
+
+  defp source_repo_priv(repo) do
+    repo_config = repo.config()
+    priv        = repo_config[:priv] || default_source_repo_priv(repo)
+
+    Application.app_dir(:ptr) |> Path.join(priv)
+  end
+
+  defp default_source_repo_priv(repo) do
+    # Extracted from:
+    # https://github.com/elixir-ecto/ecto/blob/v2.2.6/lib/mix/ecto.ex#L162
+    "priv/#{repo |> Module.split |> List.last |> Macro.underscore}"
   end
 end
