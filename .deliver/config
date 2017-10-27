@@ -13,7 +13,7 @@ STAGING_USER="deployer"
 PRODUCTION_HOSTS="vintock.com"
 PRODUCTION_USER="deployer"
 
-DELIVER_TO="/var/www/$APP"
+DELIVER_TO="/var/www"
 
 # For *Phoenix* projects, symlink prod.secret.exs to our tmp source
 pre_erlang_get_and_update_deps() {
@@ -23,4 +23,18 @@ pre_erlang_get_and_update_deps() {
       ln -sfn '$_prod_secret_path' '$BUILD_AT/config/prod.secret.exs'
     "
   fi
+}
+
+pre_erlang_clean_compile() {
+  status "Preparing assets with: yarn run build and phx.digest"
+  __sync_remote "
+    set -e
+
+    cd '$BUILD_AT/assets'
+    yarn install
+    MIX_ENV='$TARGET_MIX_ENV' yarn run build
+
+    cd '$BUILD_AT'
+    APP='$APP' MIX_ENV='$TARGET_MIX_ENV' $MIX_CMD phx.digest $SILENCE
+  "
 }
