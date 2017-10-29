@@ -28,7 +28,7 @@ defmodule Ptr.Accounts.User do
   def changeset(%User{} = user, attrs) do
     user
     |> cast(attrs, @cast_attrs)
-    |> validation
+    |> validation()
   end
 
   @doc false
@@ -36,7 +36,7 @@ defmodule Ptr.Accounts.User do
     user
     |> cast(attrs, @cast_attrs)
     |> validate_required([:password, :account_id])
-    |> validation
+    |> validation()
   end
 
   @doc false
@@ -85,7 +85,7 @@ defmodule Ptr.Accounts.User do
 
   defp random_token(length) do
     :crypto.strong_rand_bytes(length)
-    |> Base.url_encode64
+    |> Base.url_encode64()
     |> binary_part(0, length)
   end
 end
