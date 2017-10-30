@@ -12,8 +12,8 @@ defmodule PtrWeb.SessionView do
 
   defp autocomplete_email do
     case Mix.env() do
-      "prod" -> "off"
-      _      -> "on"
+      :prod -> "off"
+      _     -> "on"
     end
   end
 end
