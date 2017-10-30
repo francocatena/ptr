@@ -16,10 +16,8 @@ defmodule Ptr.Notifications.Email do
   end
 
   defp base_email() do
-    from = ~s("#{gettext("Vintock")}" <support@vintock.com>)
-
     new_email()
-    |> from(from)
+    |> from({gettext("Vintock"), "support@vintock.com"})
     |> put_layout({PtrWeb.LayoutView, :email})
   end
 end
