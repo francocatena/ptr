@@ -2,16 +2,16 @@
   <div class="container">
     <div class="card">
       <header class="card-header">
-        <p class="card-header-title">
+        <h2 class="card-header-title">
           <%= dgettext("cellars", "Cellars") %>
-        </p>
+        </h2>
       </header>
       <div class="card-content">
         <table class="table is-striped is-hoverable is-narrow is-fullwidth">
           <thead>
             <tr>
-              <th><%= dgettext "cellars", "Name" %></th>
-              <th><%= dgettext "cellars", "Identifier" %></th>
+              <th><%= dgettext("cellars", "Name") %></th>
+              <th><%= dgettext("cellars", "Identifier") %></th>
 
               <th></th>
             </tr>

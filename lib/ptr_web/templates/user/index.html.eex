@@ -2,18 +2,18 @@
   <div class="container">
     <div class="card">
       <header class="card-header">
-        <p class="card-header-title">
+        <h2 class="card-header-title">
           <%= dgettext("users", "Users") %>
-        </p>
+        </h2>
       </header>
 
       <div class="card-content">
         <table class="table is-striped is-hoverable is-narrow is-fullwidth">
           <thead>
             <tr>
-              <th><%= dgettext "users", "Name" %></th>
-              <th><%= dgettext "users", "Lastname" %></th>
-              <th class="is-hidden-mobile"><%= dgettext "users", "Email" %></th>
+              <th><%= dgettext("users", "Name") %></th>
+              <th><%= dgettext("users", "Lastname") %></th>
+              <th class="is-hidden-mobile"><%= dgettext("users", "Email") %></th>
 
               <th></th>
             </tr>
