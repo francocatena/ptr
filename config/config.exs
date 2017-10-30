@@ -17,16 +17,24 @@ config :ptr, PtrWeb.Endpoint,
   pubsub:          [name: Ptr.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Gettext config
-config :ptr, PtrWeb.Gettext, default_locale: "es_AR"
+config :ptr, PtrWeb.Gettext,
+  default_locale: "es_AR"
 
 # Scrivener config
-config :scrivener_html, routes_helper: PtrWeb.Router.Helpers
+config :scrivener_html,
+  routes_helper: PtrWeb.Router.Helpers
 
 # PaperTrail config
-config :paper_trail, repo: Ptr.Repo
+config :paper_trail,
+  repo: Ptr.Repo
 
 # Ecto timestamps
-config :ptr, Ptr.Repo, migration_timestamps: [type: :utc_datetime]
+config :ptr, Ptr.Repo,
+  migration_timestamps: [type: :utc_datetime]
+
+# App PID
+config :pid_file,
+  file: "./ptr.pid"
 
 # Configures Elixir's Logger
 config :logger, :console,
