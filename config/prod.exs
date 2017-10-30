@@ -15,6 +15,7 @@ use Mix.Config
 # which you typically run after static files are built.
 config :ptr, PtrWeb.Endpoint,
   url:                   [host: "vintock.com", scheme: "https", port: 443],
+  http:                  [port: 80],
   server:                true,
   root:                  ".",
   version:               Application.spec(:ptr, :vsn),
