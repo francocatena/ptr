@@ -17,6 +17,7 @@ config :ptr, PtrWeb.Endpoint,
   url:                   [host: "vintock.com", scheme: "https", port: 443],
   http:                  [port: 80],
   server:                true,
+  load_from_system_env:  true,
   root:                  ".",
   version:               Application.spec(:ptr, :vsn),
   cache_static_manifest: "priv/static/cache_manifest.json"
