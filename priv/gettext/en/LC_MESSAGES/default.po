@@ -11,7 +11,7 @@ msgstr ""
 "Language: en\n"
 
 #: lib/ptr/notifications/email.ex:19 lib/ptr_web/templates/layout/app.html.eex:8
-msgid "Ptr App"
+msgid "Vintock"
 msgstr ""
 
 #: lib/ptr_web/controllers/session_controller.ex:34

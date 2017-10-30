@@ -16,7 +16,7 @@ defmodule Ptr.Notifications.Email do
   end
 
   defp base_email() do
-    from = gettext("Ptr App") <> " <support@ptr.com>"
+    from = gettext("Vintock") <> " <support@vintock.com>"
 
     new_email()
     |> from(from)
