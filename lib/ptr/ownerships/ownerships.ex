@@ -21,7 +21,9 @@ defmodule Ptr.Ownerships do
 
   """
   def list_owners(account, params) do
-    Owner
+    query = from o in Owner, order_by: o.tax_id
+
+    query
     |> prefixed(account)
     |> Repo.paginate(params)
   end

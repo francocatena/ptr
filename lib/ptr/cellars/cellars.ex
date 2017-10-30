@@ -21,7 +21,9 @@ defmodule Ptr.Cellars do
 
   """
   def list_cellars(account, params) do
-    Cellar
+    query = from c in Cellar, order_by: c.identifier
+
+    query
     |> prefixed(account)
     |> Repo.paginate(params)
   end

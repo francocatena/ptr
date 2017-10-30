@@ -29,7 +29,9 @@ defmodule Ptr.Accounts do
 
   """
   def list_accounts do
-    Repo.all(Account)
+    query = from a in Account, order_by: a.db_prefix
+
+    Repo.all(query)
   end
 
   @doc """
@@ -135,7 +137,9 @@ defmodule Ptr.Accounts do
 
   """
   def list_users(%Account{} = account, params) do
-    User
+    query = from u in User, order_by: u.email
+
+    query
     |> where(account_id: ^account.id)
     |> order_by(asc: :email)
     |> Repo.paginate(params)
