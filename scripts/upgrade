@@ -23,5 +23,10 @@ fi
 
 FROM=`mix edeliver version $ROLE | grep -Po 'response: .*\+\K(.*)'`
 
-mix edeliver build upgrade --from=$FROM
-mix edeliver deploy upgrade to $ROLE --run-migrations
+if [[ ! -z $FROM ]]; then
+  mix edeliver build upgrade --from=$FROM
+  mix edeliver deploy upgrade to $ROLE
+  mix edeliver migrate $ROLE
+else
+  echo "Deployed version was not found!" && exit 1
+fi
