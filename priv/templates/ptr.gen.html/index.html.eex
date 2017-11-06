@@ -20,10 +20,12 @@
               <tr>
 <%= for {k, _} <- schema.attrs do %>                <td><%%= <%= schema.singular %>.<%= k %> %></td>
 <% end %>
-                <td class="has-text-right">
-                  <span><%%= link_to_show   @conn, <%= schema.singular %> %></span>
-                  <span><%%= link_to_edit   @conn, <%= schema.singular %> %></span>
-                  <span><%%= link_to_delete @conn, <%= schema.singular %> %></span>
+                <td>
+                  <div class="buttons has-addons is-right">
+                    <%%= link_to_show   @conn, <%= schema.singular %> %>
+                    <%%= link_to_edit   @conn, <%= schema.singular %> %>
+                    <%%= link_to_delete @conn, <%= schema.singular %> %>
+                  </div>
                 </td>
               </tr>
             <%% end %>

@@ -22,10 +22,12 @@
                 <td><%= cellar.name %></td>
                 <td><%= cellar.identifier %></td>
 
-                <td class="has-text-right">
-                  <span><%= link_to_show   @conn, cellar %></span>
-                  <span><%= link_to_edit   @conn, cellar %></span>
-                  <span><%= link_to_delete @conn, cellar %></span>
+                <td>
+                  <div class="buttons has-addons is-right">
+                    <%= link_to_show   @conn, cellar %>
+                    <%= link_to_edit   @conn, cellar %>
+                    <%= link_to_delete @conn, cellar %>
+                  </div>
                 </td>
               </tr>
             <% end %>

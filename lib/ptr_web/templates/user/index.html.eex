@@ -25,10 +25,12 @@
                 <td><%= user.lastname %></td>
                 <td class="is-hidden-mobile"><%= user.email %></td>
 
-                <td class="has-text-right">
-                  <span><%= link_to_show   @conn, user %></span>
-                  <span><%= link_to_edit   @conn, user %></span>
-                  <span><%= link_to_delete @conn, user %></span>
+                <td>
+                  <div class="buttons has-addons is-right">
+                    <%= link_to_show   @conn, user %>
+                    <%= link_to_edit   @conn, user %>
+                    <%= link_to_delete @conn, user %>
+                  </div>
                 </td>
               </tr>
             <% end %>

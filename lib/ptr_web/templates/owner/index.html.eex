@@ -23,10 +23,12 @@
                 <td><%= owner.name %></td>
                 <td><%= owner.tax_id %></td>
 
-                <td class="has-text-right">
-                  <span><%= link_to_show   @conn, owner %></span>
-                  <span><%= link_to_edit   @conn, owner %></span>
-                  <span><%= link_to_delete @conn, owner %></span>
+                <td>
+                  <div class="buttons has-addons is-right">
+                    <%= link_to_show   @conn, owner %>
+                    <%= link_to_edit   @conn, owner %>
+                    <%= link_to_delete @conn, owner %>
+                  </div>
                 </td>
               </tr>
             <% end %>
