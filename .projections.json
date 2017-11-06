@@ -81,12 +81,22 @@
     "type": "router"
   },
 
+  "assets/css/app.scss": {
+    "type": "stylesheet"
+  },
+
   "assets/css/*": {
     "type": "stylesheet"
   },
 
+  "assets/js/app.js": {
+    "type": "javascript",
+    "dispatch": "npm -s --prefix assets run lint {file}"
+  },
+
   "assets/js/*": {
-    "type": "javascript"
+    "type": "javascript",
+    "dispatch": "npm -s --prefix assets run lint {file}"
   },
 
   "config/*.exs": {
