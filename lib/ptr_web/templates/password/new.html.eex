@@ -1,4 +1,6 @@
 <section class="hero is-light is-fullheight">
+  <%= render_flash @conn, "_flash_head.html" %>
+
   <div class="hero-body">
     <div class="container">
       <div class="columns">

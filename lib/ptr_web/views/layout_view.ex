@@ -9,10 +9,10 @@ defmodule PtrWeb.LayoutView do
     |> String.replace(~r/_\w+/, "")
   end
 
-  def render_flash(conn) do
+  def render_flash(conn, template \\ "_flash.html") do
     case get_flash_message(conn) do
       {type, message} ->
-        render("_flash.html", conn: conn, type: type, message: message)
+        render(template, conn: conn, type: type, message: message)
       nil ->
         ""
     end

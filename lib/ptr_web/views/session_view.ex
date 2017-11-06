@@ -1,6 +1,8 @@
 defmodule PtrWeb.SessionView do
   use PtrWeb, :view
 
+  import PtrWeb.LayoutView, only: [render_flash: 2]
+
   def email_input_html do
     [
       autofocus:    true,

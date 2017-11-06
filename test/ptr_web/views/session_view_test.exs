@@ -5,6 +5,15 @@ defmodule PtrWeb.SessionViewTest do
 
   alias PtrWeb.SessionView
 
+  setup %{conn: conn} do
+    conn =
+      conn
+      |> bypass_through(PtrWeb.Router, :browser)
+      |> get("/")
+
+    {:ok, %{conn: conn}}
+  end
+
   test "renders new.html", %{conn: conn} do
     content = render_to_string(SessionView, "new.html", conn: conn)
 

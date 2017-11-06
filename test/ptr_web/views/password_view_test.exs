@@ -7,6 +7,15 @@ defmodule PtrWeb.PasswordViewTest do
 
   import Phoenix.View
 
+  setup %{conn: conn} do
+    conn =
+      conn
+      |> bypass_through(PtrWeb.Router, :browser)
+      |> get("/")
+
+    {:ok, %{conn: conn}}
+  end
+
   test "renders new.html", %{conn: conn} do
     content = render_to_string(PasswordView, "new.html", conn: conn)
 
