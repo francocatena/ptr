@@ -2,6 +2,10 @@ a[disabled="disabled"] {
   pointer-events: none;
 }
 
+.has-cursor-pointer {
+  cursor: pointer;
+}
+
 .is-sr {
   position: absolute;
   width: 1px;
