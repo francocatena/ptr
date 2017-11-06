@@ -1,4 +1,4 @@
-<nav class="navbar has-shadow is-light">
+<nav class="navbar has-shadow is-light is-fixed-top">
   <div class="container">
     <div class="navbar-brand">
       <%= link to: root_path(@conn, :index), class: "navbar-item is-hoverable" do %>
