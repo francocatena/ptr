@@ -3,6 +3,7 @@ sudo: false
 elixir:
   - 1.5
 otp_release:
-  - 20.0
+  - 19
+  - 20
 addons:
   postgresql: 9.6
