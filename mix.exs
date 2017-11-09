@@ -43,7 +43,7 @@ defmodule Ptr.Mixfile do
       {:cowboy,              ">= 1.0.0"},
       {:comeonin,            ">= 4.0.0"},
       # {:argon2_elixir,       ">= 1.2.0"},
-      {:argon2_elixir,       ">= 1.2.0", github: "riverrun/argon2_elixir", branch: "develop", override: true, submodules: true},
+      {:argon2_elixir,       ">= 1.2.0", github: "francocatena/argon2_elixir", branch: "develop", override: true, submodules: true},
       {:scrivener_ecto,      ">= 1.2.0"},
       {:scrivener_html,      ">= 1.7.0"},
       {:bamboo,              ">= 0.8.0"},
