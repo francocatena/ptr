@@ -20,7 +20,7 @@
           </thead>
           <tbody>
             <%= for user <- @users do %>
-              <tr class="has-cursor-pointer" data-link-like data-target=".fa-eye">
+              <tr class="has-cursor-pointer" data-link-like data-target="[data-main-link]">
                 <td><%= user.name %></td>
                 <td><%= user.lastname %></td>
                 <td class="is-hidden-mobile"><%= user.email %></td>

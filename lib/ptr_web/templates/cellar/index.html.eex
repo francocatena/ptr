@@ -18,7 +18,7 @@
           </thead>
           <tbody>
             <%= for cellar <- @cellars do %>
-              <tr class="has-cursor-pointer" data-link-like data-target=".fa-eye">
+              <tr class="has-cursor-pointer" data-link-like data-target="[data-main-link]">
                 <td><%= cellar.name %></td>
                 <td><%= cellar.identifier %></td>
 

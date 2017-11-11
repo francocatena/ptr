@@ -6,7 +6,8 @@ defmodule PtrWeb.CellarView do
     icon_link "eye",
       title: dgettext("cellars", "Show"),
       to:    cellar_path(conn, :show, cellar),
-      class: "button is-small is-outlined"
+      class: "button is-small is-outlined",
+      data:  [main_link: true]
   end
 
   def link_to_edit(conn, cellar) do

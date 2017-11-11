@@ -19,7 +19,7 @@
           </thead>
           <tbody>
             <%= for owner <- @owners do %>
-              <tr class="has-cursor-pointer" data-link-like data-target=".fa-eye">
+              <tr class="has-cursor-pointer" data-link-like data-target="[data-main-link]">
                 <td><%= owner.name %></td>
                 <td><%= owner.tax_id %></td>
 

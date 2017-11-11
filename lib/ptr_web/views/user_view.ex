@@ -10,7 +10,8 @@ defmodule PtrWeb.UserView do
     icon_link "eye",
       title: dgettext("users", "Show"),
       to:    user_path(conn, :show, user),
-      class: "button is-small is-outlined"
+      class: "button is-small is-outlined",
+      data:  [main_link: true]
   end
 
   def link_to_edit(conn, user) do

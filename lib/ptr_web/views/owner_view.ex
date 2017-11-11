@@ -6,7 +6,8 @@ defmodule PtrWeb.OwnerView do
     icon_link "eye",
       title: dgettext("owners", "Show"),
       to:    owner_path(conn, :show, owner),
-      class: "button is-small is-outlined"
+      class: "button is-small is-outlined",
+      data:  [main_link: true]
   end
 
   def link_to_edit(conn, owner) do
