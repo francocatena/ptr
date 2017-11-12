@@ -26,7 +26,7 @@ defmodule <%= inspect context.web_module %>.<%= inspect Module.concat(schema.web
   end
 
   describe "index" do
-    setup [:create_cellar]
+    setup [:create_<%= schema.singular %>]
 
     @tag login_as: "test@user.com"
     test "lists all <%= schema.plural %>", %{conn: conn, <%= schema.singular %>: <%= schema.singular %>} do
