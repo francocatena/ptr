@@ -6,7 +6,7 @@ defmodule <%= inspect context.web_module %>.<%= inspect Module.concat(schema.web
     icon_link "eye",
       title: dgettext("<%= schema.plural %>", "Show"),
       to:    <%= schema.route_helper %>_path(conn, :show, <%= schema.singular %>),
-      class: "button is-small is-outlined",
+      class: "button is-small is-outlined is-hidden-mobile",
       data:  [main_link: true]
   end
 
@@ -14,7 +14,7 @@ defmodule <%= inspect context.web_module %>.<%= inspect Module.concat(schema.web
     icon_link "pencil",
       title: dgettext("<%= schema.plural %>", "Edit"),
       to:    <%= schema.route_helper %>_path(conn, :edit, <%= schema.singular %>),
-      class: "button is-small is-outlined"
+      class: "button is-small is-outlined is-hidden-mobile"
   end
 
   def link_to_delete(conn, <%= schema.singular %>) do

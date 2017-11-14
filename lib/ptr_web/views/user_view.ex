@@ -10,7 +10,7 @@ defmodule PtrWeb.UserView do
     icon_link "eye",
       title: dgettext("users", "Show"),
       to:    user_path(conn, :show, user),
-      class: "button is-small is-outlined",
+      class: "button is-small is-outlined is-hidden-mobile",
       data:  [main_link: true]
   end
 
@@ -18,7 +18,7 @@ defmodule PtrWeb.UserView do
     icon_link "pencil",
       title: dgettext("users", "Edit"),
       to:    user_path(conn, :edit, user),
-      class: "button is-small is-outlined"
+      class: "button is-small is-outlined is-hidden-mobile"
   end
 
   def link_to_delete(%{assigns: %{current_session: %{user: user}}}, user) do
