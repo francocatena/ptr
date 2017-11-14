@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Language: es_AR\n"
 
-#: lib/ptr_web/views/user_view.ex:36
+#: lib/ptr_web/views/user_view.ex:37
 msgid "Are you sure?"
 msgstr "¿Está seguro de borrar este usuario?"
 
@@ -20,11 +20,11 @@ msgstr "¿Está seguro de borrar este usuario?"
 msgid "Back"
 msgstr "Listado de usuarios"
 
-#: lib/ptr_web/views/user_view.ex:25 lib/ptr_web/views/user_view.ex:33
+#: lib/ptr_web/views/user_view.ex:26 lib/ptr_web/views/user_view.ex:34
 msgid "Delete"
 msgstr "Borrar usuario"
 
-#: lib/ptr_web/templates/user/show.html.eex:22 lib/ptr_web/views/user_view.ex:18
+#: lib/ptr_web/templates/user/show.html.eex:22 lib/ptr_web/views/user_view.ex:19
 msgid "Edit"
 msgstr "Editar usuario"
 
@@ -33,8 +33,8 @@ msgstr "Editar usuario"
 msgid "Edit user"
 msgstr "Editar usuario"
 
-#: lib/ptr_web/templates/password/new.html.eex:14
-#: lib/ptr_web/templates/password/new.html.eex:15
+#: lib/ptr_web/templates/password/new.html.eex:18
+#: lib/ptr_web/templates/password/new.html.eex:19
 #: lib/ptr_web/templates/user/_form.html.eex:11
 #: lib/ptr_web/templates/user/index.html.eex:16
 #: lib/ptr_web/templates/user/show.html.eex:15
@@ -52,7 +52,7 @@ msgid "Name"
 msgstr "Nombre"
 
 #: lib/ptr_web/controllers/user_controller.ex:75
-#: lib/ptr_web/templates/user/index.html.eex:47
+#: lib/ptr_web/templates/user/index.html.eex:49
 #: lib/ptr_web/templates/user/new.html.eex:8
 msgid "New user"
 msgstr "Nuevo usuario"
@@ -88,22 +88,22 @@ msgstr "Usuario actualizado correctamete."
 msgid "Users"
 msgstr "Usuarios"
 
-#: lib/ptr_web/templates/password/edit.html.eex:12
 #: lib/ptr_web/templates/password/edit.html.eex:13
+#: lib/ptr_web/templates/password/edit.html.eex:14
 #: lib/ptr_web/templates/user/_form.html.eex:12
 msgid "Password"
 msgstr "Contraseña"
 
-#: lib/ptr_web/views/user_view.ex:50
+#: lib/ptr_web/views/user_view.ex:51
 msgid "Create"
 msgstr "Crear nuevo usuario"
 
-#: lib/ptr_web/views/user_view.ex:51
+#: lib/ptr_web/views/user_view.ex:52
 msgid "Update"
 msgstr "Actualizar usuario"
 
-#: lib/ptr_web/templates/password/edit.html.eex:17
 #: lib/ptr_web/templates/password/edit.html.eex:18
+#: lib/ptr_web/templates/password/edit.html.eex:19
 #: lib/ptr_web/templates/user/_form.html.eex:13
 msgid "Password confirmation"
 msgstr "Confirmación"

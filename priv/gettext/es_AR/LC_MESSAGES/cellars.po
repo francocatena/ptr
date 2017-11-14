@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Language: es_AR\n"
 
-#: lib/ptr_web/views/cellar_view.ex:24
+#: lib/ptr_web/views/cellar_view.ex:25
 msgid "Are you sure?"
 msgstr "¿Está seguro de borrar esta bodega?"
 
@@ -43,16 +43,16 @@ msgstr "Bodega actualizada correctamente."
 msgid "Cellars"
 msgstr "Bodegas"
 
-#: lib/ptr_web/views/cellar_view.ex:38
+#: lib/ptr_web/views/cellar_view.ex:39
 msgid "Create"
 msgstr "Crear nueva bodega"
 
-#: lib/ptr_web/views/cellar_view.ex:21
+#: lib/ptr_web/views/cellar_view.ex:22
 msgid "Delete"
 msgstr "Borrar bodega"
 
 #: lib/ptr_web/templates/cellar/show.html.eex:22
-#: lib/ptr_web/views/cellar_view.ex:14
+#: lib/ptr_web/views/cellar_view.ex:15
 msgid "Edit"
 msgstr "Editar bodega"
 
@@ -74,7 +74,7 @@ msgstr "Nombre"
 
 #: lib/ptr_web/controllers/cellar_controller.ex:80
 #: lib/ptr_web/templates/cellar/empty.html.eex:13
-#: lib/ptr_web/templates/cellar/index.html.eex:44
+#: lib/ptr_web/templates/cellar/index.html.eex:46
 #: lib/ptr_web/templates/cellar/new.html.eex:8
 msgid "New cellar"
 msgstr "Nueva bodega"
@@ -87,7 +87,7 @@ msgstr "Oops, algo salió mal, por favor verifique los errores debajo."
 msgid "Show"
 msgstr "Ver bodega"
 
-#: lib/ptr_web/views/cellar_view.ex:39
+#: lib/ptr_web/views/cellar_view.ex:40
 msgid "Update"
 msgstr "Actualizar bodega"
 

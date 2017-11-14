@@ -10,21 +10,21 @@
 msgid ""
 msgstr ""
 
-#: lib/ptr_web/templates/session/new.html.eex:12
-#: lib/ptr_web/templates/session/new.html.eex:13
+#: lib/ptr_web/templates/session/new.html.eex:14
+#: lib/ptr_web/views/session_view.ex:11
 msgid "Email"
 msgstr ""
 
-#: lib/ptr_web/templates/session/new.html.eex:24
+#: lib/ptr_web/templates/session/new.html.eex:26
 msgid "Login"
 msgstr ""
 
-#: lib/ptr_web/templates/session/new.html.eex:17
-#: lib/ptr_web/templates/session/new.html.eex:18
+#: lib/ptr_web/templates/session/new.html.eex:19
+#: lib/ptr_web/templates/session/new.html.eex:20
 msgid "Password"
 msgstr ""
 
-#: lib/ptr_web/templates/session/new.html.eex:7
+#: lib/ptr_web/templates/session/new.html.eex:10
 msgid "Log In"
 msgstr ""
 

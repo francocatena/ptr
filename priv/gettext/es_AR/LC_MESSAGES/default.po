@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Language: es_AR\n"
 
-#: lib/ptr/notifications/email.ex:19 lib/ptr_web/templates/layout/app.html.eex:8
+#: lib/ptr/notifications/email.ex:20 lib/ptr_web/templates/layout/app.html.eex:8
 msgid "Vintock"
 msgstr "Vintock"
 
