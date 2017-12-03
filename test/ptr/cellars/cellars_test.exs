@@ -68,4 +68,102 @@ defmodule Ptr.CellarsTest do
       assert %Ecto.Changeset{} = Cellars.change_cellar(account, cellar)
     end
   end
+
+  describe "vessels" do
+    alias Ptr.Cellars.Vessel
+
+    @valid_attrs %{
+      capacity: "120.5",
+      cooling: "some cooling",
+      identifier: "some identifier",
+      material: "some material",
+      notes: "some notes"
+    }
+
+    @update_attrs %{
+      capacity: "456.7",
+      cooling: "some updated cooling",
+      identifier: "some updated identifier",
+      material: "some updated material",
+      notes: "some updated notes"
+    }
+
+    @invalid_attrs %{
+      capacity: nil,
+      cooling: nil,
+      identifier: nil,
+      material: nil,
+      notes: nil
+    }
+
+    test "list_vessels/3 returns all vessels for a given cellar" do
+      {:ok, vessel, cellar, account} = fixture(:vessel)
+
+      assert Cellars.list_vessels(account, cellar, %{}).entries == [vessel]
+    end
+
+    test "get_vessel!/3 returns the vessel with given id" do
+      {:ok, vessel, cellar, account} = fixture(:vessel)
+
+      assert Cellars.get_vessel!(account, cellar, vessel.id) == vessel
+    end
+
+    test "create_vessel/2 with valid data creates a vessel" do
+      account          = fixture(:seed_account)
+      {:ok, cellar, _} = fixture(:cellar)
+      session          = %Session{account: account}
+      attributes       = Map.put(@valid_attrs, :cellar_id, cellar.id)
+
+      assert {:ok, %Vessel{} = vessel} =
+        Cellars.create_vessel(session, attributes)
+      assert vessel.capacity == Decimal.new("120.5")
+      assert vessel.cooling == "some cooling"
+      assert vessel.identifier == "some identifier"
+      assert vessel.material == "some material"
+      assert vessel.notes == "some notes"
+    end
+
+    test "create_vessel/2 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} =
+        Cellars.create_vessel(%Session{}, @invalid_attrs)
+    end
+
+    test "update_vessel/3 with valid data updates the vessel" do
+      {:ok, vessel, _cellar, account} = fixture(:vessel)
+      session = %Session{account: account}
+
+      assert {:ok, vessel} = Cellars.update_vessel(session, vessel, @update_attrs)
+      assert %Vessel{} = vessel
+      assert vessel.capacity == Decimal.new("456.7")
+      assert vessel.cooling == "some updated cooling"
+      assert vessel.identifier == "some updated identifier"
+      assert vessel.material == "some updated material"
+      assert vessel.notes == "some updated notes"
+    end
+
+    test "update_vessel/3 with invalid data returns error changeset" do
+      {:ok, vessel, cellar, account} = fixture(:vessel)
+      session = %Session{account: account}
+
+      assert {:error, %Ecto.Changeset{}} =
+        Cellars.update_vessel(session, vessel, @invalid_attrs)
+      assert vessel == Cellars.get_vessel!(account, cellar, vessel.id)
+    end
+
+    test "delete_vessel/2 deletes the vessel" do
+      {:ok, vessel, cellar, account} = fixture(:vessel)
+      session = %Session{account: account}
+
+      assert {:ok, %Vessel{}} = Cellars.delete_vessel(session, vessel)
+      assert_raise Ecto.NoResultsError, fn ->
+        Cellars.get_vessel!(account, cellar, vessel.id)
+      end
+    end
+
+    test "change_vessel/2 returns a vessel changeset" do
+      {:ok, vessel, _cellar, account} = fixture(:vessel)
+
+      assert %Ecto.Changeset{} = Cellars.change_vessel(account, vessel)
+    end
+  end
 end

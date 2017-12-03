@@ -113,4 +113,111 @@ defmodule Ptr.Cellars do
   def change_cellar(%Account{} = account, %Cellar{} = cellar) do
     Cellar.changeset(account, cellar, %{})
   end
+
+  alias Ptr.Cellars.Vessel
+
+  @doc """
+  Returns the list of vessels on a given cellar.
+
+  ## Examples
+
+      iex> list_vessels(%Account{}, %Cellar{}, %{})
+      [%Vessel{}, ...]
+
+  """
+  def list_vessels(account, cellar, params) do
+    query = from v in Vessel, order_by: v.identifier
+
+    query
+    |> prefixed(account)
+    |> where(cellar_id: ^cellar.id)
+    |> Repo.paginate(params)
+  end
+
+  @doc """
+  Gets a single vessel.
+
+  Raises `Ecto.NoResultsError` if the Vessel does not exist.
+
+  ## Examples
+
+      iex> get_vessel!(%Account{}, %Cellar{}, 123)
+      %Vessel{}
+
+      iex> get_vessel!(%Account{}, %Cellar{}, 456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_vessel!(account, cellar, id) do
+    Vessel
+    |> prefixed(account)
+    |> where(cellar_id: ^cellar.id)
+    |> Repo.get!(id)
+  end
+
+  @doc """
+  Creates a vessel.
+
+  ## Examples
+
+      iex> create_vessel(%Session{}, %{field: value})
+      {:ok, %Vessel{}}
+
+      iex> create_vessel(%Session{}, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_vessel(%Session{account: account, user: user}, attrs) do
+    account
+    |> Vessel.changeset(%Vessel{}, attrs)
+    |> Map.put(:repo_opts, prefix: prefix(account))
+    |> Trail.insert(prefix: prefix(account), originator: user)
+  end
+
+  @doc """
+  Updates a vessel.
+
+  ## Examples
+
+      iex> update_vessel(%Session{}, vessel, %{field: new_value})
+      {:ok, %Vessel{}}
+
+      iex> update_vessel(%Session{}, vessel, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_vessel(%Session{account: account, user: user}, %Vessel{} = vessel, attrs) do
+    account
+    |> Vessel.changeset(vessel, attrs)
+    |> Trail.update(prefix: prefix(account), originator: user)
+  end
+
+  @doc """
+  Deletes a Vessel.
+
+  ## Examples
+
+      iex> delete_vessel(%Session{}, vessel)
+      {:ok, %Vessel{}}
+
+      iex> delete_vessel(%Session{}, vessel)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_vessel(%Session{account: account, user: user}, %Vessel{} = vessel) do
+    Trail.delete(vessel, prefix: prefix(account), originator: user)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking vessel changes.
+
+  ## Examples
+
+      iex> change_vessel(%Account{}, vessel)
+      %Ecto.Changeset{source: %Vessel{}}
+
+  """
+  def change_vessel(%Account{} = account, %Vessel{} = vessel) do
+    Vessel.changeset(account, vessel, %{})
+  end
 end

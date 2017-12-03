@@ -84,10 +84,9 @@ defmodule PtrWeb.CellarController do
   end
 
   defp put_show_breadcrumb(conn, cellar) do
-    name = dgettext("cellars", "Cellar")
-    url  = cellar_path(conn, :show, cellar)
+    url = cellar_path(conn, :show, cellar)
 
-    conn |> put_breadcrumb(name, url)
+    conn |> put_breadcrumb(cellar.name, url)
   end
 
   defp put_edit_breadcrumb(conn, cellar) do

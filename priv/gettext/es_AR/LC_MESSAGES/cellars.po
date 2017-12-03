@@ -20,7 +20,6 @@ msgstr "¿Está seguro de borrar esta bodega?"
 msgid "Back"
 msgstr "Listado de bodegas"
 
-#: lib/ptr_web/controllers/cellar_controller.ex:87
 #: lib/ptr_web/templates/cellar/show.html.eex:6
 msgid "Cellar"
 msgstr "Bodega"
@@ -38,6 +37,7 @@ msgid "Cellar updated successfully."
 msgstr "Bodega actualizada correctamente."
 
 #: lib/ptr_web/controllers/cellar_controller.ex:8
+#: lib/ptr_web/controllers/vessel_controller.ex:8
 #: lib/ptr_web/templates/cellar/index.html.eex:6
 #: lib/ptr_web/templates/layout/_menu.html.eex:26
 msgid "Cellars"
@@ -56,14 +56,14 @@ msgstr "Borrar bodega"
 msgid "Edit"
 msgstr "Editar bodega"
 
-#: lib/ptr_web/controllers/cellar_controller.ex:94
+#: lib/ptr_web/controllers/cellar_controller.ex:93
 #: lib/ptr_web/templates/cellar/edit.html.eex:8
 msgid "Edit cellar"
 msgstr "Editar bodega"
 
 #: lib/ptr_web/templates/cellar/_form.html.eex:10
 #: lib/ptr_web/templates/cellar/index.html.eex:14
-#: lib/ptr_web/templates/cellar/show.html.eex:15
+#: lib/ptr_web/templates/cellar/show.html.eex:14
 msgid "Identifier"
 msgstr "Identificador"
 

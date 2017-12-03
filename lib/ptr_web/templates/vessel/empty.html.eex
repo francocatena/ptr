@@ -1,0 +1,17 @@
+<section class="hero is-medium is-light is-bold">
+  <div class="hero-body has-text-centered">
+    <div class="container">
+      <h1 class="title">
+        <%= dgettext("vessels", "Looks like you have no vessels in %{cellar}.", cellar: @cellar.name) %>
+      </h1>
+
+      <h2 class="subtitle">
+        <%= dgettext("vessels", "Let's create one...") %>
+      </h2>
+
+      <p>
+        <%= link dgettext("vessels", "New vessel"), to: cellar_vessel_path(@conn, :new, @cellar), class: "button is-primary is-large" %>
+      </p>
+    </div>
+  </div>
+</section>

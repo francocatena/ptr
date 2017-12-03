@@ -6,19 +6,19 @@
           <%= dgettext("cellars", "Cellar") %>
         </p>
       </header>
-
       <div class="card-content">
         <h2 class="title"><%= @cellar.name %></h2>
 
         <ul>
           <li>
             <strong><%= dgettext("cellars", "Identifier") %>:</strong>
-            <%= @cellar.identifier %>
+            <span class="tag is-dark"><%= @cellar.identifier %></span>
           </li>
         </ul>
       </div>
 
       <footer class="card-footer">
+        <%= link dgettext("vessels", "Vessels"), to: cellar_vessel_path(@conn, :index, @cellar), class: "card-footer-item" %>
         <%= link dgettext("cellars", "Edit"), to: cellar_path(@conn, :edit, @cellar), class: "card-footer-item" %>
       </footer>
     </div>

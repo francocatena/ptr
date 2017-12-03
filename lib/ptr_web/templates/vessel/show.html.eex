@@ -1,0 +1,51 @@
+<section class="section is-primary">
+  <div class="container">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          <%= dgettext("vessels", "Vessel") %>
+        </p>
+      </header>
+
+      <div class="card-content">
+        <div class="tags has-addons">
+          <span class="tag is-dark is-medium"><%= @vessel.identifier %></span>
+          <span class="tag is-info is-medium"><%= Decimal.round(@vessel.capacity, 1) %></span>
+          <span class="tag is-medium">L</span>
+        </div>
+
+        <hr>
+
+        <ul>
+          <li>
+            <strong><%= dgettext("vessels", "Material") %>:</strong>
+            <%= Gettext.dgettext(PtrWeb.Gettext, "vessels", @vessel.material || "") %>
+          </li>
+          <li>
+            <strong><%= dgettext("vessels", "Cooling") %>:</strong>
+            <%= Gettext.dgettext(PtrWeb.Gettext, "vessels", @vessel.cooling || "") %>
+          </li>
+        </ul>
+
+        <hr>
+
+        <div class="content is-small">
+          <h3><%= dgettext("vessels", "Notes") %></h3>
+          <%= text_to_html(@vessel.notes || "") %>
+        </div>
+      </div>
+
+      <footer class="card-footer">
+        <%= link dgettext("vessels", "Edit"), to: cellar_vessel_path(@conn, :edit, @cellar, @vessel), class: "card-footer-item" %>
+      </footer>
+    </div>
+  </div>
+</section>
+
+<footer class="footer is-primary">
+  <div class="container">
+    <p>
+      <span><%= link dgettext("vessels", "Back"), to: cellar_vessel_path(@conn, :index, @cellar) %></span>
+    </p>
+  </div>
+</footer>

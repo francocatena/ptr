@@ -4,7 +4,13 @@ defmodule Ptr.Support.FixtureHelper do
 
   def fixture(type, attributes \\ %{}, opts \\ [])
 
-  @user_attrs %{email: "some@email.com", lastname: "some lastname", name: "some name", password: "123456", password_confirmation: "123456"}
+  @user_attrs %{
+    email: "some@email.com",
+    lastname: "some lastname",
+    name: "some name",
+    password: "123456",
+    password_confirmation: "123456"
+  }
 
   def fixture(:user, attributes, %{account: account} = session) when is_map(session) do
     attributes  = Enum.into(attributes, @user_attrs)
@@ -55,5 +61,32 @@ defmodule Ptr.Support.FixtureHelper do
     {:ok, cellar} = Cellars.create_cellar(session, attributes)
 
     {:ok, cellar, account}
+  end
+
+  @vessel_attrs %{
+    capacity: "120.5000",
+    cooling: "some cooling",
+    identifier: "some identifier",
+    material: "some material",
+    notes: "some notes"
+  }
+
+  def fixture(:vessel, attributes, _opts) do
+    account          = fixture(:seed_account)
+    session          = %Session{account: account}
+    {:ok, cellar, _} = fixture(:cellar, %{})
+
+    create_vessel(session, cellar, attributes)
+  end
+
+  defp create_vessel(session, cellar, attributes) do
+    attributes =
+      attributes
+      |> Enum.into(@vessel_attrs)
+      |> Map.put(:cellar_id, cellar.id)
+
+    {:ok, vessel} = Cellars.create_vessel(session, attributes)
+
+    {:ok, vessel, cellar, session.account}
   end
 end

@@ -1,0 +1,155 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: es_AR\n"
+
+#: lib/ptr_web/views/vessel_view.ex:25
+msgid "Are you sure?"
+msgstr "¿Está seguro de borrar esta vasija?"
+
+#: lib/ptr_web/templates/vessel/edit.html.eex:22
+#: lib/ptr_web/templates/vessel/new.html.eex:22
+#: lib/ptr_web/templates/vessel/show.html.eex:48
+msgid "Back"
+msgstr "Listado de vasijas"
+
+#: lib/ptr_web/templates/vessel/_form.html.eex:10
+#: lib/ptr_web/templates/vessel/index.html.eex:14
+msgid "Capacity"
+msgstr "Capacidad"
+
+#: lib/ptr_web/templates/vessel/_form.html.eex:12
+#: lib/ptr_web/templates/vessel/index.html.eex:16
+#: lib/ptr_web/templates/vessel/show.html.eex:25
+msgid "Cooling"
+msgstr "Tipo de refrigeración"
+
+#: lib/ptr_web/views/vessel_view.ex:57
+msgid "Create"
+msgstr "Crear una nueva vasija"
+
+#: lib/ptr_web/views/vessel_view.ex:22
+msgid "Delete"
+msgstr "Borrar vasija"
+
+#: lib/ptr_web/templates/vessel/show.html.eex:39
+#: lib/ptr_web/views/vessel_view.ex:15
+msgid "Edit"
+msgstr "Editar vasija"
+
+#: lib/ptr_web/controllers/vessel_controller.ex:118
+#: lib/ptr_web/templates/vessel/edit.html.eex:8
+msgid "Edit vessel"
+msgstr "Editar vasija"
+
+#: lib/ptr_web/templates/vessel/_form.html.eex:9
+#: lib/ptr_web/templates/vessel/index.html.eex:13
+msgid "Identifier"
+msgstr "Identificador"
+
+#: lib/ptr_web/templates/vessel/empty.html.eex:9
+msgid "Let's create one..."
+msgstr "Vamos, agrega una..."
+
+#: lib/ptr_web/templates/vessel/_form.html.eex:11
+#: lib/ptr_web/templates/vessel/index.html.eex:15
+#: lib/ptr_web/templates/vessel/show.html.eex:21
+msgid "Material"
+msgstr "Tipo de material"
+
+#: lib/ptr_web/controllers/vessel_controller.ex:104
+#: lib/ptr_web/templates/vessel/empty.html.eex:13
+#: lib/ptr_web/templates/vessel/index.html.eex:50
+#: lib/ptr_web/templates/vessel/new.html.eex:8
+msgid "New vessel"
+msgstr "Nueva vasija"
+
+#: lib/ptr_web/templates/vessel/_form.html.eex:13
+#: lib/ptr_web/templates/vessel/show.html.eex:33
+msgid "Notes"
+msgstr "Notas"
+
+#: lib/ptr_web/templates/vessel/_form.html.eex:5
+msgid "Oops, something went wrong! Please check the errors below."
+msgstr "Oops, algo salió mal, por favor verifique los errores debajo."
+
+#: lib/ptr_web/views/vessel_view.ex:7
+msgid "Show"
+msgstr "Ver vasija"
+
+#: lib/ptr_web/views/vessel_view.ex:58
+msgid "Update"
+msgstr "Actualizar vasija"
+
+#: lib/ptr_web/templates/vessel/show.html.eex:6
+msgid "Vessel"
+msgstr "Vasija"
+
+#: lib/ptr_web/controllers/vessel_controller.ex:44
+msgid "Vessel created successfully."
+msgstr "Vasija creada correctamente."
+
+#: lib/ptr_web/controllers/vessel_controller.ex:86
+msgid "Vessel deleted successfully."
+msgstr "Vasija eliminada correctamente."
+
+#: lib/ptr_web/controllers/vessel_controller.ex:74
+msgid "Vessel updated successfully."
+msgstr "Vasija actualizada correctamente."
+
+#: lib/ptr_web/controllers/vessel_controller.ex:12
+#: lib/ptr_web/templates/cellar/show.html.eex:21
+#: lib/ptr_web/templates/vessel/index.html.eex:6
+msgid "Vessels"
+msgstr "Vasijas"
+
+#: lib/ptr_web/templates/vessel/_form.html.eex:11
+msgid "Choose material"
+msgstr "Seleccione un material"
+
+#: lib/ptr_web/views/vessel_view.ex:42
+msgid "Concrete"
+msgstr "Cemento"
+
+#: lib/ptr_web/views/vessel_view.ex:43
+msgid "Fiber"
+msgstr "Fibra"
+
+#: lib/ptr_web/views/vessel_view.ex:44
+msgid "Plastic"
+msgstr "Plástico"
+
+#: lib/ptr_web/views/vessel_view.ex:41
+msgid "Steel"
+msgstr "Acero"
+
+#: lib/ptr_web/views/vessel_view.ex:45
+msgid "Wood"
+msgstr "Madera"
+
+#: lib/ptr_web/templates/vessel/_form.html.eex:12
+msgid "Choose cooling"
+msgstr "Seleccione una refrigeración"
+
+#: lib/ptr_web/views/vessel_view.ex:53
+msgid "Coil"
+msgstr "Serpentín"
+
+#: lib/ptr_web/views/vessel_view.ex:52
+msgid "Jacket"
+msgstr "Chaqueta"
+
+#: lib/ptr_web/views/vessel_view.ex:51
+msgid "None"
+msgstr "Ninguna"
+
+#: lib/ptr_web/templates/vessel/empty.html.eex:5
+msgid "Looks like you have no vessels in %{cellar}."
+msgstr "Parece que no hay ninguna vasija en %{cellar}."

@@ -1,0 +1,21 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <div class="card-content">
+    <%= if @changeset.action do %>
+      <div class="notification is-danger">
+        <p><%= dgettext("vessels", "Oops, something went wrong! Please check the errors below.") %></p>
+      </div>
+    <% end %>
+
+    <%= input f, :identifier, dgettext("vessels", "Identifier"), input_html: [autofocus: true] %>
+    <%= input f, :capacity,   dgettext("vessels", "Capacity"), addons: [right: "L"] %>
+    <%= input f, :material,   dgettext("vessels", "Material"), collection: materials(), input_html: [prompt: dgettext("vessels", "Choose material")] %>
+    <%= input f, :cooling,    dgettext("vessels", "Cooling"), collection: cooling(), input_html: [prompt: dgettext("vessels", "Choose cooling")] %>
+    <%= input f, :notes,      dgettext("vessels", "Notes"), using: :textarea %>
+
+    <%= lock_version_input f, assigns[:vessel] %>
+  </div>
+
+  <footer class="card-footer">
+    <%= submit_button assigns[:vessel] %>
+  </footer>
+<% end %>

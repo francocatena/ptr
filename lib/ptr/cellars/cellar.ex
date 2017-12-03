@@ -4,7 +4,7 @@ defmodule Ptr.Cellars.Cellar do
   import Ecto.Changeset
   import Ptr.Accounts.Account, only: [prefix: 1]
 
-  alias Ptr.Cellars.Cellar
+  alias Ptr.Cellars.{Cellar, Vessel}
   alias Ptr.Accounts.Account
 
 
@@ -12,6 +12,8 @@ defmodule Ptr.Cellars.Cellar do
     field :identifier, :string
     field :name, :string
     field :lock_version, :integer, default: 1
+
+    has_many :vessels, Vessel
 
     timestamps()
   end

@@ -42,6 +42,8 @@ defmodule PtrWeb.Router do
 
     # Cellars
 
-    resources "/cellars", CellarController
+    resources "/cellars", CellarController do
+      resources "/vessels", VesselController
+    end
   end
 end

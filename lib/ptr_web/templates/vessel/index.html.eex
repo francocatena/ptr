@@ -1,0 +1,53 @@
+<section class="section is-primary">
+  <div class="container">
+    <div class="card">
+      <header class="card-header">
+        <h2 class="card-header-title">
+          <%= dgettext("vessels", "Vessels") %>
+        </h2>
+      </header>
+      <div class="card-content">
+        <table class="table is-striped is-hoverable is-narrow is-fullwidth">
+          <thead>
+            <tr>
+              <th><%= dgettext("vessels", "Identifier") %></th>
+              <th><%= dgettext("vessels", "Capacity") %></th>
+              <th class="is-hidden-mobile"><%= dgettext("vessels", "Material") %></th>
+              <th class="is-hidden-mobile"><%= dgettext("vessels", "Cooling") %></th>
+
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= for vessel <- @vessels do %>
+              <tr class="has-cursor-pointer" data-link-like data-target="[data-main-link]">
+                <td><%= vessel.identifier %></td>
+                <td><%= Decimal.round(vessel.capacity, 1) %></td>
+                <td class="is-hidden-mobile"><%= Gettext.dgettext(PtrWeb.Gettext, "vessels", vessel.material || "") %></td>
+                <td class="is-hidden-mobile"><%= Gettext.dgettext(PtrWeb.Gettext, "vessels", vessel.cooling || "") %></td>
+
+                <td>
+                  <div class="buttons has-addons is-right">
+                    <%= link_to_show   @conn, @cellar, vessel %>
+                    <%= link_to_edit   @conn, @cellar, vessel %>
+                    <%= link_to_delete @conn, @cellar, vessel %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <%= pagination_links @conn, @page, [@cellar], path: &cellar_vessel_path/4, view_style: :bulma %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer is-primary">
+  <div class="container">
+    <p>
+      <span><%= link dgettext("vessels", "New vessel"), to: cellar_vessel_path(@conn, :new, @cellar) %></span>
+    </p>
+  </div>
+</footer>

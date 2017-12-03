@@ -1,0 +1,25 @@
+<section class="section is-primary">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-half is-offset-one-quarter">
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title">
+              <%= dgettext("vessels", "Edit vessel") %>
+            </p>
+          </header>
+
+          <%= render "_form.html", Map.put(assigns, :action, cellar_vessel_path(@conn, :update, @cellar, @vessel)) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer is-primary">
+  <div class="container">
+    <p>
+      <span><%= link dgettext("vessels", "Back"), to: cellar_vessel_path(@conn, :index, @cellar) %></span>
+    </p>
+  </div>
+</footer>
