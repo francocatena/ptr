@@ -7,6 +7,13 @@
   }
 }
 
+// iOS Fix (see https://github.com/jgthms/bulma/issues/727)
+.card-footer {
+  button.button.card-footer-item {
+    display: inline-block;
+  }
+}
+
 .footer.is-primary {
   padding: 1em 1em 1.5em;
 }
