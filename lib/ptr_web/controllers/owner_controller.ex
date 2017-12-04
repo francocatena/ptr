@@ -7,13 +7,17 @@ defmodule PtrWeb.OwnerController do
   plug :authenticate
   plug :put_breadcrumb, name: dgettext("owners", "Owners"), url: "/owners"
 
-  def index(%{assigns: %{current_session: session}} = conn, params) do
+  def action(%{assigns: %{current_session: session}} = conn, _) do
+    apply(__MODULE__, action_name(conn), [conn, conn.params, session])
+  end
+
+  def index(conn, params, session) do
     page = Ownerships.list_owners(session.account, params)
 
     render_index(conn, page)
   end
 
-  def new(%{assigns: %{current_session: session}} = conn, _params) do
+  def new(conn, _params, session) do
     changeset = Ownerships.change_owner(session.account, %Owner{})
 
     conn
@@ -21,7 +25,7 @@ defmodule PtrWeb.OwnerController do
     |> render("new.html", changeset: changeset)
   end
 
-  def create(%{assigns: %{current_session: session}} = conn, %{"owner" => owner_params}) do
+  def create(conn, %{"owner" => owner_params}, session) do
     case Ownerships.create_owner(session, owner_params) do
       {:ok, owner} ->
         conn
@@ -32,7 +36,7 @@ defmodule PtrWeb.OwnerController do
     end
   end
 
-  def show(%{assigns: %{current_session: session}} = conn, %{"id" => id}) do
+  def show(conn, %{"id" => id}, session) do
     owner = Ownerships.get_owner!(session.account, id)
 
     conn
@@ -40,7 +44,7 @@ defmodule PtrWeb.OwnerController do
     |> render("show.html", owner: owner)
   end
 
-  def edit(%{assigns: %{current_session: session}} = conn, %{"id" => id}) do
+  def edit(conn, %{"id" => id}, session) do
     owner     = Ownerships.get_owner!(session.account, id)
     changeset = Ownerships.change_owner(session.account, owner)
 
@@ -49,7 +53,7 @@ defmodule PtrWeb.OwnerController do
     |> render("edit.html", owner: owner, changeset: changeset)
   end
 
-  def update(%{assigns: %{current_session: session}} = conn, %{"id" => id, "owner" => owner_params}) do
+  def update(conn, %{"id" => id, "owner" => owner_params}, session) do
     owner = Ownerships.get_owner!(session.account, id)
 
     case Ownerships.update_owner(session, owner, owner_params) do
@@ -62,7 +66,7 @@ defmodule PtrWeb.OwnerController do
     end
   end
 
-  def delete(%{assigns: %{current_session: session}} = conn, %{"id" => id}) do
+  def delete(conn, %{"id" => id}, session) do
     owner = Ownerships.get_owner!(session.account, id)
     {:ok, _owner} = Ownerships.delete_owner(session, owner)
 

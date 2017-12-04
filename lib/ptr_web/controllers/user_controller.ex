@@ -7,13 +7,17 @@ defmodule PtrWeb.UserController do
   plug :authenticate
   plug :put_breadcrumb, name: dgettext("users", "Users"), url: "/users"
 
-  def index(%{assigns: %{current_session: session}} = conn, params) do
+  def action(%{assigns: %{current_session: session}} = conn, _) do
+    apply(__MODULE__, action_name(conn), [conn, conn.params, session])
+  end
+
+  def index(conn, params, session) do
     page = Accounts.list_users(session.account, params)
 
     render(conn, "index.html", users: page.entries, page: page)
   end
 
-  def new(conn, _params) do
+  def new(conn, _params, _session) do
     changeset = Accounts.change_user(%User{})
 
     conn
@@ -21,7 +25,7 @@ defmodule PtrWeb.UserController do
     |> render("new.html", changeset: changeset)
   end
 
-  def create(%{assigns: %{current_session: session}} = conn, %{"user" => user_params}) do
+  def create(conn, %{"user" => user_params}, session) do
     case Accounts.create_user(session, user_params) do
       {:ok, user} ->
         conn
@@ -32,7 +36,7 @@ defmodule PtrWeb.UserController do
     end
   end
 
-  def show(%{assigns: %{current_session: session}} = conn, %{"id" => id}) do
+  def show(conn, %{"id" => id}, session) do
     user = Accounts.get_user!(session.account, id)
 
     conn
@@ -40,7 +44,7 @@ defmodule PtrWeb.UserController do
     |> render("show.html", user: user)
   end
 
-  def edit(%{assigns: %{current_session: session}} = conn, %{"id" => id}) do
+  def edit(conn, %{"id" => id}, session) do
     user      = Accounts.get_user!(session.account, id)
     changeset = Accounts.change_user(user)
 
@@ -49,7 +53,7 @@ defmodule PtrWeb.UserController do
     |> render("edit.html", user: user, changeset: changeset)
   end
 
-  def update(%{assigns: %{current_session: session}} = conn, %{"id" => id, "user" => user_params}) do
+  def update(conn, %{"id" => id, "user" => user_params}, session) do
     user = Accounts.get_user!(session.account, id)
 
     case Accounts.update_user(session, user, user_params) do
@@ -62,7 +66,7 @@ defmodule PtrWeb.UserController do
     end
   end
 
-  def delete(%{assigns: %{current_session: session}} = conn, %{"id" => id}) do
+  def delete(conn, %{"id" => id}, session) do
     user = Accounts.get_user!(session.account, id)
     {:ok, _user} = Accounts.delete_user(session, user)
 

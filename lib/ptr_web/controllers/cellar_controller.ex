@@ -7,13 +7,17 @@ defmodule PtrWeb.CellarController do
   plug :authenticate
   plug :put_breadcrumb, name: dgettext("cellars", "Cellars"), url: "/cellars"
 
-  def index(%{assigns: %{current_session: session}} = conn, params) do
+  def action(%{assigns: %{current_session: session}} = conn, _) do
+    apply(__MODULE__, action_name(conn), [conn, conn.params, session])
+  end
+
+  def index(conn, params, session) do
     page = Cellars.list_cellars(session.account, params)
 
     render_index(conn, page)
   end
 
-  def new(%{assigns: %{current_session: session}} = conn, _params) do
+  def new(conn, _params, session) do
     changeset = Cellars.change_cellar(session.account, %Cellar{})
 
     conn
@@ -21,7 +25,7 @@ defmodule PtrWeb.CellarController do
     |> render("new.html", changeset: changeset)
   end
 
-  def create(%{assigns: %{current_session: session}} = conn, %{"cellar" => cellar_params}) do
+  def create(conn, %{"cellar" => cellar_params}, session) do
     case Cellars.create_cellar(session, cellar_params) do
       {:ok, cellar} ->
         conn
@@ -32,7 +36,7 @@ defmodule PtrWeb.CellarController do
     end
   end
 
-  def show(%{assigns: %{current_session: session}} = conn, %{"id" => id}) do
+  def show(conn, %{"id" => id}, session) do
     cellar = Cellars.get_cellar!(session.account, id)
 
     conn
@@ -40,7 +44,7 @@ defmodule PtrWeb.CellarController do
     |> render("show.html", cellar: cellar)
   end
 
-  def edit(%{assigns: %{current_session: session}} = conn, %{"id" => id}) do
+  def edit(conn, %{"id" => id}, session) do
     cellar = Cellars.get_cellar!(session.account, id)
     changeset = Cellars.change_cellar(session.account, cellar)
 
@@ -49,7 +53,7 @@ defmodule PtrWeb.CellarController do
     |> render("edit.html", cellar: cellar, changeset: changeset)
   end
 
-  def update(%{assigns: %{current_session: session}} = conn, %{"id" => id, "cellar" => cellar_params}) do
+  def update(conn, %{"id" => id, "cellar" => cellar_params}, session) do
     cellar = Cellars.get_cellar!(session.account, id)
 
     case Cellars.update_cellar(session, cellar, cellar_params) do
@@ -62,7 +66,7 @@ defmodule PtrWeb.CellarController do
     end
   end
 
-  def delete(%{assigns: %{current_session: session}} = conn, %{"id" => id}) do
+  def delete(conn, %{"id" => id}, session) do
     cellar = Cellars.get_cellar!(session.account, id)
     {:ok, _cellar} = Cellars.delete_cellar(session, cellar)
 

@@ -17,16 +17,16 @@ defmodule PtrWeb.VesselController do
     url    = cellar_vessel_path(conn, :index, cellar)
     conn   = put_breadcrumb(conn, name: name, url: url)
 
-    apply(__MODULE__, action_name(conn), [conn, conn.params, cellar])
+    apply(__MODULE__, action_name(conn), [conn, conn.params, session, cellar])
   end
 
-  def index(%{assigns: %{current_session: session}} = conn, params, cellar) do
+  def index(conn, params, session, cellar) do
     page = Cellars.list_vessels(session.account, cellar, params)
 
     render_index(conn, page, cellar: cellar)
   end
 
-  def new(%{assigns: %{current_session: session}} = conn, _params, cellar) do
+  def new(conn, _params, session, cellar) do
     vessel    = %Vessel{cellar_id: cellar.id}
     changeset = Cellars.change_vessel(session.account, vessel)
 
@@ -35,7 +35,7 @@ defmodule PtrWeb.VesselController do
     |> render("new.html", changeset: changeset, cellar: cellar)
   end
 
-  def create(%{assigns: %{current_session: session}} = conn, %{"vessel" => vessel_params}, cellar) do
+  def create(conn, %{"vessel" => vessel_params}, session, cellar) do
     vessel_params = Map.put(vessel_params, "cellar_id", cellar.id)
 
     case Cellars.create_vessel(session, vessel_params) do
@@ -48,7 +48,7 @@ defmodule PtrWeb.VesselController do
     end
   end
 
-  def show(%{assigns: %{current_session: session}} = conn, %{"id" => id}, cellar) do
+  def show(conn, %{"id" => id}, session, cellar) do
     vessel = Cellars.get_vessel!(session.account, cellar, id)
 
     conn
@@ -56,7 +56,7 @@ defmodule PtrWeb.VesselController do
     |> render("show.html", vessel: vessel, cellar: cellar)
   end
 
-  def edit(%{assigns: %{current_session: session}} = conn, %{"id" => id}, cellar) do
+  def edit(conn, %{"id" => id}, session, cellar) do
     vessel = Cellars.get_vessel!(session.account, cellar, id)
     changeset = Cellars.change_vessel(session.account, vessel)
 
@@ -65,7 +65,7 @@ defmodule PtrWeb.VesselController do
     |> render("edit.html", vessel: vessel, changeset: changeset, cellar: cellar)
   end
 
-  def update(%{assigns: %{current_session: session}} = conn, %{"id" => id, "vessel" => vessel_params}, cellar) do
+  def update(conn, %{"id" => id, "vessel" => vessel_params}, session, cellar) do
     vessel = Cellars.get_vessel!(session.account, cellar, id)
 
     case Cellars.update_vessel(session, vessel, vessel_params) do
@@ -78,7 +78,7 @@ defmodule PtrWeb.VesselController do
     end
   end
 
-  def delete(%{assigns: %{current_session: session}} = conn, %{"id" => id}, cellar) do
+  def delete(conn, %{"id" => id}, session, cellar) do
     vessel = Cellars.get_vessel!(session.account, cellar, id)
     {:ok, _vessel} = Cellars.delete_vessel(session, vessel)
 
