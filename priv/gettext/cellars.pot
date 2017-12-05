@@ -24,15 +24,15 @@ msgstr ""
 msgid "Cellar"
 msgstr ""
 
-#: lib/ptr_web/controllers/cellar_controller.ex:28
+#: lib/ptr_web/controllers/cellar_controller.ex:32
 msgid "Cellar created successfully."
 msgstr ""
 
-#: lib/ptr_web/controllers/cellar_controller.ex:70
+#: lib/ptr_web/controllers/cellar_controller.ex:74
 msgid "Cellar deleted successfully."
 msgstr ""
 
-#: lib/ptr_web/controllers/cellar_controller.ex:58
+#: lib/ptr_web/controllers/cellar_controller.ex:62
 msgid "Cellar updated successfully."
 msgstr ""
 
@@ -56,7 +56,7 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: lib/ptr_web/controllers/cellar_controller.ex:93
+#: lib/ptr_web/controllers/cellar_controller.ex:97
 #: lib/ptr_web/templates/cellar/edit.html.eex:8
 msgid "Edit cellar"
 msgstr ""
@@ -72,7 +72,7 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: lib/ptr_web/controllers/cellar_controller.ex:80
+#: lib/ptr_web/controllers/cellar_controller.ex:84
 #: lib/ptr_web/templates/cellar/empty.html.eex:13
 #: lib/ptr_web/templates/cellar/index.html.eex:46
 #: lib/ptr_web/templates/cellar/new.html.eex:8

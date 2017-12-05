@@ -28,7 +28,7 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: lib/ptr_web/controllers/user_controller.ex:89
+#: lib/ptr_web/controllers/user_controller.ex:93
 #: lib/ptr_web/templates/user/edit.html.eex:8
 msgid "Edit user"
 msgstr ""
@@ -51,7 +51,7 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: lib/ptr_web/controllers/user_controller.ex:75
+#: lib/ptr_web/controllers/user_controller.ex:79
 #: lib/ptr_web/templates/user/index.html.eex:49
 #: lib/ptr_web/templates/user/new.html.eex:8
 msgid "New user"
@@ -65,20 +65,20 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-#: lib/ptr_web/controllers/user_controller.ex:82
+#: lib/ptr_web/controllers/user_controller.ex:86
 #: lib/ptr_web/templates/user/show.html.eex:6
 msgid "User"
 msgstr ""
 
-#: lib/ptr_web/controllers/user_controller.ex:28
+#: lib/ptr_web/controllers/user_controller.ex:32
 msgid "User created successfully."
 msgstr ""
 
-#: lib/ptr_web/controllers/user_controller.ex:70
+#: lib/ptr_web/controllers/user_controller.ex:74
 msgid "User deleted successfully."
 msgstr ""
 
-#: lib/ptr_web/controllers/user_controller.ex:58
+#: lib/ptr_web/controllers/user_controller.ex:62
 msgid "User updated successfully."
 msgstr ""
 

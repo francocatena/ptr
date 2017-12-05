@@ -33,7 +33,7 @@ msgstr "Borrar propietario"
 msgid "Edit"
 msgstr "Editar propietario"
 
-#: lib/ptr_web/controllers/owner_controller.ex:94
+#: lib/ptr_web/controllers/owner_controller.ex:98
 #: lib/ptr_web/templates/owner/edit.html.eex:8
 msgid "Edit owner"
 msgstr "Editar propietario"
@@ -43,7 +43,7 @@ msgstr "Editar propietario"
 msgid "Name"
 msgstr "Nombre"
 
-#: lib/ptr_web/controllers/owner_controller.ex:80
+#: lib/ptr_web/controllers/owner_controller.ex:84
 #: lib/ptr_web/templates/owner/empty.html.eex:13
 #: lib/ptr_web/templates/owner/index.html.eex:47
 #: lib/ptr_web/templates/owner/new.html.eex:8
@@ -54,7 +54,7 @@ msgstr "Nuevo propietario"
 msgid "Oops, something went wrong! Please check the errors below."
 msgstr "Oops, algo salió mal, por favor verifique los errores debajo."
 
-#: lib/ptr_web/controllers/owner_controller.ex:87
+#: lib/ptr_web/controllers/owner_controller.ex:91
 #: lib/ptr_web/templates/owner/show.html.eex:6
 msgid "Owner"
 msgstr "Propietario"
@@ -79,15 +79,15 @@ msgstr "CUIT/CUIL"
 msgid "Update"
 msgstr "Actualizar propietario"
 
-#: lib/ptr_web/controllers/owner_controller.ex:28
+#: lib/ptr_web/controllers/owner_controller.ex:32
 msgid "Owner created successfully."
 msgstr "Propietario creado correctamete."
 
-#: lib/ptr_web/controllers/owner_controller.ex:70
+#: lib/ptr_web/controllers/owner_controller.ex:74
 msgid "Owner deleted successfully."
 msgstr "Propietario eliminado correctamete."
 
-#: lib/ptr_web/controllers/owner_controller.ex:58
+#: lib/ptr_web/controllers/owner_controller.ex:62
 msgid "Owner updated successfully."
 msgstr "Propietario actualizado correctamete."
 
