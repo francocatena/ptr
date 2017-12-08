@@ -10,7 +10,7 @@
       <div class="card-content">
         <div class="tags has-addons">
           <span class="tag is-dark is-medium"><%= @vessel.identifier %></span>
-          <span class="tag is-info is-medium"><%= Decimal.round(@vessel.capacity, 1) %></span>
+          <span class="tag is-info is-medium"><%= Decimal.round(@vessel.capacity) %></span>
           <span class="tag is-medium">L</span>
         </div>
 
