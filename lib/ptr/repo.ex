@@ -1,6 +1,6 @@
 defmodule Ptr.Repo do
   use Ecto.Repo, otp_app: :ptr
-  use Scrivener, page_size: 8
+  use Scrivener, page_size: 10
 
   @doc """
   Dynamically loads the repository url from the
