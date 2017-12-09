@@ -6,7 +6,7 @@ defmodule Ptr.Cellars.CellarRepoTest do
 
     @valid_attrs %{identifier: "some identifier", name: "some name"}
 
-    test "converts unique constraint on tax id to error" do
+    test "converts unique constraint on identifier to error" do
       {:ok, cellar, account} = fixture(:cellar, @valid_attrs)
       attrs                  = Map.put(@valid_attrs, :identifier, cellar.identifier)
       changeset              = Cellar.changeset(account, %Cellar{}, attrs)
