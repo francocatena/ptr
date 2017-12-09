@@ -10,13 +10,13 @@
 msgid ""
 msgstr ""
 
-#: lib/ptr_web/views/cellar_view.ex:25
+#: lib/ptr_web/views/cellar_view.ex:27
 msgid "Are you sure?"
 msgstr ""
 
 #: lib/ptr_web/templates/cellar/edit.html.eex:22
 #: lib/ptr_web/templates/cellar/new.html.eex:22
-#: lib/ptr_web/templates/cellar/show.html.eex:31
+#: lib/ptr_web/templates/cellar/show.html.eex:33
 msgid "Back"
 msgstr ""
 
@@ -43,16 +43,16 @@ msgstr ""
 msgid "Cellars"
 msgstr ""
 
-#: lib/ptr_web/views/cellar_view.ex:39
+#: lib/ptr_web/views/cellar_view.ex:48
 msgid "Create"
 msgstr ""
 
-#: lib/ptr_web/views/cellar_view.ex:22
+#: lib/ptr_web/views/cellar_view.ex:24
 msgid "Delete"
 msgstr ""
 
-#: lib/ptr_web/templates/cellar/show.html.eex:22
-#: lib/ptr_web/views/cellar_view.ex:15
+#: lib/ptr_web/templates/cellar/show.html.eex:24
+#: lib/ptr_web/views/cellar_view.ex:17
 msgid "Edit"
 msgstr ""
 
@@ -83,14 +83,15 @@ msgstr ""
 msgid "Oops, something went wrong! Please check the errors below."
 msgstr ""
 
-#: lib/ptr_web/views/cellar_view.ex:7
+#: lib/ptr_web/views/cellar_view.ex:9
 msgid "Show"
 msgstr ""
 
-#: lib/ptr_web/views/cellar_view.ex:40
+#: lib/ptr_web/views/cellar_view.ex:49
 msgid "Update"
 msgstr ""
 
+#: lib/ptr_web/templates/cellar/_empty_vessels.html.eex:7
 #: lib/ptr_web/templates/cellar/empty.html.eex:9
 msgid "Let's create one..."
 msgstr ""
@@ -98,3 +99,24 @@ msgstr ""
 #: lib/ptr_web/templates/cellar/empty.html.eex:5
 msgid "Looks like you have no cellars."
 msgstr ""
+
+#: lib/ptr_web/templates/cellar/_empty_vessels.html.eex:4
+msgid "Looks like you have no vessels"
+msgstr ""
+
+#: lib/ptr_web/templates/cellar/_empty_vessels.html.eex:11
+#: lib/ptr_web/templates/cellar/_vessels.html.eex:6
+msgid "New vessel"
+msgstr ""
+
+#: lib/ptr_web/templates/cellar/_vessels.html.eex:8
+msgid "Show vessel"
+msgid_plural "Show %{count} vessels"
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/ptr_web/templates/cellar/_vessels.html.eex:2
+msgid "Has one vessel"
+msgid_plural "Has %{count} vessels"
+msgstr[0] ""
+msgstr[1] ""

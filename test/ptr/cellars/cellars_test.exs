@@ -165,5 +165,17 @@ defmodule Ptr.CellarsTest do
 
       assert %Ecto.Changeset{} = Cellars.change_vessel(account, vessel)
     end
+
+    test "cellar_vessel_count/2 returns the numbers of vessels for the given cellar" do
+      {:ok, _vessel, cellar, account} = fixture(:vessel)
+
+      assert 1 == Cellars.cellar_vessel_count(account, cellar)
+    end
+
+    test "cellar_vessel_count/2 returns zero when no vessels" do
+      {:ok, cellar, account} = fixture(:cellar)
+
+      assert 0 == Cellars.cellar_vessel_count(account, cellar)
+    end
   end
 end

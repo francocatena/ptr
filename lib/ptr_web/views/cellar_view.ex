@@ -2,6 +2,8 @@ defmodule PtrWeb.CellarView do
   use PtrWeb, :view
   use Scrivener.HTML
 
+  import Ptr.Cellars, only: [cellar_vessel_count: 2]
+
   def link_to_show(conn, cellar) do
     icon_link "eye",
       title: dgettext("cellars", "Show"),
@@ -34,6 +36,13 @@ defmodule PtrWeb.CellarView do
   def submit_button(cellar) do
     submit_label(cellar)
     |> submit(class: "button is-medium is-white is-paddingless card-footer-item")
+  end
+
+  def render_vessels(conn, account, cellar) do
+    case cellar_vessel_count(account, cellar) do
+      0     -> render("_empty_vessels.html", conn: conn, cellar: cellar)
+      count -> render("_vessels.html", conn: conn, cellar: cellar, count: count)
+    end
   end
 
   defp submit_label(nil), do: dgettext("cellars", "Create")

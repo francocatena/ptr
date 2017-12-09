@@ -220,4 +220,21 @@ defmodule Ptr.Cellars do
   def change_vessel(%Account{} = account, %Vessel{} = vessel) do
     Vessel.changeset(account, vessel, %{})
   end
+
+  @doc """
+  Returns the vessel count for the given cellar.
+
+  ## Examples
+
+      iex> cellar_vessel_count(%Account{}, cellar)
+      5
+
+  """
+  def cellar_vessel_count(%Account{} = account, %Cellar{} = cellar) do
+    query = from v in Vessel, where: v.cellar_id == ^cellar.id
+
+    query
+    |> prefixed(account)
+    |> Repo.aggregate(:count, :id)
+  end
 end

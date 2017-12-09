@@ -44,8 +44,9 @@ defmodule PtrWeb.CellarViewTest do
 
   test "renders show.html", %{conn: conn} do
     cellar  = %Cellar{id: "1", identifier: "gallo", name: "Gallo"}
-    content = render_to_string(CellarView, "show.html",
-                                 conn: conn, cellar: cellar)
+    content = render_to_string(CellarView, "show.html", conn: conn,
+                                                        cellar: cellar,
+                                                        account: test_account())
 
     assert String.contains?(content, cellar.identifier)
   end

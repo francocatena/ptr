@@ -105,7 +105,6 @@ msgid "Vessel updated successfully."
 msgstr "Vasija actualizada correctamente."
 
 #: lib/ptr_web/controllers/vessel_controller.ex:12
-#: lib/ptr_web/templates/cellar/show.html.eex:21
 #: lib/ptr_web/templates/vessel/index.html.eex:6
 msgid "Vessels"
 msgstr "Vasijas"

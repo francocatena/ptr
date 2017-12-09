@@ -79,8 +79,9 @@ defmodule PtrWeb.VesselViewTest do
       capacity: Decimal.new("100"),
       cellar_id: cellar.id
     }
-    content = render_to_string(VesselView, "show.html",
-                               conn: conn, cellar: cellar, vessel: vessel)
+    content = render_to_string(VesselView, "show.html", conn: conn,
+                                                        cellar: cellar,
+                                                        vessel: vessel)
 
     assert String.contains?(content, vessel.identifier)
   end

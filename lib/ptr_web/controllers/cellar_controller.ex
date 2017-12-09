@@ -41,7 +41,7 @@ defmodule PtrWeb.CellarController do
 
     conn
     |> put_show_breadcrumb(cellar)
-    |> render("show.html", cellar: cellar)
+    |> render("show.html", cellar: cellar, account: session.account)
   end
 
   def edit(conn, %{"id" => id}, session) do

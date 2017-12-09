@@ -21,3 +21,7 @@ msgstr ""
 #: lib/ptr_web/controllers/session_controller.ex:19
 msgid "Welcome!"
 msgstr ""
+
+#: lib/ptr_web/templates/cellar/_vessels.html.eex:7
+msgid "or"
+msgstr ""
