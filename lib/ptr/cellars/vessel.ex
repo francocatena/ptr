@@ -33,6 +33,8 @@ defmodule Ptr.Cellars.Vessel do
 
   @doc false
   def changeset(%Account{} = account, %Vessel{} = vessel, attrs) do
+    prefix_opts = [prefix: prefix(account)]
+
     vessel
     |> cast(attrs, @fields)
     |> validate_required([:identifier, :capacity, :cellar_id])
@@ -40,8 +42,8 @@ defmodule Ptr.Cellars.Vessel do
     |> validate_length(:material, max: 255)
     |> validate_length(:cooling, max: 255)
     |> validate_number(:capacity, greater_than: 0, less_than: 1_000_000)
-    |> unsafe_validate_unique(:identifier, Ptr.Repo, prefix: prefix(account))
-    |> unique_constraint(:identifier)
+    |> unsafe_validate_unique([:identifier, :cellar_id], Ptr.Repo, prefix_opts)
+    |> unique_constraint(:identifier, name: :vessels_identifier_cellar_id_index)
     |> optimistic_lock(:lock_version)
   end
 end

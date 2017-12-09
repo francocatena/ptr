@@ -13,15 +13,16 @@ defmodule Ptr.Cellars.VesselRepoTest do
       cellar_id: "1"
     }
 
-    test "converts unique constraint on tax id to error" do
+    test "converts unique constraint on identifier to error" do
       {:ok, vessel, _, account} = fixture(:vessel, @valid_attrs)
-      attrs                     = %{@valid_attrs | identifier: vessel.identifier}
+      attrs                     = %{@valid_attrs | identifier: vessel.identifier,
+                                                   cellar_id: vessel.cellar_id}
       changeset                 = Vessel.changeset(account, %Vessel{}, attrs)
       prefix                    = Ptr.Accounts.prefix(account)
       {:error, changeset}       = Repo.insert(changeset, prefix: prefix)
       expected                  = {
         "has already been taken",
-        [validation: :unsafe_unique, fields: [:identifier]]
+        [validation: :unsafe_unique, fields: [:identifier, :cellar_id]]
       }
 
       assert expected == changeset.errors[:identifier]
