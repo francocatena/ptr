@@ -2,6 +2,8 @@ defmodule PtrWeb.VesselView do
   use PtrWeb, :view
   use Scrivener.HTML
 
+  alias PtrWeb.VesselView
+
   def link_to_show(conn, cellar, vessel) do
     icon_link "eye",
       title: dgettext("vessels", "Show"),
@@ -52,6 +54,24 @@ defmodule PtrWeb.VesselView do
       [key: dgettext("vessels", "Jacket"), value: "Jacket"],
       [key: dgettext("vessels", "Coil"),   value: "Coil"]
     ]
+  end
+
+  def render_js_vessels(conn, cellar, vessels) do
+    data =
+      vessels
+      |> render_many(VesselView, "vessel.html", conn: conn, cellar: cellar)
+      |> Enum.map(&safe_to_string/1)
+      |> Enum.join()
+
+    escape_javascript({:safe, data})
+  end
+
+  def render_js_pagination(conn, page, cellar) do
+    opts = [path: &cellar_vessel_path/4, view_style: :bulma]
+
+    conn
+    |> pagination_links(page, [cellar], opts)
+    |> escape_javascript()
   end
 
   defp submit_label(nil), do: dgettext("vessels", "Create")

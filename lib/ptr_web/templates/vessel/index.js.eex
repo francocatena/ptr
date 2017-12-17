@@ -1,0 +1,21 @@
+{
+  const vesselsContainer = document.querySelector('[data-vessels]')
+  const loading          = document.querySelector('[data-loading]')
+  const paginationNode   = document.createElement('div')
+  const pagination       = '<%= render_js_pagination(@conn, @page, @cellar) %>'
+  const content          = '<%= render_js_vessels(@conn, @cellar, @vessels) %>'
+  const hasMoreResults   = <%= @page.total_pages > @page.page_number %>
+
+  paginationNode.innerHTML    = pagination
+  vesselsContainer.innerHTML += content
+
+  if (hasMoreResults) {
+    const event = new Event('ptr:nextContentLoaded')
+
+    // TODO: replace when Edge supports replaceWith
+    loading.parentNode.replaceChild(paginationNode.firstChild, loading)
+    document.dispatchEvent(event)
+  } else {
+    loading.remove()
+  }
+}

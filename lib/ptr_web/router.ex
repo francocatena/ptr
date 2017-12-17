@@ -2,7 +2,7 @@ defmodule PtrWeb.Router do
   use PtrWeb, :router
 
   pipeline :browser do
-    plug :accepts, ["html"]
+    plug :accepts, ["html", "js"]
     plug :fetch_session
     plug :fetch_flash
     plug :fetch_current_session

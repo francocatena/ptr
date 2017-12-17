@@ -47,6 +47,33 @@ defmodule PtrWeb.VesselViewTest do
     end
   end
 
+  test "renders index.js", %{conn: conn, cellar: cellar} do
+    page    = %Scrivener.Page{total_pages: 1, page_number: 1}
+    vessels = [
+      %Vessel{
+        id: "1",
+        identifier: "1a",
+        capacity: Decimal.new("100"),
+        cellar_id: cellar.id
+      },
+      %Vessel{
+        id: "2",
+        identifier: "2a",
+        capacity: Decimal.new("200"),
+        cellar_id: cellar.id
+      }
+    ]
+
+    content = render_to_string(VesselView, "index.js", conn: conn,
+                                                       cellar: cellar,
+                                                       vessels: vessels,
+                                                       page: page)
+
+    for vessel <- vessels do
+      assert String.contains?(content, vessel.identifier)
+    end
+  end
+
   test "renders new.html", %{conn: conn, cellar: cellar} do
     changeset = test_account() |> Cellars.change_vessel(%Vessel{})
     content   = render_to_string(VesselView, "new.html", conn: conn,

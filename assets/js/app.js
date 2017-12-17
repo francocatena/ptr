@@ -7,5 +7,6 @@ import 'phoenix_html'
 
 // import socket from './socket'
 import './delete_button'
+import './endless_page'
 import './fake_link'
 import './menu'

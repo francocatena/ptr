@@ -97,7 +97,7 @@ defmodule PtrWeb.VesselController do
       |> Keyword.put(:vessels, page.entries)
       |> Keyword.put(:page, page)
 
-    render(conn, "index.html", opts)
+    render(conn, :index, opts)
   end
 
   defp put_new_breadcrumb(conn, cellar) do

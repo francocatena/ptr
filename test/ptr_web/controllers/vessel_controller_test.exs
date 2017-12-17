@@ -56,6 +56,20 @@ defmodule PtrWeb.VesselControllerTest do
       assert response =~ "Vessels"
       assert response =~ vessel.identifier
     end
+
+    @tag login_as: "test@user.com"
+    test "lists vessels as JS", %{conn: conn, cellar: cellar, vessel: vessel} do
+      conn =
+        conn
+        |> put_req_header("accept", "application/javascript")
+        |> put_req_header("x-requested-with", "XMLHttpRequest")
+
+      conn     = get conn, cellar_vessel_path(conn, :index, cellar)
+      response = response(conn, 200)
+
+      assert response =~ vessel.identifier
+      assert response_content_type(conn, :js)
+    end
   end
 
   describe "empty index" do

@@ -18,26 +18,12 @@
               <th></th>
             </tr>
           </thead>
-          <tbody>
-            <%= for vessel <- @vessels do %>
-              <tr class="has-cursor-pointer" data-link-like data-target="[data-main-link]">
-                <td><%= vessel.identifier %></td>
-                <td><%= Decimal.round(vessel.capacity) %></td>
-                <td class="is-hidden-mobile"><%= Gettext.dgettext(PtrWeb.Gettext, "vessels", vessel.material || "") %></td>
-                <td class="is-hidden-mobile"><%= Gettext.dgettext(PtrWeb.Gettext, "vessels", vessel.cooling || "") %></td>
-
-                <td>
-                  <div class="buttons has-addons is-right">
-                    <%= link_to_show   @conn, @cellar, vessel %>
-                    <%= link_to_edit   @conn, @cellar, vessel %>
-                    <%= link_to_delete @conn, @cellar, vessel %>
-                  </div>
-                </td>
-              </tr>
-            <% end %>
+          <tbody data-vessels>
+            <%= render_many @vessels, VesselView, "vessel.html", conn: @conn, cellar: @cellar %>
           </tbody>
         </table>
 
+        <span data-intersection-sentinel></span>
         <%= pagination_links @conn, @page, [@cellar], path: &cellar_vessel_path/4, view_style: :bulma %>
       </div>
     </div>
