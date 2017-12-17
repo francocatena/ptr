@@ -23,27 +23,29 @@ const loadNextPage = () => {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const sentinel = document.querySelector('[data-intersection-sentinel]')
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        loadNextPage()
-      }
+if ('IntersectionObserver' in window) {
+  document.addEventListener('DOMContentLoaded', () => {
+    const sentinel = document.querySelector('[data-intersection-sentinel]')
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          loadNextPage()
+        }
+      })
     })
-  })
 
-  if (sentinel) {
-    observer.observe(sentinel)
-  }
-}, false)
+    if (sentinel) {
+      observer.observe(sentinel)
+    }
+  }, false)
+}
 
 document.addEventListener('ptr:nextContentLoaded', () => {
-  const sentinel  = document.querySelector('[data-intersection-sentinel]')
-  const rect      = sentinel.getBoundingClientRect()
-  const isVisible = rect.top <= window.innerHeight * 0.75 && rect.top > 0
+  const sentinel       = document.querySelector('[data-intersection-sentinel]')
+  const rect           = sentinel.getBoundingClientRect()
+  const isIntersecting = rect.top >= 0 && rect.top <= window.innerHeight * 1.01
 
-  if (isVisible) {
+  if (isIntersecting) {
     loadNextPage()
   }
 }, false)
