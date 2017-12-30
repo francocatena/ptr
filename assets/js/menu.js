@@ -1,12 +1,10 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const burgers = Array.from(document.querySelectorAll('.navbar-burger'))
+document.body.addEventListener('click', event => {
+  const burger = event.target.closest('.navbar-burger')
 
-  for (const burger of burgers) {
-    burger.addEventListener('click', () => {
-      const target = document.querySelector(burger.dataset.target)
+  if (burger) {
+    const target = document.querySelector(burger.dataset.target)
 
-      burger.classList.toggle('is-active')
-      target.classList.toggle('is-active')
-    })
+    burger.classList.toggle('is-active')
+    target.classList.toggle('is-active')
   }
 })

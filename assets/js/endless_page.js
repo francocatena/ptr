@@ -24,14 +24,14 @@ const loadNextPage = () => {
 }
 
 if ('IntersectionObserver' in window) {
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('turbolinks:load', () => {
     const sentinel = document.querySelector('[data-intersection-sentinel]')
     const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
+      for (const entry of entries) {
         if (entry.isIntersecting) {
           loadNextPage()
         }
-      })
+      }
     })
 
     if (sentinel) {
@@ -40,7 +40,7 @@ if ('IntersectionObserver' in window) {
   }, false)
 }
 
-document.addEventListener('ptr:nextContentLoaded', () => {
+document.body.addEventListener('ptr:nextContentLoaded', () => {
   const sentinel       = document.querySelector('[data-intersection-sentinel]')
   const rect           = sentinel.getBoundingClientRect()
   const isIntersecting = rect.top >= 0 && rect.top <= window.innerHeight * 1.01

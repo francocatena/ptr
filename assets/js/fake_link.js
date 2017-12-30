@@ -1,4 +1,4 @@
-document.addEventListener('click', event => {
+document.body.addEventListener('click', event => {
   const linkLikeElement = event.target.closest('[data-link-like]')
   const hasParentLink   = event.target.closest('a')
 
