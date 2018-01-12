@@ -1,4 +1,4 @@
-document.body.addEventListener('click', event => {
+document.addEventListener('click', event => {
   const burger = event.target.closest('.navbar-burger')
 
   if (burger) {

@@ -40,7 +40,7 @@ if ('IntersectionObserver' in window) {
   }, false)
 }
 
-document.body.addEventListener('ptr:nextContentLoaded', () => {
+document.addEventListener('ptr:nextContentLoaded', () => {
   const sentinel       = document.querySelector('[data-intersection-sentinel]')
   const rect           = sentinel.getBoundingClientRect()
   const isIntersecting = rect.top >= 0 && rect.top <= window.innerHeight * 1.01

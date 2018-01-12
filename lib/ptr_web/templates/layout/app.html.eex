@@ -13,6 +13,8 @@
 
     <link rel="icon" type="image/x-icon" href="<%= static_path(@conn, "/images/favicon.ico") %>">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+
+    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </head>
 
   <body>
@@ -23,7 +25,5 @@
     <% end %>
 
     <%= render @view_module, @view_template, assigns %>
-
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
