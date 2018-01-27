@@ -15,7 +15,7 @@ defmodule PtrWeb.UserView do
   end
 
   def link_to_edit(conn, user) do
-    icon_link "pencil",
+    icon_link "pencil-alt",
       title: dgettext("users", "Edit"),
       to:    user_path(conn, :edit, user),
       class: "button is-small is-outlined is-hidden-mobile"

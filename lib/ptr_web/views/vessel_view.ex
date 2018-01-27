@@ -13,7 +13,7 @@ defmodule PtrWeb.VesselView do
   end
 
   def link_to_edit(conn, cellar, vessel) do
-    icon_link "pencil",
+    icon_link "pencil-alt",
       title: dgettext("vessels", "Edit"),
       to:    cellar_vessel_path(conn, :edit, cellar, vessel),
       class: "button is-small is-outlined is-hidden-mobile"

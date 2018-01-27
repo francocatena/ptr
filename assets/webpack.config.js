@@ -49,8 +49,7 @@ const config = {
                 sourceMap:      !isProduction,
                 sourceComments: !isProduction,
                 includePaths:   [
-                  Path.resolve(__dirname, 'node_modules/bulma'),
-                  Path.resolve(__dirname, 'node_modules/font-awesome/scss')
+                  Path.resolve(__dirname, 'node_modules/bulma')
                 ]
               }
             }

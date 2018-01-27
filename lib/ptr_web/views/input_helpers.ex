@@ -97,7 +97,7 @@ defmodule PtrWeb.InputHelpers do
   defp input_icons(icon_opts) do
     for {position, icon} <- icon_opts do
       content_tag(:span, class: "icon is-#{position}") do
-        content_tag(:i, "", class: "fa fa-#{icon}")
+        content_tag(:i, "", class: "fas fa-#{icon}")
       end
     end
   end

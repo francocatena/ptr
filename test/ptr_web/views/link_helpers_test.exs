@@ -10,7 +10,7 @@ defmodule PtrWeb.LinkHelpersTest do
         icon_link("test", to: "#test")
         |> safe_to_string
 
-      assert link =~ "fa fa-test"
+      assert link =~ "fas fa-test"
       assert link =~ "href=\"#test\""
     end
   end

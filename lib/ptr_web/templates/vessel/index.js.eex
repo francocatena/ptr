@@ -5,17 +5,20 @@
   const pagination       = '<%= render_js_pagination(@conn, @page, @cellar) %>'
   const content          = '<%= render_js_vessels(@conn, @cellar, @vessels) %>'
   const hasMoreResults   = <%= @page.total_pages > @page.page_number %>
+  const pageLoadedEvent  = new Event('ptr:newPageLoaded')
 
   paginationNode.innerHTML    = pagination
   vesselsContainer.innerHTML += content
 
   if (hasMoreResults) {
-    const event = new Event('ptr:nextContentLoaded')
+    const contentLoadedEvent = new Event('ptr:nextContentLoaded')
 
     // TODO: replace when Edge supports replaceWith
     loading.parentNode.replaceChild(paginationNode.firstChild, loading)
-    document.dispatchEvent(event)
+    document.dispatchEvent(contentLoadedEvent)
   } else {
     loading.remove()
   }
+
+  document.dispatchEvent(pageLoadedEvent)
 }

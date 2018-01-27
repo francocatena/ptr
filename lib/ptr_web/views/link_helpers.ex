@@ -4,7 +4,7 @@ defmodule PtrWeb.LinkHelpers do
 
   def icon_link(icon, opts) do
     link(opts) do
-      content_tag(:i, "", class: "fa fa-#{icon}")
+      content_tag(:i, "", class: "fas fa-#{icon}")
     end
   end
 end
