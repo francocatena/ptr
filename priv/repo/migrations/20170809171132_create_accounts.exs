@@ -4,21 +4,21 @@ defmodule Ptr.Repo.Migrations.CreateAccounts do
   def up do
     unless prefix() do
       create table(:accounts) do
-        add :name, :string, null: false
-        add :db_prefix, :string, null: false
-        add :lock_version, :integer, default: 1, null: false
+        add(:name, :string, null: false)
+        add(:db_prefix, :string, null: false)
+        add(:lock_version, :integer, default: 1, null: false)
 
         timestamps()
       end
 
-      create unique_index(:accounts, [:db_prefix])
+      create(unique_index(:accounts, [:db_prefix]))
     end
   end
 
   def down do
     unless prefix() do
       drop_all_schemas()
-      drop table(:accounts)
+      drop(table(:accounts))
     end
   end
 
@@ -27,7 +27,7 @@ defmodule Ptr.Repo.Migrations.CreateAccounts do
   end
 
   defp drop_schema(prefix) do
-    case Ptr.Repo.__adapter__ do
+    case Ptr.Repo.__adapter__() do
       Ecto.Adapters.Postgres -> execute("DROP SCHEMA \"#{prefix}\" CASCADE")
     end
   end

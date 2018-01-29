@@ -10,16 +10,18 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
-{:ok, account} = Ptr.Accounts.create_account(%{
-  name:      "Default",
-  db_prefix: "default"
-})
+{:ok, account} =
+  Ptr.Accounts.create_account(%{
+    name: "Default",
+    db_prefix: "default"
+  })
 
-session  = %Ptr.Accounts.Session{account: account}
+session = %Ptr.Accounts.Session{account: account}
 
-{:ok, _} = Ptr.Accounts.create_user(session, %{
-  name:     "Admin",
-  lastname: "Admin",
-  email:    "admin@ptr.com",
-  password: "123456"
-})
+{:ok, _} =
+  Ptr.Accounts.create_user(session, %{
+    name: "Admin",
+    lastname: "Admin",
+    email: "admin@ptr.com",
+    password: "123456"
+  })

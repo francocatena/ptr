@@ -11,13 +11,13 @@ defmodule Ptr.Repo.Migrations.CreateCellars do
 
   defp do_change(prefix) do
     create table(:cellars, prefix: prefix) do
-      add :identifier, :string
-      add :name, :string
-      add :lock_version, :integer, default: 1, null: false
+      add(:identifier, :string)
+      add(:name, :string)
+      add(:lock_version, :integer, default: 1, null: false)
 
       timestamps()
     end
 
-    create unique_index(:cellars, :identifier, prefix: prefix)
+    create(unique_index(:cellars, :identifier, prefix: prefix))
   end
 end

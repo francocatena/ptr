@@ -10,7 +10,7 @@ defmodule Ptr.Repo.Migrations.ChangeVesselIdentifierUniqueIndex do
   end
 
   defp do_change(prefix) do
-    drop   unique_index(:vessels, :identifier, prefix: prefix)
-    create unique_index(:vessels, [:identifier, :cellar_id], prefix: prefix)
+    drop(unique_index(:vessels, :identifier, prefix: prefix))
+    create(unique_index(:vessels, [:identifier, :cellar_id], prefix: prefix))
   end
 end

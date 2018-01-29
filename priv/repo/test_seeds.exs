@@ -5,7 +5,8 @@ if account, do: {:ok, _} = Ptr.Accounts.delete_account(account)
 
 # Create
 
-{:ok, _} = Ptr.Accounts.create_account(%{
-  name:      "Test account",
-  db_prefix: "test_account"
-})
+{:ok, _} =
+  Ptr.Accounts.create_account(%{
+    name: "Test account",
+    db_prefix: "test_account"
+  })
