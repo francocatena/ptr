@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Language: en\n"
 
-#: lib/ptr_web/views/owner_view.ex:25
+#: lib/ptr_web/views/owner_view.ex:30
 msgid "Are you sure?"
 msgstr ""
 
@@ -20,20 +20,20 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: lib/ptr_web/views/owner_view.ex:39
+#: lib/ptr_web/views/owner_view.ex:46
 msgid "Create"
 msgstr ""
 
-#: lib/ptr_web/views/owner_view.ex:22
+#: lib/ptr_web/views/owner_view.ex:27
 msgid "Delete"
 msgstr ""
 
 #: lib/ptr_web/templates/owner/show.html.eex:22
-#: lib/ptr_web/views/owner_view.ex:15
+#: lib/ptr_web/views/owner_view.ex:18
 msgid "Edit"
 msgstr ""
 
-#: lib/ptr_web/controllers/owner_controller.ex:98
+#: lib/ptr_web/controllers/owner_controller.ex:101
 #: lib/ptr_web/templates/owner/edit.html.eex:8
 msgid "Edit owner"
 msgstr ""
@@ -43,7 +43,7 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: lib/ptr_web/controllers/owner_controller.ex:84
+#: lib/ptr_web/controllers/owner_controller.ex:87
 #: lib/ptr_web/templates/owner/empty.html.eex:13
 #: lib/ptr_web/templates/owner/index.html.eex:47
 #: lib/ptr_web/templates/owner/new.html.eex:8
@@ -54,7 +54,7 @@ msgstr ""
 msgid "Oops, something went wrong! Please check the errors below."
 msgstr ""
 
-#: lib/ptr_web/controllers/owner_controller.ex:91
+#: lib/ptr_web/controllers/owner_controller.ex:94
 #: lib/ptr_web/templates/owner/show.html.eex:6
 msgid "Owner"
 msgstr ""
@@ -65,7 +65,7 @@ msgstr ""
 msgid "Owners"
 msgstr ""
 
-#: lib/ptr_web/views/owner_view.ex:7
+#: lib/ptr_web/views/owner_view.ex:8
 msgid "Show"
 msgstr ""
 
@@ -75,7 +75,7 @@ msgstr ""
 msgid "Tax ID"
 msgstr ""
 
-#: lib/ptr_web/views/owner_view.ex:40
+#: lib/ptr_web/views/owner_view.ex:47
 msgid "Update"
 msgstr ""
 
@@ -83,11 +83,11 @@ msgstr ""
 msgid "Owner created successfully."
 msgstr ""
 
-#: lib/ptr_web/controllers/owner_controller.ex:74
+#: lib/ptr_web/controllers/owner_controller.ex:76
 msgid "Owner deleted successfully."
 msgstr ""
 
-#: lib/ptr_web/controllers/owner_controller.ex:62
+#: lib/ptr_web/controllers/owner_controller.ex:63
 msgid "Owner updated successfully."
 msgstr ""
 

@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 
-#: lib/ptr_web/views/user_view.ex:37
+#: lib/ptr_web/views/user_view.ex:44
 msgid "Are you sure?"
 msgstr ""
 
@@ -20,15 +20,15 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: lib/ptr_web/views/user_view.ex:26 lib/ptr_web/views/user_view.ex:34
+#: lib/ptr_web/views/user_view.ex:31 lib/ptr_web/views/user_view.ex:41
 msgid "Delete"
 msgstr ""
 
-#: lib/ptr_web/templates/user/show.html.eex:22 lib/ptr_web/views/user_view.ex:19
+#: lib/ptr_web/templates/user/show.html.eex:22 lib/ptr_web/views/user_view.ex:22
 msgid "Edit"
 msgstr ""
 
-#: lib/ptr_web/controllers/user_controller.ex:93
+#: lib/ptr_web/controllers/user_controller.ex:95
 #: lib/ptr_web/templates/user/edit.html.eex:8
 msgid "Edit user"
 msgstr ""
@@ -51,7 +51,7 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: lib/ptr_web/controllers/user_controller.ex:79
+#: lib/ptr_web/controllers/user_controller.ex:81
 #: lib/ptr_web/templates/user/index.html.eex:49
 #: lib/ptr_web/templates/user/new.html.eex:8
 msgid "New user"
@@ -61,11 +61,11 @@ msgstr ""
 msgid "Oops, something went wrong! Please check the errors below."
 msgstr ""
 
-#: lib/ptr_web/views/user_view.ex:11
+#: lib/ptr_web/views/user_view.ex:12
 msgid "Show"
 msgstr ""
 
-#: lib/ptr_web/controllers/user_controller.ex:86
+#: lib/ptr_web/controllers/user_controller.ex:88
 #: lib/ptr_web/templates/user/show.html.eex:6
 msgid "User"
 msgstr ""
@@ -74,16 +74,16 @@ msgstr ""
 msgid "User created successfully."
 msgstr ""
 
-#: lib/ptr_web/controllers/user_controller.ex:74
+#: lib/ptr_web/controllers/user_controller.ex:76
 msgid "User deleted successfully."
 msgstr ""
 
-#: lib/ptr_web/controllers/user_controller.ex:62
+#: lib/ptr_web/controllers/user_controller.ex:63
 msgid "User updated successfully."
 msgstr ""
 
 #: lib/ptr_web/controllers/user_controller.ex:8
-#: lib/ptr_web/templates/layout/_menu.html.eex:20
+#: lib/ptr_web/templates/layout/_menu.html.eex:35
 #: lib/ptr_web/templates/user/index.html.eex:6
 msgid "Users"
 msgstr ""
@@ -94,11 +94,11 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-#: lib/ptr_web/views/user_view.ex:51
+#: lib/ptr_web/views/user_view.ex:60
 msgid "Create"
 msgstr ""
 
-#: lib/ptr_web/views/user_view.ex:52
+#: lib/ptr_web/views/user_view.ex:61
 msgid "Update"
 msgstr ""
 

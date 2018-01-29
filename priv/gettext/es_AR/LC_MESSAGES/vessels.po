@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Language: es_AR\n"
 
-#: lib/ptr_web/views/vessel_view.ex:25
+#: lib/ptr_web/views/vessel_view.ex:32
 msgid "Are you sure?"
 msgstr "¿Está seguro de borrar esta vasija?"
 
@@ -31,20 +31,20 @@ msgstr "Capacidad"
 msgid "Cooling"
 msgstr "Tipo de refrigeración"
 
-#: lib/ptr_web/views/vessel_view.ex:57
+#: lib/ptr_web/views/vessel_view.ex:84
 msgid "Create"
 msgstr "Crear una nueva vasija"
 
-#: lib/ptr_web/views/vessel_view.ex:22
+#: lib/ptr_web/views/vessel_view.ex:29
 msgid "Delete"
 msgstr "Borrar vasija"
 
 #: lib/ptr_web/templates/vessel/show.html.eex:39
-#: lib/ptr_web/views/vessel_view.ex:15
+#: lib/ptr_web/views/vessel_view.ex:20
 msgid "Edit"
 msgstr "Editar vasija"
 
-#: lib/ptr_web/controllers/vessel_controller.ex:118
+#: lib/ptr_web/controllers/vessel_controller.ex:120
 #: lib/ptr_web/templates/vessel/edit.html.eex:8
 msgid "Edit vessel"
 msgstr "Editar vasija"
@@ -64,9 +64,9 @@ msgstr "Vamos, agrega una..."
 msgid "Material"
 msgstr "Tipo de material"
 
-#: lib/ptr_web/controllers/vessel_controller.ex:104
+#: lib/ptr_web/controllers/vessel_controller.ex:106
 #: lib/ptr_web/templates/vessel/empty.html.eex:13
-#: lib/ptr_web/templates/vessel/index.html.eex:50
+#: lib/ptr_web/templates/vessel/index.html.eex:36
 #: lib/ptr_web/templates/vessel/new.html.eex:8
 msgid "New vessel"
 msgstr "Nueva vasija"
@@ -80,11 +80,11 @@ msgstr "Notas"
 msgid "Oops, something went wrong! Please check the errors below."
 msgstr "Oops, algo salió mal, por favor verifique los errores debajo."
 
-#: lib/ptr_web/views/vessel_view.ex:7
+#: lib/ptr_web/views/vessel_view.ex:10
 msgid "Show"
 msgstr "Ver vasija"
 
-#: lib/ptr_web/views/vessel_view.ex:58
+#: lib/ptr_web/views/vessel_view.ex:85
 msgid "Update"
 msgstr "Actualizar vasija"
 
@@ -96,11 +96,11 @@ msgstr "Vasija"
 msgid "Vessel created successfully."
 msgstr "Vasija creada correctamente."
 
-#: lib/ptr_web/controllers/vessel_controller.ex:86
+#: lib/ptr_web/controllers/vessel_controller.ex:88
 msgid "Vessel deleted successfully."
 msgstr "Vasija eliminada correctamente."
 
-#: lib/ptr_web/controllers/vessel_controller.ex:74
+#: lib/ptr_web/controllers/vessel_controller.ex:75
 msgid "Vessel updated successfully."
 msgstr "Vasija actualizada correctamente."
 
@@ -113,23 +113,23 @@ msgstr "Vasijas"
 msgid "Choose material"
 msgstr "Seleccione un material"
 
-#: lib/ptr_web/views/vessel_view.ex:42
+#: lib/ptr_web/views/vessel_view.ex:51
 msgid "Concrete"
 msgstr "Cemento"
 
-#: lib/ptr_web/views/vessel_view.ex:43
+#: lib/ptr_web/views/vessel_view.ex:52
 msgid "Fiber"
 msgstr "Fibra"
 
-#: lib/ptr_web/views/vessel_view.ex:44
+#: lib/ptr_web/views/vessel_view.ex:53
 msgid "Plastic"
 msgstr "Plástico"
 
-#: lib/ptr_web/views/vessel_view.ex:41
+#: lib/ptr_web/views/vessel_view.ex:50
 msgid "Steel"
 msgstr "Acero"
 
-#: lib/ptr_web/views/vessel_view.ex:45
+#: lib/ptr_web/views/vessel_view.ex:54
 msgid "Wood"
 msgstr "Madera"
 
@@ -137,15 +137,15 @@ msgstr "Madera"
 msgid "Choose cooling"
 msgstr "Seleccione una refrigeración"
 
-#: lib/ptr_web/views/vessel_view.ex:53
+#: lib/ptr_web/views/vessel_view.ex:62
 msgid "Coil"
 msgstr "Serpentín"
 
-#: lib/ptr_web/views/vessel_view.ex:52
+#: lib/ptr_web/views/vessel_view.ex:61
 msgid "Jacket"
 msgstr "Chaqueta"
 
-#: lib/ptr_web/views/vessel_view.ex:51
+#: lib/ptr_web/views/vessel_view.ex:60
 msgid "None"
 msgstr "Ninguna"
 

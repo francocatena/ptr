@@ -28,11 +28,11 @@ msgstr ""
 msgid "Log In"
 msgstr ""
 
-#: lib/ptr_web/controllers/session_controller.ex:26
+#: lib/ptr_web/controllers/session_controller.ex:27
 msgid "Invalid email/password combination"
 msgstr ""
 
-#: lib/ptr_web/templates/layout/_menu.html.eex:39
+#: lib/ptr_web/templates/layout/_menu.html.eex:53
 msgid "Logout"
 msgstr ""
 

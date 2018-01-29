@@ -10,11 +10,11 @@ msgid ""
 msgstr ""
 "Language: en\n"
 
-#: lib/ptr/notifications/email.ex:20 lib/ptr_web/templates/layout/app.html.eex:8
+#: lib/ptr/notifications/email.ex:20 lib/ptr_web/templates/layout/app.html.eex:9
 msgid "Vintock"
 msgstr ""
 
-#: lib/ptr_web/controllers/session_controller.ex:34
+#: lib/ptr_web/controllers/session_controller.ex:35
 msgid "See you soon!"
 msgstr ""
 

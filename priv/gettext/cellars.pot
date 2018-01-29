@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 
-#: lib/ptr_web/views/cellar_view.ex:27
+#: lib/ptr_web/views/cellar_view.ex:32
 msgid "Are you sure?"
 msgstr ""
 
@@ -28,35 +28,35 @@ msgstr ""
 msgid "Cellar created successfully."
 msgstr ""
 
-#: lib/ptr_web/controllers/cellar_controller.ex:74
+#: lib/ptr_web/controllers/cellar_controller.ex:76
 msgid "Cellar deleted successfully."
 msgstr ""
 
-#: lib/ptr_web/controllers/cellar_controller.ex:62
+#: lib/ptr_web/controllers/cellar_controller.ex:63
 msgid "Cellar updated successfully."
 msgstr ""
 
 #: lib/ptr_web/controllers/cellar_controller.ex:8
 #: lib/ptr_web/controllers/vessel_controller.ex:8
 #: lib/ptr_web/templates/cellar/index.html.eex:6
-#: lib/ptr_web/templates/layout/_menu.html.eex:26
+#: lib/ptr_web/templates/layout/_menu.html.eex:20
 msgid "Cellars"
 msgstr ""
 
-#: lib/ptr_web/views/cellar_view.ex:48
+#: lib/ptr_web/views/cellar_view.ex:55
 msgid "Create"
 msgstr ""
 
-#: lib/ptr_web/views/cellar_view.ex:24
+#: lib/ptr_web/views/cellar_view.ex:29
 msgid "Delete"
 msgstr ""
 
 #: lib/ptr_web/templates/cellar/show.html.eex:24
-#: lib/ptr_web/views/cellar_view.ex:17
+#: lib/ptr_web/views/cellar_view.ex:20
 msgid "Edit"
 msgstr ""
 
-#: lib/ptr_web/controllers/cellar_controller.ex:97
+#: lib/ptr_web/controllers/cellar_controller.ex:100
 #: lib/ptr_web/templates/cellar/edit.html.eex:8
 msgid "Edit cellar"
 msgstr ""
@@ -72,7 +72,7 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: lib/ptr_web/controllers/cellar_controller.ex:84
+#: lib/ptr_web/controllers/cellar_controller.ex:87
 #: lib/ptr_web/templates/cellar/empty.html.eex:13
 #: lib/ptr_web/templates/cellar/index.html.eex:46
 #: lib/ptr_web/templates/cellar/new.html.eex:8
@@ -83,11 +83,11 @@ msgstr ""
 msgid "Oops, something went wrong! Please check the errors below."
 msgstr ""
 
-#: lib/ptr_web/views/cellar_view.ex:9
+#: lib/ptr_web/views/cellar_view.ex:10
 msgid "Show"
 msgstr ""
 
-#: lib/ptr_web/views/cellar_view.ex:49
+#: lib/ptr_web/views/cellar_view.ex:56
 msgid "Update"
 msgstr ""
 

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Language: es_AR\n"
 
-#: lib/ptr_web/views/owner_view.ex:25
+#: lib/ptr_web/views/owner_view.ex:30
 msgid "Are you sure?"
 msgstr "¿Está seguro de borrar este propietario?"
 
@@ -20,20 +20,20 @@ msgstr "¿Está seguro de borrar este propietario?"
 msgid "Back"
 msgstr "Listado de propietarios"
 
-#: lib/ptr_web/views/owner_view.ex:39
+#: lib/ptr_web/views/owner_view.ex:46
 msgid "Create"
 msgstr "Crear nuevo propietario"
 
-#: lib/ptr_web/views/owner_view.ex:22
+#: lib/ptr_web/views/owner_view.ex:27
 msgid "Delete"
 msgstr "Borrar propietario"
 
 #: lib/ptr_web/templates/owner/show.html.eex:22
-#: lib/ptr_web/views/owner_view.ex:15
+#: lib/ptr_web/views/owner_view.ex:18
 msgid "Edit"
 msgstr "Editar propietario"
 
-#: lib/ptr_web/controllers/owner_controller.ex:98
+#: lib/ptr_web/controllers/owner_controller.ex:101
 #: lib/ptr_web/templates/owner/edit.html.eex:8
 msgid "Edit owner"
 msgstr "Editar propietario"
@@ -43,7 +43,7 @@ msgstr "Editar propietario"
 msgid "Name"
 msgstr "Nombre"
 
-#: lib/ptr_web/controllers/owner_controller.ex:84
+#: lib/ptr_web/controllers/owner_controller.ex:87
 #: lib/ptr_web/templates/owner/empty.html.eex:13
 #: lib/ptr_web/templates/owner/index.html.eex:47
 #: lib/ptr_web/templates/owner/new.html.eex:8
@@ -54,7 +54,7 @@ msgstr "Nuevo propietario"
 msgid "Oops, something went wrong! Please check the errors below."
 msgstr "Oops, algo salió mal, por favor verifique los errores debajo."
 
-#: lib/ptr_web/controllers/owner_controller.ex:91
+#: lib/ptr_web/controllers/owner_controller.ex:94
 #: lib/ptr_web/templates/owner/show.html.eex:6
 msgid "Owner"
 msgstr "Propietario"
@@ -65,7 +65,7 @@ msgstr "Propietario"
 msgid "Owners"
 msgstr "Propietarios"
 
-#: lib/ptr_web/views/owner_view.ex:7
+#: lib/ptr_web/views/owner_view.ex:8
 msgid "Show"
 msgstr "Ver propietario"
 
@@ -75,7 +75,7 @@ msgstr "Ver propietario"
 msgid "Tax ID"
 msgstr "CUIT/CUIL"
 
-#: lib/ptr_web/views/owner_view.ex:40
+#: lib/ptr_web/views/owner_view.ex:47
 msgid "Update"
 msgstr "Actualizar propietario"
 
@@ -83,11 +83,11 @@ msgstr "Actualizar propietario"
 msgid "Owner created successfully."
 msgstr "Propietario creado correctamete."
 
-#: lib/ptr_web/controllers/owner_controller.ex:74
+#: lib/ptr_web/controllers/owner_controller.ex:76
 msgid "Owner deleted successfully."
 msgstr "Propietario eliminado correctamete."
 
-#: lib/ptr_web/controllers/owner_controller.ex:62
+#: lib/ptr_web/controllers/owner_controller.ex:63
 msgid "Owner updated successfully."
 msgstr "Propietario actualizado correctamete."
 
