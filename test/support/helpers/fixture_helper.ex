@@ -13,7 +13,7 @@ defmodule Ptr.Support.FixtureHelper do
   }
 
   def fixture(:user, attributes, %{account: account} = session) when is_map(session) do
-    attributes  = Enum.into(attributes, @user_attrs)
+    attributes = Enum.into(attributes, @user_attrs)
     {:ok, user} = Accounts.create_user(session, attributes)
 
     {:ok, %{user | password: nil}, account}
@@ -44,9 +44,9 @@ defmodule Ptr.Support.FixtureHelper do
   @owner_attrs %{name: "some name", tax_id: "some tax_id"}
 
   def fixture(:owner, attributes, _opts) do
-    account      = fixture(:seed_account)
-    session      = %Session{account: account}
-    attributes   = Enum.into(attributes, @owner_attrs)
+    account = fixture(:seed_account)
+    session = %Session{account: account}
+    attributes = Enum.into(attributes, @owner_attrs)
     {:ok, owner} = Ownerships.create_owner(session, attributes)
 
     {:ok, owner, account}
@@ -55,9 +55,9 @@ defmodule Ptr.Support.FixtureHelper do
   @cellar_attrs %{identifier: "some identifier", name: "some name"}
 
   def fixture(:cellar, attributes, _opts) do
-    account       = fixture(:seed_account)
-    session       = %Session{account: account}
-    attributes    = Enum.into(attributes, @cellar_attrs)
+    account = fixture(:seed_account)
+    session = %Session{account: account}
+    attributes = Enum.into(attributes, @cellar_attrs)
     {:ok, cellar} = Cellars.create_cellar(session, attributes)
 
     {:ok, cellar, account}
@@ -72,8 +72,8 @@ defmodule Ptr.Support.FixtureHelper do
   }
 
   def fixture(:vessel, attributes, _opts) do
-    account          = fixture(:seed_account)
-    session          = %Session{account: account}
+    account = fixture(:seed_account)
+    session = %Session{account: account}
     {:ok, cellar, _} = fixture(:cellar, %{})
 
     create_vessel(session, cellar, attributes)

@@ -8,11 +8,12 @@ defmodule Ptr.Cellars.CellarRepoTest do
 
     test "converts unique constraint on identifier to error" do
       {:ok, cellar, account} = fixture(:cellar, @valid_attrs)
-      attrs                  = Map.put(@valid_attrs, :identifier, cellar.identifier)
-      changeset              = Cellar.changeset(account, %Cellar{}, attrs)
-      prefix                 = Ptr.Accounts.prefix(account)
-      {:error, changeset}    = Repo.insert(changeset, prefix: prefix)
-      expected               = {
+      attrs = Map.put(@valid_attrs, :identifier, cellar.identifier)
+      changeset = Cellar.changeset(account, %Cellar{}, attrs)
+      prefix = Ptr.Accounts.prefix(account)
+      {:error, changeset} = Repo.insert(changeset, prefix: prefix)
+
+      expected = {
         "has already been taken",
         [validation: :unsafe_unique, fields: [:identifier]]
       }
@@ -21,4 +22,3 @@ defmodule Ptr.Cellars.CellarRepoTest do
     end
   end
 end
-

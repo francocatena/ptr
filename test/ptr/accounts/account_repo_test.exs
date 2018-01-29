@@ -10,8 +10,8 @@ defmodule Ptr.Accounts.AccountRepoTest do
     @valid_attrs %{name: "some name", db_prefix: "db_prefix"}
 
     test "converts unique constraint on db prefix to error" do
-      account   = fixture(:seed_account)
-      attrs     = Map.put(@valid_attrs, :db_prefix, account.db_prefix)
+      account = fixture(:seed_account)
+      attrs = Map.put(@valid_attrs, :db_prefix, account.db_prefix)
       changeset = Account.create_changeset(%Account{}, attrs)
 
       assert {:error, changeset} = Repo.insert(changeset)
@@ -46,7 +46,8 @@ defmodule Ptr.Accounts.AccountRepoTest do
   end
 
   defp schema_exists?(prefix) do
-    query = "SELECT schema_name FROM information_schema.schemata WHERE schema_name = 't_#{prefix}';"
+    query =
+      "SELECT schema_name FROM information_schema.schemata WHERE schema_name = 't_#{prefix}';"
 
     {:ok, %{num_rows: rows}} = SQL.query(Repo, query)
 

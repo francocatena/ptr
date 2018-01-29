@@ -11,8 +11,7 @@ config :ptr, PtrWeb.Endpoint,
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
-  watchers: [yarn: ["run", "watch",
-                    cd: Path.expand("../assets", __DIR__)]]
+  watchers: [yarn: ["run", "watch", cd: Path.expand("../assets", __DIR__)]]
 
 # ## SSL Support
 #
@@ -45,8 +44,7 @@ config :ptr, PtrWeb.Endpoint,
 config :logger, :console, format: "[$level] $message\n"
 
 # Bamboo local adapter
-config :ptr, Ptr.Notifications.Mailer,
-  adapter: Bamboo.LocalAdapter
+config :ptr, Ptr.Notifications.Mailer, adapter: Bamboo.LocalAdapter
 
 # Set a higher stacktrace during development. Avoid configuring such
 # in production as building large stacktraces may be expensive.

@@ -4,7 +4,7 @@ defmodule Ptr.Cellars.CellarTest do
   describe "cellar" do
     alias Ptr.Cellars.Cellar
 
-    @valid_attrs   %{identifier: "some identifier", name: "some name"}
+    @valid_attrs %{identifier: "some identifier", name: "some name"}
     @invalid_attrs %{identifier: nil, name: nil}
 
     test "changeset with valid attributes" do
@@ -36,5 +36,3 @@ defmodule Ptr.Cellars.CellarTest do
     %Ptr.Accounts.Account{db_prefix: "test_account"}
   end
 end
-
-

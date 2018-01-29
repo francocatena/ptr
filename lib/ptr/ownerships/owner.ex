@@ -7,11 +7,10 @@ defmodule Ptr.Ownerships.Owner do
   alias Ptr.Ownerships.Owner
   alias Ptr.Accounts.Account
 
-
   schema "owners" do
-    field :name, :string
-    field :tax_id, :string
-    field :lock_version, :integer, default: 1
+    field(:name, :string)
+    field(:tax_id, :string)
+    field(:lock_version, :integer, default: 1)
 
     timestamps()
   end

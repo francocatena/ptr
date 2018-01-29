@@ -21,7 +21,7 @@ defmodule Ptr.Ownerships do
 
   """
   def list_owners(account, params) do
-    query = from o in Owner, order_by: o.tax_id
+    query = from(o in Owner, order_by: o.tax_id)
 
     query
     |> prefixed(account)

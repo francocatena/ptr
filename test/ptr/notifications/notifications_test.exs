@@ -11,6 +11,6 @@ defmodule Ptr.NotificationsTest do
 
     Notifications.send_password_reset(user)
 
-    assert_delivered_email Email.password_reset(user)
+    assert_delivered_email(Email.password_reset(user))
   end
 end

@@ -4,8 +4,20 @@ defmodule Ptr.Accounts.UserTest do
   describe "user" do
     alias Ptr.Accounts.User
 
-    @valid_attrs   %{email: "some@email.com", lastname: "some lastname", name: "some name", password: "123456", password_confirmation: "123456"}
-    @invalid_attrs %{email: "wrong@email", lastname: nil, name: nil, password: "123", account_id: nil}
+    @valid_attrs %{
+      email: "some@email.com",
+      lastname: "some lastname",
+      name: "some name",
+      password: "123456",
+      password_confirmation: "123456"
+    }
+    @invalid_attrs %{
+      email: "wrong@email",
+      lastname: nil,
+      name: nil,
+      password: "123",
+      account_id: nil
+    }
 
     test "changeset with valid attributes" do
       changeset = User.changeset(%User{}, @valid_attrs)
@@ -46,18 +58,17 @@ defmodule Ptr.Accounts.UserTest do
     end
 
     test "changeset check basic email format" do
-      attrs     = Map.put(@valid_attrs, :email, "wrong@email")
+      attrs = Map.put(@valid_attrs, :email, "wrong@email")
       changeset = User.changeset(%User{}, attrs)
 
       assert "has invalid format" in errors_on(changeset).email
     end
 
     test "changeset check password confirmation" do
-      attrs     = Map.put(@valid_attrs, :password_confirmation, "wrong")
+      attrs = Map.put(@valid_attrs, :password_confirmation, "wrong")
       changeset = User.changeset(%User{}, attrs)
 
-      assert "does not match confirmation" in
-        errors_on(changeset).password_confirmation
+      assert "does not match confirmation" in errors_on(changeset).password_confirmation
     end
 
     test "changeset hashes password when present" do
@@ -68,7 +79,7 @@ defmodule Ptr.Accounts.UserTest do
     end
 
     test "changeset ignores blank password" do
-      attrs     = %{@valid_attrs | password: nil, password_confirmation: nil}
+      attrs = %{@valid_attrs | password: nil, password_confirmation: nil}
       changeset = User.changeset(%User{}, attrs)
 
       assert changeset.valid?
@@ -95,7 +106,7 @@ defmodule Ptr.Accounts.UserTest do
     end
 
     test "password reset changeset with invalid attributes" do
-      attrs     = %{@valid_attrs | password: nil, password_confirmation: nil}
+      attrs = %{@valid_attrs | password: nil, password_confirmation: nil}
       changeset = User.password_reset_changeset(%User{}, attrs)
 
       refute changeset.valid?

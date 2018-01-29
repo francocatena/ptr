@@ -11,6 +11,7 @@ defmodule Ptr.Accounts.Auth do
     cond do
       user && checkpw(password, user.password_hash) ->
         {:ok, user}
+
       true ->
         dummy_checkpw()
         {:error, :unauthorized}

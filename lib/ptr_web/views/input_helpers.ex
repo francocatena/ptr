@@ -1,21 +1,23 @@
 defmodule PtrWeb.InputHelpers do
-  import Phoenix.HTML.Form,   only: [humanize: 1, input_type: 2, input_validations: 2, label: 4]
-  import Phoenix.HTML.Tag,    only: [content_tag: 3]
+  import Phoenix.HTML.Form, only: [humanize: 1, input_type: 2, input_validations: 2, label: 4]
+  import Phoenix.HTML.Tag, only: [content_tag: 3]
   import PtrWeb.ErrorHelpers, only: [error_tag: 2]
 
   def input(form, field, label \\ nil, opts \\ []) do
-    type       = opts[:using]      || input_type(form, field, opts)
-    icon_opts  = opts[:icons]      || []
+    type = opts[:using] || input_type(form, field, opts)
+    icon_opts = opts[:icons] || []
     label_html = opts[:label_html] || [class: "label"]
-    addons     = opts[:addons]
+    addons = opts[:addons]
     input_opts = input_opts(type, opts)
-    errors     = error_tag(form, field)
-    label      = label_for(form, field, label, label_html)
-    field      = content_tag(:div, class: field_class(opts)) do
-      input    = input(type, form, field, errors, icon_opts, input_opts, addons)
+    errors = error_tag(form, field)
+    label = label_for(form, field, label, label_html)
 
-      [addons(addons, :left), input, addons(addons, :right), errors]
-    end
+    field =
+      content_tag :div, class: field_class(opts) do
+        input = input(type, form, field, errors, icon_opts, input_opts, addons)
+
+        [addons(addons, :left), input, addons(addons, :right), errors]
+      end
 
     [label, field]
   end
@@ -37,16 +39,17 @@ defmodule PtrWeb.InputHelpers do
   end
 
   defp input(type, form, field, errors, icon_opts, opts, addons) do
-    input_opts   = input_opts(type, form, field, errors, opts)
-    input        = wrapped_input(type, form, field, errors, input_opts)
+    input_opts = input_opts(type, form, field, errors, opts)
+    input = wrapped_input(type, form, field, errors, input_opts)
     content_opts = [class: wrapper_classes(icon_opts, addons)]
 
-    content_tag(:div, content_opts) do
+    content_tag :div, content_opts do
       [input | input_icons(icon_opts)]
     end
   end
 
   defp addons(nil, _), do: ""
+
   defp addons(addons, position) do
     addon = addons[position]
 
@@ -70,8 +73,8 @@ defmodule PtrWeb.InputHelpers do
 
   defp input_opts(type, form, field, errors, opts) do
     {class, opts} = Keyword.pop(opts, :class)
-    default_opts  = [class: input_class(type, class, errors)]
-    validations   = input_validations(type, form, field)
+    default_opts = [class: input_class(type, class, errors)]
+    validations = input_validations(type, form, field)
 
     default_opts
     |> Keyword.merge(validations)
@@ -87,16 +90,17 @@ defmodule PtrWeb.InputHelpers do
   end
 
   defp input_class(_, default, []), do: default
-  defp input_class(_, default, _),  do: "#{default} is-danger"
+  defp input_class(_, default, _), do: "#{default} is-danger"
 
   defp input_validations(:select, form, field) do
     input_validations(form, field) |> Keyword.delete(:maxlength)
   end
+
   defp input_validations(_, form, field), do: input_validations(form, field)
 
   defp input_icons(icon_opts) do
     for {position, icon} <- icon_opts do
-      content_tag(:span, class: "icon is-#{position}") do
+      content_tag :span, class: "icon is-#{position}" do
         content_tag(:i, "", class: "fas fa-#{icon}")
       end
     end
@@ -128,7 +132,7 @@ defmodule PtrWeb.InputHelpers do
     {options, input_opts} = Keyword.pop(input_opts, :collection)
     class = input_class(:input, "select is-fullwidth", errors)
 
-    content_tag(:div, class: class) do
+    content_tag :div, class: class do
       apply(Phoenix.HTML.Form, type, [form, field, options, input_opts])
     end
   end

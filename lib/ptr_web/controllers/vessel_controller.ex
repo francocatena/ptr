@@ -4,18 +4,18 @@ defmodule PtrWeb.VesselController do
   alias Ptr.Cellars
   alias Ptr.Cellars.Vessel
 
-  plug :authenticate
-  plug :put_breadcrumb, name: dgettext("cellars", "Cellars"), url: "/cellars"
+  plug(:authenticate)
+  plug(:put_breadcrumb, name: dgettext("cellars", "Cellars"), url: "/cellars")
 
   def action(%{assigns: %{current_session: session}} = conn, _) do
     cellar = Cellars.get_cellar!(session.account, conn.params["cellar_id"])
-    name   = dgettext("vessels", "Vessels")
+    name = dgettext("vessels", "Vessels")
 
-    url    = cellar_path(conn, :show, cellar)
-    conn   = put_breadcrumb(conn, name: cellar.name, url: url)
+    url = cellar_path(conn, :show, cellar)
+    conn = put_breadcrumb(conn, name: cellar.name, url: url)
 
-    url    = cellar_vessel_path(conn, :index, cellar)
-    conn   = put_breadcrumb(conn, name: name, url: url)
+    url = cellar_vessel_path(conn, :index, cellar)
+    conn = put_breadcrumb(conn, name: name, url: url)
 
     apply(__MODULE__, action_name(conn), [conn, conn.params, session, cellar])
   end
@@ -27,7 +27,7 @@ defmodule PtrWeb.VesselController do
   end
 
   def new(conn, _params, session, cellar) do
-    vessel    = %Vessel{cellar_id: cellar.id}
+    vessel = %Vessel{cellar_id: cellar.id}
     changeset = Cellars.change_vessel(session.account, vessel)
 
     conn
@@ -43,6 +43,7 @@ defmodule PtrWeb.VesselController do
         conn
         |> put_flash(:info, dgettext("vessels", "Vessel created successfully."))
         |> redirect(to: cellar_vessel_path(conn, :show, cellar, vessel))
+
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset, cellar: cellar)
     end
@@ -73,6 +74,7 @@ defmodule PtrWeb.VesselController do
         conn
         |> put_flash(:info, dgettext("vessels", "Vessel updated successfully."))
         |> redirect(to: cellar_vessel_path(conn, :show, cellar, vessel))
+
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", vessel: vessel, changeset: changeset, cellar: cellar)
     end
@@ -102,21 +104,21 @@ defmodule PtrWeb.VesselController do
 
   defp put_new_breadcrumb(conn, cellar) do
     name = dgettext("vessels", "New vessel")
-    url  = cellar_vessel_path(conn, :new, cellar)
+    url = cellar_vessel_path(conn, :new, cellar)
 
     conn |> put_breadcrumb(name, url)
   end
 
   defp put_show_breadcrumb(conn, vessel, cellar) do
     name = vessel.identifier
-    url  = cellar_vessel_path(conn, :show, cellar, vessel)
+    url = cellar_vessel_path(conn, :show, cellar, vessel)
 
     conn |> put_breadcrumb(name, url)
   end
 
   defp put_edit_breadcrumb(conn, vessel, cellar) do
     name = dgettext("vessels", "Edit vessel")
-    url  = cellar_vessel_path(conn, :edit, cellar, vessel)
+    url = cellar_vessel_path(conn, :edit, cellar, vessel)
 
     conn |> put_breadcrumb(name, url)
   end

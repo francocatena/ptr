@@ -29,7 +29,7 @@ defmodule PtrWeb.SessionPlugTest do
 
       next_conn = get(login_conn, "/")
 
-      assert next_conn.assigns.current_session.user    == user
+      assert next_conn.assigns.current_session.user == user
       assert next_conn.assigns.current_session.account == account
     end
 

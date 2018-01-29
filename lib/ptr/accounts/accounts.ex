@@ -29,7 +29,7 @@ defmodule Ptr.Accounts do
 
   """
   def list_accounts do
-    query = from a in Account, order_by: a.db_prefix
+    query = from(a in Account, order_by: a.db_prefix)
 
     Repo.all(query)
   end
@@ -137,7 +137,7 @@ defmodule Ptr.Accounts do
 
   """
   def list_users(%Account{} = account, params) do
-    query = from u in User, order_by: u.email
+    query = from(u in User, order_by: u.email)
 
     query
     |> where(account_id: ^account.id)

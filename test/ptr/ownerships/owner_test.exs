@@ -4,7 +4,7 @@ defmodule Ptr.Ownerships.OwnerTest do
   describe "owner" do
     alias Ptr.Ownerships.Owner
 
-    @valid_attrs   %{name: "some name", tax_id: "123456"}
+    @valid_attrs %{name: "some name", tax_id: "123456"}
     @invalid_attrs %{name: nil, tax_id: nil}
 
     test "changeset with valid attributes" do
@@ -36,4 +36,3 @@ defmodule Ptr.Ownerships.OwnerTest do
     %Ptr.Accounts.Account{db_prefix: "test_account"}
   end
 end
-

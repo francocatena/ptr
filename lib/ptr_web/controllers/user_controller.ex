@@ -4,8 +4,8 @@ defmodule PtrWeb.UserController do
   alias Ptr.Accounts
   alias Ptr.Accounts.User
 
-  plug :authenticate
-  plug :put_breadcrumb, name: dgettext("users", "Users"), url: "/users"
+  plug(:authenticate)
+  plug(:put_breadcrumb, name: dgettext("users", "Users"), url: "/users")
 
   def action(%{assigns: %{current_session: session}} = conn, _) do
     apply(__MODULE__, action_name(conn), [conn, conn.params, session])
@@ -31,6 +31,7 @@ defmodule PtrWeb.UserController do
         conn
         |> put_flash(:info, dgettext("users", "User created successfully."))
         |> redirect(to: user_path(conn, :show, user))
+
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -45,7 +46,7 @@ defmodule PtrWeb.UserController do
   end
 
   def edit(conn, %{"id" => id}, session) do
-    user      = Accounts.get_user!(session.account, id)
+    user = Accounts.get_user!(session.account, id)
     changeset = Accounts.change_user(user)
 
     conn
@@ -61,6 +62,7 @@ defmodule PtrWeb.UserController do
         conn
         |> put_flash(:info, dgettext("users", "User updated successfully."))
         |> redirect(to: user_path(conn, :show, user))
+
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", user: user, changeset: changeset)
     end
@@ -77,21 +79,21 @@ defmodule PtrWeb.UserController do
 
   defp put_new_breadcrumb(conn) do
     name = dgettext("users", "New user")
-    url  = user_path(conn, :new)
+    url = user_path(conn, :new)
 
     conn |> put_breadcrumb(name, url)
   end
 
   defp put_show_breadcrumb(conn, user) do
     name = dgettext("users", "User")
-    url  = user_path(conn, :show, user)
+    url = user_path(conn, :show, user)
 
     conn |> put_breadcrumb(name, url)
   end
 
   defp put_edit_breadcrumb(conn, user) do
     name = dgettext("users", "Edit user")
-    url  = user_path(conn, :edit, user)
+    url = user_path(conn, :edit, user)
 
     conn |> put_breadcrumb(name, url)
   end

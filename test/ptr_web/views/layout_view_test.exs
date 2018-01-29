@@ -29,7 +29,7 @@ defmodule PtrWeb.LayoutViewTest do
       result =
         conn
         |> put_flash(:info, "Test")
-        |> LayoutView.render_flash
+        |> LayoutView.render_flash()
         |> safe_to_string
 
       assert result =~ ~r/Test/
@@ -62,7 +62,7 @@ defmodule PtrWeb.LayoutViewTest do
 
   describe "flash class" do
     test "return CSS class name" do
-      assert LayoutView.flash_class("info")  == "is-info"
+      assert LayoutView.flash_class("info") == "is-info"
       assert LayoutView.flash_class("error") == "is-danger"
     end
   end

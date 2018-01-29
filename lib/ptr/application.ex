@@ -9,7 +9,7 @@ defmodule Ptr.Application do
       # Start the Ecto repository
       Ptr.Repo,
       # Start the endpoint when the application starts
-      PtrWeb.Endpoint,
+      PtrWeb.Endpoint
       # Start your own worker by calling: Ptr.Worker.start_link(arg1, arg2, arg3)
       # {Ptr.Worker, [arg1, arg2, arg3]},
     ]

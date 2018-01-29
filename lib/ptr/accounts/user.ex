@@ -6,18 +6,17 @@ defmodule Ptr.Accounts.User do
   alias Ptr.Accounts.{Account, User}
   alias Ptr.Repo
 
-
   schema "users" do
-    field :email, :string
-    field :lastname, :string
-    field :name, :string
-    field :password_hash, :string
-    field :password, :string, virtual: true
-    field :password_reset_token, :string
-    field :password_reset_sent_at, :utc_datetime
-    field :lock_version, :integer, default: 1
+    field(:email, :string)
+    field(:lastname, :string)
+    field(:name, :string)
+    field(:password_hash, :string)
+    field(:password, :string, virtual: true)
+    field(:password_reset_token, :string)
+    field(:password_reset_sent_at, :utc_datetime)
+    field(:lock_version, :integer, default: 1)
 
-    belongs_to :account, Account
+    belongs_to(:account, Account)
 
     timestamps()
   end
@@ -42,7 +41,7 @@ defmodule Ptr.Accounts.User do
   @doc false
   def password_reset_token_changeset(%User{} = user) do
     attrs = %{
-      password_reset_token:   random_token(64),
+      password_reset_token: random_token(64),
       password_reset_sent_at: DateTime.utc_now()
     }
 

@@ -23,12 +23,25 @@ defmodule PtrWeb.PasswordViewTest do
   end
 
   test "renders edit.html", %{conn: conn} do
-    user      = %User{id: "1", name: "John", lastname: "Doe", email: "j@doe.com", password_reset_token: "test-token"}
+    user = %User{
+      id: "1",
+      name: "John",
+      lastname: "Doe",
+      email: "j@doe.com",
+      password_reset_token: "test-token"
+    }
+
     changeset = Accounts.change_user_password(user)
-    content   = render_to_string(PasswordView, "edit.html",
-                                 conn: conn, token: user.password_reset_token, changeset: changeset)
+
+    content =
+      render_to_string(
+        PasswordView,
+        "edit.html",
+        conn: conn,
+        token: user.password_reset_token,
+        changeset: changeset
+      )
 
     assert String.contains?(content, "Enter a new password")
   end
 end
-

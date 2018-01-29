@@ -44,7 +44,7 @@ defmodule Ptr.Accounts.PasswordTest do
 
       assert user.password_reset_token
 
-      assert_delivered_email Email.password_reset(user)
+      assert_delivered_email(Email.password_reset(user))
     end
   end
 
@@ -62,7 +62,7 @@ defmodule Ptr.Accounts.PasswordTest do
       |> NaiveDateTime.add(-6 * 60 * 60 - 1)
 
     attrs = %{
-      password_reset_token:   "WuxowusAqmrkmBYpTFcTxDUsaoqipm17u0mdrCcMCRJVJtF",
+      password_reset_token: "WuxowusAqmrkmBYpTFcTxDUsaoqipm17u0mdrCcMCRJVJtF",
       password_reset_sent_at: sent_at
     }
 

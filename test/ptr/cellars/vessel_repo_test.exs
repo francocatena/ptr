@@ -15,12 +15,12 @@ defmodule Ptr.Cellars.VesselRepoTest do
 
     test "converts unique constraint on identifier to error" do
       {:ok, vessel, _, account} = fixture(:vessel, @valid_attrs)
-      attrs                     = %{@valid_attrs | identifier: vessel.identifier,
-                                                   cellar_id: vessel.cellar_id}
-      changeset                 = Vessel.changeset(account, %Vessel{}, attrs)
-      prefix                    = Ptr.Accounts.prefix(account)
-      {:error, changeset}       = Repo.insert(changeset, prefix: prefix)
-      expected                  = {
+      attrs = %{@valid_attrs | identifier: vessel.identifier, cellar_id: vessel.cellar_id}
+      changeset = Vessel.changeset(account, %Vessel{}, attrs)
+      prefix = Ptr.Accounts.prefix(account)
+      {:error, changeset} = Repo.insert(changeset, prefix: prefix)
+
+      expected = {
         "has already been taken",
         [validation: :unsafe_unique, fields: [:identifier, :cellar_id]]
       }
@@ -29,4 +29,3 @@ defmodule Ptr.Cellars.VesselRepoTest do
     end
   end
 end
-

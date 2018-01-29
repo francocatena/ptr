@@ -26,7 +26,7 @@ defmodule Mix.Tasks.Ptr.Gen.Schema do
 
   The following types are supported:
 
-  #{for attr <- Mix.Phoenix.Schema.valid_types(), do: "  * `#{inspect attr}`\n"}
+  #{for attr <- Mix.Phoenix.Schema.valid_types(), do: "  * `#{inspect(attr)}`\n"}
     * `:datetime` - An alias for `:naive_datetime`
 
   The generator also supports references, which we will properly
@@ -81,13 +81,12 @@ defmodule Mix.Tasks.Ptr.Gen.Schema do
 
   alias Mix.Phoenix.Schema
 
-  @switches [migration: :boolean, binary_id: :boolean, table: :string,
-             web: :string]
+  @switches [migration: :boolean, binary_id: :boolean, table: :string, web: :string]
 
   @doc false
   def run(args) do
     if Mix.Project.umbrella?() do
-      Mix.raise "mix ptr.gen.schema can only be run inside an application directory"
+      Mix.raise("mix ptr.gen.schema can only be run inside an application directory")
     end
 
     schema = build(args, [])
@@ -124,13 +123,18 @@ defmodule Mix.Tasks.Ptr.Gen.Schema do
   @doc false
   def copy_new_files(%Schema{context_app: ctx_app} = schema, paths, binding) do
     files = files_to_be_generated(schema)
-    Mix.Phoenix.copy_from(paths,"priv/templates/ptr.gen.schema", binding, files)
+    Mix.Phoenix.copy_from(paths, "priv/templates/ptr.gen.schema", binding, files)
 
     if schema.migration? do
-      migration_path = Mix.Phoenix.context_app_path(ctx_app, "priv/repo/migrations/#{timestamp()}_create_#{schema.table}.exs")
-      Mix.Phoenix.copy_from paths, "priv/templates/ptr.gen.schema", binding, [
-        {:eex, "migration.exs", migration_path},
-      ]
+      migration_path =
+        Mix.Phoenix.context_app_path(
+          ctx_app,
+          "priv/repo/migrations/#{timestamp()}_create_#{schema.table}.exs"
+        )
+
+      Mix.Phoenix.copy_from(paths, "priv/templates/ptr.gen.schema", binding, [
+        {:eex, "migration.exs", migration_path}
+      ])
     end
 
     schema
@@ -139,12 +143,12 @@ defmodule Mix.Tasks.Ptr.Gen.Schema do
   @doc false
   def print_shell_instructions(%Schema{} = schema) do
     if schema.migration? do
-      Mix.shell.info """
+      Mix.shell().info("""
 
       Remember to update your repository by running migrations:
 
           $ mix ecto.migrate
-      """
+      """)
     end
   end
 
@@ -152,21 +156,28 @@ defmodule Mix.Tasks.Ptr.Gen.Schema do
   def validate_args!([schema, plural | _] = args, help) do
     cond do
       not Schema.valid?(schema) ->
-        help.raise_with_help "Expected the schema argument, #{inspect schema}, to be a valid module name"
+        help.raise_with_help(
+          "Expected the schema argument, #{inspect(schema)}, to be a valid module name"
+        )
+
       String.contains?(plural, ":") or plural != Phoenix.Naming.underscore(plural) ->
-        help.raise_with_help "Expected the plural argument, #{inspect plural}, to be all lowercase using snake_case convention"
+        help.raise_with_help(
+          "Expected the plural argument, #{inspect(plural)}, to be all lowercase using snake_case convention"
+        )
+
       true ->
         args
     end
   end
+
   def validate_args!(_, help) do
-    help.raise_with_help "Invalid arguments"
+    help.raise_with_help("Invalid arguments")
   end
 
   @doc false
-  @spec raise_with_help(String.t) :: no_return()
+  @spec raise_with_help(String.t()) :: no_return()
   def raise_with_help(msg) do
-    Mix.raise """
+    Mix.raise("""
     #{msg}
 
     mix ptr.gen.schema expects both a module name and
@@ -174,13 +185,14 @@ defmodule Mix.Tasks.Ptr.Gen.Schema do
     any number of attributes:
 
         mix ptr.gen.schema Blog.Post blog_posts title:string
-    """
+    """)
   end
 
   defp timestamp do
     {{y, m, d}, {hh, mm, ss}} = :calendar.universal_time()
     "#{y}#{pad(m)}#{pad(d)}#{pad(hh)}#{pad(mm)}#{pad(ss)}"
   end
-  defp pad(i) when i < 10, do: << ?0, ?0 + i >>
+
+  defp pad(i) when i < 10, do: <<?0, ?0 + i>>
   defp pad(i), do: to_string(i)
 end

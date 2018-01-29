@@ -4,7 +4,7 @@ defmodule Ptr.Accounts.AccountTest do
   describe "account" do
     alias Ptr.Accounts.Account
 
-    @valid_attrs   %{name: "some name", db_prefix: "db_prefix"}
+    @valid_attrs %{name: "some name", db_prefix: "db_prefix"}
     @invalid_attrs %{name: nil, db_prefix: "db prefix"}
 
     test "create_changeset with valid attributes" do
@@ -28,11 +28,11 @@ defmodule Ptr.Accounts.AccountTest do
       changeset = Account.create_changeset(%Account{}, attrs)
 
       assert "should be at most 255 character(s)" in errors_on(changeset).name
-      assert "should be at most 61 character(s)"  in errors_on(changeset).db_prefix
+      assert "should be at most 61 character(s)" in errors_on(changeset).db_prefix
     end
 
     test "create_changeset check basic db prefix format" do
-      attrs     = Map.put(@valid_attrs, :db_prefix, "%")
+      attrs = Map.put(@valid_attrs, :db_prefix, "%")
       changeset = Account.create_changeset(%Account{}, attrs)
 
       assert "has invalid format" in errors_on(changeset).db_prefix

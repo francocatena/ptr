@@ -14,14 +14,14 @@ defmodule PtrWeb.VesselViewTest do
   end
 
   test "renders empty.html", %{conn: conn, cellar: cellar} do
-    content = render_to_string(VesselView, "empty.html",
-                               conn: conn, cellar: cellar)
+    content = render_to_string(VesselView, "empty.html", conn: conn, cellar: cellar)
 
     assert String.contains?(content, "you have no vessels")
   end
 
   test "renders index.html", %{conn: conn, cellar: cellar} do
-    page    = %Scrivener.Page{total_pages: 1, page_number: 1}
+    page = %Scrivener.Page{total_pages: 1, page_number: 1}
+
     vessels = [
       %Vessel{
         id: "1",
@@ -37,10 +37,15 @@ defmodule PtrWeb.VesselViewTest do
       }
     ]
 
-    content = render_to_string(VesselView, "index.html", conn: conn,
-                                                         cellar: cellar,
-                                                         vessels: vessels,
-                                                         page: page)
+    content =
+      render_to_string(
+        VesselView,
+        "index.html",
+        conn: conn,
+        cellar: cellar,
+        vessels: vessels,
+        page: page
+      )
 
     for vessel <- vessels do
       assert String.contains?(content, vessel.identifier)
@@ -48,7 +53,8 @@ defmodule PtrWeb.VesselViewTest do
   end
 
   test "renders index.js", %{conn: conn, cellar: cellar} do
-    page    = %Scrivener.Page{total_pages: 1, page_number: 1}
+    page = %Scrivener.Page{total_pages: 1, page_number: 1}
+
     vessels = [
       %Vessel{
         id: "1",
@@ -64,10 +70,15 @@ defmodule PtrWeb.VesselViewTest do
       }
     ]
 
-    content = render_to_string(VesselView, "index.js", conn: conn,
-                                                       cellar: cellar,
-                                                       vessels: vessels,
-                                                       page: page)
+    content =
+      render_to_string(
+        VesselView,
+        "index.js",
+        conn: conn,
+        cellar: cellar,
+        vessels: vessels,
+        page: page
+      )
 
     for vessel <- vessels do
       assert String.contains?(content, vessel.identifier)
@@ -76,39 +87,58 @@ defmodule PtrWeb.VesselViewTest do
 
   test "renders new.html", %{conn: conn, cellar: cellar} do
     changeset = test_account() |> Cellars.change_vessel(%Vessel{})
-    content   = render_to_string(VesselView, "new.html", conn: conn,
-                                                         cellar: cellar,
-                                                         changeset: changeset)
+
+    content =
+      render_to_string(
+        VesselView,
+        "new.html",
+        conn: conn,
+        cellar: cellar,
+        changeset: changeset
+      )
 
     assert String.contains?(content, "New vessel")
   end
 
   test "renders edit.html", %{conn: conn, cellar: cellar} do
-    vessel    = %Vessel{
+    vessel = %Vessel{
       id: "1",
       identifier: "1a",
       capacity: Decimal.new("100"),
       cellar_id: cellar.id
     }
+
     changeset = test_account() |> Cellars.change_vessel(vessel)
-    content   = render_to_string(VesselView, "edit.html", conn: conn,
-                                                          cellar: cellar,
-                                                          vessel: vessel,
-                                                          changeset: changeset)
+
+    content =
+      render_to_string(
+        VesselView,
+        "edit.html",
+        conn: conn,
+        cellar: cellar,
+        vessel: vessel,
+        changeset: changeset
+      )
 
     assert String.contains?(content, vessel.identifier)
   end
 
   test "renders show.html", %{conn: conn, cellar: cellar} do
-    vessel  = %Vessel{
+    vessel = %Vessel{
       id: "1",
       identifier: "1a",
       capacity: Decimal.new("100"),
       cellar_id: cellar.id
     }
-    content = render_to_string(VesselView, "show.html", conn: conn,
-                                                        cellar: cellar,
-                                                        vessel: vessel)
+
+    content =
+      render_to_string(
+        VesselView,
+        "show.html",
+        conn: conn,
+        cellar: cellar,
+        vessel: vessel
+      )
 
     assert String.contains?(content, vessel.identifier)
   end

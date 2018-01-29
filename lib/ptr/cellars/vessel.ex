@@ -7,16 +7,15 @@ defmodule Ptr.Cellars.Vessel do
   alias Ptr.Cellars.{Cellar, Vessel}
   alias Ptr.Accounts.Account
 
-
   schema "vessels" do
-    field :identifier, :string
-    field :capacity, :decimal
-    field :material, :string
-    field :cooling, :string
-    field :notes, :string
-    field :lock_version, :integer, default: 1
+    field(:identifier, :string)
+    field(:capacity, :decimal)
+    field(:material, :string)
+    field(:cooling, :string)
+    field(:notes, :string)
+    field(:lock_version, :integer, default: 1)
 
-    belongs_to :cellar, Cellar
+    belongs_to(:cellar, Cellar)
 
     timestamps()
   end

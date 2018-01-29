@@ -3,7 +3,12 @@ defmodule PtrWeb.SessionControllerTest do
 
   import Ptr.Support.FixtureHelper
 
-  @valid_user   %{email: "some@email.com", lastname: "some lastname", name: "some name", password: "123456"}
+  @valid_user %{
+    email: "some@email.com",
+    lastname: "some lastname",
+    name: "some name",
+    password: "123456"
+  }
   @invalid_user %{email: "wrong@email.com", password: "wrong"}
 
   describe "unauthorized access" do
@@ -17,7 +22,7 @@ defmodule PtrWeb.SessionControllerTest do
 
   describe "new session" do
     test "renders form", %{conn: conn} do
-      conn = get conn, session_path(conn, :new)
+      conn = get(conn, session_path(conn, :new))
 
       assert html_response(conn, 200) =~ ~r/Login/
     end
@@ -35,14 +40,15 @@ defmodule PtrWeb.SessionControllerTest do
   describe "create session" do
     test "assigns current user when credentials are valid", %{conn: conn} do
       {:ok, user, _} = fixture(:user, @valid_user)
-      conn           = post conn, session_path(conn, :create), session: @valid_user
+      conn = post(conn, session_path(conn, :create), session: @valid_user)
 
       assert user.id == get_session(conn, :user_id)
       assert user.account_id == get_session(conn, :account_id)
       assert redirected_to(conn) == root_path(conn, :index)
     end
 
-    @tag :skip # TODO: implement some sort of check for this
+    # TODO: implement some sort of check for this
+    @tag :skip
     test "redirects to previous_url when credentials are valid", %{conn: conn} do
       conn =
         conn
@@ -51,14 +57,14 @@ defmodule PtrWeb.SessionControllerTest do
         |> put_session(:previous_url, "/test")
 
       {:ok, user, _} = fixture(:user, @valid_user)
-      conn           = post conn, session_path(conn, :create), session: @valid_user
+      conn = post(conn, session_path(conn, :create), session: @valid_user)
 
       assert user.id == get_session(conn, :user_id)
       assert redirected_to(conn) == "/test"
     end
 
     test "renders errors when credentials are invalid", %{conn: conn} do
-      conn = post conn, session_path(conn, :create), session: @invalid_user
+      conn = post(conn, session_path(conn, :create), session: @invalid_user)
 
       refute get_session(conn, :user_id)
       refute get_session(conn, :account_id)

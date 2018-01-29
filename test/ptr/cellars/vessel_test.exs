@@ -66,5 +66,3 @@ defmodule Ptr.Cellars.VesselTest do
     %Ptr.Accounts.Account{db_prefix: "test_account"}
   end
 end
-
-

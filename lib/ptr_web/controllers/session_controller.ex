@@ -1,10 +1,10 @@
 defmodule PtrWeb.SessionController do
   use PtrWeb, :controller
 
-  plug :authenticate when action in [:delete]
+  plug(:authenticate when action in [:delete])
 
   def new(%{assigns: %{current_session: session}} = conn, _params)
-  when is_map(session) do
+      when is_map(session) do
     redirect(conn, to: root_path(conn, :index))
   end
 
@@ -21,6 +21,7 @@ defmodule PtrWeb.SessionController do
         |> put_session(:account_id, user.account_id)
         |> configure_session(renew: true)
         |> redirect_to_next_path()
+
       {:error, :unauthorized} ->
         conn
         |> put_flash(:error, dgettext("sessions", "Invalid email/password combination"))

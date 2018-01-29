@@ -16,6 +16,7 @@ defmodule PtrWeb.PasswordController do
         conn
         |> put_flash(:info, dgettext("passwords", "Password reset instructions sent"))
         |> redirect(to: root_path(conn, :index))
+
       nil ->
         conn
         |> put_flash(:error, dgettext("passwords", "Email not found"))
@@ -29,6 +30,7 @@ defmodule PtrWeb.PasswordController do
         changeset = Accounts.change_user_password(user)
 
         render(conn, "edit.html", token: token, changeset: changeset)
+
       nil ->
         handle_invalid_token(conn)
     end
@@ -42,9 +44,11 @@ defmodule PtrWeb.PasswordController do
             conn
             |> put_flash(:info, dgettext("passwords", "Password updated successfully"))
             |> redirect(to: root_path(conn, :index))
+
           {:error, %Ecto.Changeset{} = changeset} ->
             render(conn, "edit.html", token: token, changeset: changeset)
         end
+
       nil ->
         handle_invalid_token(conn)
     end

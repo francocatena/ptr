@@ -8,7 +8,7 @@ defmodule Ptr.Accounts.SessionTest do
       {:ok, user, account} = fixture(:user)
       %Session{} = session = Session.get_session(account.id, user.id)
 
-      assert user    == session.user
+      assert user == session.user
       assert account == session.account
     end
 

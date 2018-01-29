@@ -21,7 +21,7 @@ defmodule Ptr.Cellars do
 
   """
   def list_cellars(account, params) do
-    query = from c in Cellar, order_by: c.identifier
+    query = from(c in Cellar, order_by: c.identifier)
 
     query
     |> prefixed(account)
@@ -126,7 +126,7 @@ defmodule Ptr.Cellars do
 
   """
   def list_vessels(account, cellar, params) do
-    query = from v in Vessel, order_by: v.identifier
+    query = from(v in Vessel, order_by: v.identifier)
 
     query
     |> prefixed(account)
@@ -231,7 +231,7 @@ defmodule Ptr.Cellars do
 
   """
   def cellar_vessel_count(%Account{} = account, %Cellar{} = cellar) do
-    query = from v in Vessel, where: v.cellar_id == ^cellar.id
+    query = from(v in Vessel, where: v.cellar_id == ^cellar.id)
 
     query
     |> prefixed(account)

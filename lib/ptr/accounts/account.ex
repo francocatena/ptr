@@ -7,13 +7,12 @@ defmodule Ptr.Accounts.Account do
   alias Ptr.Repo
   alias Ptr.Accounts.{Account, User}
 
-
   schema "accounts" do
-    field :db_prefix, :string
-    field :name, :string
-    field :lock_version, :integer, default: 1
+    field(:db_prefix, :string)
+    field(:name, :string)
+    field(:lock_version, :integer, default: 1)
 
-    has_many :users, User
+    has_many(:users, User)
 
     timestamps()
   end
@@ -72,7 +71,7 @@ defmodule Ptr.Accounts.Account do
   defp create_schema(account) do
     prefix = prefix(account)
 
-    case Repo.__adapter__ do
+    case Repo.__adapter__() do
       Postgres -> SQL.query(Repo, "CREATE SCHEMA \"#{prefix}\"")
     end
 
@@ -82,7 +81,7 @@ defmodule Ptr.Accounts.Account do
   defp drop_schema(account) do
     prefix = prefix(account)
 
-    case Repo.__adapter__ do
+    case Repo.__adapter__() do
       Postgres -> SQL.query(Repo, "DROP SCHEMA \"#{prefix}\" CASCADE")
     end
 
@@ -91,11 +90,11 @@ defmodule Ptr.Accounts.Account do
 
   defp migrate(account) do
     prefix = prefix(account)
-    path   = migrations_path(Repo)
+    path = migrations_path(Repo)
 
-    handle_database_exceptions fn ->
+    handle_database_exceptions(fn ->
       Ecto.Migrator.run(Repo, path, :up, all: true, prefix: prefix)
-    end
+    end)
   end
 
   defp handle_database_exceptions(fun) do
@@ -115,7 +114,7 @@ defmodule Ptr.Accounts.Account do
 
   defp source_repo_priv(repo) do
     repo_config = repo.config()
-    priv        = repo_config[:priv] || default_source_repo_priv(repo)
+    priv = repo_config[:priv] || default_source_repo_priv(repo)
 
     Application.app_dir(:ptr) |> Path.join(priv)
   end
@@ -123,6 +122,6 @@ defmodule Ptr.Accounts.Account do
   defp default_source_repo_priv(repo) do
     # Extracted from:
     # https://github.com/elixir-ecto/ecto/blob/v2.2.6/lib/mix/ecto.ex#L162
-    "priv/#{repo |> Module.split |> List.last |> Macro.underscore}"
+    "priv/#{repo |> Module.split() |> List.last() |> Macro.underscore()}"
   end
 end

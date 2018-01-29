@@ -4,8 +4,8 @@ defmodule PtrWeb.OwnerController do
   alias Ptr.Ownerships
   alias Ptr.Ownerships.Owner
 
-  plug :authenticate
-  plug :put_breadcrumb, name: dgettext("owners", "Owners"), url: "/owners"
+  plug(:authenticate)
+  plug(:put_breadcrumb, name: dgettext("owners", "Owners"), url: "/owners")
 
   def action(%{assigns: %{current_session: session}} = conn, _) do
     apply(__MODULE__, action_name(conn), [conn, conn.params, session])
@@ -31,6 +31,7 @@ defmodule PtrWeb.OwnerController do
         conn
         |> put_flash(:info, dgettext("owners", "Owner created successfully."))
         |> redirect(to: owner_path(conn, :show, owner))
+
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -45,7 +46,7 @@ defmodule PtrWeb.OwnerController do
   end
 
   def edit(conn, %{"id" => id}, session) do
-    owner     = Ownerships.get_owner!(session.account, id)
+    owner = Ownerships.get_owner!(session.account, id)
     changeset = Ownerships.change_owner(session.account, owner)
 
     conn
@@ -61,6 +62,7 @@ defmodule PtrWeb.OwnerController do
         conn
         |> put_flash(:info, dgettext("owners", "Owner updated successfully."))
         |> redirect(to: owner_path(conn, :show, owner))
+
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", owner: owner, changeset: changeset)
     end
@@ -76,27 +78,28 @@ defmodule PtrWeb.OwnerController do
   end
 
   defp render_index(conn, %{total_entries: 0}), do: render(conn, "empty.html")
+
   defp render_index(conn, page) do
     render(conn, "index.html", owners: page.entries, page: page)
   end
 
   defp put_new_breadcrumb(conn) do
     name = dgettext("owners", "New owner")
-    url  = owner_path(conn, :new)
+    url = owner_path(conn, :new)
 
     conn |> put_breadcrumb(name, url)
   end
 
   defp put_show_breadcrumb(conn, owner) do
     name = dgettext("owners", "Owner")
-    url  = owner_path(conn, :show, owner)
+    url = owner_path(conn, :show, owner)
 
     conn |> put_breadcrumb(name, url)
   end
 
   defp put_edit_breadcrumb(conn, owner) do
     name = dgettext("owners", "Edit owner")
-    url  = owner_path(conn, :edit, owner)
+    url = owner_path(conn, :edit, owner)
 
     conn |> put_breadcrumb(name, url)
   end

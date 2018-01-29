@@ -4,8 +4,8 @@ defmodule PtrWeb.CellarController do
   alias Ptr.Cellars
   alias Ptr.Cellars.Cellar
 
-  plug :authenticate
-  plug :put_breadcrumb, name: dgettext("cellars", "Cellars"), url: "/cellars"
+  plug(:authenticate)
+  plug(:put_breadcrumb, name: dgettext("cellars", "Cellars"), url: "/cellars")
 
   def action(%{assigns: %{current_session: session}} = conn, _) do
     apply(__MODULE__, action_name(conn), [conn, conn.params, session])
@@ -31,6 +31,7 @@ defmodule PtrWeb.CellarController do
         conn
         |> put_flash(:info, dgettext("cellars", "Cellar created successfully."))
         |> redirect(to: cellar_path(conn, :show, cellar))
+
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -61,6 +62,7 @@ defmodule PtrWeb.CellarController do
         conn
         |> put_flash(:info, dgettext("cellars", "Cellar updated successfully."))
         |> redirect(to: cellar_path(conn, :show, cellar))
+
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", cellar: cellar, changeset: changeset)
     end
@@ -76,13 +78,14 @@ defmodule PtrWeb.CellarController do
   end
 
   defp render_index(conn, %{total_entries: 0}), do: render(conn, "empty.html")
+
   defp render_index(conn, page) do
     render(conn, "index.html", cellars: page.entries, page: page)
   end
 
   defp put_new_breadcrumb(conn) do
     name = dgettext("cellars", "New cellar")
-    url  = cellar_path(conn, :new)
+    url = cellar_path(conn, :new)
 
     conn |> put_breadcrumb(name, url)
   end
@@ -95,7 +98,7 @@ defmodule PtrWeb.CellarController do
 
   defp put_edit_breadcrumb(conn, cellar) do
     name = dgettext("cellars", "Edit cellar")
-    url  = cellar_path(conn, :edit, cellar)
+    url = cellar_path(conn, :edit, cellar)
 
     conn |> put_breadcrumb(name, url)
   end

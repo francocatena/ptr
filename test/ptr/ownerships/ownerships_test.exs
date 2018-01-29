@@ -33,13 +33,12 @@ defmodule Ptr.OwnershipsTest do
     end
 
     test "create_owner/2 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} =
-        Ownerships.create_owner(%Session{}, @invalid_attrs)
+      assert {:error, %Ecto.Changeset{}} = Ownerships.create_owner(%Session{}, @invalid_attrs)
     end
 
     test "update_owner/3 with valid data updates the owner" do
       {:ok, owner, account} = fixture(:owner)
-      session               = %Session{account: account}
+      session = %Session{account: account}
 
       assert {:ok, owner} = Ownerships.update_owner(session, owner, @update_attrs)
       assert %Owner{} = owner
@@ -49,7 +48,7 @@ defmodule Ptr.OwnershipsTest do
 
     test "update_owner/3 with invalid data returns error changeset" do
       {:ok, owner, account} = fixture(:owner)
-      session               = %Session{account: account}
+      session = %Session{account: account}
 
       assert {:error, %Ecto.Changeset{}} = Ownerships.update_owner(session, owner, @invalid_attrs)
       assert owner == Ownerships.get_owner!(account, owner.id)
@@ -57,9 +56,10 @@ defmodule Ptr.OwnershipsTest do
 
     test "delete_owner/2 deletes the owner" do
       {:ok, owner, account} = fixture(:owner)
-      session               = %Session{account: account}
+      session = %Session{account: account}
 
       assert {:ok, %Owner{}} = Ownerships.delete_owner(session, owner)
+
       assert_raise Ecto.NoResultsError, fn ->
         Ownerships.get_owner!(account, owner.id)
       end

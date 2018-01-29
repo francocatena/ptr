@@ -5,32 +5,39 @@ defmodule PtrWeb.VesselView do
   alias PtrWeb.VesselView
 
   def link_to_show(conn, cellar, vessel) do
-    icon_link "eye",
+    icon_link(
+      "eye",
       title: dgettext("vessels", "Show"),
-      to:    cellar_vessel_path(conn, :show, cellar, vessel),
+      to: cellar_vessel_path(conn, :show, cellar, vessel),
       class: "button is-small is-outlined is-hidden-mobile",
-      data:  [main_link: true]
+      data: [main_link: true]
+    )
   end
 
   def link_to_edit(conn, cellar, vessel) do
-    icon_link "pencil-alt",
+    icon_link(
+      "pencil-alt",
       title: dgettext("vessels", "Edit"),
-      to:    cellar_vessel_path(conn, :edit, cellar, vessel),
+      to: cellar_vessel_path(conn, :edit, cellar, vessel),
       class: "button is-small is-outlined is-hidden-mobile"
+    )
   end
 
   def link_to_delete(conn, cellar, vessel) do
-    icon_link "trash",
-      title:  dgettext("vessels", "Delete"),
-      to:     cellar_vessel_path(conn, :delete, cellar, vessel),
+    icon_link(
+      "trash",
+      title: dgettext("vessels", "Delete"),
+      to: cellar_vessel_path(conn, :delete, cellar, vessel),
       method: :delete,
-      data:   [confirm: dgettext("vessels", "Are you sure?")],
-      class:  "button is-small is-danger is-outlined"
+      data: [confirm: dgettext("vessels", "Are you sure?")],
+      class: "button is-small is-danger is-outlined"
+    )
   end
 
   def lock_version_input(_, nil), do: nil
+
   def lock_version_input(form, vessel) do
-    hidden_input form, :lock_version, [value: vessel.lock_version]
+    hidden_input(form, :lock_version, value: vessel.lock_version)
   end
 
   def submit_button(vessel) do
@@ -40,19 +47,19 @@ defmodule PtrWeb.VesselView do
 
   def materials do
     [
-      [key: dgettext("vessels", "Steel"),    value: "Steel"],
+      [key: dgettext("vessels", "Steel"), value: "Steel"],
       [key: dgettext("vessels", "Concrete"), value: "Concrete"],
-      [key: dgettext("vessels", "Fiber"),    value: "Fiber"],
-      [key: dgettext("vessels", "Plastic"),  value: "Plastic"],
-      [key: dgettext("vessels", "Wood"),     value: "Wood"]
+      [key: dgettext("vessels", "Fiber"), value: "Fiber"],
+      [key: dgettext("vessels", "Plastic"), value: "Plastic"],
+      [key: dgettext("vessels", "Wood"), value: "Wood"]
     ]
   end
 
   def cooling do
     [
-      [key: dgettext("vessels", "None"),   value: "None"],
+      [key: dgettext("vessels", "None"), value: "None"],
       [key: dgettext("vessels", "Jacket"), value: "Jacket"],
-      [key: dgettext("vessels", "Coil"),   value: "Coil"]
+      [key: dgettext("vessels", "Coil"), value: "Coil"]
     ]
   end
 
@@ -75,5 +82,5 @@ defmodule PtrWeb.VesselView do
   end
 
   defp submit_label(nil), do: dgettext("vessels", "Create")
-  defp submit_label(_),   do: dgettext("vessels", "Update")
+  defp submit_label(_), do: dgettext("vessels", "Update")
 end

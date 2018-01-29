@@ -6,9 +6,12 @@ defmodule Ptr.Accounts.Password do
   alias Ptr.{Repo, Trail}
 
   def get_user_by_token(token) do
-    user_by_token = from u in User,
-                      where: u.password_reset_token   == ^token,
-                      where: u.password_reset_sent_at >= ago(6, "hour")
+    user_by_token =
+      from(
+        u in User,
+        where: u.password_reset_token == ^token,
+        where: u.password_reset_sent_at >= ago(6, "hour")
+      )
 
     Repo.one(user_by_token)
   end

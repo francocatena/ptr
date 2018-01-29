@@ -18,5 +18,5 @@ defmodule Ptr.Trail do
   end
 
   defp extract_model({:ok, %{model: model}}), do: {:ok, model}
-  defp extract_model(error),                  do: error
+  defp extract_model(error), do: error
 end

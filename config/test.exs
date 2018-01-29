@@ -10,8 +10,7 @@ config :ptr, PtrWeb.Endpoint,
 config :ptr, PtrWeb.Gettext, default_locale: "en"
 
 # Bamboo test adapter
-config :ptr, Ptr.Notifications.Mailer,
-  adapter: Bamboo.TestAdapter
+config :ptr, Ptr.Notifications.Mailer, adapter: Bamboo.TestAdapter
 
 # Print only warnings and errors during test
 config :logger, level: :warn
