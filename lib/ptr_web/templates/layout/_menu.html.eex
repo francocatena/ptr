@@ -16,15 +16,29 @@
 
     <div id="main-menu" class="navbar-menu">
       <div class="navbar-start">
-        <%= menu_item @conn, to: user_path(@conn, :index) do %>
-          <%= dgettext("users", "Users") %>
+        <%= menu_item @conn, to: cellar_path(@conn, :index) do %>
+          <%= dgettext("cellars", "Cellars") %>
         <% end %>
         <%= menu_item @conn, to: owner_path(@conn, :index) do %>
           <%= dgettext("owners", "Owners") %>
         <% end %>
-        <%= menu_item @conn, to: cellar_path(@conn, :index) do %>
-          <%= dgettext("cellars", "Cellars") %>
-        <% end %>
+
+        <div class="navbar-item has-dropdown is-hoverable">
+          <div class="navbar-link">
+            <span class="icon">
+              <i class="fas fa-cog" aria-hidden="true"></i>
+            </span>
+          </div>
+
+          <div id="user-dropdown" class="navbar-dropdown">
+            <%= menu_item @conn, to: user_path(@conn, :index) do %>
+              <%= dgettext("users", "Users") %>
+            <% end %>
+            <%= menu_item @conn, to: variety_path(@conn, :index) do %>
+              <%= dgettext("varieties", "Varieties") %>
+            <% end %>
+          </div>
+        </div>
       </div>
       <div class="navbar-end">
         <div class="navbar-item has-dropdown is-hoverable">

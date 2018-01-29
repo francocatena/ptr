@@ -1,0 +1,40 @@
+<section class="section is-primary">
+  <div class="container">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          <%= dgettext("varieties", "Variety") %>
+        </p>
+      </header>
+
+      <div class="card-content">
+        <ul>
+          <li>
+            <strong><%= dgettext("varieties", "Identifier") %>:</strong>
+            <%= @variety.identifier %>
+          </li>
+          <li>
+            <strong><%= dgettext("varieties", "Name") %>:</strong>
+            <%= @variety.name %>
+          </li>
+          <li>
+            <strong><%= dgettext("varieties", "Clone") %>:</strong>
+            <%= @variety.clone %>
+          </li>
+        </ul>
+      </div>
+
+      <footer class="card-footer">
+        <%= link dgettext("varieties", "Edit"), to: variety_path(@conn, :edit, @variety), class: "card-footer-item" %>
+      </footer>
+    </div>
+  </div>
+</section>
+
+<footer class="footer is-primary">
+  <div class="container">
+    <p>
+      <span><%= link dgettext("varieties", "Back"), to: variety_path(@conn, :index) %></span>
+    </p>
+  </div>
+</footer>

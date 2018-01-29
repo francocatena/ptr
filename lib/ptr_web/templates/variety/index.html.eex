@@ -1,0 +1,52 @@
+<section class="section is-primary">
+  <div class="container">
+    <div class="card">
+      <header class="card-header">
+        <h2 class="card-header-title">
+          <%= dgettext("varieties", "Varieties") %>
+        </h2>
+      </header>
+
+      <div class="card-content">
+        <table class="table is-striped is-hoverable is-narrow is-fullwidth">
+          <thead>
+            <tr>
+              <th><%= dgettext("varieties", "Identifier") %></th>
+              <th><%= dgettext("varieties", "Name") %></th>
+              <th class="is-hidden-mobile"><%= dgettext("varieties", "Clone") %></th>
+
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= for variety <- @varieties do %>
+              <tr class="has-cursor-pointer" data-link-like data-target="[data-main-link]">
+                <td><%= variety.identifier %></td>
+                <td><%= variety.name %></td>
+                <td class="is-hidden-mobile"><%= variety.clone %></td>
+
+                <td>
+                  <div class="buttons has-addons is-right">
+                    <%= link_to_show   @conn, variety %>
+                    <%= link_to_edit   @conn, variety %>
+                    <%= link_to_delete @conn, variety %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <%= pagination_links @conn, @page, view_style: :bulma %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer is-primary">
+  <div class="container">
+    <p>
+      <span><%= link dgettext("varieties", "New variety"), to: variety_path(@conn, :new) %></span>
+    </p>
+  </div>
+</footer>

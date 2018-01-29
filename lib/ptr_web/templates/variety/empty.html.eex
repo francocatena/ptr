@@ -1,0 +1,17 @@
+<section class="hero is-medium is-light is-bold">
+  <div class="hero-body has-text-centered">
+    <div class="container">
+      <h1 class="title">
+        <%= dgettext("varieties", "Looks like you have no varieties.") %>
+      </h1>
+
+      <h2 class="subtitle">
+        <%= dgettext("varieties", "Let's create one...") %>
+      </h2>
+
+      <p>
+        <%= link dgettext("varieties", "New variety"), to: variety_path(@conn, :new), class: "button is-primary is-large" %>
+      </p>
+    </div>
+  </div>
+</section>

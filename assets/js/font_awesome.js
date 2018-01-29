@@ -1,6 +1,7 @@
 import fontawesome  from '@fortawesome/fontawesome'
 
 import faCheck      from '@fortawesome/fontawesome-free-solid/faCheck'
+import faCog        from '@fortawesome/fontawesome-free-solid/faCog'
 import faEnvelope   from '@fortawesome/fontawesome-free-solid/faEnvelope'
 import faEye        from '@fortawesome/fontawesome-free-solid/faEye'
 import faHome       from '@fortawesome/fontawesome-free-solid/faHome'
@@ -16,6 +17,7 @@ fontawesome.config = {
 
 fontawesome.library.add([
   faCheck,
+  faCog,
   faEnvelope,
   faEye,
   faHome,

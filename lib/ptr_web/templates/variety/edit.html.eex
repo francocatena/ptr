@@ -1,0 +1,25 @@
+<section class="section is-primary">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-half is-offset-one-quarter">
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title">
+              <%= dgettext("varieties", "Edit variety") %>
+            </p>
+          </header>
+
+          <%= render "_form.html", Map.put(assigns, :action, variety_path(@conn, :update, @variety)) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer is-primary">
+  <div class="container">
+    <p>
+      <span><%= link dgettext("varieties", "Back"), to: variety_path(@conn, :index) %></span>
+    </p>
+  </div>
+</footer>

@@ -38,6 +38,10 @@ defmodule PtrWeb.Router do
 
     resources("/users", UserController)
 
+    # Options
+
+    resources("/varieties", VarietyController)
+
     # Ownerships
 
     resources("/owners", OwnerController)
