@@ -6,6 +6,7 @@
           <%%= dgettext("<%= schema.plural %>", "<%= schema.human_plural %>") %>
         </h2>
       </header>
+
       <div class="card-content">
         <table class="table is-striped is-hoverable is-narrow is-fullwidth">
           <thead>
