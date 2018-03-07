@@ -1,0 +1,25 @@
+<section class="section is-primary">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-half is-offset-one-quarter">
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title">
+              <%= dgettext("lots", "Edit lot") %>
+            </p>
+          </header>
+
+          <%= render "_form.html", Map.put(assigns, :action, lot_path(@conn, :update, @lot)) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer is-primary">
+  <div class="container">
+    <p>
+      <span><%= link dgettext("lots", "Back"), to: lot_path(@conn, :index) %></span>
+    </p>
+  </div>
+</footer>

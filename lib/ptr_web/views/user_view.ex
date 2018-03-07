@@ -25,15 +25,7 @@ defmodule PtrWeb.UserView do
     )
   end
 
-  def link_to_delete(%{assigns: %{current_session: %{user: user}}}, user) do
-    icon_link(
-      "trash",
-      title: dgettext("users", "Delete"),
-      to: "#",
-      disabled: true,
-      class: "button is-small is-danger is-outlined"
-    )
-  end
+  def link_to_delete(%{assigns: %{current_session: %{user: user}}}, user), do: ""
 
   def link_to_delete(conn, user) do
     icon_link(

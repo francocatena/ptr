@@ -22,6 +22,9 @@
         <%= menu_item @conn, to: owner_path(@conn, :index) do %>
           <%= dgettext("owners", "Owners") %>
         <% end %>
+        <%= menu_item @conn, to: lot_path(@conn, :index) do %>
+          <%= dgettext("lots", "Lots") %>
+        <% end %>
 
         <div class="navbar-item has-dropdown is-hoverable">
           <div class="navbar-link">
@@ -30,7 +33,7 @@
             </span>
           </div>
 
-          <div id="user-dropdown" class="navbar-dropdown">
+          <div id="config-dropdown" class="navbar-dropdown">
             <%= menu_item @conn, to: user_path(@conn, :index) do %>
               <%= dgettext("users", "Users") %>
             <% end %>

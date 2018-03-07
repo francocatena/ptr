@@ -15,6 +15,12 @@ defmodule Ptr.OptionsTest do
     }
     @invalid_attrs %{clone: nil, identifier: nil, name: nil}
 
+    test "list_varieties/1 returns all varieties" do
+      {:ok, variety, account} = fixture(:variety)
+
+      assert Options.list_varieties(account) == [variety]
+    end
+
     test "list_varieties/2 returns all varieties" do
       {:ok, variety, account} = fixture(:variety)
 

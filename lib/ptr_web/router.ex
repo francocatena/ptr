@@ -51,5 +51,9 @@ defmodule PtrWeb.Router do
     resources "/cellars", CellarController do
       resources("/vessels", VesselController)
     end
+
+    # Lots
+
+    resources("/lots", LotController)
   end
 end

@@ -1,0 +1,52 @@
+<section class="section is-primary">
+  <div class="container">
+    <div class="card">
+      <header class="card-header">
+        <h2 class="card-header-title">
+          <%= dgettext("lots", "Lots") %>
+        </h2>
+      </header>
+
+      <div class="card-content">
+        <table class="table is-striped is-hoverable is-narrow is-fullwidth">
+          <thead>
+            <tr>
+              <th><%= dgettext("lots", "Identifier") %></th>
+              <th><%= dgettext("lots", "Variety") %></th>
+              <th class="is-hidden-mobile"><%= dgettext("lots", "Owner") %></th>
+
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= for lot <- @lots do %>
+              <tr class="has-cursor-pointer" data-link-like data-target="[data-main-link]">
+                <td><%= lot.identifier %></td>
+                <td><%= lot.variety.name %></td>
+                <td class="is-hidden-mobile"><%= lot.owner.name %></td>
+
+                <td>
+                  <div class="buttons has-addons is-right">
+                    <%= link_to_show   @conn, lot %>
+                    <%= link_to_edit   @conn, lot %>
+                    <%= link_to_delete @conn, lot %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <%= pagination_links @conn, @page, view_style: :bulma %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer is-primary">
+  <div class="container">
+    <p>
+      <span><%= link dgettext("lots", "New lot"), to: lot_path(@conn, :new) %></span>
+    </p>
+  </div>
+</footer>

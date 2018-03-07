@@ -17,13 +17,28 @@ defmodule Ptr.Options do
 
   ## Examples
 
+      iex> list_varieties(%Account{})
+      [%Variety{}, ...]
+
+  """
+  def list_varieties(account) do
+    account
+    |> list_varieties_query()
+    |> Repo.all()
+  end
+
+  @doc """
+  Returns the list of varieties paginated.
+
+  ## Examples
+
       iex> list_varieties(%Account{}, %{})
       [%Variety{}, ...]
 
   """
   def list_varieties(account, params) do
-    Variety
-    |> prefixed(account)
+    account
+    |> list_varieties_query()
     |> Repo.paginate(params)
   end
 
@@ -111,5 +126,18 @@ defmodule Ptr.Options do
   """
   def change_variety(%Account{} = account, %Variety{} = variety) do
     Variety.changeset(account, variety, %{})
+  end
+
+  defp list_varieties_query(account) do
+    query =
+      from(
+        v in Variety,
+        group_by: v.id,
+        left_join: l in assoc(v, :lots),
+        select: %{v | lots_count: count(l.id)},
+        order_by: v.name
+      )
+
+    prefixed(query, account)
   end
 end

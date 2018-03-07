@@ -6,6 +6,7 @@ defmodule PtrWeb.OwnerViewTest do
   alias Ptr.Ownerships.Owner
 
   import Phoenix.View
+  import Phoenix.HTML, only: [safe_to_string: 1]
 
   test "renders empty.html", %{conn: conn} do
     content = render_to_string(OwnerView, "empty.html", conn: conn)
@@ -50,6 +51,28 @@ defmodule PtrWeb.OwnerViewTest do
     content = render_to_string(OwnerView, "show.html", conn: conn, owner: owner)
 
     assert String.contains?(content, owner.tax_id)
+  end
+
+  test "link to delete owner is empty when has lots", %{conn: conn} do
+    owner = %Owner{id: "1", lots_count: 3}
+
+    content =
+      conn
+      |> Plug.Conn.assign(:current_session, %{owner: owner})
+      |> OwnerView.link_to_delete(owner)
+
+    assert content == ""
+  end
+
+  test "link to delete owner is not empty when has no lots", %{conn: conn} do
+    owner = %Owner{id: "1", lots_count: 0}
+
+    content =
+      conn
+      |> OwnerView.link_to_delete(owner)
+      |> safe_to_string
+
+    refute content == ""
   end
 
   defp test_account do

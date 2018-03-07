@@ -10,32 +10,32 @@
 msgid ""
 msgstr ""
 
-#: lib/ptr_web/views/variety_view.ex:30
+#: lib/ptr_web/views/variety_view.ex:32
 msgid "Are you sure?"
 msgstr ""
 
 #: lib/ptr_web/templates/variety/edit.html.eex:22
 #: lib/ptr_web/templates/variety/new.html.eex:22
-#: lib/ptr_web/templates/variety/show.html.eex:37
+#: lib/ptr_web/templates/variety/show.html.eex:35
 msgid "Back"
 msgstr ""
 
 #: lib/ptr_web/templates/variety/_form.html.eex:11
 #: lib/ptr_web/templates/variety/index.html.eex:16
-#: lib/ptr_web/templates/variety/show.html.eex:21
+#: lib/ptr_web/templates/variety/show.html.eex:19
 msgid "Clone"
 msgstr ""
 
-#: lib/ptr_web/views/variety_view.ex:46
+#: lib/ptr_web/views/variety_view.ex:50
 msgid "Create"
 msgstr ""
 
-#: lib/ptr_web/views/variety_view.ex:27
+#: lib/ptr_web/views/variety_view.ex:29
 msgid "Delete"
 msgstr ""
 
-#: lib/ptr_web/templates/variety/show.html.eex:28
-#: lib/ptr_web/views/variety_view.ex:18
+#: lib/ptr_web/templates/variety/show.html.eex:26
+#: lib/ptr_web/views/variety_view.ex:20
 msgid "Edit"
 msgstr ""
 
@@ -46,7 +46,7 @@ msgstr ""
 
 #: lib/ptr_web/templates/variety/_form.html.eex:9
 #: lib/ptr_web/templates/variety/index.html.eex:14
-#: lib/ptr_web/templates/variety/show.html.eex:13
+#: lib/ptr_web/templates/variety/show.html.eex:15
 msgid "Identifier"
 msgstr ""
 
@@ -60,7 +60,6 @@ msgstr ""
 
 #: lib/ptr_web/templates/variety/_form.html.eex:10
 #: lib/ptr_web/templates/variety/index.html.eex:15
-#: lib/ptr_web/templates/variety/show.html.eex:17
 msgid "Name"
 msgstr ""
 
@@ -75,16 +74,16 @@ msgstr ""
 msgid "Oops, something went wrong! Please check the errors below."
 msgstr ""
 
-#: lib/ptr_web/views/variety_view.ex:8
+#: lib/ptr_web/views/variety_view.ex:10
 msgid "Show"
 msgstr ""
 
-#: lib/ptr_web/views/variety_view.ex:47
+#: lib/ptr_web/views/variety_view.ex:51
 msgid "Update"
 msgstr ""
 
 #: lib/ptr_web/controllers/variety_controller.ex:8
-#: lib/ptr_web/templates/layout/_menu.html.eex:38
+#: lib/ptr_web/templates/layout/_menu.html.eex:41
 #: lib/ptr_web/templates/variety/index.html.eex:6
 msgid "Varieties"
 msgstr ""

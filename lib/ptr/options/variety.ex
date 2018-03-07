@@ -4,6 +4,7 @@ defmodule Ptr.Options.Variety do
   import Ecto.Changeset
   import Ptr.Accounts.Account, only: [prefix: 1]
 
+  alias Ptr.Lots.Lot
   alias Ptr.Options.Variety
   alias Ptr.Accounts.Account
 
@@ -12,6 +13,10 @@ defmodule Ptr.Options.Variety do
     field(:identifier, :string)
     field(:name, :string)
     field(:lock_version, :integer, default: 1)
+
+    field(:lots_count, :integer, virtual: true, default: 0)
+
+    has_many(:lots, Lot)
 
     timestamps()
   end

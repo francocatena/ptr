@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Language: en\n"
 
-#: lib/ptr_web/views/user_view.ex:44
+#: lib/ptr_web/views/user_view.ex:36
 msgid "Are you sure?"
 msgstr ""
 
@@ -20,7 +20,7 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: lib/ptr_web/views/user_view.ex:31 lib/ptr_web/views/user_view.ex:41
+#: lib/ptr_web/views/user_view.ex:33
 msgid "Delete"
 msgstr ""
 
@@ -83,7 +83,7 @@ msgid "User updated successfully."
 msgstr ""
 
 #: lib/ptr_web/controllers/user_controller.ex:8
-#: lib/ptr_web/templates/layout/_menu.html.eex:35
+#: lib/ptr_web/templates/layout/_menu.html.eex:38
 #: lib/ptr_web/templates/user/index.html.eex:6
 msgid "Users"
 msgstr ""
@@ -94,11 +94,11 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-#: lib/ptr_web/views/user_view.ex:60
+#: lib/ptr_web/views/user_view.ex:52
 msgid "Create"
 msgstr ""
 
-#: lib/ptr_web/views/user_view.ex:61
+#: lib/ptr_web/views/user_view.ex:53
 msgid "Update"
 msgstr ""
 

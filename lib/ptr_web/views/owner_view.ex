@@ -2,6 +2,8 @@ defmodule PtrWeb.OwnerView do
   use PtrWeb, :view
   use Scrivener.HTML
 
+  alias Ptr.Ownerships.Owner
+
   def link_to_show(conn, owner) do
     icon_link(
       "eye",
@@ -21,7 +23,7 @@ defmodule PtrWeb.OwnerView do
     )
   end
 
-  def link_to_delete(conn, owner) do
+  def link_to_delete(conn, %Owner{lots_count: 0} = owner) do
     icon_link(
       "trash",
       title: dgettext("owners", "Delete"),
@@ -31,6 +33,8 @@ defmodule PtrWeb.OwnerView do
       class: "button is-small is-danger is-outlined"
     )
   end
+
+  def link_to_delete(_conn, _owner), do: ""
 
   def lock_version_input(_, nil), do: nil
 

@@ -11,6 +11,12 @@ defmodule Ptr.OwnershipsTest do
     @update_attrs %{name: "some updated name", tax_id: "some updated tax_id"}
     @invalid_attrs %{name: nil, tax_id: nil}
 
+    test "list_owners/1 returns all owners" do
+      {:ok, owner, account} = fixture(:owner)
+
+      assert Ownerships.list_owners(account) == [owner]
+    end
+
     test "list_owners/2 returns all owners" do
       {:ok, owner, account} = fixture(:owner)
 

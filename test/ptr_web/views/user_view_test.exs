@@ -47,19 +47,18 @@ defmodule PtrWeb.UserViewTest do
     assert String.contains?(content, user.email)
   end
 
-  test "link to delete user is disabled when current user", %{conn: conn} do
+  test "link to delete user is empty when current user", %{conn: conn} do
     user = %User{id: "1"}
 
     content =
       conn
       |> Plug.Conn.assign(:current_session, %{user: user})
       |> UserView.link_to_delete(user)
-      |> safe_to_string
 
-    assert content =~ "disabled"
+    assert content == ""
   end
 
-  test "link to delete user is not disabled when no current user", %{conn: conn} do
+  test "link to delete user is not empty when no current user", %{conn: conn} do
     user = %User{id: "1"}
 
     content =
@@ -67,6 +66,6 @@ defmodule PtrWeb.UserViewTest do
       |> UserView.link_to_delete(user)
       |> safe_to_string
 
-    refute content =~ "disabled"
+    refute content == ""
   end
 end

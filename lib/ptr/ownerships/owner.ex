@@ -4,6 +4,7 @@ defmodule Ptr.Ownerships.Owner do
   import Ecto.Changeset
   import Ptr.Accounts.Account, only: [prefix: 1]
 
+  alias Ptr.Lots.Lot
   alias Ptr.Ownerships.Owner
   alias Ptr.Accounts.Account
 
@@ -11,6 +12,10 @@ defmodule Ptr.Ownerships.Owner do
     field(:name, :string)
     field(:tax_id, :string)
     field(:lock_version, :integer, default: 1)
+
+    field(:lots_count, :integer, virtual: true, default: 0)
+
+    has_many(:lots, Lot)
 
     timestamps()
   end

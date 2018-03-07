@@ -1,6 +1,6 @@
 defmodule Ptr.Support.FixtureHelper do
   alias Ptr.Accounts.{Account, Session}
-  alias Ptr.{Accounts, Cellars, Repo, Options, Ownerships}
+  alias Ptr.{Accounts, Cellars, Lots, Repo, Options, Ownerships}
 
   def fixture(type, attributes \\ %{}, opts \\ [])
 
@@ -61,6 +61,25 @@ defmodule Ptr.Support.FixtureHelper do
     {:ok, cellar} = Cellars.create_cellar(session, attributes)
 
     {:ok, cellar, account}
+  end
+
+  @lot_attrs %{identifier: "some identifier", notes: "some notes"}
+
+  def fixture(:lot, attributes, _opts) do
+    account = fixture(:seed_account)
+    session = %Session{account: account}
+    {:ok, owner, _} = fixture(:owner)
+    {:ok, variety, _} = fixture(:variety)
+
+    attributes =
+      attributes
+      |> Enum.into(@lot_attrs)
+      |> Map.put(:owner_id, owner.id)
+      |> Map.put(:variety_id, variety.id)
+
+    {:ok, lot} = Lots.create_lot(session, attributes)
+
+    {:ok, %{lot | owner: owner, variety: variety}, account}
   end
 
   @variety_attrs %{identifier: "some identifier", name: "some name", clone: "some clone"}

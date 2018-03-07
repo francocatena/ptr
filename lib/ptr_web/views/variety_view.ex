@@ -2,6 +2,8 @@ defmodule PtrWeb.VarietyView do
   use PtrWeb, :view
   use Scrivener.HTML
 
+  alias Ptr.Options.Variety
+
   def link_to_show(conn, variety) do
     icon_link(
       "eye",
@@ -21,7 +23,7 @@ defmodule PtrWeb.VarietyView do
     )
   end
 
-  def link_to_delete(conn, variety) do
+  def link_to_delete(conn, %Variety{lots_count: 0} = variety) do
     icon_link(
       "trash",
       title: dgettext("varieties", "Delete"),
@@ -31,6 +33,8 @@ defmodule PtrWeb.VarietyView do
       class: "button is-small is-danger is-outlined"
     )
   end
+
+  def link_to_delete(_conn, _variety), do: nil
 
   def lock_version_input(_, nil), do: nil
 

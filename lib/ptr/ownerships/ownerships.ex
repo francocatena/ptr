@@ -16,15 +16,28 @@ defmodule Ptr.Ownerships do
 
   ## Examples
 
+      iex> list_owners(%Account{})
+      [%Owner{}, ...]
+
+  """
+  def list_owners(account) do
+    account
+    |> list_owners_query()
+    |> Repo.all()
+  end
+
+  @doc """
+  Returns the list of owners paginated.
+
+  ## Examples
+
       iex> list_owners(%Account{}, %{})
       [%Owner{}, ...]
 
   """
   def list_owners(account, params) do
-    query = from(o in Owner, order_by: o.tax_id)
-
-    query
-    |> prefixed(account)
+    account
+    |> list_owners_query()
     |> Repo.paginate(params)
   end
 
@@ -112,5 +125,18 @@ defmodule Ptr.Ownerships do
   """
   def change_owner(%Account{} = account, %Owner{} = owner) do
     Owner.changeset(account, owner, %{})
+  end
+
+  defp list_owners_query(account) do
+    query =
+      from(
+        o in Owner,
+        group_by: o.id,
+        left_join: l in assoc(o, :lots),
+        select: %{o | lots_count: count(l.id)},
+        order_by: o.tax_id
+      )
+
+    prefixed(query, account)
   end
 end

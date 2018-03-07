@@ -1,0 +1,49 @@
+<section class="section is-primary">
+  <div class="container">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          <%= dgettext("lots", "Lot") %>
+        </p>
+      </header>
+
+      <div class="card-content">
+        <h2 class="title">
+          <%= @lot.identifier %>
+        </h2>
+
+        <ul>
+          <li>
+            <strong><%= dgettext("lots", "Variety") %></strong>:
+            <%= link @lot.variety.name, to: variety_path(@conn, :show, @lot.variety) %>
+          </li>
+          <li>
+            <strong><%= dgettext("lots", "Owner") %></strong>:
+            <%= link @lot.owner.name, to: owner_path(@conn, :show, @lot.owner) %>
+          </li>
+        </ul>
+
+        <%= if @lot.notes && String.trim(@lot.notes) != "" do %>
+          <hr>
+
+          <div class="content is-small">
+            <h3><%= dgettext("lots", "Notes") %></h3>
+            <%= text_to_html(@lot.notes || "") %>
+          </div>
+        <% end %>
+      </div>
+
+      <footer class="card-footer">
+        <%= link dgettext("lots", "Edit"), to: lot_path(@conn, :edit, @lot), class: "card-footer-item" %>
+      </footer>
+    </div>
+  </div>
+</section>
+
+<footer class="footer is-primary">
+  <div class="container">
+    <p>
+      <span><%= link dgettext("lots", "Back"), to: lot_path(@conn, :index) %></span>
+    </p>
+  </div>
+</footer>
