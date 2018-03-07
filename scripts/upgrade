@@ -21,7 +21,12 @@ if [ $(ls -A $REL_DIR) ]; then
   rm -f $REL_DIR/*
 fi
 
-FROM=`mix edeliver version $ROLE | grep -Po 'response: .*\+\K(.*)'`
+FROM=`
+  mix edeliver version $ROLE                           |
+  grep -Po 'response: .*\+\K(.*)'                      |
+  sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g" |
+  tr -d '[:cntrl:]'
+`
 
 if [[ ! -z $FROM ]]; then
   mix edeliver build upgrade --from=$FROM
