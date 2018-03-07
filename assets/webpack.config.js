@@ -7,6 +7,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const isProduction      = process.env.MIX_ENV === 'prod'
 
 const config = {
+  mode: isProduction ? 'production' : 'development',
+
   entry: ['./js/app.js', './css/app.scss'],
 
   devtool: 'source-map',
@@ -24,10 +26,7 @@ const config = {
         exclude: [
           /node_modules/,
           /deps/
-        ],
-        options: {
-          presets: ['env']
-        }
+        ]
       },
 
       {
