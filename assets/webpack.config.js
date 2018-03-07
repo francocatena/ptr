@@ -1,7 +1,6 @@
 /* global module, process, require, __dirname */
 
 const Path              = require('path')
-const UglifyJSPlugin    = require('uglifyjs-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const isProduction      = process.env.MIX_ENV === 'prod'
@@ -60,11 +59,7 @@ const config = {
 
   plugins: [
     new CopyWebpackPlugin([{from: './static'}]),
-    new ExtractTextPlugin('css/app.css'),
-    new UglifyJSPlugin({
-      sourceMap:       !isProduction,
-      extractComments: !isProduction
-    })
+    new ExtractTextPlugin('css/app.css')
   ],
 
   resolve: {
