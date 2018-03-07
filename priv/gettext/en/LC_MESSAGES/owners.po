@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Language: en\n"
 
-#: lib/ptr_web/views/owner_view.ex:30
+#: lib/ptr_web/views/owner_view.ex:32
 msgid "Are you sure?"
 msgstr ""
 
@@ -20,16 +20,16 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: lib/ptr_web/views/owner_view.ex:46
+#: lib/ptr_web/views/owner_view.ex:50
 msgid "Create"
 msgstr ""
 
-#: lib/ptr_web/views/owner_view.ex:27
+#: lib/ptr_web/views/owner_view.ex:29
 msgid "Delete"
 msgstr ""
 
 #: lib/ptr_web/templates/owner/show.html.eex:22
-#: lib/ptr_web/views/owner_view.ex:18
+#: lib/ptr_web/views/owner_view.ex:20
 msgid "Edit"
 msgstr ""
 
@@ -65,7 +65,7 @@ msgstr ""
 msgid "Owners"
 msgstr ""
 
-#: lib/ptr_web/views/owner_view.ex:8
+#: lib/ptr_web/views/owner_view.ex:10
 msgid "Show"
 msgstr ""
 
@@ -75,7 +75,7 @@ msgstr ""
 msgid "Tax ID"
 msgstr ""
 
-#: lib/ptr_web/views/owner_view.ex:47
+#: lib/ptr_web/views/owner_view.ex:51
 msgid "Update"
 msgstr ""
 

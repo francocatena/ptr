@@ -12,7 +12,7 @@
 
         <ul>
           <li>
-            <strong><%= dgettext("users", "Email") %>:</strong>
+            <strong><%= dgettext("users", "Email") %></strong>:
             <%= link @user.email, to: "mailto:#{@user.email}" %>
           </li>
         </ul>

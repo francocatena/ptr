@@ -8,17 +8,15 @@
       </header>
 
       <div class="card-content">
+        <h2 class="title"><%= @variety.name %></h2>
+
         <ul>
           <li>
-            <strong><%= dgettext("varieties", "Identifier") %>:</strong>
+            <strong><%= dgettext("varieties", "Identifier") %></strong>:
             <%= @variety.identifier %>
           </li>
           <li>
-            <strong><%= dgettext("varieties", "Name") %>:</strong>
-            <%= @variety.name %>
-          </li>
-          <li>
-            <strong><%= dgettext("varieties", "Clone") %>:</strong>
+            <strong><%= dgettext("varieties", "Clone") %></strong>:
             <%= @variety.clone %>
           </li>
         </ul>

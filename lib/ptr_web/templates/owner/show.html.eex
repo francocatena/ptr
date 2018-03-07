@@ -12,7 +12,7 @@
 
         <ul>
           <li>
-            <strong><%= dgettext("owners", "Tax ID") %>:</strong>
+            <strong><%= dgettext("owners", "Tax ID") %></strong>:
             <%= @owner.tax_id %>
           </li>
         </ul>

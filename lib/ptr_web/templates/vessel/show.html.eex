@@ -18,11 +18,11 @@
 
         <ul>
           <li>
-            <strong><%= dgettext("vessels", "Material") %>:</strong>
+            <strong><%= dgettext("vessels", "Material") %></strong>:
             <%= Gettext.dgettext(PtrWeb.Gettext, "vessels", @vessel.material || "") %>
           </li>
           <li>
-            <strong><%= dgettext("vessels", "Cooling") %>:</strong>
+            <strong><%= dgettext("vessels", "Cooling") %></strong>:
             <%= Gettext.dgettext(PtrWeb.Gettext, "vessels", @vessel.cooling || "") %>
           </li>
         </ul>

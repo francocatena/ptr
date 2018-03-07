@@ -11,7 +11,7 @@
 
         <ul>
           <li>
-            <strong><%= dgettext("cellars", "Identifier") %>:</strong>
+            <strong><%= dgettext("cellars", "Identifier") %></strong>:
             <span class="tag is-dark"><%= @cellar.identifier %></span>
           </li>
         </ul>

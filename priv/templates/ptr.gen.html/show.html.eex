@@ -10,7 +10,7 @@
       <div class="card-content">
         <ul>
 <%= for {k, _} <- schema.attrs do %>          <li>
-            <strong><%%= dgettext("<%= schema.plural %>", "<%= Phoenix.Naming.humanize(Atom.to_string(k)) %>") %>:</strong>
+            <strong><%%= dgettext("<%= schema.plural %>", "<%= Phoenix.Naming.humanize(Atom.to_string(k)) %>") %></strong>:
             <%%= @<%= schema.singular %>.<%= k %> %>
           </li>
 <% end %>        </ul>
