@@ -34,7 +34,7 @@ defmodule PtrWeb.OwnerView do
     )
   end
 
-  def link_to_delete(_conn, _owner), do: ""
+  def link_to_delete(_conn, _owner), do: nil
 
   def lock_version_input(_, nil), do: nil
 

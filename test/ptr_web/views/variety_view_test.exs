@@ -68,7 +68,7 @@ defmodule PtrWeb.VarietyViewTest do
       |> Plug.Conn.assign(:current_session, %{variety: variety})
       |> VarietyView.link_to_delete(variety)
 
-    assert content == ""
+    assert content == nil
   end
 
   test "link to delete variety is not empty when has no lots", %{conn: conn} do
@@ -79,7 +79,7 @@ defmodule PtrWeb.VarietyViewTest do
       |> VarietyView.link_to_delete(variety)
       |> safe_to_string
 
-    refute content == ""
+    refute content == nil
   end
 
   defp test_account do

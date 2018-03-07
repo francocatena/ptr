@@ -61,7 +61,7 @@ defmodule PtrWeb.OwnerViewTest do
       |> Plug.Conn.assign(:current_session, %{owner: owner})
       |> OwnerView.link_to_delete(owner)
 
-    assert content == ""
+    assert content == nil
   end
 
   test "link to delete owner is not empty when has no lots", %{conn: conn} do
@@ -72,7 +72,7 @@ defmodule PtrWeb.OwnerViewTest do
       |> OwnerView.link_to_delete(owner)
       |> safe_to_string
 
-    refute content == ""
+    refute content == nil
   end
 
   defp test_account do
