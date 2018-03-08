@@ -1,9 +1,9 @@
 /* global module, process, require, __dirname */
 
-const Path              = require('path')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const isProduction      = process.env.MIX_ENV === 'prod'
+const Path                 = require('path')
+const CopyWebpackPlugin    = require('copy-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const isProduction         = process.env.MIX_ENV === 'prod'
 
 const config = {
   mode: isProduction ? 'production' : 'development',
@@ -30,36 +30,35 @@ const config = {
 
       {
         test: /\.scss$/,
-        use:  ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use:      [
-            {
-              loader:  'css-loader',
-              options: {
-                minimize:  isProduction,
-                sourceMap: !isProduction
-              }
-            },
+        use: [
+          MiniCssExtractPlugin.loader,
 
-            {
-              loader:  'sass-loader',
-              options: {
-                sourceMap:      !isProduction,
-                sourceComments: !isProduction,
-                includePaths:   [
-                  Path.resolve(__dirname, 'node_modules/bulma')
-                ]
-              }
+          {
+            loader:  'css-loader',
+            options: {
+              minimize:  isProduction,
+              sourceMap: !isProduction
             }
-          ]
-        })
+          },
+
+          {
+            loader:  'sass-loader',
+            options: {
+              sourceMap:      !isProduction,
+              sourceComments: !isProduction,
+              includePaths:   [
+                Path.resolve(__dirname, 'node_modules/bulma')
+              ]
+            }
+          }
+        ]
       }
     ]
   },
 
   plugins: [
     new CopyWebpackPlugin([{from: './static'}]),
-    new ExtractTextPlugin('css/app.css')
+    new MiniCssExtractPlugin({filename: 'css/app.css'})
   ],
 
   resolve: {
