@@ -8,7 +8,9 @@
 
     <title><%= gettext "Vintock" %></title>
 
-    <link rel="icon" type="image/x-icon" href="<%= static_path(@conn, "/images/favicon.ico") %>">
+    <link rel="apple-touch-icon" href="<%= static_path(@conn, "/images/apple-touch-icon.png") %>">
+    <link rel="icon" type="image/png" href="<%= static_path(@conn, "/images/favicon.png") %>">
+
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
 
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
