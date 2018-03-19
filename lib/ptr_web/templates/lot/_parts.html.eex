@@ -1,0 +1,9 @@
+<h4 class="title is-4">
+  <%= dngettext("lots", "Has one part", "Has %{count} parts", @lot.parts_count) %>
+</h4>
+
+<p>
+  <%= link dgettext("lots", "New part"), to: lot_part_path(@conn, :new, @lot), class: "button is-small" %>
+  <%= gettext("or") %>
+  <%= link dngettext("lots", "Show part", "Show %{count} parts", @lot.parts_count), to: lot_part_path(@conn, :index, @lot) %>
+</p>

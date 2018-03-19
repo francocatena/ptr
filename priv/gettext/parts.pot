@@ -1,0 +1,107 @@
+## This file is a PO Template file.
+##
+## `msgid`s here are often extracted from source code.
+## Add new translations manually only if they're dynamic
+## translations that can't be statically extracted.
+##
+## Run `mix gettext.extract` to bring this file up to
+## date. Leave `msgstr`s empty as changing them here as no
+## effect: edit them in PO (`.po`) files instead.
+msgid ""
+msgstr ""
+
+#: lib/ptr_web/templates/part/_form.html.eex:12
+#: lib/ptr_web/templates/part/index.html.eex:15
+#: lib/ptr_web/templates/part/show.html.eex:21
+msgid "Amount"
+msgstr ""
+
+#: lib/ptr_web/views/part_view.ex:30
+msgid "Are you sure?"
+msgstr ""
+
+#: lib/ptr_web/templates/part/edit.html.eex:22
+#: lib/ptr_web/templates/part/new.html.eex:22
+#: lib/ptr_web/templates/part/show.html.eex:37
+msgid "Back"
+msgstr ""
+
+#: lib/ptr_web/views/part_view.ex:52
+msgid "Create"
+msgstr ""
+
+#: lib/ptr_web/views/part_view.ex:27
+msgid "Delete"
+msgstr ""
+
+#: lib/ptr_web/templates/part/show.html.eex:28 lib/ptr_web/views/part_view.ex:18
+msgid "Edit"
+msgstr ""
+
+#: lib/ptr_web/controllers/part_controller.ex:120
+#: lib/ptr_web/templates/part/edit.html.eex:8
+msgid "Edit part"
+msgstr ""
+
+#: lib/ptr_web/templates/part/empty.html.eex:9
+msgid "Let's create one..."
+msgstr ""
+
+#: lib/ptr_web/templates/part/empty.html.eex:5
+msgid "Looks like you have no parts."
+msgstr ""
+
+#: lib/ptr_web/controllers/part_controller.ex:106
+#: lib/ptr_web/templates/part/empty.html.eex:13
+#: lib/ptr_web/templates/part/index.html.eex:47
+#: lib/ptr_web/templates/part/new.html.eex:8
+msgid "New part"
+msgstr ""
+
+#: lib/ptr_web/templates/part/_form.html.eex:5
+msgid "Oops, something went wrong! Please check the errors below."
+msgstr ""
+
+#: lib/ptr_web/controllers/part_controller.ex:113
+#: lib/ptr_web/templates/part/show.html.eex:6
+msgid "Part"
+msgstr ""
+
+#: lib/ptr_web/controllers/part_controller.ex:44
+msgid "Part created successfully."
+msgstr ""
+
+#: lib/ptr_web/controllers/part_controller.ex:88
+msgid "Part deleted successfully."
+msgstr ""
+
+#: lib/ptr_web/controllers/part_controller.ex:75
+msgid "Part updated successfully."
+msgstr ""
+
+#: lib/ptr_web/controllers/part_controller.ex:12
+#: lib/ptr_web/templates/part/index.html.eex:6
+msgid "Parts"
+msgstr ""
+
+#: lib/ptr_web/views/part_view.ex:8
+msgid "Show"
+msgstr ""
+
+#: lib/ptr_web/views/part_view.ex:53
+msgid "Update"
+msgstr ""
+
+#: lib/ptr_web/templates/part/_form.html.eex:10
+msgid "Choose vessel"
+msgstr ""
+
+#: lib/ptr_web/templates/part/show.html.eex:13
+msgid "Lot"
+msgstr ""
+
+#: lib/ptr_web/templates/part/_form.html.eex:9
+#: lib/ptr_web/templates/part/index.html.eex:14
+#: lib/ptr_web/templates/part/show.html.eex:17
+msgid "Vessel"
+msgstr ""

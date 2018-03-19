@@ -16,7 +16,7 @@ msgstr "¿Está seguro de borrar esta bodega?"
 
 #: lib/ptr_web/templates/cellar/edit.html.eex:22
 #: lib/ptr_web/templates/cellar/new.html.eex:22
-#: lib/ptr_web/templates/cellar/show.html.eex:33
+#: lib/ptr_web/templates/cellar/show.html.eex:34
 msgid "Back"
 msgstr "Listado de bodegas"
 
@@ -43,7 +43,7 @@ msgstr "Bodega actualizada correctamente."
 msgid "Cellars"
 msgstr "Bodegas"
 
-#: lib/ptr_web/views/cellar_view.ex:55
+#: lib/ptr_web/views/cellar_view.ex:58
 msgid "Create"
 msgstr "Crear nueva bodega"
 
@@ -51,7 +51,7 @@ msgstr "Crear nueva bodega"
 msgid "Delete"
 msgstr "Borrar bodega"
 
-#: lib/ptr_web/templates/cellar/show.html.eex:24
+#: lib/ptr_web/templates/cellar/show.html.eex:25
 #: lib/ptr_web/views/cellar_view.ex:20
 msgid "Edit"
 msgstr "Editar bodega"
@@ -87,11 +87,10 @@ msgstr "Oops, algo salió mal, por favor verifique los errores debajo."
 msgid "Show"
 msgstr "Ver bodega"
 
-#: lib/ptr_web/views/cellar_view.ex:56
+#: lib/ptr_web/views/cellar_view.ex:59
 msgid "Update"
 msgstr "Actualizar bodega"
 
-#: lib/ptr_web/templates/cellar/_empty_vessels.html.eex:7
 #: lib/ptr_web/templates/cellar/empty.html.eex:9
 msgid "Let's create one..."
 msgstr "Vamos, agrega una..."
@@ -120,3 +119,7 @@ msgid "Has one vessel"
 msgid_plural "Has %{count} vessels"
 msgstr[0] "Tiene una vasija"
 msgstr[1] "Tiene %{count} vasijas"
+
+#: lib/ptr_web/templates/cellar/_empty_vessels.html.eex:7
+msgid "Let's create one vessel..."
+msgstr "Vamos, agrega una..."

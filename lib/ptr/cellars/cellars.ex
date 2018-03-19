@@ -16,15 +16,28 @@ defmodule Ptr.Cellars do
 
   ## Examples
 
+      iex> list_cellars(%Account{})
+      [%Cellar{}, ...]
+
+  """
+  def list_cellars(account) do
+    account
+    |> list_cellars_query()
+    |> Repo.all()
+  end
+
+  @doc """
+  Returns the list of cellars paginated.
+
+  ## Examples
+
       iex> list_cellars(%Account{}, %{})
       [%Cellar{}, ...]
 
   """
   def list_cellars(account, params) do
-    query = from(c in Cellar, order_by: c.identifier)
-
-    query
-    |> prefixed(account)
+    account
+    |> list_cellars_query()
     |> Repo.paginate(params)
   end
 
@@ -43,7 +56,15 @@ defmodule Ptr.Cellars do
 
   """
   def get_cellar!(account, id) do
-    Cellar
+    query =
+      from(
+        c in Cellar,
+        group_by: c.id,
+        left_join: v in assoc(c, :vessels),
+        select: %{c | vessels_count: count(v.id)}
+      )
+
+    query
     |> prefixed(account)
     |> Repo.get!(id)
   end
@@ -121,16 +142,28 @@ defmodule Ptr.Cellars do
 
   ## Examples
 
+      iex> list_vessels(%Account{}, %Cellar{})
+      [%Vessel{}, ...]
+
+  """
+  def list_vessels(account, cellar) do
+    account
+    |> list_vessels_query(cellar)
+    |> Repo.all()
+  end
+
+  @doc """
+  Returns the list of vessels on a given cellar.
+
+  ## Examples
+
       iex> list_vessels(%Account{}, %Cellar{}, %{})
       [%Vessel{}, ...]
 
   """
   def list_vessels(account, cellar, params) do
-    query = from(v in Vessel, order_by: v.identifier)
-
-    query
-    |> prefixed(account)
-    |> where(cellar_id: ^cellar.id)
+    account
+    |> list_vessels_query(cellar)
     |> Repo.paginate(params)
   end
 
@@ -221,20 +254,27 @@ defmodule Ptr.Cellars do
     Vessel.changeset(account, vessel, %{})
   end
 
-  @doc """
-  Returns the vessel count for the given cellar.
+  defp list_cellars_query(account) do
+    query =
+      from(
+        c in Cellar,
+        group_by: c.id,
+        left_join: l in assoc(c, :lots),
+        select: %{c | lots_count: count(l.id)},
+        order_by: c.identifier
+      )
 
-  ## Examples
+    prefixed(query, account)
+  end
 
-      iex> cellar_vessel_count(%Account{}, cellar)
-      5
+  defp list_vessels_query(account, cellar) do
+    query =
+      from(
+        v in Vessel,
+        order_by: v.identifier,
+        where: [cellar_id: ^cellar.id]
+      )
 
-  """
-  def cellar_vessel_count(%Account{} = account, %Cellar{} = cellar) do
-    query = from(v in Vessel, where: v.cellar_id == ^cellar.id)
-
-    query
-    |> prefixed(account)
-    |> Repo.aggregate(:count, :id)
+    prefixed(query, account)
   end
 end

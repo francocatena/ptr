@@ -68,18 +68,39 @@ defmodule Ptr.Support.FixtureHelper do
   def fixture(:lot, attributes, _opts) do
     account = fixture(:seed_account)
     session = %Session{account: account}
+    {:ok, cellar, _} = fixture(:cellar, %{identifier: "lot fixture cellar"})
     {:ok, owner, _} = fixture(:owner)
     {:ok, variety, _} = fixture(:variety)
 
     attributes =
       attributes
       |> Enum.into(@lot_attrs)
+      |> Map.put(:cellar_id, cellar.id)
       |> Map.put(:owner_id, owner.id)
       |> Map.put(:variety_id, variety.id)
 
     {:ok, lot} = Lots.create_lot(session, attributes)
 
-    {:ok, %{lot | owner: owner, variety: variety}, account}
+    {:ok, %{lot | cellar: cellar, owner: owner, variety: variety}, account}
+  end
+
+  @part_attrs %{amount: "100.00"}
+
+  def fixture(:part, attributes, _opts) do
+    account = fixture(:seed_account)
+    session = %Session{account: account}
+    {:ok, lot, _} = fixture(:lot)
+    {:ok, vessel, _cellar, _} = fixture(:vessel)
+
+    attributes =
+      attributes
+      |> Enum.into(@part_attrs)
+      |> Map.put(:lot_id, lot.id)
+      |> Map.put(:vessel_id, vessel.id)
+
+    {:ok, part} = Lots.create_part(session, attributes)
+
+    {:ok, %{part | lot: lot, vessel: vessel}, account}
   end
 
   @variety_attrs %{identifier: "some identifier", name: "some name", clone: "some clone"}

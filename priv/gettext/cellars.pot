@@ -16,7 +16,7 @@ msgstr ""
 
 #: lib/ptr_web/templates/cellar/edit.html.eex:22
 #: lib/ptr_web/templates/cellar/new.html.eex:22
-#: lib/ptr_web/templates/cellar/show.html.eex:33
+#: lib/ptr_web/templates/cellar/show.html.eex:34
 msgid "Back"
 msgstr ""
 
@@ -43,7 +43,7 @@ msgstr ""
 msgid "Cellars"
 msgstr ""
 
-#: lib/ptr_web/views/cellar_view.ex:55
+#: lib/ptr_web/views/cellar_view.ex:58
 msgid "Create"
 msgstr ""
 
@@ -51,7 +51,7 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: lib/ptr_web/templates/cellar/show.html.eex:24
+#: lib/ptr_web/templates/cellar/show.html.eex:25
 #: lib/ptr_web/views/cellar_view.ex:20
 msgid "Edit"
 msgstr ""
@@ -87,11 +87,10 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-#: lib/ptr_web/views/cellar_view.ex:56
+#: lib/ptr_web/views/cellar_view.ex:59
 msgid "Update"
 msgstr ""
 
-#: lib/ptr_web/templates/cellar/_empty_vessels.html.eex:7
 #: lib/ptr_web/templates/cellar/empty.html.eex:9
 msgid "Let's create one..."
 msgstr ""
@@ -120,3 +119,7 @@ msgid "Has one vessel"
 msgid_plural "Has %{count} vessels"
 msgstr[0] ""
 msgstr[1] ""
+
+#: lib/ptr_web/templates/cellar/_empty_vessels.html.eex:7
+msgid "Let's create one vessel..."
+msgstr ""

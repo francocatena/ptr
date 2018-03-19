@@ -17,7 +17,8 @@
         </ul>
 
         <hr>
-        <%= render_vessels(@conn, @account, @cellar) %>
+
+        <%= render_vessels(@conn, @cellar) %>
       </div>
 
       <footer class="card-footer">

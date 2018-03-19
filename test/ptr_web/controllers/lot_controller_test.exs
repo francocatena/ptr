@@ -4,7 +4,13 @@ defmodule PtrWeb.LotControllerTest do
 
   import Ptr.Support.FixtureHelper
 
-  @create_attrs %{identifier: "some identifier", notes: "some notes", owner_id: 1, variety_id: 1}
+  @create_attrs %{
+    identifier: "some identifier",
+    notes: "some notes",
+    cellar_id: 1,
+    owner_id: 1,
+    variety_id: 1
+  }
   @update_attrs %{identifier: "some updated identifier", notes: "some updated notes"}
   @invalid_attrs %{identifier: nil, notes: nil}
 
@@ -60,11 +66,16 @@ defmodule PtrWeb.LotControllerTest do
   end
 
   describe "create lot" do
-    setup [:create_owner_and_variety]
+    setup [:create_cellar_owner_and_variety]
 
     @tag login_as: "test@user.com"
-    test "redirects to show when data is valid", %{conn: conn, owner: owner, variety: variety} do
-      attrs = %{@create_attrs | owner_id: owner.id, variety_id: variety.id}
+    test "redirects to show when data is valid", %{
+      conn: conn,
+      cellar: cellar,
+      owner: owner,
+      variety: variety
+    } do
+      attrs = %{@create_attrs | cellar_id: cellar.id, owner_id: owner.id, variety_id: variety.id}
       conn = post(conn, lot_path(conn, :create), lot: attrs)
 
       assert %{id: id} = redirected_params(conn)
@@ -119,11 +130,12 @@ defmodule PtrWeb.LotControllerTest do
     end
   end
 
-  defp create_owner_and_variety(_) do
+  defp create_cellar_owner_and_variety(_) do
+    {:ok, cellar, _} = fixture(:cellar, %{identifier: "lot cellar"})
     {:ok, owner, _} = fixture(:owner)
     {:ok, variety, _} = fixture(:variety)
 
-    {:ok, owner: owner, variety: variety}
+    {:ok, cellar: cellar, owner: owner, variety: variety}
   end
 
   defp create_lot(_) do

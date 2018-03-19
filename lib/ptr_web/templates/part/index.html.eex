@@ -1,0 +1,50 @@
+<section class="section is-primary">
+  <div class="container">
+    <div class="card">
+      <header class="card-header">
+        <h2 class="card-header-title">
+          <%= dgettext("parts", "Parts") %>
+        </h2>
+      </header>
+
+      <div class="card-content">
+        <table class="table is-striped is-hoverable is-narrow is-fullwidth">
+          <thead>
+            <tr>
+              <th><%= dgettext("parts", "Vessel") %></th>
+              <th><%= dgettext("parts", "Amount") %></th>
+
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= for part <- @parts do %>
+              <tr class="has-cursor-pointer" data-link-like data-target="[data-main-link]">
+                <td><%= part.vessel.identifier %></td>
+                <td><%= Decimal.round(part.amount) %> <em><%= part.amount_unit %></em></td>
+
+                <td>
+                  <div class="buttons has-addons is-right">
+                    <%= link_to_show   @conn, @lot, part %>
+                    <%= link_to_edit   @conn, @lot, part %>
+                    <%= link_to_delete @conn, @lot, part %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <%= pagination_links @conn, @page, [@lot], path: &lot_part_path/4, view_style: :bulma %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer is-primary">
+  <div class="container">
+    <p>
+      <span><%= link dgettext("parts", "New part"), to: lot_part_path(@conn, :new, @lot) %></span>
+    </p>
+  </div>
+</footer>

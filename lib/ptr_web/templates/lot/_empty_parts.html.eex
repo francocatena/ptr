@@ -1,0 +1,14 @@
+<article class="message is-info">
+  <div class="message-body">
+    <h4 class="title is-4">
+      <%= dgettext("lots", "Looks like you have no parts") %>
+    </h4>
+    <h6 class="subtitle is-6">
+      <%= dgettext("lots", "Let's create one part...") %>
+    </h6>
+
+    <p>
+      <%= link dgettext("lots", "New part"), to: lot_part_path(@conn, :new, @lot), class: "button" %>
+    </p>
+  </div>
+</article>

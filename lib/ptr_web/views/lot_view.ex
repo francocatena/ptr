@@ -2,6 +2,8 @@ defmodule PtrWeb.LotView do
   use PtrWeb, :view
   use Scrivener.HTML
 
+  alias Ptr.Lots.Lot
+
   def link_to_show(conn, lot) do
     icon_link(
       "eye",
@@ -43,6 +45,12 @@ defmodule PtrWeb.LotView do
     |> submit(class: "button is-medium is-white is-paddingless card-footer-item")
   end
 
+  def cellars(account) do
+    account
+    |> Ptr.Cellars.list_cellars()
+    |> Enum.map(&[key: &1.name, value: &1.id])
+  end
+
   def owners(account) do
     account
     |> Ptr.Ownerships.list_owners()
@@ -52,7 +60,15 @@ defmodule PtrWeb.LotView do
   def varieties(account) do
     account
     |> Ptr.Options.list_varieties()
-    |> Enum.map(&[key: &1.name, value: &1.id])
+    |> Enum.map(&[key: "#{&1.name} (#{&1.clone})", value: &1.id])
+  end
+
+  def render_parts(conn, %Lot{parts_count: 0} = lot) do
+    render("_empty_parts.html", conn: conn, lot: lot)
+  end
+
+  def render_parts(conn, lot) do
+    render("_parts.html", conn: conn, lot: lot)
   end
 
   defp submit_label(nil), do: dgettext("lots", "Create")

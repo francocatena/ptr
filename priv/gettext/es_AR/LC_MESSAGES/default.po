@@ -23,5 +23,6 @@ msgid "Welcome!"
 msgstr "¡Bienvenido!"
 
 #: lib/ptr_web/templates/cellar/_vessels.html.eex:7
+#: lib/ptr_web/templates/lot/_parts.html.eex:7
 msgid "or"
 msgstr "o"

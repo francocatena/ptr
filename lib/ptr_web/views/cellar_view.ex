@@ -2,7 +2,7 @@ defmodule PtrWeb.CellarView do
   use PtrWeb, :view
   use Scrivener.HTML
 
-  import Ptr.Cellars, only: [cellar_vessel_count: 2]
+  alias Ptr.Cellars.Cellar
 
   def link_to_show(conn, cellar) do
     icon_link(
@@ -23,7 +23,7 @@ defmodule PtrWeb.CellarView do
     )
   end
 
-  def link_to_delete(conn, cellar) do
+  def link_to_delete(conn, %Cellar{lots_count: 0} = cellar) do
     icon_link(
       "trash",
       title: dgettext("cellars", "Delete"),
@@ -33,6 +33,8 @@ defmodule PtrWeb.CellarView do
       class: "button is-small is-danger is-outlined"
     )
   end
+
+  def link_to_delete(_conn, _cellar), do: nil
 
   def lock_version_input(_, nil), do: nil
 
@@ -45,11 +47,12 @@ defmodule PtrWeb.CellarView do
     |> submit(class: "button is-medium is-white is-paddingless card-footer-item")
   end
 
-  def render_vessels(conn, account, cellar) do
-    case cellar_vessel_count(account, cellar) do
-      0 -> render("_empty_vessels.html", conn: conn, cellar: cellar)
-      count -> render("_vessels.html", conn: conn, cellar: cellar, count: count)
-    end
+  def render_vessels(conn, %Cellar{vessels_count: 0} = cellar) do
+    render("_empty_vessels.html", conn: conn, cellar: cellar)
+  end
+
+  def render_vessels(conn, cellar) do
+    render("_vessels.html", conn: conn, cellar: cellar)
   end
 
   defp submit_label(nil), do: dgettext("cellars", "Create")

@@ -6,6 +6,7 @@ defmodule PtrWeb.CellarViewTest do
   alias Ptr.Cellars.Cellar
 
   import Phoenix.View
+  import Phoenix.HTML, only: [safe_to_string: 1]
 
   test "renders empty.html", %{conn: conn} do
     content = render_to_string(CellarView, "empty.html", conn: conn)
@@ -45,7 +46,7 @@ defmodule PtrWeb.CellarViewTest do
     assert String.contains?(content, cellar.identifier)
   end
 
-  test "renders show.html", %{conn: conn} do
+  test "renders show.html with no vessels", %{conn: conn} do
     cellar = %Cellar{id: "1", identifier: "gallo", name: "Gallo"}
 
     content =
@@ -58,6 +59,44 @@ defmodule PtrWeb.CellarViewTest do
       )
 
     assert String.contains?(content, cellar.identifier)
+  end
+
+  test "renders show.html with vessels", %{conn: conn} do
+    cellar = %Cellar{id: "1", identifier: "gallo", name: "Gallo", vessels_count: 3}
+
+    content =
+      render_to_string(
+        CellarView,
+        "show.html",
+        conn: conn,
+        cellar: cellar,
+        account: test_account()
+      )
+
+    assert String.contains?(content, cellar.identifier)
+    assert String.contains?(content, "#{cellar.vessels_count}")
+  end
+
+  test "link to delete cellar is empty when has lots", %{conn: conn} do
+    cellar = %Cellar{id: "1", lots_count: 3}
+
+    content =
+      conn
+      |> Plug.Conn.assign(:current_session, %{cellar: cellar})
+      |> CellarView.link_to_delete(cellar)
+
+    assert content == nil
+  end
+
+  test "link to delete cellar is not empty when has no lots", %{conn: conn} do
+    cellar = %Cellar{id: "1", lots_count: 0}
+
+    content =
+      conn
+      |> CellarView.link_to_delete(cellar)
+      |> safe_to_string
+
+    refute content == nil
   end
 
   defp test_account do

@@ -11,6 +11,12 @@ defmodule Ptr.CellarsTest do
     @update_attrs %{identifier: "some updated identifier", name: "some updated name"}
     @invalid_attrs %{identifier: nil, name: nil}
 
+    test "list_cellars/1 returns all cellars" do
+      {:ok, cellar, account} = fixture(:cellar)
+
+      assert Cellars.list_cellars(account) == [cellar]
+    end
+
     test "list_cellars/2 returns all cellars" do
       {:ok, cellar, account} = fixture(:cellar)
 
@@ -96,6 +102,12 @@ defmodule Ptr.CellarsTest do
       notes: nil
     }
 
+    test "list_vessels/2 returns all vessels for a given cellar" do
+      {:ok, vessel, cellar, account} = fixture(:vessel)
+
+      assert Cellars.list_vessels(account, cellar) == [vessel]
+    end
+
     test "list_vessels/3 returns all vessels for a given cellar" do
       {:ok, vessel, cellar, account} = fixture(:vessel)
 
@@ -162,18 +174,6 @@ defmodule Ptr.CellarsTest do
       {:ok, vessel, _cellar, account} = fixture(:vessel)
 
       assert %Ecto.Changeset{} = Cellars.change_vessel(account, vessel)
-    end
-
-    test "cellar_vessel_count/2 returns the numbers of vessels for the given cellar" do
-      {:ok, _vessel, cellar, account} = fixture(:vessel)
-
-      assert 1 == Cellars.cellar_vessel_count(account, cellar)
-    end
-
-    test "cellar_vessel_count/2 returns zero when no vessels" do
-      {:ok, cellar, account} = fixture(:cellar)
-
-      assert 0 == Cellars.cellar_vessel_count(account, cellar)
     end
   end
 end

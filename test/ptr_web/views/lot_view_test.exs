@@ -2,6 +2,7 @@ defmodule PtrWeb.LotViewTest do
   use PtrWeb.ConnCase, async: true
 
   alias PtrWeb.LotView
+  alias Ptr.Cellars.Cellar
   alias Ptr.Lots
   alias Ptr.Lots.Lot
   alias Ptr.Options.Variety
@@ -22,12 +23,14 @@ defmodule PtrWeb.LotViewTest do
       %Lot{
         id: "1",
         identifier: "one",
+        cellar: %Cellar{id: "1", identifier: "gallo", name: "Gallo"},
         owner: %Owner{id: "1", name: "Google"},
         variety: %Variety{id: "1", name: "Malbec"}
       },
       %Lot{
         id: "2",
         identifier: "two",
+        cellar: %Cellar{id: "1", identifier: "gallo", name: "Gallo"},
         owner: %Owner{id: "1", name: "Google"},
         variety: %Variety{id: "1", name: "Malbec"}
       }
@@ -54,6 +57,7 @@ defmodule PtrWeb.LotViewTest do
     lot = %Lot{
       id: "1",
       identifier: "one",
+      cellar: %Cellar{id: "1", identifier: "gallo", name: "Gallo"},
       owner: %Owner{id: "1", name: "Google"},
       variety: %Variety{id: "1", name: "Malbec"}
     }
@@ -78,6 +82,7 @@ defmodule PtrWeb.LotViewTest do
     lot = %Lot{
       id: "1",
       identifier: "one",
+      cellar: %Cellar{id: "1", identifier: "gallo", name: "Gallo"},
       owner: %Owner{id: "1", name: "Google"},
       variety: %Variety{id: "1", name: "Malbec"}
     }

@@ -7,6 +7,7 @@
     <% end %>
 
     <%= input f, :identifier, dgettext("lots", "Identifier"), input_html: [autofocus: true] %>
+    <%= input f, :cellar_id, dgettext("lots", "Cellar"), collection: cellars(@account), input_html: [prompt: dgettext("lots", "Choose cellar")] %>
     <%= input f, :owner_id,   dgettext("lots", "Owner"), collection: owners(@account), input_html: [prompt: dgettext("lots", "Choose owner")] %>
     <%= input f, :variety_id, dgettext("lots", "Variety"), collection: varieties(@account), input_html: [prompt: dgettext("lots", "Choose variety")] %>
     <%= input f, :notes,      dgettext("lots", "Notes"), using: :textarea %>

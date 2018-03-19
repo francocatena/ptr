@@ -11,33 +11,33 @@ msgstr ""
 "Language: en\n"
 "Plural-Forms: nplurals=2\n"
 
-#: lib/ptr_web/views/lot_view.ex:30
+#: lib/ptr_web/views/lot_view.ex:32
 msgid "Are you sure?"
 msgstr ""
 
 #: lib/ptr_web/templates/lot/edit.html.eex:22
 #: lib/ptr_web/templates/lot/new.html.eex:22
-#: lib/ptr_web/templates/lot/show.html.eex:46
+#: lib/ptr_web/templates/lot/show.html.eex:54
 msgid "Back"
 msgstr ""
 
-#: lib/ptr_web/templates/lot/_form.html.eex:10
+#: lib/ptr_web/templates/lot/_form.html.eex:11
 msgid "Choose owner"
 msgstr ""
 
-#: lib/ptr_web/templates/lot/_form.html.eex:11
+#: lib/ptr_web/templates/lot/_form.html.eex:12
 msgid "Choose variety"
 msgstr ""
 
-#: lib/ptr_web/views/lot_view.ex:58
+#: lib/ptr_web/views/lot_view.ex:74
 msgid "Create"
 msgstr ""
 
-#: lib/ptr_web/views/lot_view.ex:27
+#: lib/ptr_web/views/lot_view.ex:29
 msgid "Delete"
 msgstr ""
 
-#: lib/ptr_web/templates/lot/show.html.eex:37 lib/ptr_web/views/lot_view.ex:18
+#: lib/ptr_web/templates/lot/show.html.eex:45 lib/ptr_web/views/lot_view.ex:20
 msgid "Edit"
 msgstr ""
 
@@ -77,6 +77,7 @@ msgid "Lot updated successfully."
 msgstr ""
 
 #: lib/ptr_web/controllers/lot_controller.ex:8
+#: lib/ptr_web/controllers/part_controller.ex:8
 #: lib/ptr_web/templates/layout/_menu.html.eex:26
 #: lib/ptr_web/templates/lot/index.html.eex:6
 msgid "Lots"
@@ -84,13 +85,13 @@ msgstr ""
 
 #: lib/ptr_web/controllers/lot_controller.ex:87
 #: lib/ptr_web/templates/lot/empty.html.eex:13
-#: lib/ptr_web/templates/lot/index.html.eex:49
+#: lib/ptr_web/templates/lot/index.html.eex:51
 #: lib/ptr_web/templates/lot/new.html.eex:8
 msgid "New lot"
 msgstr ""
 
-#: lib/ptr_web/templates/lot/_form.html.eex:12
-#: lib/ptr_web/templates/lot/show.html.eex:30
+#: lib/ptr_web/templates/lot/_form.html.eex:13
+#: lib/ptr_web/templates/lot/show.html.eex:34
 msgid "Notes"
 msgstr ""
 
@@ -98,22 +99,57 @@ msgstr ""
 msgid "Oops, something went wrong! Please check the errors below."
 msgstr ""
 
-#: lib/ptr_web/templates/lot/_form.html.eex:10
-#: lib/ptr_web/templates/lot/index.html.eex:16
-#: lib/ptr_web/templates/lot/show.html.eex:21
+#: lib/ptr_web/templates/lot/_form.html.eex:11
+#: lib/ptr_web/templates/lot/index.html.eex:17
+#: lib/ptr_web/templates/lot/show.html.eex:25
 msgid "Owner"
 msgstr ""
 
-#: lib/ptr_web/views/lot_view.ex:8
+#: lib/ptr_web/views/lot_view.ex:10
 msgid "Show"
 msgstr ""
 
-#: lib/ptr_web/views/lot_view.ex:59
+#: lib/ptr_web/views/lot_view.ex:75
 msgid "Update"
 msgstr ""
 
-#: lib/ptr_web/templates/lot/_form.html.eex:11
+#: lib/ptr_web/templates/lot/_form.html.eex:12
+#: lib/ptr_web/templates/lot/index.html.eex:16
+#: lib/ptr_web/templates/lot/show.html.eex:21
+msgid "Variety"
+msgstr ""
+
+#: lib/ptr_web/templates/lot/_form.html.eex:10
 #: lib/ptr_web/templates/lot/index.html.eex:15
 #: lib/ptr_web/templates/lot/show.html.eex:17
-msgid "Variety"
+msgid "Cellar"
+msgstr ""
+
+#: lib/ptr_web/templates/lot/_form.html.eex:10
+msgid "Choose cellar"
+msgstr ""
+
+#: lib/ptr_web/templates/lot/_parts.html.eex:2
+msgid "Has one part"
+msgid_plural "Has %{count} parts"
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/ptr_web/templates/lot/_parts.html.eex:8
+msgid "Show part"
+msgid_plural "Show %{count} parts"
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/ptr_web/templates/lot/_empty_parts.html.eex:7
+msgid "Let's create one part..."
+msgstr ""
+
+#: lib/ptr_web/templates/lot/_empty_parts.html.eex:4
+msgid "Looks like you have no parts"
+msgstr ""
+
+#: lib/ptr_web/templates/lot/_empty_parts.html.eex:11
+#: lib/ptr_web/templates/lot/_parts.html.eex:6
+msgid "New part"
 msgstr ""

@@ -1,9 +1,9 @@
 <h4 class="title is-4">
-  <%= dngettext("cellars", "Has one vessel", "Has %{count} vessels", @count) %>
+  <%= dngettext("cellars", "Has one vessel", "Has %{count} vessels", @cellar.vessels_count) %>
 </h4>
 
 <p>
   <%= link dgettext("cellars", "New vessel"), to: cellar_vessel_path(@conn, :new, @cellar), class: "button is-small" %>
   <%= gettext("or") %>
-  <%= link dngettext("cellars", "Show vessel", "Show %{count} vessels", @count), to: cellar_vessel_path(@conn, :index, @cellar) %>
+  <%= link dngettext("cellars", "Show vessel", "Show %{count} vessels", @cellar.vessels_count), to: cellar_vessel_path(@conn, :index, @cellar) %>
 </p>

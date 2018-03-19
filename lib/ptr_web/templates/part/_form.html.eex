@@ -1,0 +1,20 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <div class="card-content">
+    <%= if @changeset.action do %>
+      <div class="notification is-danger">
+        <p><%= dgettext("parts", "Oops, something went wrong! Please check the errors below.") %></p>
+      </div>
+    <% end %>
+
+    <%= input f, :vessel_id, dgettext("parts", "Vessel"), collection: vessels(@account, @lot.cellar), input_html: [
+      autofocus: true, prompt: dgettext("parts", "Choose vessel")
+    ] %>
+    <%= input f, :amount, dgettext("parts", "Amount"), addons: [right: "L"] %>
+
+    <%= lock_version_input f, assigns[:part] %>
+  </div>
+
+  <footer class="card-footer">
+    <%= submit_button assigns[:part] %>
+  </footer>
+<% end %>

@@ -11,33 +11,33 @@ msgstr ""
 "Language: es_AR\n"
 "Plural-Forms: nplurals=2\n"
 
-#: lib/ptr_web/views/lot_view.ex:30
+#: lib/ptr_web/views/lot_view.ex:32
 msgid "Are you sure?"
 msgstr "¿Está seguro de borrar este lote?"
 
 #: lib/ptr_web/templates/lot/edit.html.eex:22
 #: lib/ptr_web/templates/lot/new.html.eex:22
-#: lib/ptr_web/templates/lot/show.html.eex:46
+#: lib/ptr_web/templates/lot/show.html.eex:54
 msgid "Back"
 msgstr "Listado de lotes"
 
-#: lib/ptr_web/templates/lot/_form.html.eex:10
+#: lib/ptr_web/templates/lot/_form.html.eex:11
 msgid "Choose owner"
 msgstr "Seleccione un propietario"
 
-#: lib/ptr_web/templates/lot/_form.html.eex:11
+#: lib/ptr_web/templates/lot/_form.html.eex:12
 msgid "Choose variety"
 msgstr "Seleccione un varietal"
 
-#: lib/ptr_web/views/lot_view.ex:58
+#: lib/ptr_web/views/lot_view.ex:74
 msgid "Create"
 msgstr "Crear nuevo lote"
 
-#: lib/ptr_web/views/lot_view.ex:27
+#: lib/ptr_web/views/lot_view.ex:29
 msgid "Delete"
 msgstr "Borrar lote"
 
-#: lib/ptr_web/templates/lot/show.html.eex:37 lib/ptr_web/views/lot_view.ex:18
+#: lib/ptr_web/templates/lot/show.html.eex:45 lib/ptr_web/views/lot_view.ex:20
 msgid "Edit"
 msgstr "Editar lote"
 
@@ -77,6 +77,7 @@ msgid "Lot updated successfully."
 msgstr "Lote actualizado correctamente."
 
 #: lib/ptr_web/controllers/lot_controller.ex:8
+#: lib/ptr_web/controllers/part_controller.ex:8
 #: lib/ptr_web/templates/layout/_menu.html.eex:26
 #: lib/ptr_web/templates/lot/index.html.eex:6
 msgid "Lots"
@@ -84,13 +85,13 @@ msgstr "Lotes"
 
 #: lib/ptr_web/controllers/lot_controller.ex:87
 #: lib/ptr_web/templates/lot/empty.html.eex:13
-#: lib/ptr_web/templates/lot/index.html.eex:49
+#: lib/ptr_web/templates/lot/index.html.eex:51
 #: lib/ptr_web/templates/lot/new.html.eex:8
 msgid "New lot"
 msgstr "Nuevo lote"
 
-#: lib/ptr_web/templates/lot/_form.html.eex:12
-#: lib/ptr_web/templates/lot/show.html.eex:30
+#: lib/ptr_web/templates/lot/_form.html.eex:13
+#: lib/ptr_web/templates/lot/show.html.eex:34
 msgid "Notes"
 msgstr "Notas"
 
@@ -98,22 +99,57 @@ msgstr "Notas"
 msgid "Oops, something went wrong! Please check the errors below."
 msgstr "Oops, algo salió mal, por favor verifique los errores debajo."
 
-#: lib/ptr_web/templates/lot/_form.html.eex:10
-#: lib/ptr_web/templates/lot/index.html.eex:16
-#: lib/ptr_web/templates/lot/show.html.eex:21
+#: lib/ptr_web/templates/lot/_form.html.eex:11
+#: lib/ptr_web/templates/lot/index.html.eex:17
+#: lib/ptr_web/templates/lot/show.html.eex:25
 msgid "Owner"
 msgstr "Propietario"
 
-#: lib/ptr_web/views/lot_view.ex:8
+#: lib/ptr_web/views/lot_view.ex:10
 msgid "Show"
 msgstr "Ver lote"
 
-#: lib/ptr_web/views/lot_view.ex:59
+#: lib/ptr_web/views/lot_view.ex:75
 msgid "Update"
 msgstr "Actualizar lote"
 
-#: lib/ptr_web/templates/lot/_form.html.eex:11
-#: lib/ptr_web/templates/lot/index.html.eex:15
-#: lib/ptr_web/templates/lot/show.html.eex:17
+#: lib/ptr_web/templates/lot/_form.html.eex:12
+#: lib/ptr_web/templates/lot/index.html.eex:16
+#: lib/ptr_web/templates/lot/show.html.eex:21
 msgid "Variety"
 msgstr "Varietal"
+
+#: lib/ptr_web/templates/lot/_form.html.eex:10
+#: lib/ptr_web/templates/lot/index.html.eex:15
+#: lib/ptr_web/templates/lot/show.html.eex:17
+msgid "Cellar"
+msgstr "Bodega"
+
+#: lib/ptr_web/templates/lot/_form.html.eex:10
+msgid "Choose cellar"
+msgstr "Seleccione una bodega"
+
+#: lib/ptr_web/templates/lot/_parts.html.eex:2
+msgid "Has one part"
+msgid_plural "Has %{count} parts"
+msgstr[0] "Tiene una partida"
+msgstr[1] "Tiene %{count} partidas"
+
+#: lib/ptr_web/templates/lot/_parts.html.eex:8
+msgid "Show part"
+msgid_plural "Show %{count} parts"
+msgstr[0] "Ver partida"
+msgstr[1] "Ver partidas"
+
+#: lib/ptr_web/templates/lot/_empty_parts.html.eex:7
+msgid "Let's create one part..."
+msgstr "Vamos, agrega una..."
+
+#: lib/ptr_web/templates/lot/_empty_parts.html.eex:4
+msgid "Looks like you have no parts"
+msgstr "Parece que no hay ninguna partida en este lote."
+
+#: lib/ptr_web/templates/lot/_empty_parts.html.eex:11
+#: lib/ptr_web/templates/lot/_parts.html.eex:6
+msgid "New part"
+msgstr "Nueva partida"

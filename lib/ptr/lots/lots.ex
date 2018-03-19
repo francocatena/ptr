@@ -42,7 +42,14 @@ defmodule Ptr.Lots do
 
   """
   def get_lot!(account, id) do
-    lot_with_associations_query()
+    query =
+      from(
+        l in lot_with_associations_query(),
+        left_join: p in assoc(l, :parts),
+        select: %{l | parts_count: count(p.id)}
+      )
+
+    query
     |> prefixed(account)
     |> Repo.get!(id)
   end
@@ -113,12 +120,128 @@ defmodule Ptr.Lots do
     Lot.changeset(account, lot, %{})
   end
 
-  defp lot_with_associations_query do
+  defp lot_with_associations_query() do
     from(
       l in Lot,
+      join: c in assoc(l, :cellar),
       join: o in assoc(l, :owner),
       join: v in assoc(l, :variety),
-      preload: [owner: o, variety: v]
+      group_by: [l.id, c.id, o.id, v.id],
+      preload: [cellar: c, owner: o, variety: v]
+    )
+  end
+
+  alias Ptr.Lots.Part
+
+  @doc """
+  Returns the list of parts.
+
+  ## Examples
+
+      iex> list_parts(%Account{}, %Lot{}, %{})
+      [%Part{}, ...]
+
+  """
+  def list_parts(account, lot, params) do
+    part_with_associations_query()
+    |> prefixed(account)
+    |> where(lot_id: ^lot.id)
+    |> Repo.paginate(params)
+  end
+
+  @doc """
+  Gets a single part.
+
+  Raises `Ecto.NoResultsError` if the Part does not exist.
+
+  ## Examples
+
+      iex> get_part!(%Account{}, %Lot{}, 123)
+      %Part{}
+
+      iex> get_part!(%Account{}, %Lot{}, 456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_part!(account, lot, id) do
+    part_with_associations_query()
+    |> prefixed(account)
+    |> where(lot_id: ^lot.id)
+    |> Repo.get!(id)
+  end
+
+  @doc """
+  Creates a part.
+
+  ## Examples
+
+      iex> create_part(%Session{}, %{field: value})
+      {:ok, %Part{}}
+
+      iex> create_part(%Session{}, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_part(%Session{account: account, user: user}, attrs) do
+    account
+    |> Part.changeset(%Part{}, attrs)
+    |> Map.put(:repo_opts, prefix: prefix(account))
+    |> Trail.insert(prefix: prefix(account), originator: user)
+  end
+
+  @doc """
+  Updates a part.
+
+  ## Examples
+
+      iex> update_part(%Session{}, part, %{field: new_value})
+      {:ok, %Part{}}
+
+      iex> update_part(%Session{}, part, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_part(%Session{account: account, user: user}, %Part{} = part, attrs) do
+    account
+    |> Part.changeset(part, attrs)
+    |> Trail.update(prefix: prefix(account), originator: user)
+  end
+
+  @doc """
+  Deletes a Part.
+
+  ## Examples
+
+      iex> delete_part(%Session{}, part)
+      {:ok, %Part{}}
+
+      iex> delete_part(%Session{}, part)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_part(%Session{account: account, user: user}, %Part{} = part) do
+    Trail.delete(part, prefix: prefix(account), originator: user)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking part changes.
+
+  ## Examples
+
+      iex> change_part(%Account{}, part)
+      %Ecto.Changeset{source: %Part{}}
+
+  """
+  def change_part(%Account{} = account, %Part{} = part) do
+    Part.changeset(account, part, %{})
+  end
+
+  defp part_with_associations_query do
+    from(
+      p in Part,
+      join: l in assoc(p, :lot),
+      join: v in assoc(p, :vessel),
+      preload: [lot: l, vessel: v]
     )
   end
 end

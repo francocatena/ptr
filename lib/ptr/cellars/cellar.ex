@@ -6,13 +6,18 @@ defmodule Ptr.Cellars.Cellar do
 
   alias Ptr.Cellars.{Cellar, Vessel}
   alias Ptr.Accounts.Account
+  alias Ptr.Lots.Lot
 
   schema "cellars" do
     field(:identifier, :string)
     field(:name, :string)
     field(:lock_version, :integer, default: 1)
 
+    field(:vessels_count, :integer, virtual: true, default: 0)
+    field(:lots_count, :integer, virtual: true, default: 0)
+
     has_many(:vessels, Vessel)
+    has_many(:lots, Lot)
 
     timestamps()
   end

@@ -14,6 +14,10 @@
 
         <ul>
           <li>
+            <strong><%= dgettext("lots", "Cellar") %></strong>:
+            <%= link @lot.cellar.name, to: cellar_path(@conn, :show, @lot.cellar) %>
+          </li>
+          <li>
             <strong><%= dgettext("lots", "Variety") %></strong>:
             <%= link @lot.variety.name, to: variety_path(@conn, :show, @lot.variety) %>
           </li>
@@ -31,6 +35,10 @@
             <%= text_to_html(@lot.notes || "") %>
           </div>
         <% end %>
+
+        <hr>
+
+        <%= render_parts(@conn, @lot) %>
       </div>
 
       <footer class="card-footer">

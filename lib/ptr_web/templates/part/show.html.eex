@@ -1,0 +1,40 @@
+<section class="section is-primary">
+  <div class="container">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          <%= dgettext("parts", "Part") %>
+        </p>
+      </header>
+
+      <div class="card-content">
+        <ul>
+          <li>
+            <strong><%= dgettext("parts", "Lot") %></strong>:
+            <%= link @part.lot.identifier, to: lot_path(@conn, :show, @part.lot) %>
+          </li>
+          <li>
+            <strong><%= dgettext("parts", "Vessel") %></strong>:
+            <%= link @part.vessel.identifier, to: cellar_vessel_path(@conn, :show, @part.vessel.cellar_id, @part.vessel) %>
+          </li>
+          <li>
+            <strong><%= dgettext("parts", "Amount") %></strong>:
+            <%= Decimal.round(@part.amount) %> <em><%= @part.amount_unit %></em>
+          </li>
+        </ul>
+      </div>
+
+      <footer class="card-footer">
+        <%= link dgettext("parts", "Edit"), to: lot_part_path(@conn, :edit, @lot, @part), class: "card-footer-item" %>
+      </footer>
+    </div>
+  </div>
+</section>
+
+<footer class="footer is-primary">
+  <div class="container">
+    <p>
+      <span><%= link dgettext("parts", "Back"), to: lot_part_path(@conn, :index, @lot) %></span>
+    </p>
+  </div>
+</footer>

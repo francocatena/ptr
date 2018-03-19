@@ -4,7 +4,13 @@ defmodule Ptr.Lots.LotTest do
   describe "lot" do
     alias Ptr.Lots.Lot
 
-    @valid_attrs %{identifier: "some identifier", notes: "some notes", owner_id: 1, variety_id: 1}
+    @valid_attrs %{
+      identifier: "some identifier",
+      notes: "some notes",
+      cellar_id: 1,
+      owner_id: 1,
+      variety_id: 1
+    }
     @invalid_attrs %{identifier: nil, notes: nil}
 
     test "changeset with valid attributes" do

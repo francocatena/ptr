@@ -54,6 +54,8 @@ defmodule PtrWeb.Router do
 
     # Lots
 
-    resources("/lots", LotController)
+    resources("/lots", LotController) do
+      resources("/parts", PartController)
+    end
   end
 end
