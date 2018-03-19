@@ -1,11 +1,11 @@
 <article class="message is-info">
   <div class="message-body">
-    <p class="title is-4">
+    <h4 class="title is-4">
       <%= dgettext("cellars", "Looks like you have no vessels") %>
-    </p>
-    <p class="subtitle is-6">
-      <%= dgettext("cellars", "Let's create one...") %>
-    </p>
+    </h4>
+    <h6 class="subtitle is-6">
+      <%= dgettext("cellars", "Let's create one vessel...") %>
+    </h6>
 
     <p>
       <%= link dgettext("cellars", "New vessel"), to: cellar_vessel_path(@conn, :new, @cellar), class: "button" %>
