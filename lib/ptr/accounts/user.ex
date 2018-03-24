@@ -83,7 +83,8 @@ defmodule Ptr.Accounts.User do
   defp put_password_hash(changeset), do: changeset
 
   defp random_token(length) do
-    :crypto.strong_rand_bytes(length)
+    length
+    |> :crypto.strong_rand_bytes()
     |> Base.url_encode64()
     |> binary_part(0, length)
   end

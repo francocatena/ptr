@@ -4,8 +4,8 @@ defmodule PtrWeb.PartControllerTest do
 
   import Ptr.Support.FixtureHelper
 
-  @create_attrs %{amount: "120.5", amount_unit: "l", lot_id: 1, vessel_id: 1}
-  @update_attrs %{amount: "456.7", amount_unit: "l"}
+  @create_attrs %{amount: "120.5", amount_unit: "L", lot_id: 1, vessel_id: 1}
+  @update_attrs %{amount: "111.4", amount_unit: "L"}
   @invalid_attrs %{amount: nil, amount_unit: nil}
 
   describe "unauthorized access" do

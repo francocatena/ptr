@@ -241,7 +241,8 @@ defmodule Ptr.Lots do
       p in Part,
       join: l in assoc(p, :lot),
       join: v in assoc(p, :vessel),
-      preload: [lot: l, vessel: v]
+      preload: [lot: l, vessel: v],
+      order_by: [v.identifier, p.id]
     )
   end
 end

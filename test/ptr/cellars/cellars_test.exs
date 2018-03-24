@@ -114,7 +114,13 @@ defmodule Ptr.CellarsTest do
       assert Cellars.list_vessels(account, cellar, %{}).entries == [vessel]
     end
 
-    test "get_vessel!/3 returns the vessel with given id" do
+    test "get_vessel!/2 returns the vessel with given id" do
+      {:ok, vessel, _cellar, account} = fixture(:vessel)
+
+      assert Cellars.get_vessel!(account, vessel.id) == vessel
+    end
+
+    test "get_vessel!/3 returns the vessel with given id form the given cellar" do
       {:ok, vessel, cellar, account} = fixture(:vessel)
 
       assert Cellars.get_vessel!(account, cellar, vessel.id) == vessel

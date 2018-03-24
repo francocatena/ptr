@@ -6,6 +6,7 @@ defmodule Ptr.Cellars.Vessel do
 
   alias Ptr.Cellars.{Cellar, Vessel}
   alias Ptr.Accounts.Account
+  alias Ptr.Lots.Part
 
   schema "vessels" do
     field(:identifier, :string)
@@ -15,7 +16,11 @@ defmodule Ptr.Cellars.Vessel do
     field(:notes, :string)
     field(:lock_version, :integer, default: 1)
 
+    field(:usage, :decimal, default: Decimal.new(0), virtual: true)
+
     belongs_to(:cellar, Cellar)
+
+    has_many(:parts, Part)
 
     timestamps()
   end

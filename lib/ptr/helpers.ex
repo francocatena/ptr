@@ -1,6 +1,12 @@
 defmodule Ptr.Helpers do
   alias Ptr.Accounts
 
+  defmacro coalesce(left, right) do
+    quote do
+      fragment("coalesce(?, ?)", unquote(left), unquote(right))
+    end
+  end
+
   def prefixed(query, account) do
     query
     |> Ecto.Queryable.to_query()

@@ -174,6 +174,34 @@ defmodule Ptr.Cellars do
 
   ## Examples
 
+      iex> get_vessel!(%Account{}, 123)
+      %Vessel{}
+
+      iex> get_vessel!(%Account{}, 456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_vessel!(account, id) do
+    query =
+      from(
+        v in Vessel,
+        group_by: v.id,
+        left_join: p in assoc(v, :parts),
+        select: %{v | usage: coalesce(sum(p.amount), 0)}
+      )
+
+    query
+    |> prefixed(account)
+    |> Repo.get!(id)
+  end
+
+  @doc """
+  Gets a single vessel from a cellar.
+
+  Raises `Ecto.NoResultsError` if the Vessel does not exist.
+
+  ## Examples
+
       iex> get_vessel!(%Account{}, %Cellar{}, 123)
       %Vessel{}
 
