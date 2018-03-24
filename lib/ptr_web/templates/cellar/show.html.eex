@@ -2,9 +2,9 @@
   <div class="container">
     <div class="card">
       <header class="card-header">
-        <p class="card-header-title">
+        <h2 class="card-header-title">
           <%= dgettext("cellars", "Cellar") %>
-        </p>
+        </h2>
       </header>
       <div class="card-content">
         <h2 class="title"><%= @cellar.name %></h2>

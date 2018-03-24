@@ -4,9 +4,9 @@
       <div class="column is-half is-offset-one-quarter">
         <div class="card">
           <header class="card-header">
-            <p class="card-header-title">
+            <h2 class="card-header-title">
               <%= dgettext("cellars", "Edit cellar") %>
-            </p>
+            </h2>
           </header>
 
           <%= render "_form.html", Map.put(assigns, :action, cellar_path(@conn, :update, @cellar)) %>
