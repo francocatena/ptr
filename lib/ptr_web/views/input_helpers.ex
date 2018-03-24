@@ -16,10 +16,10 @@ defmodule PtrWeb.InputHelpers do
       content_tag :div, class: field_class(opts) do
         input = input(type, form, field, errors, icon_opts, input_opts, addons)
 
-        [addons(addons, :left), input, addons(addons, :right), errors]
+        [addons(addons, :left), input, addons(addons, :right)]
       end
 
-    [label, field]
+    [label, field, errors]
   end
 
   defp input_type(form, field, opts) do
