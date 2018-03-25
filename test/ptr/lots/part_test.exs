@@ -35,7 +35,7 @@ defmodule Ptr.Lots.PartTest do
 
     test "changeset does not accept amounts that overflows vessel" do
       {:ok, vessel, _cellar, _account} = fixture(:vessel)
-      bad_amount = Decimal.add(Decimal.sub(vessel.capacity, vessel.usage), Decimal.new("1"))
+      bad_amount = Decimal.add(Decimal.sub(vessel.capacity, vessel.usage), 1)
       attrs = %{@valid_attrs | vessel_id: vessel.id, amount: bad_amount}
       changeset = test_account() |> Part.changeset(%Part{}, attrs)
 

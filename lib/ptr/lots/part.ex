@@ -71,13 +71,7 @@ defmodule Ptr.Lots.Part do
     changeset
   end
 
-  defp check_if_fits_in_vessel(
-         changeset,
-         %Account{} = account,
-         field,
-         vessel_id,
-         old_amount \\ Decimal.new(0)
-       ) do
+  defp check_if_fits_in_vessel(changeset, %Account{} = account, field, vessel_id, old_amount \\ 0) do
     validate_change(changeset, field, fn _, amount ->
       vessel = Ptr.Cellars.get_vessel!(account, vessel_id)
       remainig = Decimal.add(Decimal.sub(vessel.capacity, vessel.usage), old_amount)
