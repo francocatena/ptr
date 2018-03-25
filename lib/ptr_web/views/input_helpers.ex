@@ -56,7 +56,7 @@ defmodule PtrWeb.InputHelpers do
     if addon do
       case errors do
         [] -> content_tag(:a, addon, class: "button is-static")
-        _  -> content_tag(:a, addon, class: "button is-danger")
+        _ -> content_tag(:a, addon, class: "button is-danger")
       end
     else
       ""
