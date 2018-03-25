@@ -16,7 +16,7 @@ defmodule PtrWeb.InputHelpers do
       content_tag :div, class: field_class(opts) do
         input = input(type, form, field, errors, icon_opts, input_opts, addons)
 
-        [addons(addons, :left), input, addons(addons, :right)]
+        [addons(addons, :left, errors), input, addons(addons, :right, errors)]
       end
 
     [label, field, errors]
@@ -48,13 +48,16 @@ defmodule PtrWeb.InputHelpers do
     end
   end
 
-  defp addons(nil, _), do: ""
+  defp addons(nil, _, _), do: ""
 
-  defp addons(addons, position) do
+  defp addons(addons, position, errors) do
     addon = addons[position]
 
     if addon do
-      content_tag(:a, addon, class: "button is-static")
+      case errors do
+        [] -> content_tag(:a, addon, class: "button is-static")
+        _  -> content_tag(:a, addon, class: "button is-danger")
+      end
     else
       ""
     end
