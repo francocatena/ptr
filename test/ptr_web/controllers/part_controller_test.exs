@@ -4,9 +4,9 @@ defmodule PtrWeb.PartControllerTest do
 
   import Ptr.Support.FixtureHelper
 
-  @create_attrs %{amount: "120.5", amount_unit: "L", lot_id: 1, vessel_id: 1}
-  @update_attrs %{amount: "111.4", amount_unit: "L"}
-  @invalid_attrs %{amount: nil, amount_unit: nil}
+  @create_attrs %{amount: "120.5", lot_id: 1, vessel_id: 1}
+  @update_attrs %{amount: "111.4"}
+  @invalid_attrs %{amount: nil}
 
   describe "unauthorized access" do
     test "requires user authentication on all actions", %{conn: conn} do

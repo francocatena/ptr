@@ -19,7 +19,7 @@
           </li>
           <li>
             <strong><%= dgettext("parts", "Amount") %></strong>:
-            <%= Decimal.round(@part.amount) %> <em><%= @part.amount_unit %></em>
+            <%= Decimal.round(@part.amount) %> <em>L</em>
           </li>
         </ul>
       </div>

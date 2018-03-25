@@ -84,9 +84,9 @@ defmodule Ptr.LotsTest do
   describe "parts" do
     alias Ptr.Lots.Part
 
-    @valid_attrs %{amount: "120.5", amount_unit: "L", lot_id: "1", vessel_id: "1"}
-    @update_attrs %{amount: "111.2", amount_unit: "L"}
-    @invalid_attrs %{amount: nil, amount_unit: nil}
+    @valid_attrs %{amount: "120.5", lot_id: "1", vessel_id: "1"}
+    @update_attrs %{amount: "111.2"}
+    @invalid_attrs %{amount: nil}
 
     test "list_parts/3 returns all parts" do
       {:ok, part, account} = fixture(:part)
@@ -116,7 +116,6 @@ defmodule Ptr.LotsTest do
 
       assert {:ok, %Part{} = part} = Lots.create_part(session, attrs)
       assert part.amount == Decimal.new("120.5")
-      assert part.amount_unit == "L"
     end
 
     test "create_part/2 with invalid data returns error changeset" do
@@ -130,7 +129,6 @@ defmodule Ptr.LotsTest do
       assert {:ok, part} = Lots.update_part(session, part, @update_attrs)
       assert %Part{} = part
       assert part.amount == Decimal.new("111.2")
-      assert part.amount_unit == "L"
     end
 
     test "update_part/3 with invalid data returns error changeset" do

@@ -21,7 +21,7 @@
             <%= for part <- @parts do %>
               <tr class="has-cursor-pointer" data-link-like data-target="[data-main-link]">
                 <td><%= part.vessel.identifier %></td>
-                <td><%= Decimal.round(part.amount) %> <em><%= part.amount_unit %></em></td>
+                <td><%= Decimal.round(part.amount) %> <em>L</em></td>
 
                 <td>
                   <div class="buttons has-addons is-right">

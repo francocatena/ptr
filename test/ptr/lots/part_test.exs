@@ -5,7 +5,7 @@ defmodule Ptr.Lots.PartTest do
     alias Ptr.Lots.Part
 
     @valid_attrs %{amount: "100.0", lot_id: 1, vessel_id: 1}
-    @invalid_attrs %{amount: nil, amount_unit: "x", vessel_id: nil}
+    @invalid_attrs %{amount: nil, vessel_id: nil}
 
     test "changeset with valid attributes" do
       {:ok, vessel, _cellar, _account} = fixture(:vessel)
@@ -21,16 +21,6 @@ defmodule Ptr.Lots.PartTest do
       changeset = test_account() |> Part.changeset(%Part{}, attrs)
 
       refute changeset.valid?
-    end
-
-    test "changeset does not accept long attributes" do
-      {:ok, vessel, _cellar, _account} = fixture(:vessel)
-      attrs = %{@valid_attrs | vessel_id: vessel.id}
-      attrs = Map.put(attrs, :amount_unit, String.duplicate("a", 256))
-
-      changeset = test_account() |> Part.changeset(%Part{}, attrs)
-
-      assert "should be at most 255 character(s)" in errors_on(changeset).amount_unit
     end
 
     test "changeset does not accept amounts that overflows vessel" do

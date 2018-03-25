@@ -9,7 +9,6 @@ defmodule Ptr.Lots.Part do
 
   schema "parts" do
     field(:amount, :decimal)
-    field(:amount_unit, :string, default: "L")
     field(:lock_version, :integer, default: 1)
 
     belongs_to(:lot, Lot)
@@ -21,11 +20,9 @@ defmodule Ptr.Lots.Part do
   @doc false
   def changeset(%Account{} = account, %Part{} = part, attrs) do
     part
-    |> cast(attrs, [:amount, :amount_unit, :lot_id, :vessel_id, :lock_version])
-    |> validate_required([:amount, :amount_unit, :lot_id, :vessel_id])
-    |> validate_length(:amount_unit, max: 255)
+    |> cast(attrs, [:amount, :lot_id, :vessel_id, :lock_version])
+    |> validate_required([:amount, :lot_id, :vessel_id])
     |> validate_number(:amount, greater_than_or_equal_to: 0, less_than_or_equal_to: 99_999_999.99)
-    |> validate_inclusion(:amount_unit, ["L"])
     |> assoc_constraint(:lot)
     |> assoc_constraint(:vessel)
     |> check_if_fits_in_vessel(:amount, account)
