@@ -1,4 +1,4 @@
-defmodule Repo.Migrations.AddVersions do
+defmodule Repo.Migrations.CreateVersions do
   use Ptr, :migration
 
   def change do
