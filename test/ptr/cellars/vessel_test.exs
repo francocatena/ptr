@@ -60,6 +60,14 @@ defmodule Ptr.Cellars.VesselTest do
 
       assert "must be less than 1000000" in errors_on(changeset).capacity
     end
+
+    test "changeset validates capacity is never less than usage" do
+      attrs = @valid_attrs |> Map.put(:capacity, 20_000)
+
+      changeset = test_account() |> Vessel.changeset(%Vessel{usage: 30_000}, attrs)
+
+      assert "must be greater than or equal to 30000" in errors_on(changeset).capacity
+    end
   end
 
   defp test_account do

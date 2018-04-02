@@ -46,8 +46,24 @@ defmodule Ptr.Cellars.Vessel do
     |> validate_length(:material, max: 255)
     |> validate_length(:cooling, max: 255)
     |> validate_number(:capacity, greater_than: 0, less_than: 1_000_000)
+    |> validate_overflow(:capacity)
     |> unsafe_validate_unique([:identifier, :cellar_id], Ptr.Repo, prefix_opts)
     |> unique_constraint(:identifier, name: :vessels_identifier_cellar_id_index)
     |> optimistic_lock(:lock_version)
   end
+
+  defp validate_overflow(%{data: %{usage: usage}, changes: %{capacity: _}} = changeset, field) do
+    validate_change(changeset, field, fn _, capacity ->
+
+      if Decimal.cmp(usage, capacity) == :gt do
+        number = usage |> Decimal.round() |> Decimal.to_string()
+
+        [{field, {"must be greater than or equal to %{number}", number: number}}]
+      else
+        []
+      end
+    end)
+  end
+
+  defp validate_overflow(changeset, _field), do: changeset
 end
