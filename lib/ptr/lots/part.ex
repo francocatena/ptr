@@ -74,7 +74,7 @@ defmodule Ptr.Lots.Part do
       remainig = Decimal.add(Decimal.sub(vessel.capacity, vessel.usage), old_amount)
 
       if Decimal.cmp(amount, remainig) == :gt do
-        number = Decimal.to_string(Decimal.round(remainig))
+        number = remainig |> Decimal.round() |> Decimal.to_string()
 
         [{field, {"must be less than or equal to %{number}", number: number}}]
       else
