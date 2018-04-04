@@ -16,7 +16,7 @@ msgstr "¿Está seguro de borrar esta vasija?"
 
 #: lib/ptr_web/templates/vessel/edit.html.eex:22
 #: lib/ptr_web/templates/vessel/new.html.eex:22
-#: lib/ptr_web/templates/vessel/show.html.eex:48
+#: lib/ptr_web/templates/vessel/show.html.eex:56
 msgid "Back"
 msgstr "Listado de vasijas"
 
@@ -26,12 +26,12 @@ msgid "Capacity"
 msgstr "Capacidad"
 
 #: lib/ptr_web/templates/vessel/_form.html.eex:12
-#: lib/ptr_web/templates/vessel/index.html.eex:16
+#: lib/ptr_web/templates/vessel/index.html.eex:17
 #: lib/ptr_web/templates/vessel/show.html.eex:25
 msgid "Cooling"
 msgstr "Tipo de refrigeración"
 
-#: lib/ptr_web/views/vessel_view.ex:84
+#: lib/ptr_web/views/vessel_view.ex:98
 msgid "Create"
 msgstr "Crear una nueva vasija"
 
@@ -39,7 +39,7 @@ msgstr "Crear una nueva vasija"
 msgid "Delete"
 msgstr "Borrar vasija"
 
-#: lib/ptr_web/templates/vessel/show.html.eex:39
+#: lib/ptr_web/templates/vessel/show.html.eex:47
 #: lib/ptr_web/views/vessel_view.ex:20
 msgid "Edit"
 msgstr "Editar vasija"
@@ -59,20 +59,20 @@ msgid "Let's create one..."
 msgstr "Vamos, agrega una..."
 
 #: lib/ptr_web/templates/vessel/_form.html.eex:11
-#: lib/ptr_web/templates/vessel/index.html.eex:15
+#: lib/ptr_web/templates/vessel/index.html.eex:16
 #: lib/ptr_web/templates/vessel/show.html.eex:21
 msgid "Material"
 msgstr "Tipo de material"
 
 #: lib/ptr_web/controllers/vessel_controller.ex:106
 #: lib/ptr_web/templates/vessel/empty.html.eex:13
-#: lib/ptr_web/templates/vessel/index.html.eex:36
+#: lib/ptr_web/templates/vessel/index.html.eex:37
 #: lib/ptr_web/templates/vessel/new.html.eex:8
 msgid "New vessel"
 msgstr "Nueva vasija"
 
 #: lib/ptr_web/templates/vessel/_form.html.eex:13
-#: lib/ptr_web/templates/vessel/show.html.eex:33
+#: lib/ptr_web/templates/vessel/show.html.eex:41
 msgid "Notes"
 msgstr "Notas"
 
@@ -84,7 +84,7 @@ msgstr "Oops, algo salió mal, por favor verifique los errores debajo."
 msgid "Show"
 msgstr "Ver vasija"
 
-#: lib/ptr_web/views/vessel_view.ex:85
+#: lib/ptr_web/views/vessel_view.ex:99
 msgid "Update"
 msgstr "Actualizar vasija"
 
@@ -152,3 +152,8 @@ msgstr "Ninguna"
 #: lib/ptr_web/templates/vessel/empty.html.eex:5
 msgid "Looks like you have no vessels in %{cellar}."
 msgstr "Parece que no hay ninguna vasija en %{cellar}."
+
+#: lib/ptr_web/templates/vessel/index.html.eex:15
+#: lib/ptr_web/templates/vessel/show.html.eex:29
+msgid "Usage"
+msgstr "Uso"

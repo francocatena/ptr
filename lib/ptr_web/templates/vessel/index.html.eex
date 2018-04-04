@@ -12,8 +12,9 @@
             <tr>
               <th><%= dgettext("vessels", "Identifier") %></th>
               <th><%= dgettext("vessels", "Capacity") %></th>
-              <th class="is-hidden-mobile"><%= dgettext("vessels", "Material") %></th>
-              <th class="is-hidden-mobile"><%= dgettext("vessels", "Cooling") %></th>
+              <th class="is-hidden-mobile"><%= dgettext("vessels", "Usage") %></th>
+              <th class="is-hidden-touch"><%= dgettext("vessels", "Material") %></th>
+              <th class="is-hidden-touch"><%= dgettext("vessels", "Cooling") %></th>
 
               <th></th>
             </tr>

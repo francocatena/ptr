@@ -39,7 +39,7 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: lib/ptr_web/controllers/part_controller.ex:120
+#: lib/ptr_web/controllers/part_controller.ex:127
 #: lib/ptr_web/templates/part/edit.html.eex:8
 msgid "Edit part"
 msgstr ""
@@ -52,7 +52,7 @@ msgstr ""
 msgid "Looks like you have no parts."
 msgstr ""
 
-#: lib/ptr_web/controllers/part_controller.ex:106
+#: lib/ptr_web/controllers/part_controller.ex:113
 #: lib/ptr_web/templates/part/empty.html.eex:13
 #: lib/ptr_web/templates/part/index.html.eex:47
 #: lib/ptr_web/templates/part/new.html.eex:8
@@ -63,7 +63,7 @@ msgstr ""
 msgid "Oops, something went wrong! Please check the errors below."
 msgstr ""
 
-#: lib/ptr_web/controllers/part_controller.ex:113
+#: lib/ptr_web/controllers/part_controller.ex:120
 #: lib/ptr_web/templates/part/show.html.eex:6
 msgid "Part"
 msgstr ""
@@ -72,7 +72,7 @@ msgstr ""
 msgid "Part created successfully."
 msgstr ""
 
-#: lib/ptr_web/controllers/part_controller.ex:88
+#: lib/ptr_web/controllers/part_controller.ex:95
 msgid "Part deleted successfully."
 msgstr ""
 

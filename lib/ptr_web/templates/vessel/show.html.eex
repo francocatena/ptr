@@ -25,7 +25,15 @@
             <strong><%= dgettext("vessels", "Cooling") %></strong>:
             <%= Gettext.dgettext(PtrWeb.Gettext, "vessels", @vessel.cooling || "") %>
           </li>
+          <li>
+            <strong><%= dgettext("vessels", "Usage") %></strong>:
+            <%= Decimal.round(@vessel.usage) %> <em>L</em>
+          </li>
         </ul>
+
+        <hr>
+
+        <%= progress(@vessel) %>
 
         <hr>
 

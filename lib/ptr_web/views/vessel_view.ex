@@ -81,6 +81,36 @@ defmodule PtrWeb.VesselView do
     |> escape_javascript()
   end
 
+  def progress(vessel, opts \\ [class: "progress"]) do
+    progress = percent_usage(vessel)
+    class = progress_class(progress)
+
+    content_tag(
+      :progress,
+      "#{progress}%",
+      class: "#{opts[:class]} #{class}",
+      max: 100,
+      title: "#{progress}%",
+      value: progress
+    )
+  end
+
   defp submit_label(nil), do: dgettext("vessels", "Create")
   defp submit_label(_), do: dgettext("vessels", "Update")
+
+  defp percent_usage(vessel) do
+    vessel.usage
+    |> Decimal.div(vessel.capacity)
+    |> Decimal.mult(100)
+    |> Decimal.round()
+    |> Decimal.to_string()
+  end
+
+  defp progress_class(progress) do
+    cond do
+      Decimal.cmp(progress, 95) == :gt -> "is-success"
+      Decimal.cmp(progress, 80) == :gt -> "is-warning"
+      true -> "is-danger"
+    end
+  end
 end

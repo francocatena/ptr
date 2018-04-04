@@ -6,6 +6,10 @@ a[disabled="disabled"] {
   cursor: pointer;
 }
 
+.has-text-centered-vertically {
+  vertical-align: middle !important;
+}
+
 .is-sr {
   position: absolute;
   width: 1px;

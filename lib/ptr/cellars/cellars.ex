@@ -182,16 +182,8 @@ defmodule Ptr.Cellars do
 
   """
   def get_vessel!(account, id) do
-    query =
-      from(
-        v in Vessel,
-        group_by: v.id,
-        left_join: p in assoc(v, :parts),
-        select: %{v | usage: coalesce(sum(p.amount), 0)}
-      )
-
-    query
-    |> prefixed(account)
+    account
+    |> get_vessel_query()
     |> Repo.get!(id)
   end
 
@@ -210,8 +202,8 @@ defmodule Ptr.Cellars do
 
   """
   def get_vessel!(account, cellar, id) do
-    Vessel
-    |> prefixed(account)
+    account
+    |> get_vessel_query()
     |> where(cellar_id: ^cellar.id)
     |> Repo.get!(id)
   end
@@ -299,8 +291,23 @@ defmodule Ptr.Cellars do
     query =
       from(
         v in Vessel,
-        order_by: v.identifier,
-        where: [cellar_id: ^cellar.id]
+        group_by: v.id,
+        left_join: p in assoc(v, :parts),
+        select: %{v | usage: coalesce(sum(p.amount), 0)},
+        where: [cellar_id: ^cellar.id],
+        order_by: v.identifier
+      )
+
+    prefixed(query, account)
+  end
+
+  defp get_vessel_query(account) do
+    query =
+      from(
+        v in Vessel,
+        group_by: v.id,
+        left_join: p in assoc(v, :parts),
+        select: %{v | usage: coalesce(sum(p.amount), 0)}
       )
 
     prefixed(query, account)
