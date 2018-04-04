@@ -54,7 +54,6 @@ defmodule Ptr.Cellars.Vessel do
 
   defp validate_overflow(%{data: %{usage: usage}, changes: %{capacity: _}} = changeset, field) do
     validate_change(changeset, field, fn _, capacity ->
-
       if Decimal.cmp(usage, capacity) == :gt do
         number = usage |> Decimal.round() |> Decimal.to_string()
 
