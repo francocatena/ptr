@@ -52,7 +52,7 @@
           </div>
 
           <div id="user-dropdown" class="navbar-dropdown is-right">
-            <%= link to: session_path(@conn, :delete), method: :delete, class: "navbar-item" do %>
+            <%= link to: session_path(@conn, :delete), method: :delete, class: "navbar-item has-icon" do %>
               <%= dgettext("sessions", "Logout") %>
               <span class="icon">
                 <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
