@@ -1,9 +1,9 @@
 .breadcrumb.is-primary {
-  margin-top: 0.5em;
-  padding: 0.25em 0em;
+  margin-top: 0.75em;
+  padding: 0.5em 0em;
 
   @include touch() {
-    padding: 0.25em 0.75em;
+    padding: 0.5em 0.75em;
   }
 }
 
