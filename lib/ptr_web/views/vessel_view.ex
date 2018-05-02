@@ -108,7 +108,7 @@ defmodule PtrWeb.VesselView do
 
   defp progress_class(progress) do
     cond do
-      Decimal.cmp(progress, 95) == :gt -> "is-success"
+      Decimal.cmp(progress, 99) == :gt -> "is-success"
       Decimal.cmp(progress, 80) == :gt -> "is-warning"
       true -> "is-danger"
     end
