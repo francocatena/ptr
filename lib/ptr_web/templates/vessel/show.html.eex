@@ -42,7 +42,7 @@
                 <%= for part <- @vessel.parts do %>
                   <li>
                     <%= link to: lot_part_path(@conn, :show, part.lot, part) do %>
-                      <%= part.lot.identifier %> (<%= part.amount %> <em>L</em>)
+                      <%= part.lot.identifier %> (<%= Decimal.round(part.amount) %> <em>L</em>)
                     <% end %>
                   </li>
                 <% end %>
