@@ -16,7 +16,7 @@ msgstr "¿Está seguro de borrar esta vasija?"
 
 #: lib/ptr_web/templates/vessel/edit.html.eex:22
 #: lib/ptr_web/templates/vessel/new.html.eex:22
-#: lib/ptr_web/templates/vessel/show.html.eex:56
+#: lib/ptr_web/templates/vessel/show.html.eex:74
 msgid "Back"
 msgstr "Listado de vasijas"
 
@@ -39,7 +39,7 @@ msgstr "Crear una nueva vasija"
 msgid "Delete"
 msgstr "Borrar vasija"
 
-#: lib/ptr_web/templates/vessel/show.html.eex:47
+#: lib/ptr_web/templates/vessel/show.html.eex:65
 #: lib/ptr_web/views/vessel_view.ex:20
 msgid "Edit"
 msgstr "Editar vasija"
@@ -72,7 +72,7 @@ msgid "New vessel"
 msgstr "Nueva vasija"
 
 #: lib/ptr_web/templates/vessel/_form.html.eex:13
-#: lib/ptr_web/templates/vessel/show.html.eex:41
+#: lib/ptr_web/templates/vessel/show.html.eex:59
 msgid "Notes"
 msgstr "Notas"
 
@@ -157,3 +157,7 @@ msgstr "Parece que no hay ninguna vasija en %{cellar}."
 #: lib/ptr_web/templates/vessel/show.html.eex:29
 msgid "Usage"
 msgstr "Uso"
+
+#: lib/ptr_web/templates/vessel/show.html.eex:38
+msgid "Parts"
+msgstr "Partidas"

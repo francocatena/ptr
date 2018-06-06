@@ -16,7 +16,7 @@ msgstr ""
 
 #: lib/ptr_web/templates/vessel/edit.html.eex:22
 #: lib/ptr_web/templates/vessel/new.html.eex:22
-#: lib/ptr_web/templates/vessel/show.html.eex:56
+#: lib/ptr_web/templates/vessel/show.html.eex:74
 msgid "Back"
 msgstr ""
 
@@ -39,7 +39,7 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: lib/ptr_web/templates/vessel/show.html.eex:47
+#: lib/ptr_web/templates/vessel/show.html.eex:65
 #: lib/ptr_web/views/vessel_view.ex:20
 msgid "Edit"
 msgstr ""
@@ -72,7 +72,7 @@ msgid "New vessel"
 msgstr ""
 
 #: lib/ptr_web/templates/vessel/_form.html.eex:13
-#: lib/ptr_web/templates/vessel/show.html.eex:41
+#: lib/ptr_web/templates/vessel/show.html.eex:59
 msgid "Notes"
 msgstr ""
 
@@ -156,4 +156,8 @@ msgstr ""
 #: lib/ptr_web/templates/vessel/index.html.eex:15
 #: lib/ptr_web/templates/vessel/show.html.eex:29
 msgid "Usage"
+msgstr ""
+
+#: lib/ptr_web/templates/vessel/show.html.eex:38
+msgid "Parts"
 msgstr ""

@@ -185,6 +185,7 @@ defmodule Ptr.Cellars do
     account
     |> get_vessel_query()
     |> Repo.get!(id)
+    |> Vessel.calculate_usage()
   end
 
   @doc """
@@ -206,6 +207,7 @@ defmodule Ptr.Cellars do
     |> get_vessel_query()
     |> where(cellar_id: ^cellar.id)
     |> Repo.get!(id)
+    |> Vessel.calculate_usage()
   end
 
   @doc """
@@ -305,9 +307,9 @@ defmodule Ptr.Cellars do
     query =
       from(
         v in Vessel,
-        group_by: v.id,
         left_join: p in assoc(v, :parts),
-        select: %{v | usage: coalesce(sum(p.amount), 0)}
+        left_join: l in assoc(p, :lot),
+        preload: [parts: {p, lot: l}]
       )
 
     prefixed(query, account)

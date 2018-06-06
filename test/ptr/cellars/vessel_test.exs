@@ -3,6 +3,7 @@ defmodule Ptr.Cellars.VesselTest do
 
   describe "vessel" do
     alias Ptr.Cellars.Vessel
+    alias Ptr.Lots.Part
 
     @valid_attrs %{
       capacity: "120.5000",
@@ -67,6 +68,17 @@ defmodule Ptr.Cellars.VesselTest do
       changeset = test_account() |> Vessel.changeset(%Vessel{usage: 30_000}, attrs)
 
       assert "must be greater than or equal to 30000" in errors_on(changeset).capacity
+    end
+
+    test "calculate usage" do
+      vessel = %Vessel{
+        parts: [
+          %Part{amount: Decimal.new(20)},
+          %Part{amount: Decimal.new(30)}
+        ]
+      }
+
+      assert Decimal.cmp(50, Vessel.calculate_usage(vessel).usage) == :eq
     end
   end
 

@@ -128,7 +128,10 @@ defmodule PtrWeb.VesselViewTest do
       id: "1",
       identifier: "1a",
       capacity: Decimal.new("100"),
-      cellar_id: cellar.id
+      cellar_id: cellar.id,
+      parts: [
+        %Ptr.Lots.Part{id: "1", lot: %Ptr.Lots.Lot{id: "1"}}
+      ]
     }
 
     content =

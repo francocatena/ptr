@@ -52,6 +52,15 @@ defmodule Ptr.Cellars.Vessel do
     |> optimistic_lock(:lock_version)
   end
 
+  def calculate_usage(%Vessel{parts: parts} = vessel) do
+    usage =
+      parts
+      |> Enum.map(& &1.amount)
+      |> Enum.reduce(Decimal.new(0), &Decimal.add(&1, &2))
+
+    %{vessel | usage: usage}
+  end
+
   defp validate_overflow(%{data: %{usage: usage}, changes: %{capacity: _}} = changeset, field) do
     validate_change(changeset, field, fn _, capacity ->
       if Decimal.cmp(usage, capacity) == :gt do

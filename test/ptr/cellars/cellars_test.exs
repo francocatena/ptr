@@ -117,13 +117,13 @@ defmodule Ptr.CellarsTest do
     test "get_vessel!/2 returns the vessel with given id" do
       {:ok, vessel, _cellar, account} = fixture(:vessel)
 
-      assert Cellars.get_vessel!(account, vessel.id) == vessel
+      assert Cellars.get_vessel!(account, vessel.id) == %{vessel | parts: []}
     end
 
     test "get_vessel!/3 returns the vessel with given id form the given cellar" do
       {:ok, vessel, cellar, account} = fixture(:vessel)
 
-      assert Cellars.get_vessel!(account, cellar, vessel.id) == vessel
+      assert Cellars.get_vessel!(account, cellar, vessel.id) == %{vessel | parts: []}
     end
 
     test "create_vessel/2 with valid data creates a vessel" do
@@ -162,7 +162,7 @@ defmodule Ptr.CellarsTest do
       session = %Session{account: account}
 
       assert {:error, %Ecto.Changeset{}} = Cellars.update_vessel(session, vessel, @invalid_attrs)
-      assert vessel == Cellars.get_vessel!(account, cellar, vessel.id)
+      assert %{vessel | parts: []} == Cellars.get_vessel!(account, cellar, vessel.id)
     end
 
     test "delete_vessel/2 deletes the vessel" do
