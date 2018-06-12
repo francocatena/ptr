@@ -1,5 +1,5 @@
 defmodule <%= inspect schema.repo %>.Migrations.Create<%= Macro.camelize(schema.table) %> do
-  use Ptr, :migration
+  use <%= inspect context.base_module %>, :migration
 
   def change do
     if prefix = prefix() do
