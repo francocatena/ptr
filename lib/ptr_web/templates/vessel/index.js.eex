@@ -5,7 +5,6 @@
   const pagination       = '<%= render_js_pagination(@conn, @page, @cellar) %>'
   const content          = '<%= render_js_vessels(@conn, @cellar, @vessels) %>'
   const hasMoreResults   = <%= @page.total_pages > @page.page_number %>
-  const pageLoadedEvent  = new Event('ptr:newPageLoaded')
 
   paginationNode.innerHTML    = pagination
   vesselsContainer.innerHTML += content
@@ -19,6 +18,4 @@
   } else {
     loading.remove()
   }
-
-  document.dispatchEvent(pageLoadedEvent)
 }
