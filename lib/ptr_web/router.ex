@@ -1,13 +1,21 @@
 defmodule PtrWeb.Router do
   use PtrWeb, :router
 
+  @csp [
+    "default-src 'self'",
+    "script-src 'self' 'unsafe-inline'",
+    "style-src 'self' 'unsafe-inline'"
+  ]
+
+  @csp_headers %{"content-security-policy" => Enum.join(@csp, ";")}
+
   pipeline :browser do
     plug(:accepts, ["html", "js"])
     plug(:fetch_session)
     plug(:fetch_flash)
     plug(:fetch_current_session)
     plug(:protect_from_forgery)
-    plug(:put_secure_browser_headers)
+    plug(:put_secure_browser_headers, @csp_headers)
     plug(:put_cache_control_headers)
     plug(:put_breadcrumb, name: "≡", url: "/")
   end
