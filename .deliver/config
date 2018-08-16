@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 APP="ptr"
-AUTO_VERSION="git-revision+branch-unless-master"
+AUTO_VERSION="build-date+build-time+branch-unless-master"
 
 BUILD_HOST="sandbox"
 BUILD_USER="deployer"
