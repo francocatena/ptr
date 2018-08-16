@@ -27,9 +27,6 @@ config :paper_trail, repo: Ptr.Repo
 # Ecto timestamps
 config :ptr, Ptr.Repo, migration_timestamps: [type: :utc_datetime]
 
-# App PID
-config :pid_file, file: "./ptr.pid"
-
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

@@ -5,7 +5,7 @@ defmodule Ptr.Mixfile do
     [
       app: :ptr,
       version: "0.0.1",
-      elixir: "~> 1.6",
+      elixir: "~> 1.7",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
@@ -48,9 +48,8 @@ defmodule Ptr.Mixfile do
       {:bamboo, ">= 1.0.0"},
       {:bamboo_smtp, ">= 1.5.0"},
       {:paper_trail, ">= 0.8.0"},
-      {:edeliver, ">= 1.5.0"},
-      {:pid_file, ">= 0.1.0"},
-      {:distillery, ">= 1.5.0", runtime: false, warn_missing: false}
+      {:edeliver, ">= 1.6.0"},
+      {:distillery, ">= 2.0.0", runtime: false, warn_missing: false}
     ]
   end
 
