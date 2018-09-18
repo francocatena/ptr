@@ -35,7 +35,7 @@ defmodule Ptr.Mixfile do
     [
       {:phoenix, ">= 1.3.0"},
       {:phoenix_pubsub, ">= 1.0.0"},
-      {:phoenix_ecto, ">= 3.3.0"},
+      {:phoenix_ecto, ">= 3.4.0"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, ">= 2.12.0"},
       {:phoenix_live_reload, ">= 1.1.0", only: :dev},
@@ -45,8 +45,8 @@ defmodule Ptr.Mixfile do
       {:argon2_elixir, ">= 1.3.0"},
       {:scrivener_ecto, ">= 1.3.0"},
       {:scrivener_html, ">= 1.7.0"},
-      {:bamboo, ">= 1.0.0"},
-      {:bamboo_smtp, ">= 1.5.0"},
+      {:bamboo, ">= 1.1.0"},
+      {:bamboo_smtp, ">= 1.6.0"},
       {:paper_trail, ">= 0.8.0"},
       {:edeliver, ">= 1.6.0"},
       {:distillery, ">= 2.0.0 and < 2.0.9"}
