@@ -49,7 +49,7 @@ defmodule Ptr.Mixfile do
       {:bamboo_smtp, ">= 1.6.0"},
       {:paper_trail, ">= 0.8.0"},
       {:edeliver, ">= 1.6.0"},
-      {:distillery, ">= 2.0.0 and < 2.0.9"}
+      {:distillery, ">= 2.0.0"}
     ]
   end
 
