@@ -1,5 +1,5 @@
 defmodule Ptr.Support.FixtureHelper do
-  use Ptr.Support.Fixtures.HeaderFixtureFixture
+  use Ptr.Support.Fixtures.HeaderFixture
 
   use Ptr.Support.Fixtures.AccountFixture
   use Ptr.Support.Fixtures.CellarFixture
