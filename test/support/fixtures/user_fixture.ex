@@ -1,4 +1,4 @@
-defmodule Ptr.Support.Fixtures.User do
+defmodule Ptr.Support.Fixtures.UserFixture do
   alias Ptr.Accounts.Session
   alias Ptr.Accounts
 

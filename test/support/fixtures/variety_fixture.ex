@@ -1,4 +1,4 @@
-defmodule Ptr.Support.Fixtures.Variety do
+defmodule Ptr.Support.Fixtures.VarietyFixture do
   alias Ptr.Accounts.Session
   alias Ptr.Options
 

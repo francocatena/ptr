@@ -1,4 +1,4 @@
-defmodule Ptr.Support.Fixtures.Owner do
+defmodule Ptr.Support.Fixtures.OwnerFixture do
   alias Ptr.Accounts.Session
   alias Ptr.Ownerships
 

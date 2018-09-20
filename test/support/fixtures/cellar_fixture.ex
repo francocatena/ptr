@@ -1,4 +1,4 @@
-defmodule Ptr.Support.Fixtures.Cellar do
+defmodule Ptr.Support.Fixtures.CellarFixture do
   alias Ptr.Accounts.Session
   alias Ptr.Cellars
 

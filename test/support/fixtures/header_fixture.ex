@@ -1,4 +1,4 @@
-defmodule Ptr.Support.Fixtures.Header do
+defmodule Ptr.Support.Fixtures.HeaderFixture do
   defmacro __using__(_opts) do
     quote do
       def fixture(type, attributes \\ %{}, opts \\ [])

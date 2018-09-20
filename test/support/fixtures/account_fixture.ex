@@ -1,4 +1,4 @@
-defmodule Ptr.Support.Fixtures.Account do
+defmodule Ptr.Support.Fixtures.AccountFixture do
   alias Ptr.Accounts
   alias Ptr.Accounts.Account
   alias Ptr.Repo

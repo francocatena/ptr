@@ -1,4 +1,4 @@
-defmodule Ptr.Support.Fixtures.Lot do
+defmodule Ptr.Support.Fixtures.LotFixture do
   alias Ptr.Accounts.Session
   alias Ptr.Lots
 
