@@ -1,4 +1,4 @@
-defmodule Ptr.VesselFixture do
+defmodule Ptr.Support.Fixtures.Vessel do
   alias Ptr.Accounts.Session
   alias Ptr.Cellars
 
