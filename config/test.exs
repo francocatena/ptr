@@ -17,7 +17,6 @@ config :logger, level: :warn
 
 # Configure your database
 config :ptr, Ptr.Repo,
-  adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
   database: "ptr_test",
@@ -26,4 +25,4 @@ config :ptr, Ptr.Repo,
 
 config :argon2_elixir,
   t_cost: 1,
-  m_cost: 3
+  m_cost: 5

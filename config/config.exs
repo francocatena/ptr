@@ -3,10 +3,12 @@
 #
 # This configuration file is loaded before any dependency and
 # is restricted to this project.
-use Mix.Config
 
 # General application configuration
-config :ptr, ecto_repos: [Ptr.Repo]
+use Mix.Config
+
+config :ptr,
+  ecto_repos: [Ptr.Repo]
 
 # Configures the endpoint
 config :ptr, PtrWeb.Endpoint,
@@ -25,6 +27,9 @@ config :ptr, Ptr.Repo, migration_timestamps: [type: :utc_datetime]
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
+
+# Use Jason for JSON parsing in Phoenix and Ecto
+config :phoenix, :json_library, Jason
 
 # PaperTrail config
 config :paper_trail, repo: Ptr.Repo

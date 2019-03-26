@@ -70,7 +70,7 @@ defmodule PtrWeb.VesselView do
       |> Enum.map(&safe_to_string/1)
       |> Enum.join()
 
-    escape_javascript({:safe, data})
+    javascript_escape({:safe, data})
   end
 
   def render_js_pagination(conn, page, cellar) do
@@ -78,7 +78,7 @@ defmodule PtrWeb.VesselView do
 
     conn
     |> pagination_links(page, [cellar], opts)
-    |> escape_javascript()
+    |> javascript_escape()
   end
 
   def progress(vessel, opts \\ [class: "progress"]) do

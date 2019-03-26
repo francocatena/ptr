@@ -1,5 +1,8 @@
 defmodule Ptr.Repo do
-  use Ecto.Repo, otp_app: :ptr
+  use Ecto.Repo,
+    otp_app: :ptr,
+    adapter: Ecto.Adapters.Postgres
+
   use Scrivener, page_size: 10
 
   @doc """
