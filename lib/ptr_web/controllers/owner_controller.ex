@@ -30,7 +30,7 @@ defmodule PtrWeb.OwnerController do
       {:ok, owner} ->
         conn
         |> put_flash(:info, dgettext("owners", "Owner created successfully."))
-        |> redirect(to: owner_path(conn, :show, owner))
+        |> redirect(to: Routes.owner_path(conn, :show, owner))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -61,7 +61,7 @@ defmodule PtrWeb.OwnerController do
       {:ok, owner} ->
         conn
         |> put_flash(:info, dgettext("owners", "Owner updated successfully."))
-        |> redirect(to: owner_path(conn, :show, owner))
+        |> redirect(to: Routes.owner_path(conn, :show, owner))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", owner: owner, changeset: changeset)
@@ -74,7 +74,7 @@ defmodule PtrWeb.OwnerController do
 
     conn
     |> put_flash(:info, dgettext("owners", "Owner deleted successfully."))
-    |> redirect(to: owner_path(conn, :index))
+    |> redirect(to: Routes.owner_path(conn, :index))
   end
 
   defp render_index(conn, %{total_entries: 0}), do: render(conn, "empty.html")
@@ -85,21 +85,21 @@ defmodule PtrWeb.OwnerController do
 
   defp put_new_breadcrumb(conn) do
     name = dgettext("owners", "New owner")
-    url = owner_path(conn, :new)
+    url = Routes.owner_path(conn, :new)
 
     conn |> put_breadcrumb(name, url)
   end
 
   defp put_show_breadcrumb(conn, owner) do
     name = dgettext("owners", "Owner")
-    url = owner_path(conn, :show, owner)
+    url = Routes.owner_path(conn, :show, owner)
 
     conn |> put_breadcrumb(name, url)
   end
 
   defp put_edit_breadcrumb(conn, owner) do
     name = dgettext("owners", "Edit owner")
-    url = owner_path(conn, :edit, owner)
+    url = Routes.owner_path(conn, :edit, owner)
 
     conn |> put_breadcrumb(name, url)
   end

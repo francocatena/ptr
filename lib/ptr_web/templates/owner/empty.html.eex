@@ -10,7 +10,7 @@
       </h2>
 
       <p>
-        <%= link dgettext("owners", "New owner"), to: owner_path(@conn, :new), class: "button is-primary is-large" %>
+        <%= link dgettext("owners", "New owner"), to: Routes.owner_path(@conn, :new), class: "button is-primary is-large" %>
       </p>
     </div>
   </div>

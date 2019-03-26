@@ -15,15 +15,15 @@
         <ul>
           <li>
             <strong><%= dgettext("lots", "Cellar") %></strong>:
-            <%= link @lot.cellar.name, to: cellar_path(@conn, :show, @lot.cellar) %>
+            <%= link @lot.cellar.name, to: Routes.cellar_path(@conn, :show, @lot.cellar) %>
           </li>
           <li>
             <strong><%= dgettext("lots", "Variety") %></strong>:
-            <%= link @lot.variety.name, to: variety_path(@conn, :show, @lot.variety) %>
+            <%= link @lot.variety.name, to: Routes.variety_path(@conn, :show, @lot.variety) %>
           </li>
           <li>
             <strong><%= dgettext("lots", "Owner") %></strong>:
-            <%= link @lot.owner.name, to: owner_path(@conn, :show, @lot.owner) %>
+            <%= link @lot.owner.name, to: Routes.owner_path(@conn, :show, @lot.owner) %>
           </li>
         </ul>
 
@@ -42,7 +42,7 @@
       </div>
 
       <footer class="card-footer">
-        <%= link dgettext("lots", "Edit"), to: lot_path(@conn, :edit, @lot), class: "card-footer-item" %>
+        <%= link dgettext("lots", "Edit"), to: Routes.lot_path(@conn, :edit, @lot), class: "card-footer-item" %>
       </footer>
     </div>
   </div>
@@ -51,7 +51,7 @@
 <footer class="footer is-primary">
   <div class="container">
     <p>
-      <span><%= link dgettext("lots", "Back"), to: lot_path(@conn, :index) %></span>
+      <span><%= link dgettext("lots", "Back"), to: Routes.lot_path(@conn, :index) %></span>
     </p>
   </div>
 </footer>

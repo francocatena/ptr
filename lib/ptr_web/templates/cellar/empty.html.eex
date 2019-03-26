@@ -10,7 +10,7 @@
       </h2>
 
       <p>
-        <%= link dgettext("cellars", "New cellar"), to: cellar_path(@conn, :new), class: "button is-primary is-large" %>
+        <%= link dgettext("cellars", "New cellar"), to: Routes.cellar_path(@conn, :new), class: "button is-primary is-large" %>
       </p>
     </div>
   </div>

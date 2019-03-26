@@ -8,7 +8,7 @@ defmodule PtrWeb.OwnerView do
     icon_link(
       "eye",
       title: dgettext("owners", "Show"),
-      to: owner_path(conn, :show, owner),
+      to: Routes.owner_path(conn, :show, owner),
       class: "button is-small is-outlined is-hidden-mobile",
       data: [target: "link.link"]
     )
@@ -18,7 +18,7 @@ defmodule PtrWeb.OwnerView do
     icon_link(
       "pencil-alt",
       title: dgettext("owners", "Edit"),
-      to: owner_path(conn, :edit, owner),
+      to: Routes.owner_path(conn, :edit, owner),
       class: "button is-small is-outlined is-hidden-mobile"
     )
   end
@@ -27,7 +27,7 @@ defmodule PtrWeb.OwnerView do
     icon_link(
       "trash",
       title: dgettext("owners", "Delete"),
-      to: owner_path(conn, :delete, owner),
+      to: Routes.owner_path(conn, :delete, owner),
       method: :delete,
       data: [confirm: dgettext("owners", "Are you sure?")],
       class: "button is-small is-danger is-outlined"

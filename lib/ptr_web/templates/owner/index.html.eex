@@ -44,7 +44,7 @@
 <footer class="footer is-primary">
   <div class="container">
     <p>
-      <span><%= link dgettext("owners", "New owner"), to: owner_path(@conn, :new) %></span>
+      <span><%= link dgettext("owners", "New owner"), to: Routes.owner_path(@conn, :new) %></span>
     </p>
   </div>
 </footer>

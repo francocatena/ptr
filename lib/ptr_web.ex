@@ -19,9 +19,9 @@ defmodule PtrWeb do
 
   def controller do
     quote do
+      alias PtrWeb.Router.Helpers, as: Routes
       use Phoenix.Controller, namespace: PtrWeb
       import Plug.Conn
-      import PtrWeb.Router.Helpers
       import PtrWeb.Gettext
       import PtrWeb.BreadcrumbPlug, only: [put_breadcrumb: 2, put_breadcrumb: 3]
       import PtrWeb.SessionPlug, only: [authenticate: 2]
@@ -30,6 +30,8 @@ defmodule PtrWeb do
 
   def view do
     quote do
+      alias PtrWeb.Router.Helpers, as: Routes
+
       use Phoenix.View,
         root: "lib/ptr_web/templates",
         namespace: PtrWeb
@@ -40,7 +42,6 @@ defmodule PtrWeb do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import PtrWeb.Router.Helpers
       import PtrWeb.ErrorHelpers
       import PtrWeb.InputHelpers
       import PtrWeb.LinkHelpers

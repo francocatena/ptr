@@ -8,7 +8,7 @@
     </h6>
 
     <p>
-      <%= link dgettext("lots", "New part"), to: lot_part_path(@conn, :new, @lot), class: "button" %>
+      <%= link dgettext("lots", "New part"), to: Routes.lot_part_path(@conn, :new, @lot), class: "button" %>
     </p>
   </div>
 </article>

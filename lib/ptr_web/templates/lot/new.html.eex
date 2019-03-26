@@ -9,7 +9,7 @@
             </h2>
           </header>
 
-          <%= render "_form.html", Map.put(assigns, :action, lot_path(@conn, :create)) %>
+          <%= render "_form.html", Map.put(assigns, :action, Routes.lot_path(@conn, :create)) %>
         </div>
       </div>
     </div>
@@ -19,7 +19,7 @@
 <footer class="footer is-primary">
   <div class="container">
     <p>
-      <span><%= link dgettext("lots", "Back"), to: lot_path(@conn, :index) %></span>
+      <span><%= link dgettext("lots", "Back"), to: Routes.lot_path(@conn, :index) %></span>
     </p>
   </div>
 </footer>

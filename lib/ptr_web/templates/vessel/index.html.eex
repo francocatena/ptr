@@ -26,7 +26,7 @@
         </table>
 
         <span data-intersection-sentinel></span>
-        <%= pagination_links @conn, @page, [@cellar], path: &cellar_vessel_path/4 %>
+        <%= pagination_links @conn, @page, [@cellar], path: &Routes.cellar_vessel_path/4 %>
       </div>
     </div>
   </div>
@@ -35,7 +35,7 @@
 <footer class="footer is-primary">
   <div class="container">
     <p>
-      <span><%= link dgettext("vessels", "New vessel"), to: cellar_vessel_path(@conn, :new, @cellar) %></span>
+      <span><%= link dgettext("vessels", "New vessel"), to: Routes.cellar_vessel_path(@conn, :new, @cellar) %></span>
     </p>
   </div>
 </footer>

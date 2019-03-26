@@ -9,7 +9,7 @@
             </h2>
           </header>
 
-          <%= render "_form.html", Map.put(assigns, :action, cellar_vessel_path(@conn, :create, @cellar)) %>
+          <%= render "_form.html", Map.put(assigns, :action, Routes.cellar_vessel_path(@conn, :create, @cellar)) %>
         </div>
       </div>
     </div>
@@ -19,7 +19,7 @@
 <footer class="footer is-primary">
   <div class="container">
     <p>
-      <span><%= link dgettext("vessels", "Back"), to: cellar_vessel_path(@conn, :index, @cellar) %></span>
+      <span><%= link dgettext("vessels", "Back"), to: Routes.cellar_vessel_path(@conn, :index, @cellar) %></span>
     </p>
   </div>
 </footer>

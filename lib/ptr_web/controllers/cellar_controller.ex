@@ -30,7 +30,7 @@ defmodule PtrWeb.CellarController do
       {:ok, cellar} ->
         conn
         |> put_flash(:info, dgettext("cellars", "Cellar created successfully."))
-        |> redirect(to: cellar_path(conn, :show, cellar))
+        |> redirect(to: Routes.cellar_path(conn, :show, cellar))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -61,7 +61,7 @@ defmodule PtrWeb.CellarController do
       {:ok, cellar} ->
         conn
         |> put_flash(:info, dgettext("cellars", "Cellar updated successfully."))
-        |> redirect(to: cellar_path(conn, :show, cellar))
+        |> redirect(to: Routes.cellar_path(conn, :show, cellar))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", cellar: cellar, changeset: changeset)
@@ -74,7 +74,7 @@ defmodule PtrWeb.CellarController do
 
     conn
     |> put_flash(:info, dgettext("cellars", "Cellar deleted successfully."))
-    |> redirect(to: cellar_path(conn, :index))
+    |> redirect(to: Routes.cellar_path(conn, :index))
   end
 
   defp render_index(conn, %{total_entries: 0}), do: render(conn, "empty.html")
@@ -85,20 +85,20 @@ defmodule PtrWeb.CellarController do
 
   defp put_new_breadcrumb(conn) do
     name = dgettext("cellars", "New cellar")
-    url = cellar_path(conn, :new)
+    url = Routes.cellar_path(conn, :new)
 
     conn |> put_breadcrumb(name, url)
   end
 
   defp put_show_breadcrumb(conn, cellar) do
-    url = cellar_path(conn, :show, cellar)
+    url = Routes.cellar_path(conn, :show, cellar)
 
     conn |> put_breadcrumb(cellar.name, url)
   end
 
   defp put_edit_breadcrumb(conn, cellar) do
     name = dgettext("cellars", "Edit cellar")
-    url = cellar_path(conn, :edit, cellar)
+    url = Routes.cellar_path(conn, :edit, cellar)
 
     conn |> put_breadcrumb(name, url)
   end

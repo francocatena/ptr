@@ -41,7 +41,7 @@
               <ul>
                 <%= for part <- @vessel.parts do %>
                   <li>
-                    <%= link to: lot_part_path(@conn, :show, part.lot, part) do %>
+                    <%= link to: Routes.lot_part_path(@conn, :show, part.lot, part) do %>
                       <%= part.lot.identifier %> (<%= Decimal.round(part.amount) %> <em>L</em>)
                     <% end %>
                   </li>
@@ -62,7 +62,7 @@
       </div>
 
       <footer class="card-footer">
-        <%= link dgettext("vessels", "Edit"), to: cellar_vessel_path(@conn, :edit, @cellar, @vessel), class: "card-footer-item" %>
+        <%= link dgettext("vessels", "Edit"), to: Routes.cellar_vessel_path(@conn, :edit, @cellar, @vessel), class: "card-footer-item" %>
       </footer>
     </div>
   </div>
@@ -71,7 +71,7 @@
 <footer class="footer is-primary">
   <div class="container">
     <p>
-      <span><%= link dgettext("vessels", "Back"), to: cellar_vessel_path(@conn, :index, @cellar) %></span>
+      <span><%= link dgettext("vessels", "Back"), to: Routes.cellar_vessel_path(@conn, :index, @cellar) %></span>
     </p>
   </div>
 </footer>

@@ -18,8 +18,8 @@ defmodule PtrWeb.ConnCase do
   using do
     quote do
       # Import conveniences for testing with connections
+      alias PtrWeb.Router.Helpers, as: Routes
       use Phoenix.ConnTest
-      import PtrWeb.Router.Helpers
 
       # The default endpoint for testing
       @endpoint PtrWeb.Endpoint

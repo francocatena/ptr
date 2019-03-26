@@ -18,13 +18,13 @@ defmodule PtrWeb.LotControllerTest do
     test "requires user authentication on all actions", %{conn: conn} do
       Enum.each(
         [
-          get(conn, lot_path(conn, :index)),
-          get(conn, lot_path(conn, :new)),
-          post(conn, lot_path(conn, :create, %{})),
-          get(conn, lot_path(conn, :show, "123")),
-          get(conn, lot_path(conn, :edit, "123")),
-          put(conn, lot_path(conn, :update, "123", %{})),
-          delete(conn, lot_path(conn, :delete, "123"))
+          get(conn, Routes.lot_path(conn, :index)),
+          get(conn, Routes.lot_path(conn, :new)),
+          post(conn, Routes.lot_path(conn, :create, %{})),
+          get(conn, Routes.lot_path(conn, :show, "123")),
+          get(conn, Routes.lot_path(conn, :edit, "123")),
+          put(conn, Routes.lot_path(conn, :update, "123", %{})),
+          delete(conn, Routes.lot_path(conn, :delete, "123"))
         ],
         fn conn ->
           assert html_response(conn, 302)
@@ -39,7 +39,7 @@ defmodule PtrWeb.LotControllerTest do
 
     @tag login_as: "test@user.com"
     test "lists all lots", %{conn: conn, lot: lot} do
-      conn = get(conn, lot_path(conn, :index))
+      conn = get(conn, Routes.lot_path(conn, :index))
       response = html_response(conn, 200)
 
       assert response =~ "Lots"
@@ -50,7 +50,7 @@ defmodule PtrWeb.LotControllerTest do
   describe "empty index" do
     @tag login_as: "test@user.com"
     test "lists no lots", %{conn: conn} do
-      conn = get(conn, lot_path(conn, :index))
+      conn = get(conn, Routes.lot_path(conn, :index))
 
       assert html_response(conn, 200) =~ "you have no lots"
     end
@@ -59,7 +59,7 @@ defmodule PtrWeb.LotControllerTest do
   describe "new lot" do
     @tag login_as: "test@user.com"
     test "renders form", %{conn: conn} do
-      conn = get(conn, lot_path(conn, :new))
+      conn = get(conn, Routes.lot_path(conn, :new))
 
       assert html_response(conn, 200) =~ "New lot"
     end
@@ -76,15 +76,15 @@ defmodule PtrWeb.LotControllerTest do
       variety: variety
     } do
       attrs = %{@create_attrs | cellar_id: cellar.id, owner_id: owner.id, variety_id: variety.id}
-      conn = post(conn, lot_path(conn, :create), lot: attrs)
+      conn = post(conn, Routes.lot_path(conn, :create), lot: attrs)
 
       assert %{id: id} = redirected_params(conn)
-      assert redirected_to(conn) == lot_path(conn, :show, id)
+      assert redirected_to(conn) == Routes.lot_path(conn, :show, id)
     end
 
     @tag login_as: "test@user.com"
     test "renders errors when data is invalid", %{conn: conn} do
-      conn = post(conn, lot_path(conn, :create), lot: @invalid_attrs)
+      conn = post(conn, Routes.lot_path(conn, :create), lot: @invalid_attrs)
 
       assert html_response(conn, 200) =~ "New lot"
     end
@@ -95,7 +95,7 @@ defmodule PtrWeb.LotControllerTest do
 
     @tag login_as: "test@user.com"
     test "renders form for editing chosen lot", %{conn: conn, lot: lot} do
-      conn = get(conn, lot_path(conn, :edit, lot))
+      conn = get(conn, Routes.lot_path(conn, :edit, lot))
 
       assert html_response(conn, 200) =~ "Edit lot"
     end
@@ -106,14 +106,14 @@ defmodule PtrWeb.LotControllerTest do
 
     @tag login_as: "test@user.com"
     test "redirects when data is valid", %{conn: conn, lot: lot} do
-      conn = put(conn, lot_path(conn, :update, lot), lot: @update_attrs)
+      conn = put(conn, Routes.lot_path(conn, :update, lot), lot: @update_attrs)
 
-      assert redirected_to(conn) == lot_path(conn, :show, lot)
+      assert redirected_to(conn) == Routes.lot_path(conn, :show, lot)
     end
 
     @tag login_as: "test@user.com"
     test "renders errors when data is invalid", %{conn: conn, lot: lot} do
-      conn = put(conn, lot_path(conn, :update, lot), lot: @invalid_attrs)
+      conn = put(conn, Routes.lot_path(conn, :update, lot), lot: @invalid_attrs)
 
       assert html_response(conn, 200) =~ "Edit lot"
     end
@@ -124,9 +124,9 @@ defmodule PtrWeb.LotControllerTest do
 
     @tag login_as: "test@user.com"
     test "deletes chosen lot", %{conn: conn, lot: lot} do
-      conn = delete(conn, lot_path(conn, :delete, lot))
+      conn = delete(conn, Routes.lot_path(conn, :delete, lot))
 
-      assert redirected_to(conn) == lot_path(conn, :index)
+      assert redirected_to(conn) == Routes.lot_path(conn, :index)
     end
   end
 

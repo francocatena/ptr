@@ -6,7 +6,7 @@ defmodule PtrWeb.PartView do
     icon_link(
       "eye",
       title: dgettext("parts", "Show"),
-      to: lot_part_path(conn, :show, lot, part),
+      to: Routes.lot_part_path(conn, :show, lot, part),
       class: "button is-small is-outlined is-hidden-mobile",
       data: [target: "link.link"]
     )
@@ -16,7 +16,7 @@ defmodule PtrWeb.PartView do
     icon_link(
       "pencil-alt",
       title: dgettext("parts", "Edit"),
-      to: lot_part_path(conn, :edit, lot, part),
+      to: Routes.lot_part_path(conn, :edit, lot, part),
       class: "button is-small is-outlined is-hidden-mobile"
     )
   end
@@ -25,7 +25,7 @@ defmodule PtrWeb.PartView do
     icon_link(
       "trash",
       title: dgettext("parts", "Delete"),
-      to: lot_part_path(conn, :delete, lot, part),
+      to: Routes.lot_part_path(conn, :delete, lot, part),
       method: :delete,
       data: [confirm: dgettext("parts", "Are you sure?")],
       class: "button is-small is-danger is-outlined"

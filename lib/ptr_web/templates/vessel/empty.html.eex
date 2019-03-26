@@ -10,7 +10,7 @@
       </h2>
 
       <p>
-        <%= link dgettext("vessels", "New vessel"), to: cellar_vessel_path(@conn, :new, @cellar), class: "button is-primary is-large" %>
+        <%= link dgettext("vessels", "New vessel"), to: Routes.cellar_vessel_path(@conn, :new, @cellar), class: "button is-primary is-large" %>
       </p>
     </div>
   </div>

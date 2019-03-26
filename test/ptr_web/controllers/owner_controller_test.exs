@@ -12,13 +12,13 @@ defmodule PtrWeb.OwnerControllerTest do
     test "requires user authentication on all actions", %{conn: conn} do
       Enum.each(
         [
-          get(conn, owner_path(conn, :index)),
-          get(conn, owner_path(conn, :new)),
-          post(conn, owner_path(conn, :create, %{})),
-          get(conn, owner_path(conn, :show, "123")),
-          get(conn, owner_path(conn, :edit, "123")),
-          put(conn, owner_path(conn, :update, "123", %{})),
-          delete(conn, owner_path(conn, :delete, "123"))
+          get(conn, Routes.owner_path(conn, :index)),
+          get(conn, Routes.owner_path(conn, :new)),
+          post(conn, Routes.owner_path(conn, :create, %{})),
+          get(conn, Routes.owner_path(conn, :show, "123")),
+          get(conn, Routes.owner_path(conn, :edit, "123")),
+          put(conn, Routes.owner_path(conn, :update, "123", %{})),
+          delete(conn, Routes.owner_path(conn, :delete, "123"))
         ],
         fn conn ->
           assert html_response(conn, 302)
@@ -33,7 +33,7 @@ defmodule PtrWeb.OwnerControllerTest do
 
     @tag login_as: "test@user.com"
     test "lists all owners", %{conn: conn, owner: owner} do
-      conn = get(conn, owner_path(conn, :index))
+      conn = get(conn, Routes.owner_path(conn, :index))
       response = html_response(conn, 200)
 
       assert response =~ "Owners"
@@ -44,7 +44,7 @@ defmodule PtrWeb.OwnerControllerTest do
   describe "empty index" do
     @tag login_as: "test@user.com"
     test "lists no owners", %{conn: conn} do
-      conn = get(conn, owner_path(conn, :index))
+      conn = get(conn, Routes.owner_path(conn, :index))
 
       assert html_response(conn, 200) =~ "you have no owners"
     end
@@ -53,7 +53,7 @@ defmodule PtrWeb.OwnerControllerTest do
   describe "new owner" do
     @tag login_as: "test@user.com"
     test "renders form", %{conn: conn} do
-      conn = get(conn, owner_path(conn, :new))
+      conn = get(conn, Routes.owner_path(conn, :new))
 
       assert html_response(conn, 200) =~ "New owner"
     end
@@ -62,15 +62,15 @@ defmodule PtrWeb.OwnerControllerTest do
   describe "create owner" do
     @tag login_as: "test@user.com"
     test "redirects to show when data is valid", %{conn: conn} do
-      conn = post(conn, owner_path(conn, :create), owner: @create_attrs)
+      conn = post(conn, Routes.owner_path(conn, :create), owner: @create_attrs)
 
       assert %{id: id} = redirected_params(conn)
-      assert redirected_to(conn) == owner_path(conn, :show, id)
+      assert redirected_to(conn) == Routes.owner_path(conn, :show, id)
     end
 
     @tag login_as: "test@user.com"
     test "renders errors when data is invalid", %{conn: conn} do
-      conn = post(conn, owner_path(conn, :create), owner: @invalid_attrs)
+      conn = post(conn, Routes.owner_path(conn, :create), owner: @invalid_attrs)
 
       assert html_response(conn, 200) =~ "New owner"
     end
@@ -81,7 +81,7 @@ defmodule PtrWeb.OwnerControllerTest do
 
     @tag login_as: "test@user.com"
     test "renders form for editing chosen owner", %{conn: conn, owner: owner} do
-      conn = get(conn, owner_path(conn, :edit, owner))
+      conn = get(conn, Routes.owner_path(conn, :edit, owner))
 
       assert html_response(conn, 200) =~ "Edit owner"
     end
@@ -92,14 +92,14 @@ defmodule PtrWeb.OwnerControllerTest do
 
     @tag login_as: "test@user.com"
     test "redirects when data is valid", %{conn: conn, owner: owner} do
-      conn = put(conn, owner_path(conn, :update, owner), owner: @update_attrs)
+      conn = put(conn, Routes.owner_path(conn, :update, owner), owner: @update_attrs)
 
-      assert redirected_to(conn) == owner_path(conn, :show, owner)
+      assert redirected_to(conn) == Routes.owner_path(conn, :show, owner)
     end
 
     @tag login_as: "test@user.com"
     test "renders errors when data is invalid", %{conn: conn, owner: owner} do
-      conn = put(conn, owner_path(conn, :update, owner), owner: @invalid_attrs)
+      conn = put(conn, Routes.owner_path(conn, :update, owner), owner: @invalid_attrs)
 
       assert html_response(conn, 200) =~ "Edit owner"
     end
@@ -110,9 +110,9 @@ defmodule PtrWeb.OwnerControllerTest do
 
     @tag login_as: "test@user.com"
     test "deletes chosen owner", %{conn: conn, owner: owner} do
-      conn = delete(conn, owner_path(conn, :delete, owner))
+      conn = delete(conn, Routes.owner_path(conn, :delete, owner))
 
-      assert redirected_to(conn) == owner_path(conn, :index)
+      assert redirected_to(conn) == Routes.owner_path(conn, :index)
     end
   end
 

@@ -8,7 +8,7 @@ defmodule PtrWeb.LotView do
     icon_link(
       "eye",
       title: dgettext("lots", "Show"),
-      to: lot_path(conn, :show, lot),
+      to: Routes.lot_path(conn, :show, lot),
       class: "button is-small is-outlined is-hidden-mobile",
       data: [target: "link.link"]
     )
@@ -18,7 +18,7 @@ defmodule PtrWeb.LotView do
     icon_link(
       "pencil-alt",
       title: dgettext("lots", "Edit"),
-      to: lot_path(conn, :edit, lot),
+      to: Routes.lot_path(conn, :edit, lot),
       class: "button is-small is-outlined is-hidden-mobile"
     )
   end
@@ -27,7 +27,7 @@ defmodule PtrWeb.LotView do
     icon_link(
       "trash",
       title: dgettext("lots", "Delete"),
-      to: lot_path(conn, :delete, lot),
+      to: Routes.lot_path(conn, :delete, lot),
       method: :delete,
       data: [confirm: dgettext("lots", "Are you sure?")],
       class: "button is-small is-danger is-outlined"

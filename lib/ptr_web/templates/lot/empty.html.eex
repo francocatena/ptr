@@ -10,7 +10,7 @@
       </h2>
 
       <p>
-        <%= link dgettext("lots", "New lot"), to: lot_path(@conn, :new), class: "button is-primary is-large" %>
+        <%= link dgettext("lots", "New lot"), to: Routes.lot_path(@conn, :new), class: "button is-primary is-large" %>
       </p>
     </div>
   </div>

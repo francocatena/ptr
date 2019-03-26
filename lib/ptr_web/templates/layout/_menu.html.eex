@@ -1,7 +1,7 @@
 <nav class="navbar has-shadow is-light is-fixed-top" data-controller="menu">
   <div class="container">
     <div class="navbar-brand">
-      <%= link to: root_path(@conn, :index), class: "navbar-item is-hoverable" do %>
+      <%= link to: Routes.root_path(@conn, :index), class: "navbar-item is-hoverable" do %>
         <span class="icon">
           <i class="fas fa-home" aria-hidden="true"></i>
         </span>
@@ -16,13 +16,13 @@
 
     <div class="navbar-menu" data-target="menu.options">
       <div class="navbar-start">
-        <%= menu_item @conn, to: cellar_path(@conn, :index) do %>
+        <%= menu_item @conn, to: Routes.cellar_path(@conn, :index) do %>
           <%= dgettext("cellars", "Cellars") %>
         <% end %>
-        <%= menu_item @conn, to: owner_path(@conn, :index) do %>
+        <%= menu_item @conn, to: Routes.owner_path(@conn, :index) do %>
           <%= dgettext("owners", "Owners") %>
         <% end %>
-        <%= menu_item @conn, to: lot_path(@conn, :index) do %>
+        <%= menu_item @conn, to: Routes.lot_path(@conn, :index) do %>
           <%= dgettext("lots", "Lots") %>
         <% end %>
 
@@ -34,10 +34,10 @@
           </div>
 
           <div id="config-dropdown" class="navbar-dropdown">
-            <%= menu_item @conn, to: user_path(@conn, :index) do %>
+            <%= menu_item @conn, to: Routes.user_path(@conn, :index) do %>
               <%= dgettext("users", "Users") %>
             <% end %>
-            <%= menu_item @conn, to: variety_path(@conn, :index) do %>
+            <%= menu_item @conn, to: Routes.variety_path(@conn, :index) do %>
               <%= dgettext("varieties", "Varieties") %>
             <% end %>
           </div>
@@ -52,7 +52,7 @@
           </div>
 
           <div id="user-dropdown" class="navbar-dropdown is-right">
-            <%= link to: session_path(@conn, :delete), method: :delete, class: "navbar-item has-icon" do %>
+            <%= link to: Routes.session_path(@conn, :delete), method: :delete, class: "navbar-item has-icon" do %>
               <%= dgettext("sessions", "Logout") %>
               <span class="icon">
                 <i class="fas fa-sign-out-alt" aria-hidden="true"></i>

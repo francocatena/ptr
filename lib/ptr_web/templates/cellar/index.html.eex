@@ -43,7 +43,7 @@
 <footer class="footer is-primary">
   <div class="container">
     <p>
-      <span><%= link dgettext("cellars", "New cellar"), to: cellar_path(@conn, :new) %></span>
+      <span><%= link dgettext("cellars", "New cellar"), to: Routes.cellar_path(@conn, :new) %></span>
     </p>
   </div>
 </footer>

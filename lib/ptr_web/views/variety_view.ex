@@ -8,7 +8,7 @@ defmodule PtrWeb.VarietyView do
     icon_link(
       "eye",
       title: dgettext("varieties", "Show"),
-      to: variety_path(conn, :show, variety),
+      to: Routes.variety_path(conn, :show, variety),
       class: "button is-small is-outlined is-hidden-mobile",
       data: [target: "link.link"]
     )
@@ -18,7 +18,7 @@ defmodule PtrWeb.VarietyView do
     icon_link(
       "pencil-alt",
       title: dgettext("varieties", "Edit"),
-      to: variety_path(conn, :edit, variety),
+      to: Routes.variety_path(conn, :edit, variety),
       class: "button is-small is-outlined is-hidden-mobile"
     )
   end
@@ -27,7 +27,7 @@ defmodule PtrWeb.VarietyView do
     icon_link(
       "trash",
       title: dgettext("varieties", "Delete"),
-      to: variety_path(conn, :delete, variety),
+      to: Routes.variety_path(conn, :delete, variety),
       method: :delete,
       data: [confirm: dgettext("varieties", "Are you sure?")],
       class: "button is-small is-danger is-outlined"

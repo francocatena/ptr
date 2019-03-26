@@ -12,13 +12,13 @@ defmodule PtrWeb.CellarControllerTest do
     test "requires user authentication on all actions", %{conn: conn} do
       Enum.each(
         [
-          get(conn, cellar_path(conn, :index)),
-          get(conn, cellar_path(conn, :new)),
-          post(conn, cellar_path(conn, :create, %{})),
-          get(conn, cellar_path(conn, :show, "123")),
-          get(conn, cellar_path(conn, :edit, "123")),
-          put(conn, cellar_path(conn, :update, "123", %{})),
-          delete(conn, cellar_path(conn, :delete, "123"))
+          get(conn, Routes.cellar_path(conn, :index)),
+          get(conn, Routes.cellar_path(conn, :new)),
+          post(conn, Routes.cellar_path(conn, :create, %{})),
+          get(conn, Routes.cellar_path(conn, :show, "123")),
+          get(conn, Routes.cellar_path(conn, :edit, "123")),
+          put(conn, Routes.cellar_path(conn, :update, "123", %{})),
+          delete(conn, Routes.cellar_path(conn, :delete, "123"))
         ],
         fn conn ->
           assert html_response(conn, 302)
@@ -33,7 +33,7 @@ defmodule PtrWeb.CellarControllerTest do
 
     @tag login_as: "test@user.com"
     test "lists all cellars", %{conn: conn, cellar: cellar} do
-      conn = get(conn, cellar_path(conn, :index))
+      conn = get(conn, Routes.cellar_path(conn, :index))
       response = html_response(conn, 200)
 
       assert response =~ "Cellars"
@@ -44,7 +44,7 @@ defmodule PtrWeb.CellarControllerTest do
   describe "empty index" do
     @tag login_as: "test@user.com"
     test "lists no cellars", %{conn: conn} do
-      conn = get(conn, cellar_path(conn, :index))
+      conn = get(conn, Routes.cellar_path(conn, :index))
 
       assert html_response(conn, 200) =~ "you have no cellars"
     end
@@ -53,7 +53,7 @@ defmodule PtrWeb.CellarControllerTest do
   describe "new cellar" do
     @tag login_as: "test@user.com"
     test "renders form", %{conn: conn} do
-      conn = get(conn, cellar_path(conn, :new))
+      conn = get(conn, Routes.cellar_path(conn, :new))
 
       assert html_response(conn, 200) =~ "New cellar"
     end
@@ -62,15 +62,15 @@ defmodule PtrWeb.CellarControllerTest do
   describe "create cellar" do
     @tag login_as: "test@user.com"
     test "redirects to show when data is valid", %{conn: conn} do
-      conn = post(conn, cellar_path(conn, :create), cellar: @create_attrs)
+      conn = post(conn, Routes.cellar_path(conn, :create), cellar: @create_attrs)
 
       assert %{id: id} = redirected_params(conn)
-      assert redirected_to(conn) == cellar_path(conn, :show, id)
+      assert redirected_to(conn) == Routes.cellar_path(conn, :show, id)
     end
 
     @tag login_as: "test@user.com"
     test "renders errors when data is invalid", %{conn: conn} do
-      conn = post(conn, cellar_path(conn, :create), cellar: @invalid_attrs)
+      conn = post(conn, Routes.cellar_path(conn, :create), cellar: @invalid_attrs)
 
       assert html_response(conn, 200) =~ "New cellar"
     end
@@ -81,7 +81,7 @@ defmodule PtrWeb.CellarControllerTest do
 
     @tag login_as: "test@user.com"
     test "renders form for editing chosen cellar", %{conn: conn, cellar: cellar} do
-      conn = get(conn, cellar_path(conn, :edit, cellar))
+      conn = get(conn, Routes.cellar_path(conn, :edit, cellar))
 
       assert html_response(conn, 200) =~ "Edit cellar"
     end
@@ -92,14 +92,14 @@ defmodule PtrWeb.CellarControllerTest do
 
     @tag login_as: "test@user.com"
     test "redirects when data is valid", %{conn: conn, cellar: cellar} do
-      conn = put(conn, cellar_path(conn, :update, cellar), cellar: @update_attrs)
+      conn = put(conn, Routes.cellar_path(conn, :update, cellar), cellar: @update_attrs)
 
-      assert redirected_to(conn) == cellar_path(conn, :show, cellar)
+      assert redirected_to(conn) == Routes.cellar_path(conn, :show, cellar)
     end
 
     @tag login_as: "test@user.com"
     test "renders errors when data is invalid", %{conn: conn, cellar: cellar} do
-      conn = put(conn, cellar_path(conn, :update, cellar), cellar: @invalid_attrs)
+      conn = put(conn, Routes.cellar_path(conn, :update, cellar), cellar: @invalid_attrs)
 
       assert html_response(conn, 200) =~ "Edit cellar"
     end
@@ -110,9 +110,9 @@ defmodule PtrWeb.CellarControllerTest do
 
     @tag login_as: "test@user.com"
     test "deletes chosen cellar", %{conn: conn, cellar: cellar} do
-      conn = delete(conn, cellar_path(conn, :delete, cellar))
+      conn = delete(conn, Routes.cellar_path(conn, :delete, cellar))
 
-      assert redirected_to(conn) == cellar_path(conn, :index)
+      assert redirected_to(conn) == Routes.cellar_path(conn, :index)
     end
   end
 

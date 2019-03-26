@@ -10,7 +10,7 @@
       </h2>
 
       <p>
-        <%= link dgettext("varieties", "New variety"), to: variety_path(@conn, :new), class: "button is-primary is-large" %>
+        <%= link dgettext("varieties", "New variety"), to: Routes.variety_path(@conn, :new), class: "button is-primary is-large" %>
       </p>
     </div>
   </div>

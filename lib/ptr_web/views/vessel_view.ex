@@ -8,7 +8,7 @@ defmodule PtrWeb.VesselView do
     icon_link(
       "eye",
       title: dgettext("vessels", "Show"),
-      to: cellar_vessel_path(conn, :show, cellar, vessel),
+      to: Routes.cellar_vessel_path(conn, :show, cellar, vessel),
       class: "button is-small is-outlined is-hidden-mobile",
       data: [target: "link.link"]
     )
@@ -18,7 +18,7 @@ defmodule PtrWeb.VesselView do
     icon_link(
       "pencil-alt",
       title: dgettext("vessels", "Edit"),
-      to: cellar_vessel_path(conn, :edit, cellar, vessel),
+      to: Routes.cellar_vessel_path(conn, :edit, cellar, vessel),
       class: "button is-small is-outlined is-hidden-mobile"
     )
   end
@@ -27,7 +27,7 @@ defmodule PtrWeb.VesselView do
     icon_link(
       "trash",
       title: dgettext("vessels", "Delete"),
-      to: cellar_vessel_path(conn, :delete, cellar, vessel),
+      to: Routes.cellar_vessel_path(conn, :delete, cellar, vessel),
       method: :delete,
       data: [confirm: dgettext("vessels", "Are you sure?")],
       class: "button is-small is-danger is-outlined"
@@ -74,7 +74,7 @@ defmodule PtrWeb.VesselView do
   end
 
   def render_js_pagination(conn, page, cellar) do
-    opts = [path: &cellar_vessel_path/4]
+    opts = [path: &Routes.cellar_vessel_path/4]
 
     conn
     |> pagination_links(page, [cellar], opts)

@@ -8,7 +8,7 @@
     </h6>
 
     <p>
-      <%= link dgettext("cellars", "New vessel"), to: cellar_vessel_path(@conn, :new, @cellar), class: "button" %>
+      <%= link dgettext("cellars", "New vessel"), to: Routes.cellar_vessel_path(@conn, :new, @cellar), class: "button" %>
     </p>
   </div>
 </article>

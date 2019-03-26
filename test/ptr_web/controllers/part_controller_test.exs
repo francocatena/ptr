@@ -12,13 +12,13 @@ defmodule PtrWeb.PartControllerTest do
     test "requires user authentication on all actions", %{conn: conn} do
       Enum.each(
         [
-          get(conn, lot_part_path(conn, :index, "1")),
-          get(conn, lot_part_path(conn, :new, "1")),
-          post(conn, lot_part_path(conn, :create, "1", %{})),
-          get(conn, lot_part_path(conn, :show, "1", "123")),
-          get(conn, lot_part_path(conn, :edit, "1", "123")),
-          put(conn, lot_part_path(conn, :update, "1", "123", %{})),
-          delete(conn, lot_part_path(conn, :delete, "1", "123"))
+          get(conn, Routes.lot_part_path(conn, :index, "1")),
+          get(conn, Routes.lot_part_path(conn, :new, "1")),
+          post(conn, Routes.lot_part_path(conn, :create, "1", %{})),
+          get(conn, Routes.lot_part_path(conn, :show, "1", "123")),
+          get(conn, Routes.lot_part_path(conn, :edit, "1", "123")),
+          put(conn, Routes.lot_part_path(conn, :update, "1", "123", %{})),
+          delete(conn, Routes.lot_part_path(conn, :delete, "1", "123"))
         ],
         fn conn ->
           assert html_response(conn, 302)
@@ -33,7 +33,7 @@ defmodule PtrWeb.PartControllerTest do
 
     @tag login_as: "test@user.com"
     test "lists all parts", %{conn: conn, part: part} do
-      conn = get(conn, lot_part_path(conn, :index, part.lot))
+      conn = get(conn, Routes.lot_part_path(conn, :index, part.lot))
       response = html_response(conn, 200)
 
       assert response =~ "Parts"
@@ -46,7 +46,7 @@ defmodule PtrWeb.PartControllerTest do
 
     @tag login_as: "test@user.com"
     test "lists no parts", %{conn: conn, lot: lot} do
-      conn = get(conn, lot_part_path(conn, :index, lot))
+      conn = get(conn, Routes.lot_part_path(conn, :index, lot))
 
       assert html_response(conn, 200) =~ "you have no parts"
     end
@@ -57,7 +57,7 @@ defmodule PtrWeb.PartControllerTest do
 
     @tag login_as: "test@user.com"
     test "renders form", %{conn: conn, lot: lot} do
-      conn = get(conn, lot_part_path(conn, :new, lot))
+      conn = get(conn, Routes.lot_part_path(conn, :new, lot))
 
       assert html_response(conn, 200) =~ "New part"
     end
@@ -69,15 +69,15 @@ defmodule PtrWeb.PartControllerTest do
     @tag login_as: "test@user.com"
     test "redirects to show when data is valid", %{conn: conn, lot: lot, vessel: vessel} do
       attrs = %{@create_attrs | lot_id: lot.id, vessel_id: vessel.id}
-      conn = post(conn, lot_part_path(conn, :create, lot), part: attrs)
+      conn = post(conn, Routes.lot_part_path(conn, :create, lot), part: attrs)
 
       assert %{id: id} = redirected_params(conn)
-      assert redirected_to(conn) == lot_part_path(conn, :show, lot, id)
+      assert redirected_to(conn) == Routes.lot_part_path(conn, :show, lot, id)
     end
 
     @tag login_as: "test@user.com"
     test "renders errors when data is invalid", %{conn: conn, lot: lot} do
-      conn = post(conn, lot_part_path(conn, :create, lot), part: @invalid_attrs)
+      conn = post(conn, Routes.lot_part_path(conn, :create, lot), part: @invalid_attrs)
 
       assert html_response(conn, 200) =~ "New part"
     end
@@ -88,7 +88,7 @@ defmodule PtrWeb.PartControllerTest do
 
     @tag login_as: "test@user.com"
     test "renders form for editing chosen part", %{conn: conn, part: part} do
-      conn = get(conn, lot_part_path(conn, :edit, part.lot, part))
+      conn = get(conn, Routes.lot_part_path(conn, :edit, part.lot, part))
 
       assert html_response(conn, 200) =~ "Edit part"
     end
@@ -99,14 +99,14 @@ defmodule PtrWeb.PartControllerTest do
 
     @tag login_as: "test@user.com"
     test "redirects when data is valid", %{conn: conn, part: part} do
-      conn = put(conn, lot_part_path(conn, :update, part.lot, part), part: @update_attrs)
+      conn = put(conn, Routes.lot_part_path(conn, :update, part.lot, part), part: @update_attrs)
 
-      assert redirected_to(conn) == lot_part_path(conn, :show, part.lot, part)
+      assert redirected_to(conn) == Routes.lot_part_path(conn, :show, part.lot, part)
     end
 
     @tag login_as: "test@user.com"
     test "renders errors when data is invalid", %{conn: conn, part: part} do
-      conn = put(conn, lot_part_path(conn, :update, part.lot, part), part: @invalid_attrs)
+      conn = put(conn, Routes.lot_part_path(conn, :update, part.lot, part), part: @invalid_attrs)
 
       assert html_response(conn, 200) =~ "Edit part"
     end
@@ -117,9 +117,9 @@ defmodule PtrWeb.PartControllerTest do
 
     @tag login_as: "test@user.com"
     test "deletes chosen part", %{conn: conn, part: part} do
-      conn = delete(conn, lot_part_path(conn, :delete, part.lot, part))
+      conn = delete(conn, Routes.lot_part_path(conn, :delete, part.lot, part))
 
-      assert redirected_to(conn) == lot_part_path(conn, :index, part.lot)
+      assert redirected_to(conn) == Routes.lot_part_path(conn, :index, part.lot)
     end
   end
 

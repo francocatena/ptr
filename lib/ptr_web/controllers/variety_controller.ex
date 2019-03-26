@@ -30,7 +30,7 @@ defmodule PtrWeb.VarietyController do
       {:ok, variety} ->
         conn
         |> put_flash(:info, dgettext("varieties", "Variety created successfully."))
-        |> redirect(to: variety_path(conn, :show, variety))
+        |> redirect(to: Routes.variety_path(conn, :show, variety))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -61,7 +61,7 @@ defmodule PtrWeb.VarietyController do
       {:ok, variety} ->
         conn
         |> put_flash(:info, dgettext("varieties", "Variety updated successfully."))
-        |> redirect(to: variety_path(conn, :show, variety))
+        |> redirect(to: Routes.variety_path(conn, :show, variety))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", variety: variety, changeset: changeset)
@@ -74,7 +74,7 @@ defmodule PtrWeb.VarietyController do
 
     conn
     |> put_flash(:info, dgettext("varieties", "Variety deleted successfully."))
-    |> redirect(to: variety_path(conn, :index))
+    |> redirect(to: Routes.variety_path(conn, :index))
   end
 
   defp render_index(conn, %{total_entries: 0}), do: render(conn, "empty.html")
@@ -85,21 +85,21 @@ defmodule PtrWeb.VarietyController do
 
   defp put_new_breadcrumb(conn) do
     name = dgettext("varieties", "New variety")
-    url = variety_path(conn, :new)
+    url = Routes.variety_path(conn, :new)
 
     conn |> put_breadcrumb(name, url)
   end
 
   defp put_show_breadcrumb(conn, variety) do
     name = dgettext("varieties", "Variety")
-    url = variety_path(conn, :show, variety)
+    url = Routes.variety_path(conn, :show, variety)
 
     conn |> put_breadcrumb(name, url)
   end
 
   defp put_edit_breadcrumb(conn, variety) do
     name = dgettext("varieties", "Edit variety")
-    url = variety_path(conn, :edit, variety)
+    url = Routes.variety_path(conn, :edit, variety)
 
     conn |> put_breadcrumb(name, url)
   end

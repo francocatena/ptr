@@ -30,7 +30,7 @@ defmodule PtrWeb.LotController do
       {:ok, lot} ->
         conn
         |> put_flash(:info, dgettext("lots", "Lot created successfully."))
-        |> redirect(to: lot_path(conn, :show, lot))
+        |> redirect(to: Routes.lot_path(conn, :show, lot))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset, account: session.account)
@@ -61,7 +61,7 @@ defmodule PtrWeb.LotController do
       {:ok, lot} ->
         conn
         |> put_flash(:info, dgettext("lots", "Lot updated successfully."))
-        |> redirect(to: lot_path(conn, :show, lot))
+        |> redirect(to: Routes.lot_path(conn, :show, lot))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", lot: lot, changeset: changeset, account: session.account)
@@ -74,7 +74,7 @@ defmodule PtrWeb.LotController do
 
     conn
     |> put_flash(:info, dgettext("lots", "Lot deleted successfully."))
-    |> redirect(to: lot_path(conn, :index))
+    |> redirect(to: Routes.lot_path(conn, :index))
   end
 
   defp render_index(conn, %{total_entries: 0}), do: render(conn, "empty.html")
@@ -85,21 +85,21 @@ defmodule PtrWeb.LotController do
 
   defp put_new_breadcrumb(conn) do
     name = dgettext("lots", "New lot")
-    url = lot_path(conn, :new)
+    url = Routes.lot_path(conn, :new)
 
     conn |> put_breadcrumb(name, url)
   end
 
   defp put_show_breadcrumb(conn, lot) do
     name = dgettext("lots", "Lot")
-    url = lot_path(conn, :show, lot)
+    url = Routes.lot_path(conn, :show, lot)
 
     conn |> put_breadcrumb(name, url)
   end
 
   defp put_edit_breadcrumb(conn, lot) do
     name = dgettext("lots", "Edit lot")
-    url = lot_path(conn, :edit, lot)
+    url = Routes.lot_path(conn, :edit, lot)
 
     conn |> put_breadcrumb(name, url)
   end

@@ -22,7 +22,7 @@
       </div>
 
       <footer class="card-footer">
-        <%= link dgettext("cellars", "Edit"), to: cellar_path(@conn, :edit, @cellar), class: "card-footer-item" %>
+        <%= link dgettext("cellars", "Edit"), to: Routes.cellar_path(@conn, :edit, @cellar), class: "card-footer-item" %>
       </footer>
     </div>
   </div>
@@ -31,7 +31,7 @@
 <footer class="footer is-primary">
   <div class="container">
     <p>
-      <span><%= link dgettext("cellars", "Back"), to: cellar_path(@conn, :index) %></span>
+      <span><%= link dgettext("cellars", "Back"), to: Routes.cellar_path(@conn, :index) %></span>
     </p>
   </div>
 </footer>

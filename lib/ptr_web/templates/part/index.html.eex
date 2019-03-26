@@ -35,7 +35,7 @@
           </tbody>
         </table>
 
-        <%= pagination_links @conn, @page, [@lot], path: &lot_part_path/4 %>
+        <%= pagination_links @conn, @page, [@lot], path: &Routes.lot_part_path/4 %>
       </div>
     </div>
   </div>
@@ -44,7 +44,7 @@
 <footer class="footer is-primary">
   <div class="container">
     <p>
-      <span><%= link dgettext("parts", "New part"), to: lot_part_path(@conn, :new, @lot) %></span>
+      <span><%= link dgettext("parts", "New part"), to: Routes.lot_part_path(@conn, :new, @lot) %></span>
     </p>
   </div>
 </footer>

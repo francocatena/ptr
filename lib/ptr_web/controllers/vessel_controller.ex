@@ -11,10 +11,10 @@ defmodule PtrWeb.VesselController do
     cellar = Cellars.get_cellar!(session.account, conn.params["cellar_id"])
     name = dgettext("vessels", "Vessels")
 
-    url = cellar_path(conn, :show, cellar)
+    url = Routes.cellar_path(conn, :show, cellar)
     conn = put_breadcrumb(conn, name: cellar.name, url: url)
 
-    url = cellar_vessel_path(conn, :index, cellar)
+    url = Routes.cellar_vessel_path(conn, :index, cellar)
     conn = put_breadcrumb(conn, name: name, url: url)
 
     apply(__MODULE__, action_name(conn), [conn, conn.params, session, cellar])
@@ -42,7 +42,7 @@ defmodule PtrWeb.VesselController do
       {:ok, vessel} ->
         conn
         |> put_flash(:info, dgettext("vessels", "Vessel created successfully."))
-        |> redirect(to: cellar_vessel_path(conn, :show, cellar, vessel))
+        |> redirect(to: Routes.cellar_vessel_path(conn, :show, cellar, vessel))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", cellar: cellar, changeset: changeset)
@@ -73,7 +73,7 @@ defmodule PtrWeb.VesselController do
       {:ok, vessel} ->
         conn
         |> put_flash(:info, dgettext("vessels", "Vessel updated successfully."))
-        |> redirect(to: cellar_vessel_path(conn, :show, cellar, vessel))
+        |> redirect(to: Routes.cellar_vessel_path(conn, :show, cellar, vessel))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", cellar: cellar, vessel: vessel, changeset: changeset)
@@ -86,7 +86,7 @@ defmodule PtrWeb.VesselController do
 
     conn
     |> put_flash(:info, dgettext("vessels", "Vessel deleted successfully."))
-    |> redirect(to: cellar_vessel_path(conn, :index, cellar))
+    |> redirect(to: Routes.cellar_vessel_path(conn, :index, cellar))
   end
 
   defp render_index(conn, %{total_entries: 0}, opts) do
@@ -104,21 +104,21 @@ defmodule PtrWeb.VesselController do
 
   defp put_new_breadcrumb(conn, cellar) do
     name = dgettext("vessels", "New vessel")
-    url = cellar_vessel_path(conn, :new, cellar)
+    url = Routes.cellar_vessel_path(conn, :new, cellar)
 
     conn |> put_breadcrumb(name, url)
   end
 
   defp put_show_breadcrumb(conn, cellar, vessel) do
     name = vessel.identifier
-    url = cellar_vessel_path(conn, :show, cellar, vessel)
+    url = Routes.cellar_vessel_path(conn, :show, cellar, vessel)
 
     conn |> put_breadcrumb(name, url)
   end
 
   defp put_edit_breadcrumb(conn, cellar, vessel) do
     name = dgettext("vessels", "Edit vessel")
-    url = cellar_vessel_path(conn, :edit, cellar, vessel)
+    url = Routes.cellar_vessel_path(conn, :edit, cellar, vessel)
 
     conn |> put_breadcrumb(name, url)
   end

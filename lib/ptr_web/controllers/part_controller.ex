@@ -11,10 +11,10 @@ defmodule PtrWeb.PartController do
     lot = Lots.get_lot!(session.account, conn.params["lot_id"])
     name = dgettext("parts", "Parts")
 
-    url = lot_path(conn, :show, lot)
+    url = Routes.lot_path(conn, :show, lot)
     conn = put_breadcrumb(conn, name: lot.identifier, url: url)
 
-    url = lot_part_path(conn, :index, lot)
+    url = Routes.lot_part_path(conn, :index, lot)
     conn = put_breadcrumb(conn, name: name, url: url)
 
     apply(__MODULE__, action_name(conn), [conn, conn.params, session, lot])
@@ -42,7 +42,7 @@ defmodule PtrWeb.PartController do
       {:ok, part} ->
         conn
         |> put_flash(:info, dgettext("parts", "Part created successfully."))
-        |> redirect(to: lot_part_path(conn, :show, lot, part))
+        |> redirect(to: Routes.lot_part_path(conn, :show, lot, part))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", account: session.account, lot: lot, changeset: changeset)
@@ -73,7 +73,7 @@ defmodule PtrWeb.PartController do
       {:ok, part} ->
         conn
         |> put_flash(:info, dgettext("parts", "Part updated successfully."))
-        |> redirect(to: lot_part_path(conn, :show, lot, part))
+        |> redirect(to: Routes.lot_part_path(conn, :show, lot, part))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(
@@ -93,7 +93,7 @@ defmodule PtrWeb.PartController do
 
     conn
     |> put_flash(:info, dgettext("parts", "Part deleted successfully."))
-    |> redirect(to: lot_part_path(conn, :index, lot))
+    |> redirect(to: Routes.lot_part_path(conn, :index, lot))
   end
 
   defp render_index(conn, %{total_entries: 0}, opts) do
@@ -111,21 +111,21 @@ defmodule PtrWeb.PartController do
 
   defp put_new_breadcrumb(conn, lot) do
     name = dgettext("parts", "New part")
-    url = lot_part_path(conn, :new, lot)
+    url = Routes.lot_part_path(conn, :new, lot)
 
     conn |> put_breadcrumb(name, url)
   end
 
   defp put_show_breadcrumb(conn, lot, part) do
     name = dgettext("parts", "Part")
-    url = lot_part_path(conn, :show, lot, part)
+    url = Routes.lot_part_path(conn, :show, lot, part)
 
     conn |> put_breadcrumb(name, url)
   end
 
   defp put_edit_breadcrumb(conn, lot, part) do
     name = dgettext("parts", "Edit part")
-    url = lot_part_path(conn, :edit, lot, part)
+    url = Routes.lot_part_path(conn, :edit, lot, part)
 
     conn |> put_breadcrumb(name, url)
   end
