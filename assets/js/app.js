@@ -6,9 +6,7 @@ import 'phoenix_html'
 // paths './socket' or full ones 'web/static/js/socket'.
 
 // import socket from './socket'
-import './delete_button'
 import './endless_page'
-import './fake_link'
 import './font_awesome'
-import './menu'
+import './stimulus'
 import './turbolinks'

@@ -1,7 +1,7 @@
 export const getScript = url => {
   const headers = {
     'Accept':           'application/javascript',
-    'X-Requested-With': 'XMLHttpRequest' // Just to "trick" plug csrf protection
+    'X-Requested-With': 'XMLHttpRequest' // Just to "trick" plug CSRF protection
   }
   const options = {
     headers,
@@ -14,7 +14,7 @@ export const getScript = url => {
       return response.text()
     }
 
-    throw new Error('Network response was not ok.')
+    throw new Error('Network response was not OK.')
   }).then(text => {
     const script = document.createElement('script')
 

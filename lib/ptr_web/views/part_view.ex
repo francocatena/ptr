@@ -8,7 +8,7 @@ defmodule PtrWeb.PartView do
       title: dgettext("parts", "Show"),
       to: lot_part_path(conn, :show, lot, part),
       class: "button is-small is-outlined is-hidden-mobile",
-      data: [main_link: true]
+      data: [target: "link.link"]
     )
   end
 

@@ -10,7 +10,7 @@ defmodule PtrWeb.OwnerView do
       title: dgettext("owners", "Show"),
       to: owner_path(conn, :show, owner),
       class: "button is-small is-outlined is-hidden-mobile",
-      data: [main_link: true]
+      data: [target: "link.link"]
     )
   end
 

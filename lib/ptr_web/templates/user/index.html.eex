@@ -20,7 +20,7 @@
           </thead>
           <tbody>
             <%= for user <- @users do %>
-              <tr class="has-cursor-pointer" data-link-like data-target="[data-main-link]">
+              <tr data-controller="link" data-action="click->link#open" data-target="link.action">
                 <td><%= user.name %></td>
                 <td><%= user.lastname %></td>
                 <td class="is-hidden-mobile"><%= user.email %></td>
@@ -37,7 +37,7 @@
           </tbody>
         </table>
 
-        <%= pagination_links @conn, @page, view_style: :bulma %>
+        <%= pagination_links @conn, @page %>
       </div>
     </div>
   </div>

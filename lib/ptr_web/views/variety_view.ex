@@ -10,7 +10,7 @@ defmodule PtrWeb.VarietyView do
       title: dgettext("varieties", "Show"),
       to: variety_path(conn, :show, variety),
       class: "button is-small is-outlined is-hidden-mobile",
-      data: [main_link: true]
+      data: [target: "link.link"]
     )
   end
 

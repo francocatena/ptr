@@ -10,7 +10,7 @@ defmodule PtrWeb.VesselView do
       title: dgettext("vessels", "Show"),
       to: cellar_vessel_path(conn, :show, cellar, vessel),
       class: "button is-small is-outlined is-hidden-mobile",
-      data: [main_link: true]
+      data: [target: "link.link"]
     )
   end
 
@@ -74,7 +74,7 @@ defmodule PtrWeb.VesselView do
   end
 
   def render_js_pagination(conn, page, cellar) do
-    opts = [path: &cellar_vessel_path/4, view_style: :bulma]
+    opts = [path: &cellar_vessel_path/4]
 
     conn
     |> pagination_links(page, [cellar], opts)

@@ -18,12 +18,6 @@ config :ptr, PtrWeb.Endpoint,
 # Gettext config
 config :ptr, PtrWeb.Gettext, default_locale: "es_AR"
 
-# Scrivener config
-config :scrivener_html, routes_helper: PtrWeb.Router.Helpers
-
-# PaperTrail config
-config :paper_trail, repo: Ptr.Repo
-
 # Ecto timestamps
 config :ptr, Ptr.Repo, migration_timestamps: [type: :utc_datetime]
 
@@ -31,6 +25,14 @@ config :ptr, Ptr.Repo, migration_timestamps: [type: :utc_datetime]
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
+
+# PaperTrail config
+config :paper_trail, repo: Ptr.Repo
+
+# Scrivener HTML config
+config :scrivener_html,
+  routes_helper: PtrWeb.Router.Helpers,
+  view_style: :bulma
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

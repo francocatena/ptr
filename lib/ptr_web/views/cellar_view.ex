@@ -10,7 +10,7 @@ defmodule PtrWeb.CellarView do
       title: dgettext("cellars", "Show"),
       to: cellar_path(conn, :show, cellar),
       class: "button is-small is-outlined is-hidden-mobile",
-      data: [main_link: true]
+      data: [target: "link.link"]
     )
   end
 

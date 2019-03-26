@@ -12,7 +12,7 @@ defmodule PtrWeb.UserView do
       title: dgettext("users", "Show"),
       to: user_path(conn, :show, user),
       class: "button is-small is-outlined is-hidden-mobile",
-      data: [main_link: true]
+      data: [target: "link.link"]
     )
   end
 

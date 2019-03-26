@@ -21,7 +21,7 @@
           </thead>
           <tbody>
             <%= for lot <- @lots do %>
-              <tr class="has-cursor-pointer" data-link-like data-target="[data-main-link]">
+              <tr data-controller="link" data-action="click->link#open" data-target="link.action">
                 <td><%= lot.identifier %></td>
                 <td class="is-hidden-touch"><%= lot.cellar.name %></td>
                 <td><%= lot.variety.name %></td>
@@ -39,7 +39,7 @@
           </tbody>
         </table>
 
-        <%= pagination_links @conn, @page, view_style: :bulma %>
+        <%= pagination_links @conn, @page %>
       </div>
     </div>
   </div>

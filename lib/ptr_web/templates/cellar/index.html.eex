@@ -18,7 +18,7 @@
           </thead>
           <tbody>
             <%= for cellar <- @cellars do %>
-              <tr class="has-cursor-pointer" data-link-like data-target="[data-main-link]">
+              <tr data-controller="link" data-action="click->link#open" data-target="link.action">
                 <td><%= cellar.name %></td>
                 <td><%= cellar.identifier %></td>
 
@@ -34,7 +34,7 @@
           </tbody>
         </table>
 
-        <%= pagination_links @conn, @page, view_style: :bulma %>
+        <%= pagination_links @conn, @page %>
       </div>
     </div>
   </div>

@@ -19,7 +19,7 @@
           </thead>
           <tbody>
             <%= for part <- @parts do %>
-              <tr class="has-cursor-pointer" data-link-like data-target="[data-main-link]">
+              <tr data-controller="link" data-action="click->link#open" data-target="link.action">
                 <td><%= part.vessel.identifier %></td>
                 <td><%= Decimal.round(part.amount) %> <em>L</em></td>
 
@@ -35,7 +35,7 @@
           </tbody>
         </table>
 
-        <%= pagination_links @conn, @page, [@lot], path: &lot_part_path/4, view_style: :bulma %>
+        <%= pagination_links @conn, @page, [@lot], path: &lot_part_path/4 %>
       </div>
     </div>
   </div>

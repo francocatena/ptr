@@ -1,4 +1,4 @@
-<tr class="has-cursor-pointer" data-link-like data-target="[data-main-link]">
+<tr data-controller="link" data-action="click->link#open" data-target="link.action">
   <td><%= @vessel.identifier %></td>
   <td><%= Decimal.round(@vessel.capacity) %></td>
   <td class="is-hidden-mobile has-text-centered-vertically"><%= progress(@vessel, class: "progress is-small") %></td>

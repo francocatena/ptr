@@ -18,7 +18,7 @@
           </thead>
           <tbody>
             <%%= for <%= schema.singular %> <- @<%= schema.plural %> do %>
-              <tr class="has-cursor-pointer" data-link-like data-target="[data-main-link]">
+              <tr data-controller="link" data-action="click->link#open" data-target="link.action">
 <%= for {k, _} <- schema.attrs do %>                <td><%%= <%= schema.singular %>.<%= k %> %></td>
 <% end %>
                 <td>
@@ -33,7 +33,7 @@
           </tbody>
         </table>
 
-        <%%= pagination_links @conn, @page, view_style: :bulma %>
+        <%%= pagination_links @conn, @page %>
       </div>
     </div>
   </div>

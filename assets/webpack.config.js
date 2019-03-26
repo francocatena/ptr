@@ -3,7 +3,7 @@
 const Path                 = require('path')
 const CopyWebpackPlugin    = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const isProduction         = process.env.MIX_ENV === 'prod'
+const isProduction         = process.env.npm_lifecycle_event === 'build'
 
 const config = {
   mode: isProduction ? 'production' : 'development',
@@ -36,7 +36,6 @@ const config = {
           {
             loader:  'css-loader',
             options: {
-              minimize:  isProduction,
               sourceMap: !isProduction
             }
           },

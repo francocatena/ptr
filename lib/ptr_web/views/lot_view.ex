@@ -10,7 +10,7 @@ defmodule PtrWeb.LotView do
       title: dgettext("lots", "Show"),
       to: lot_path(conn, :show, lot),
       class: "button is-small is-outlined is-hidden-mobile",
-      data: [main_link: true]
+      data: [target: "link.link"]
     )
   end
 

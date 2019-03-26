@@ -19,13 +19,14 @@
               <th></th>
             </tr>
           </thead>
+
           <tbody data-vessels>
             <%= render_many @vessels, VesselView, "vessel.html", conn: @conn, cellar: @cellar %>
           </tbody>
         </table>
 
         <span data-intersection-sentinel></span>
-        <%= pagination_links @conn, @page, [@cellar], path: &cellar_vessel_path/4, view_style: :bulma %>
+        <%= pagination_links @conn, @page, [@cellar], path: &cellar_vessel_path/4 %>
       </div>
     </div>
   </div>
