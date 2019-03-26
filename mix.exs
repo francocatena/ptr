@@ -5,7 +5,7 @@ defmodule Ptr.Mixfile do
     [
       app: :ptr,
       version: "0.0.1",
-      elixir: "~> 1.7",
+      elixir: "~> 1.8",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
@@ -40,7 +40,7 @@ defmodule Ptr.Mixfile do
       {:phoenix_html, ">= 2.12.0"},
       {:phoenix_live_reload, ">= 1.1.0", only: :dev},
       {:gettext, ">= 0.15.0"},
-      {:cowboy, ">= 1.1.0"},
+      {:plug_cowboy, ">= 1.0.0"},
       {:comeonin, ">= 4.1.0"},
       {:argon2_elixir, ">= 1.3.0"},
       {:scrivener_ecto, ">= 1.3.0"},
