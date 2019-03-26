@@ -62,13 +62,13 @@ msgstr[1] "debería tener al menos %{count} items"
 
 msgid "should be at most %{count} character(s)"
 msgid_plural "should be at most %{count} character(s)"
-msgstr[0] "debería tener al menos un caracter"
-msgstr[1] "debería tener al menos %{count} caracteres"
+msgstr[0] "debería tener como máximo un caracter"
+msgstr[1] "debería tener como máximo %{count} caracteres"
 
 msgid "should have at most %{count} item(s)"
 msgid_plural "should have at most %{count} item(s)"
-msgstr[0] "debería tener al menos un item"
-msgstr[1] "debería tener al menos %{count} items"
+msgstr[0] "debería tener como máximo un item"
+msgstr[1] "debería tener como máximo %{count} items"
 
 msgid "must be less than %{number}"
 msgstr "debería ser menor a %{number}"
