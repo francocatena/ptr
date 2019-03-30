@@ -1,18 +1,16 @@
 /* global module, process, require, __dirname */
 
+const isProduction            = process.env.npm_lifecycle_event === 'build'
 const Path                    = require('path')
+const UglifyJsPlugin          = require('uglifyjs-webpack-plugin')
 const CopyWebpackPlugin       = require('copy-webpack-plugin')
 const MiniCssExtractPlugin    = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const UglifyJsPlugin          = require('uglifyjs-webpack-plugin')
-const isProduction            = process.env.npm_lifecycle_event === 'build'
 
 module.exports = {
-  mode: isProduction ? 'production' : 'development',
-
-  entry: ['./js/app.js', './css/app.scss'],
-
-  devtool: 'source-map',
+  mode:    isProduction ? 'production' : 'development',
+  devtool: isProduction ? undefined : 'source-map',
+  entry:   ['./js/app.js', './css/app.scss'],
 
   optimization: {
     minimizer: [
