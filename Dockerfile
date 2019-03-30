@@ -25,7 +25,7 @@ FROM elixir:alpine AS build
 LABEL stage=intermediate
 
 ARG APP_HOME
-ENV MIX_ENV=prod
+ENV MIX_ENV prod
 
 RUN apk add --update --no-cache build-base
 
@@ -55,7 +55,7 @@ USER nobody
 
 COPY --from=build $APP_HOME/_build/prod/rel/ptr ./
 
-ENV REPLACE_OS_VARS=true
+ENV REPLACE_OS_VARS true
 ENV ELIXIR_APP_PORT=4000 BEAM_PORT=14000 ERL_EPMD_PORT=24000
 EXPOSE $ELIXIR_APP_PORT $BEAM_PORT $ERL_EPMD_PORT
 

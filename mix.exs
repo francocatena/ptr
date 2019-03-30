@@ -40,6 +40,7 @@ defmodule Ptr.Mixfile do
       {:ecto_sql, ">= 3.0.0"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_live_reload, ">= 1.2.0", only: :dev},
+      {:jason, ">= 1.1.0"},
       {:gettext, ">= 0.16.0"},
       {:plug_cowboy, ">= 2.0.0"},
       {:argon2_elixir, ">= 2.0.0"},
