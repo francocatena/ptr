@@ -17,8 +17,8 @@ config :logger, level: :warn
 
 # Configure your database
 config :ptr, Ptr.Repo,
-  username: (if System.get_env("TRAVIS"), do: "postgres", else: "ptr"),
-  password: (if System.get_env("TRAVIS"), do: "postgres", else: "ptr"),
+  username: if(System.get_env("TRAVIS"), do: "postgres", else: "ptr"),
+  password: if(System.get_env("TRAVIS"), do: "postgres", else: "ptr"),
   database: "ptr_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
