@@ -10,7 +10,7 @@ defmodule Ptr.Support.Fixtures.PartFixture do
         account = fixture(:seed_account)
         session = %Session{account: account}
         {:ok, lot, _} = fixture(:lot)
-        {:ok, vessel, _cellar, _} = fixture(:vessel)
+        {:ok, vessel, _} = fixture(:vessel)
 
         attributes =
           attributes

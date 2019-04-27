@@ -8,7 +8,6 @@ defmodule Ptr.Support.Fixtures.VesselFixture do
         capacity: "120.5000",
         cooling: "some cooling",
         identifier: "some identifier",
-        material: "some material",
         notes: "some notes"
       }
 
@@ -16,19 +15,21 @@ defmodule Ptr.Support.Fixtures.VesselFixture do
         account = fixture(:seed_account)
         session = %Session{account: account}
         {:ok, cellar, _} = fixture(:cellar, %{})
+        {:ok, material, _} = fixture(:material, %{})
 
-        create_vessel(session, cellar, attributes)
+        create_vessel(session, cellar, material, attributes)
       end
 
-      defp create_vessel(session, cellar, attributes) do
+      defp create_vessel(session, cellar, material, attributes) do
         attributes =
           attributes
           |> Enum.into(@vessel_attrs)
           |> Map.put(:cellar_id, cellar.id)
+          |> Map.put(:material_id, material.id)
 
         {:ok, vessel} = Cellars.create_vessel(session, attributes)
 
-        {:ok, vessel, cellar, session.account}
+        {:ok, %{vessel | cellar: cellar, material: material}, session.account}
       end
     end
   end

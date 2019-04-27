@@ -37,6 +37,9 @@
             <%= menu_item @conn, to: Routes.user_path(@conn, :index) do %>
               <%= dgettext("users", "Users") %>
             <% end %>
+            <%= menu_item @conn, to: Routes.material_path(@conn, :index) do %>
+              <%= dgettext("materials", "Materials") %>
+            <% end %>
             <%= menu_item @conn, to: Routes.variety_path(@conn, :index) do %>
               <%= dgettext("varieties", "Varieties") %>
             <% end %>

@@ -45,14 +45,10 @@ defmodule PtrWeb.VesselView do
     |> submit(class: "button is-medium is-white is-paddingless card-footer-item")
   end
 
-  def materials do
-    [
-      [key: dgettext("vessels", "Steel"), value: "Steel"],
-      [key: dgettext("vessels", "Concrete"), value: "Concrete"],
-      [key: dgettext("vessels", "Fiber"), value: "Fiber"],
-      [key: dgettext("vessels", "Plastic"), value: "Plastic"],
-      [key: dgettext("vessels", "Wood"), value: "Wood"]
-    ]
+  def materials(account) do
+    account
+    |> Ptr.Options.list_materials()
+    |> Enum.map(&[key: &1.name, value: &1.id])
   end
 
   def cooling do

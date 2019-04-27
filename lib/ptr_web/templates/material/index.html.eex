@@ -1,0 +1,48 @@
+<section class="section is-primary">
+  <div class="container">
+    <div class="card">
+      <header class="card-header">
+        <h2 class="card-header-title">
+          <%= dgettext("materials", "Materials") %>
+        </h2>
+      </header>
+
+      <div class="card-content">
+        <table class="table is-striped is-hoverable is-narrow is-fullwidth">
+          <thead>
+            <tr>
+              <th><%= dgettext("materials", "Name") %></th>
+
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= for material <- @materials do %>
+              <tr data-controller="link" data-action="click->link#open" data-target="link.action">
+                <td><%= material.name %></td>
+
+                <td>
+                  <div class="buttons has-addons is-right">
+                    <%= link_to_show   @conn, material %>
+                    <%= link_to_edit   @conn, material %>
+                    <%= link_to_delete @conn, material %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <%= pagination_links @conn, @page %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer is-primary">
+  <div class="container">
+    <p>
+      <span><%= link dgettext("materials", "New material"), to: Routes.material_path(@conn, :new) %></span>
+    </p>
+  </div>
+</footer>

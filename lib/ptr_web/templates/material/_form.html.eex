@@ -1,0 +1,17 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <div class="card-content">
+    <%= if @changeset.action do %>
+      <div class="notification is-danger">
+        <p><%= dgettext("materials", "Oops, something went wrong! Please check the errors below.") %></p>
+      </div>
+    <% end %>
+
+    <%= input f, :name, dgettext("materials", "Name"), input_html: [autofocus: true] %>
+
+    <%= lock_version_input f, assigns[:material] %>
+  </div>
+
+  <footer class="card-footer">
+    <%= submit_button assigns[:material] %>
+  </footer>
+<% end %>

@@ -1,0 +1,95 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+"Plural-Forms: nplurals=2\n"
+
+#: lib/ptr_web/views/material_view.ex:29
+msgid "Are you sure?"
+msgstr ""
+
+#: lib/ptr_web/templates/material/edit.html.eex:22
+#: lib/ptr_web/templates/material/new.html.eex:22
+#: lib/ptr_web/templates/material/show.html.eex:24
+msgid "Back"
+msgstr ""
+
+#: lib/ptr_web/views/material_view.ex:47
+msgid "Create"
+msgstr ""
+
+#: lib/ptr_web/views/material_view.ex:26
+msgid "Delete"
+msgstr ""
+
+#: lib/ptr_web/templates/material/show.html.eex:15
+#: lib/ptr_web/views/material_view.ex:18
+msgid "Edit"
+msgstr ""
+
+#: lib/ptr_web/controllers/material_controller.ex:101
+#: lib/ptr_web/templates/material/edit.html.eex:8
+msgid "Edit material"
+msgstr ""
+
+#: lib/ptr_web/templates/material/empty.html.eex:9
+msgid "Let's create one..."
+msgstr ""
+
+#: lib/ptr_web/templates/material/empty.html.eex:5
+msgid "Looks like you have no materials."
+msgstr ""
+
+#: lib/ptr_web/controllers/material_controller.ex:94
+#: lib/ptr_web/templates/material/show.html.eex:6
+msgid "Material"
+msgstr ""
+
+#: lib/ptr_web/controllers/material_controller.ex:32
+msgid "Material created successfully."
+msgstr ""
+
+#: lib/ptr_web/controllers/material_controller.ex:76
+msgid "Material deleted successfully."
+msgstr ""
+
+#: lib/ptr_web/controllers/material_controller.ex:63
+msgid "Material updated successfully."
+msgstr ""
+
+#: lib/ptr_web/controllers/material_controller.ex:8
+#: lib/ptr_web/templates/layout/_menu.html.eex:41
+#: lib/ptr_web/templates/material/index.html.eex:6
+msgid "Materials"
+msgstr ""
+
+#: lib/ptr_web/templates/material/_form.html.eex:9
+#: lib/ptr_web/templates/material/index.html.eex:14
+msgid "Name"
+msgstr ""
+
+#: lib/ptr_web/controllers/material_controller.ex:87
+#: lib/ptr_web/templates/material/empty.html.eex:13
+#: lib/ptr_web/templates/material/index.html.eex:45
+#: lib/ptr_web/templates/material/new.html.eex:8
+msgid "New material"
+msgstr ""
+
+#: lib/ptr_web/templates/material/_form.html.eex:5
+msgid "Oops, something went wrong! Please check the errors below."
+msgstr ""
+
+#: lib/ptr_web/views/material_view.ex:9
+msgid "Show"
+msgstr ""
+
+#: lib/ptr_web/views/material_view.ex:48
+msgid "Update"
+msgstr ""

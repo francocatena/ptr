@@ -19,7 +19,7 @@
         <ul>
           <li>
             <strong><%= dgettext("vessels", "Material") %></strong>:
-            <%= Gettext.dgettext(PtrWeb.Gettext, "vessels", @vessel.material || "") %>
+            <%= @vessel.material && @vessel.material.name %>
           </li>
           <li>
             <strong><%= dgettext("vessels", "Cooling") %></strong>:

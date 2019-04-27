@@ -8,7 +8,7 @@
 
     <%= input f, :identifier, dgettext("vessels", "Identifier"), input_html: [autofocus: true] %>
     <%= input f, :capacity,   dgettext("vessels", "Capacity"), addons: [right: "L"] %>
-    <%= input f, :material,   dgettext("vessels", "Material"), collection: materials(), input_html: [prompt: dgettext("vessels", "Choose material")] %>
+    <%= input f, :material_id, dgettext("vessels", "Material"), collection: materials(@account), input_html: [prompt: dgettext("vessels", "Choose material")] %>
     <%= input f, :cooling,    dgettext("vessels", "Cooling"), collection: cooling(), input_html: [prompt: dgettext("vessels", "Choose cooling")] %>
     <%= input f, :notes,      dgettext("vessels", "Notes"), using: :textarea %>
 

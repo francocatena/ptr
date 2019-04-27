@@ -32,7 +32,7 @@ msgstr ""
 msgid "Invalid email/password combination"
 msgstr ""
 
-#: lib/ptr_web/templates/layout/_menu.html.eex:56
+#: lib/ptr_web/templates/layout/_menu.html.eex:59
 msgid "Logout"
 msgstr ""
 

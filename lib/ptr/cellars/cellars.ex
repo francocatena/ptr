@@ -293,11 +293,13 @@ defmodule Ptr.Cellars do
     query =
       from(
         v in Vessel,
-        group_by: v.id,
         left_join: p in assoc(v, :parts),
+        left_join: m in assoc(v, :material),
         select: %{v | usage: coalesce(sum(p.amount), 0)},
         where: [cellar_id: ^cellar.id],
-        order_by: v.identifier
+        group_by: [v.id, m.id],
+        order_by: v.identifier,
+        preload: [material: m]
       )
 
     prefixed(query, account)
@@ -308,8 +310,9 @@ defmodule Ptr.Cellars do
       from(
         v in Vessel,
         left_join: p in assoc(v, :parts),
+        left_join: m in assoc(v, :material),
         left_join: l in assoc(p, :lot),
-        preload: [parts: {p, lot: l}]
+        preload: [material: m, parts: {p, lot: l}]
       )
 
     prefixed(query, account)

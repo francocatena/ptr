@@ -110,7 +110,7 @@ defmodule Ptr.LotsTest do
       session = %Session{account: account}
 
       {:ok, lot, _} = fixture(:lot)
-      {:ok, vessel, _cellar, _} = fixture(:vessel)
+      {:ok, vessel, _} = fixture(:vessel)
 
       attrs = %{@valid_attrs | lot_id: lot.id, vessel_id: vessel.id}
 

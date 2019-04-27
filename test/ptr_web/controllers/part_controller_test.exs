@@ -131,7 +131,7 @@ defmodule PtrWeb.PartControllerTest do
 
   defp create_lot_and_vessel(_) do
     {:ok, lot, _} = fixture(:lot)
-    {:ok, vessel, _cellar, _} = fixture(:vessel)
+    {:ok, vessel, _} = fixture(:vessel)
 
     {:ok, lot: lot, vessel: vessel}
   end

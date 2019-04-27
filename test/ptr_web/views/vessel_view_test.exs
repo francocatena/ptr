@@ -4,6 +4,7 @@ defmodule PtrWeb.VesselViewTest do
   alias PtrWeb.VesselView
   alias Ptr.Cellars
   alias Ptr.Cellars.{Cellar, Vessel}
+  alias Ptr.Options.Material
 
   import Phoenix.View
 
@@ -27,12 +28,14 @@ defmodule PtrWeb.VesselViewTest do
         id: "1",
         identifier: "1a",
         capacity: Decimal.new("100"),
+        material: %Material{name: "Concrete"},
         cellar_id: cellar.id
       },
       %Vessel{
         id: "2",
         identifier: "2a",
         capacity: Decimal.new("200"),
+        material: %Material{name: "Concrete"},
         cellar_id: cellar.id
       }
     ]
@@ -60,12 +63,14 @@ defmodule PtrWeb.VesselViewTest do
         id: "1",
         identifier: "1a",
         capacity: Decimal.new("100"),
+        material: %Material{name: "Concrete"},
         cellar_id: cellar.id
       },
       %Vessel{
         id: "2",
         identifier: "2a",
         capacity: Decimal.new("200"),
+        material: %Material{name: "Concrete"},
         cellar_id: cellar.id
       }
     ]
@@ -86,7 +91,8 @@ defmodule PtrWeb.VesselViewTest do
   end
 
   test "renders new.html", %{conn: conn, cellar: cellar} do
-    changeset = test_account() |> Cellars.change_vessel(%Vessel{})
+    account = test_account()
+    changeset = Cellars.change_vessel(account, %Vessel{})
 
     content =
       render_to_string(
@@ -94,6 +100,7 @@ defmodule PtrWeb.VesselViewTest do
         "new.html",
         conn: conn,
         cellar: cellar,
+        account: account,
         changeset: changeset
       )
 
@@ -101,14 +108,17 @@ defmodule PtrWeb.VesselViewTest do
   end
 
   test "renders edit.html", %{conn: conn, cellar: cellar} do
+    account = test_account()
+
     vessel = %Vessel{
       id: "1",
       identifier: "1a",
       capacity: Decimal.new("100"),
+      material: %Material{name: "Concrete"},
       cellar_id: cellar.id
     }
 
-    changeset = test_account() |> Cellars.change_vessel(vessel)
+    changeset = Cellars.change_vessel(account, vessel)
 
     content =
       render_to_string(
@@ -117,6 +127,7 @@ defmodule PtrWeb.VesselViewTest do
         conn: conn,
         cellar: cellar,
         vessel: vessel,
+        account: account,
         changeset: changeset
       )
 
@@ -128,6 +139,7 @@ defmodule PtrWeb.VesselViewTest do
       id: "1",
       identifier: "1a",
       capacity: Decimal.new("100"),
+      material: %Material{name: "Concrete"},
       cellar_id: cellar.id,
       parts: [
         %Ptr.Lots.Part{id: "1", amount: Decimal.new(0), lot: %Ptr.Lots.Lot{id: "1"}}

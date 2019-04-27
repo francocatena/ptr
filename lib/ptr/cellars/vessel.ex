@@ -7,11 +7,11 @@ defmodule Ptr.Cellars.Vessel do
   alias Ptr.Cellars.{Cellar, Vessel}
   alias Ptr.Accounts.Account
   alias Ptr.Lots.Part
+  alias Ptr.Options.Material
 
   schema "vessels" do
     field(:identifier, :string)
     field(:capacity, :decimal)
-    field(:material, :string)
     field(:cooling, :string)
     field(:notes, :string)
     field(:lock_version, :integer, default: 1)
@@ -19,6 +19,7 @@ defmodule Ptr.Cellars.Vessel do
     field(:usage, :decimal, default: Decimal.new(0), virtual: true)
 
     belongs_to(:cellar, Cellar)
+    belongs_to(:material, Material)
 
     has_many(:parts, Part)
 
@@ -28,10 +29,10 @@ defmodule Ptr.Cellars.Vessel do
   @fields [
     :identifier,
     :capacity,
-    :material,
     :cooling,
     :notes,
     :cellar_id,
+    :material_id,
     :lock_version
   ]
 
@@ -43,12 +44,12 @@ defmodule Ptr.Cellars.Vessel do
     |> cast(attrs, @fields)
     |> validate_required([:identifier, :capacity, :cellar_id])
     |> validate_length(:identifier, max: 255)
-    |> validate_length(:material, max: 255)
     |> validate_length(:cooling, max: 255)
     |> validate_number(:capacity, greater_than: 0, less_than: 1_000_000)
     |> validate_overflow(:capacity)
     |> unsafe_validate_unique([:identifier, :cellar_id], Ptr.Repo, prefix_opts)
     |> unique_constraint(:identifier, name: :vessels_identifier_cellar_id_index)
+    |> assoc_constraint(:material)
     |> optimistic_lock(:lock_version)
   end
 

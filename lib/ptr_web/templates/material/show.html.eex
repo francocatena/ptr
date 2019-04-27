@@ -1,0 +1,27 @@
+<section class="section is-primary">
+  <div class="container">
+    <div class="card">
+      <header class="card-header">
+        <h2 class="card-header-title">
+          <%= dgettext("materials", "Material") %>
+        </h2>
+      </header>
+
+      <div class="card-content">
+        <h2 class="title"><%= @material.name %></h2>
+      </div>
+
+      <footer class="card-footer">
+        <%= link dgettext("materials", "Edit"), to: Routes.material_path(@conn, :edit, @material), class: "card-footer-item" %>
+      </footer>
+    </div>
+  </div>
+</section>
+
+<footer class="footer is-primary">
+  <div class="container">
+    <p>
+      <span><%= link dgettext("materials", "Back"), to: Routes.material_path(@conn, :index) %></span>
+    </p>
+  </div>
+</footer>

@@ -8,15 +8,14 @@ defmodule PtrWeb.VesselControllerTest do
     capacity: "120.5",
     cooling: "some cooling",
     identifier: "some identifier",
-    material: "some material",
-    notes: "some notes"
+    notes: "some notes",
+    material_id: "1"
   }
 
   @update_attrs %{
     capacity: "456.7",
     cooling: "some updated cooling",
     identifier: "some updated identifier",
-    material: "some updated material",
     notes: "some updated notes"
   }
 
@@ -24,7 +23,6 @@ defmodule PtrWeb.VesselControllerTest do
     capacity: nil,
     cooling: nil,
     identifier: nil,
-    material: nil,
     notes: nil
   }
 
@@ -52,8 +50,8 @@ defmodule PtrWeb.VesselControllerTest do
     setup [:create_vessel]
 
     @tag login_as: "test@user.com"
-    test "lists all vessels", %{conn: conn, cellar: cellar, vessel: vessel} do
-      conn = get(conn, Routes.cellar_vessel_path(conn, :index, cellar))
+    test "lists all vessels", %{conn: conn, vessel: vessel} do
+      conn = get(conn, Routes.cellar_vessel_path(conn, :index, vessel.cellar))
       response = html_response(conn, 200)
 
       assert response =~ "Vessels"
@@ -61,13 +59,13 @@ defmodule PtrWeb.VesselControllerTest do
     end
 
     @tag login_as: "test@user.com"
-    test "lists vessels as JS", %{conn: conn, cellar: cellar, vessel: vessel} do
+    test "lists vessels as JS", %{conn: conn, vessel: vessel} do
       conn =
         conn
         |> put_req_header("accept", "application/javascript")
         |> put_req_header("x-requested-with", "XMLHttpRequest")
 
-      conn = get(conn, Routes.cellar_vessel_path(conn, :index, cellar))
+      conn = get(conn, Routes.cellar_vessel_path(conn, :index, vessel.cellar))
       response = response(conn, 200)
 
       assert response =~ vessel.identifier
@@ -98,12 +96,12 @@ defmodule PtrWeb.VesselControllerTest do
   end
 
   describe "create vessel" do
-    setup [:create_cellar]
+    setup [:create_cellar_and_material]
 
     @tag login_as: "test@user.com"
-    test "redirects to show when data is valid", %{conn: conn, cellar: cellar} do
+    test "redirects to show when data is valid", %{conn: conn, cellar: cellar, material: material} do
       path = Routes.cellar_vessel_path(conn, :create, cellar)
-      conn = post(conn, path, vessel: @create_attrs)
+      conn = post(conn, path, vessel: %{@create_attrs | material_id: material.id})
 
       assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == Routes.cellar_vessel_path(conn, :show, cellar, id)
@@ -122,8 +120,8 @@ defmodule PtrWeb.VesselControllerTest do
     setup [:create_vessel]
 
     @tag login_as: "test@user.com"
-    test "renders form for editing chosen vessel", %{conn: conn, cellar: cellar, vessel: vessel} do
-      conn = get(conn, Routes.cellar_vessel_path(conn, :edit, cellar, vessel))
+    test "renders form for editing chosen vessel", %{conn: conn, vessel: vessel} do
+      conn = get(conn, Routes.cellar_vessel_path(conn, :edit, vessel.cellar, vessel))
 
       assert html_response(conn, 200) =~ "Edit vessel"
     end
@@ -133,16 +131,16 @@ defmodule PtrWeb.VesselControllerTest do
     setup [:create_vessel]
 
     @tag login_as: "test@user.com"
-    test "redirects when data is valid", %{conn: conn, cellar: cellar, vessel: vessel} do
-      path = Routes.cellar_vessel_path(conn, :update, cellar, vessel)
+    test "redirects when data is valid", %{conn: conn, vessel: vessel} do
+      path = Routes.cellar_vessel_path(conn, :update, vessel.cellar, vessel)
       conn = put(conn, path, vessel: @update_attrs)
 
-      assert redirected_to(conn) == Routes.cellar_vessel_path(conn, :show, cellar, vessel)
+      assert redirected_to(conn) == Routes.cellar_vessel_path(conn, :show, vessel.cellar, vessel)
     end
 
     @tag login_as: "test@user.com"
-    test "renders errors when data is invalid", %{conn: conn, cellar: cellar, vessel: vessel} do
-      path = Routes.cellar_vessel_path(conn, :update, cellar, vessel)
+    test "renders errors when data is invalid", %{conn: conn, vessel: vessel} do
+      path = Routes.cellar_vessel_path(conn, :update, vessel.cellar, vessel)
       conn = put(conn, path, vessel: @invalid_attrs)
 
       assert html_response(conn, 200) =~ "Edit vessel"
@@ -153,22 +151,29 @@ defmodule PtrWeb.VesselControllerTest do
     setup [:create_vessel]
 
     @tag login_as: "test@user.com"
-    test "deletes chosen vessel", %{conn: conn, cellar: cellar, vessel: vessel} do
-      conn = delete(conn, Routes.cellar_vessel_path(conn, :delete, cellar, vessel))
+    test "deletes chosen vessel", %{conn: conn, vessel: vessel} do
+      conn = delete(conn, Routes.cellar_vessel_path(conn, :delete, vessel.cellar, vessel))
 
-      assert redirected_to(conn) == Routes.cellar_vessel_path(conn, :index, cellar)
+      assert redirected_to(conn) == Routes.cellar_vessel_path(conn, :index, vessel.cellar)
     end
   end
 
   defp create_vessel(_) do
-    {:ok, vessel, cellar, _} = fixture(:vessel)
+    {:ok, vessel, _} = fixture(:vessel)
 
-    {:ok, vessel: vessel, cellar: cellar}
+    {:ok, vessel: vessel}
   end
 
   def create_cellar(_) do
     {:ok, cellar, _} = fixture(:cellar)
 
     {:ok, cellar: cellar}
+  end
+
+  def create_cellar_and_material(_) do
+    {:ok, cellar, _} = fixture(:cellar)
+    {:ok, material, _} = fixture(:material)
+
+    {:ok, cellar: cellar, material: material}
   end
 end

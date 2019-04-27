@@ -8,7 +8,7 @@ defmodule Ptr.Lots.PartTest do
     @invalid_attrs %{amount: nil, vessel_id: nil}
 
     test "changeset with valid attributes" do
-      {:ok, vessel, _cellar, _account} = fixture(:vessel)
+      {:ok, vessel, _account} = fixture(:vessel)
       attrs = %{@valid_attrs | vessel_id: vessel.id}
       changeset = test_account() |> Part.changeset(%Part{}, attrs)
 
@@ -16,7 +16,7 @@ defmodule Ptr.Lots.PartTest do
     end
 
     test "changeset with invalid attributes" do
-      {:ok, vessel, _cellar, _account} = fixture(:vessel)
+      {:ok, vessel, _account} = fixture(:vessel)
       attrs = %{@invalid_attrs | vessel_id: vessel.id}
       changeset = test_account() |> Part.changeset(%Part{}, attrs)
 
@@ -24,7 +24,7 @@ defmodule Ptr.Lots.PartTest do
     end
 
     test "changeset does not accept amounts that overflows vessel" do
-      {:ok, vessel, _cellar, _account} = fixture(:vessel)
+      {:ok, vessel, _account} = fixture(:vessel)
       bad_amount = Decimal.add(Decimal.sub(vessel.capacity, vessel.usage), 1)
       attrs = %{@valid_attrs | vessel_id: vessel.id, amount: bad_amount}
       changeset = test_account() |> Part.changeset(%Part{}, attrs)

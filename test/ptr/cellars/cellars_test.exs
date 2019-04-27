@@ -82,15 +82,15 @@ defmodule Ptr.CellarsTest do
       capacity: "120.5",
       cooling: "some cooling",
       identifier: "some identifier",
-      material: "some material",
-      notes: "some notes"
+      notes: "some notes",
+      cellar_id: "1",
+      material_id: "1"
     }
 
     @update_attrs %{
       capacity: "456.7",
       cooling: "some updated cooling",
       identifier: "some updated identifier",
-      material: "some updated material",
       notes: "some updated notes"
     }
 
@@ -98,45 +98,57 @@ defmodule Ptr.CellarsTest do
       capacity: nil,
       cooling: nil,
       identifier: nil,
-      material: nil,
-      notes: nil
+      notes: nil,
+      cellar_id: nil,
+      material_id: nil
     }
 
     test "list_vessels/2 returns all vessels for a given cellar" do
-      {:ok, vessel, cellar, account} = fixture(:vessel)
+      {:ok, vessel, account} = fixture(:vessel)
 
-      assert Cellars.list_vessels(account, cellar) == [vessel]
+      vessel_ids =
+        account
+        |> Cellars.list_vessels(vessel.cellar)
+        |> Enum.map(& &1.id)
+
+      assert vessel_ids == [vessel.id]
     end
 
     test "list_vessels/3 returns all vessels for a given cellar" do
-      {:ok, vessel, cellar, account} = fixture(:vessel)
+      {:ok, vessel, account} = fixture(:vessel)
+      entries = Cellars.list_vessels(account, vessel.cellar, %{}).entries
+      vessel_ids = Enum.map(entries, & &1.id)
 
-      assert Cellars.list_vessels(account, cellar, %{}).entries == [vessel]
+      assert vessel_ids == [vessel.id]
     end
 
     test "get_vessel!/2 returns the vessel with given id" do
-      {:ok, vessel, _cellar, account} = fixture(:vessel)
+      {:ok, vessel, account} = fixture(:vessel)
+      retrieved_vessel = Cellars.get_vessel!(account, vessel.id)
 
-      assert Cellars.get_vessel!(account, vessel.id) == %{vessel | parts: []}
+      assert retrieved_vessel.id == vessel.id
+      assert retrieved_vessel.cellar_id == vessel.cellar_id
     end
 
     test "get_vessel!/3 returns the vessel with given id form the given cellar" do
-      {:ok, vessel, cellar, account} = fixture(:vessel)
+      {:ok, vessel, account} = fixture(:vessel)
+      retrieved_vessel = Cellars.get_vessel!(account, vessel.cellar, vessel.id)
 
-      assert Cellars.get_vessel!(account, cellar, vessel.id) == %{vessel | parts: []}
+      assert retrieved_vessel.id == vessel.id
+      assert retrieved_vessel.cellar_id == vessel.cellar_id
     end
 
     test "create_vessel/2 with valid data creates a vessel" do
       account = fixture(:seed_account)
       {:ok, cellar, _} = fixture(:cellar)
+      {:ok, material, _} = fixture(:material)
       session = %Session{account: account}
-      attributes = Map.put(@valid_attrs, :cellar_id, cellar.id)
+      attributes = %{@valid_attrs | cellar_id: cellar.id, material_id: material.id}
 
       assert {:ok, %Vessel{} = vessel} = Cellars.create_vessel(session, attributes)
       assert vessel.capacity == Decimal.new("120.5")
       assert vessel.cooling == "some cooling"
       assert vessel.identifier == "some identifier"
-      assert vessel.material == "some material"
       assert vessel.notes == "some notes"
     end
 
@@ -145,7 +157,7 @@ defmodule Ptr.CellarsTest do
     end
 
     test "update_vessel/3 with valid data updates the vessel" do
-      {:ok, vessel, _cellar, account} = fixture(:vessel)
+      {:ok, vessel, account} = fixture(:vessel)
       session = %Session{account: account}
 
       assert {:ok, vessel} = Cellars.update_vessel(session, vessel, @update_attrs)
@@ -153,31 +165,29 @@ defmodule Ptr.CellarsTest do
       assert vessel.capacity == Decimal.new("456.7")
       assert vessel.cooling == "some updated cooling"
       assert vessel.identifier == "some updated identifier"
-      assert vessel.material == "some updated material"
       assert vessel.notes == "some updated notes"
     end
 
     test "update_vessel/3 with invalid data returns error changeset" do
-      {:ok, vessel, cellar, account} = fixture(:vessel)
+      {:ok, vessel, account} = fixture(:vessel)
       session = %Session{account: account}
 
       assert {:error, %Ecto.Changeset{}} = Cellars.update_vessel(session, vessel, @invalid_attrs)
-      assert %{vessel | parts: []} == Cellars.get_vessel!(account, cellar, vessel.id)
     end
 
     test "delete_vessel/2 deletes the vessel" do
-      {:ok, vessel, cellar, account} = fixture(:vessel)
+      {:ok, vessel, account} = fixture(:vessel)
       session = %Session{account: account}
 
       assert {:ok, %Vessel{}} = Cellars.delete_vessel(session, vessel)
 
       assert_raise Ecto.NoResultsError, fn ->
-        Cellars.get_vessel!(account, cellar, vessel.id)
+        Cellars.get_vessel!(account, vessel.cellar, vessel.id)
       end
     end
 
     test "change_vessel/2 returns a vessel changeset" do
-      {:ok, vessel, _cellar, account} = fixture(:vessel)
+      {:ok, vessel, account} = fixture(:vessel)
 
       assert %Ecto.Changeset{} = Cellars.change_vessel(account, vessel)
     end

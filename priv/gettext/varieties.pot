@@ -83,7 +83,7 @@ msgid "Update"
 msgstr ""
 
 #: lib/ptr_web/controllers/variety_controller.ex:8
-#: lib/ptr_web/templates/layout/_menu.html.eex:41
+#: lib/ptr_web/templates/layout/_menu.html.eex:44
 #: lib/ptr_web/templates/variety/index.html.eex:6
 msgid "Varieties"
 msgstr ""

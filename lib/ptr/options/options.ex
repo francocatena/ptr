@@ -140,4 +140,135 @@ defmodule Ptr.Options do
 
     prefixed(query, account)
   end
+
+  alias Ptr.Options.Material
+
+  @doc """
+  Returns the list of materials.
+
+  ## Examples
+
+      iex> list_materials(%Account{})
+      [%Material{}, ...]
+
+  """
+  def list_materials(account) do
+    account
+    |> list_materials_query()
+    |> Repo.all()
+  end
+
+  @doc """
+  Returns the list of materials paginated.
+
+  ## Examples
+
+      iex> list_materials(%Account{}, %{})
+      [%Material{}, ...]
+
+  """
+  def list_materials(account, params) do
+    account
+    |> list_materials_query()
+    |> Repo.paginate(params)
+  end
+
+  @doc """
+  Gets a single material.
+
+  Raises `Ecto.NoResultsError` if the Material does not exist.
+
+  ## Examples
+
+      iex> get_material!(%Account{}, 123)
+      %Material{}
+
+      iex> get_material!(%Account{}, 456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_material!(account, id) do
+    Material
+    |> prefixed(account)
+    |> Repo.get!(id)
+  end
+
+  @doc """
+  Creates a material.
+
+  ## Examples
+
+      iex> create_material(%Session{}, %{field: value})
+      {:ok, %Material{}}
+
+      iex> create_material(%Session{}, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_material(%Session{account: account, user: user}, attrs) do
+    account
+    |> Material.changeset(%Material{}, attrs)
+    |> Map.put(:repo_opts, prefix: prefix(account))
+    |> Trail.insert(prefix: prefix(account), originator: user)
+  end
+
+  @doc """
+  Updates a material.
+
+  ## Examples
+
+      iex> update_material(%Session{}, material, %{field: new_value})
+      {:ok, %Material{}}
+
+      iex> update_material(%Session{}, material, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_material(%Session{account: account, user: user}, %Material{} = material, attrs) do
+    account
+    |> Material.changeset(material, attrs)
+    |> Trail.update(prefix: prefix(account), originator: user)
+  end
+
+  @doc """
+  Deletes a Material.
+
+  ## Examples
+
+      iex> delete_material(%Session{}, material)
+      {:ok, %Material{}}
+
+      iex> delete_material(%Session{}, material)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_material(%Session{account: account, user: user}, %Material{} = material) do
+    Trail.delete(material, prefix: prefix(account), originator: user)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking material changes.
+
+  ## Examples
+
+      iex> change_material(%Account{}, material)
+      %Ecto.Changeset{source: %Material{}}
+
+  """
+  def change_material(%Account{} = account, %Material{} = material) do
+    Material.changeset(account, material, %{})
+  end
+
+  defp list_materials_query(account) do
+    query =
+      from(
+        m in Material,
+        group_by: m.id,
+        left_join: v in assoc(m, :vessels),
+        select: %{m | vessels_count: count(v.id)},
+        order_by: m.name
+      )
+
+    prefixed(query, account)
+  end
 end

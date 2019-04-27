@@ -49,6 +49,7 @@ defmodule PtrWeb.Router do
     # Options
 
     resources("/varieties", VarietyController)
+    resources("/materials", MaterialController)
 
     # Ownerships
 

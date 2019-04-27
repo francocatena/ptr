@@ -31,7 +31,7 @@ msgstr ""
 msgid "Cooling"
 msgstr ""
 
-#: lib/ptr_web/views/vessel_view.ex:98
+#: lib/ptr_web/views/vessel_view.ex:94
 msgid "Create"
 msgstr ""
 
@@ -44,7 +44,7 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: lib/ptr_web/controllers/vessel_controller.ex:120
+#: lib/ptr_web/controllers/vessel_controller.ex:130
 #: lib/ptr_web/templates/vessel/edit.html.eex:8
 msgid "Edit vessel"
 msgstr ""
@@ -64,9 +64,9 @@ msgstr ""
 msgid "Material"
 msgstr ""
 
-#: lib/ptr_web/controllers/vessel_controller.ex:106
+#: lib/ptr_web/controllers/vessel_controller.ex:116
 #: lib/ptr_web/templates/vessel/empty.html.eex:13
-#: lib/ptr_web/templates/vessel/index.html.eex:37
+#: lib/ptr_web/templates/vessel/index.html.eex:38
 #: lib/ptr_web/templates/vessel/new.html.eex:8
 msgid "New vessel"
 msgstr ""
@@ -84,7 +84,7 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-#: lib/ptr_web/views/vessel_view.ex:99
+#: lib/ptr_web/views/vessel_view.ex:95
 msgid "Update"
 msgstr ""
 
@@ -96,11 +96,11 @@ msgstr ""
 msgid "Vessel created successfully."
 msgstr ""
 
-#: lib/ptr_web/controllers/vessel_controller.ex:88
+#: lib/ptr_web/controllers/vessel_controller.ex:98
 msgid "Vessel deleted successfully."
 msgstr ""
 
-#: lib/ptr_web/controllers/vessel_controller.ex:75
+#: lib/ptr_web/controllers/vessel_controller.ex:80
 msgid "Vessel updated successfully."
 msgstr ""
 
@@ -113,39 +113,19 @@ msgstr ""
 msgid "Choose material"
 msgstr ""
 
-#: lib/ptr_web/views/vessel_view.ex:51
-msgid "Concrete"
-msgstr ""
-
-#: lib/ptr_web/views/vessel_view.ex:52
-msgid "Fiber"
-msgstr ""
-
-#: lib/ptr_web/views/vessel_view.ex:53
-msgid "Plastic"
-msgstr ""
-
-#: lib/ptr_web/views/vessel_view.ex:50
-msgid "Steel"
-msgstr ""
-
-#: lib/ptr_web/views/vessel_view.ex:54
-msgid "Wood"
-msgstr ""
-
 #: lib/ptr_web/templates/vessel/_form.html.eex:12
 msgid "Choose cooling"
 msgstr ""
 
-#: lib/ptr_web/views/vessel_view.ex:62
+#: lib/ptr_web/views/vessel_view.ex:58
 msgid "Coil"
 msgstr ""
 
-#: lib/ptr_web/views/vessel_view.ex:61
+#: lib/ptr_web/views/vessel_view.ex:57
 msgid "Jacket"
 msgstr ""
 
-#: lib/ptr_web/views/vessel_view.ex:60
+#: lib/ptr_web/views/vessel_view.ex:56
 msgid "None"
 msgstr ""
 

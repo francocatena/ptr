@@ -1,0 +1,17 @@
+<section class="hero is-medium is-light is-bold">
+  <div class="hero-body has-text-centered">
+    <div class="container">
+      <h1 class="title">
+        <%= dgettext("materials", "Looks like you have no materials.") %>
+      </h1>
+
+      <h2 class="subtitle">
+        <%= dgettext("materials", "Let's create one...") %>
+      </h2>
+
+      <p>
+        <%= link dgettext("materials", "New material"), to: Routes.material_path(@conn, :new), class: "button is-primary is-large" %>
+      </p>
+    </div>
+  </div>
+</section>

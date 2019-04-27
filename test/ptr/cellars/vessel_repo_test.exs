@@ -8,13 +8,13 @@ defmodule Ptr.Cellars.VesselRepoTest do
       capacity: "120.5000",
       cooling: "some cooling",
       identifier: "some identifier",
-      material: "some material",
       notes: "some notes",
+      material_id: "1",
       cellar_id: "1"
     }
 
     test "converts unique constraint on identifier to error" do
-      {:ok, vessel, _, account} = fixture(:vessel, @valid_attrs)
+      {:ok, vessel, account} = fixture(:vessel, @valid_attrs)
       attrs = %{@valid_attrs | identifier: vessel.identifier, cellar_id: vessel.cellar_id}
       changeset = Vessel.changeset(account, %Vessel{}, attrs)
       prefix = Ptr.Accounts.prefix(account)

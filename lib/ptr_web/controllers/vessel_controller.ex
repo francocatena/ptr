@@ -32,7 +32,7 @@ defmodule PtrWeb.VesselController do
 
     conn
     |> put_new_breadcrumb(cellar)
-    |> render("new.html", cellar: cellar, changeset: changeset)
+    |> render("new.html", cellar: cellar, changeset: changeset, account: session.account)
   end
 
   def create(conn, %{"vessel" => vessel_params}, session, cellar) do
@@ -45,7 +45,7 @@ defmodule PtrWeb.VesselController do
         |> redirect(to: Routes.cellar_vessel_path(conn, :show, cellar, vessel))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", cellar: cellar, changeset: changeset)
+        render(conn, "new.html", cellar: cellar, changeset: changeset, account: session.account)
     end
   end
 
@@ -63,7 +63,12 @@ defmodule PtrWeb.VesselController do
 
     conn
     |> put_edit_breadcrumb(cellar, vessel)
-    |> render("edit.html", cellar: cellar, vessel: vessel, changeset: changeset)
+    |> render("edit.html",
+      cellar: cellar,
+      vessel: vessel,
+      changeset: changeset,
+      account: session.account
+    )
   end
 
   def update(conn, %{"id" => id, "vessel" => vessel_params}, session, cellar) do
@@ -76,7 +81,12 @@ defmodule PtrWeb.VesselController do
         |> redirect(to: Routes.cellar_vessel_path(conn, :show, cellar, vessel))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", cellar: cellar, vessel: vessel, changeset: changeset)
+        render(conn, "edit.html",
+          cellar: cellar,
+          vessel: vessel,
+          changeset: changeset,
+          account: session.account
+        )
     end
   end
 

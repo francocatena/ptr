@@ -9,8 +9,8 @@ defmodule Ptr.Cellars.VesselTest do
       capacity: "120.5000",
       cooling: "some cooling",
       identifier: "some identifier",
-      material: "some material",
       notes: "some notes",
+      material_id: "1",
       cellar_id: "1"
     }
 
@@ -18,7 +18,6 @@ defmodule Ptr.Cellars.VesselTest do
       capacity: nil,
       cooling: nil,
       identifier: nil,
-      material: nil,
       notes: nil
     }
 
@@ -38,13 +37,11 @@ defmodule Ptr.Cellars.VesselTest do
       attrs =
         @valid_attrs
         |> Map.put(:identifier, String.duplicate("a", 256))
-        |> Map.put(:material, String.duplicate("a", 256))
         |> Map.put(:cooling, String.duplicate("a", 256))
 
       changeset = test_account() |> Vessel.changeset(%Vessel{}, attrs)
 
       assert "should be at most 255 character(s)" in errors_on(changeset).identifier
-      assert "should be at most 255 character(s)" in errors_on(changeset).material
       assert "should be at most 255 character(s)" in errors_on(changeset).cooling
     end
 
