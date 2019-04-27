@@ -4,8 +4,8 @@ defmodule <%= inspect context.web_module %>.<%= inspect Module.concat(schema.web
   alias <%= inspect context.module %>
   alias <%= inspect schema.module %>
 
-  plug :authenticate
-  plug :put_breadcrumb, name: dgettext("<%= schema.plural %>", "<%= schema.human_plural %>"), url: "/<%= schema.plural %>"
+  plug(:authenticate)
+  plug(:put_breadcrumb, name: dgettext("<%= schema.plural %>", "<%= schema.human_plural %>"), url: "/<%= schema.plural %>")
 
   def action(%{assigns: %{current_session: session}} = conn, _) do
     apply(__MODULE__, action_name(conn), [conn, conn.params, session])
