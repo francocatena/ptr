@@ -16,7 +16,7 @@ defmodule PtrWeb.CellarView do
 
   def link_to_edit(conn, cellar) do
     icon_link(
-      "pencil-alt",
+      "pen",
       title: dgettext("cellars", "Edit"),
       to: Routes.cellar_path(conn, :edit, cellar),
       class: "button is-small is-outlined is-hidden-mobile"

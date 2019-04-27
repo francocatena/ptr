@@ -14,7 +14,7 @@ defmodule <%= inspect context.web_module %>.<%= inspect Module.concat(schema.web
 
   def link_to_edit(conn, <%= schema.singular %>) do
     icon_link(
-      "pencil-alt",
+      "pen",
       title: dgettext("<%= schema.plural %>", "Edit"),
       to:    Routes.<%= schema.route_helper %>_path(conn, :edit, <%= schema.singular %>),
       class: "button is-small is-outlined is-hidden-mobile"

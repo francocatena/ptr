@@ -14,7 +14,7 @@ defmodule PtrWeb.PartView do
 
   def link_to_edit(conn, lot, part) do
     icon_link(
-      "pencil-alt",
+      "pen",
       title: dgettext("parts", "Edit"),
       to: Routes.lot_part_path(conn, :edit, lot, part),
       class: "button is-small is-outlined is-hidden-mobile"

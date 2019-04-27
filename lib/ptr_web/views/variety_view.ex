@@ -16,7 +16,7 @@ defmodule PtrWeb.VarietyView do
 
   def link_to_edit(conn, variety) do
     icon_link(
-      "pencil-alt",
+      "pen",
       title: dgettext("varieties", "Edit"),
       to: Routes.variety_path(conn, :edit, variety),
       class: "button is-small is-outlined is-hidden-mobile"

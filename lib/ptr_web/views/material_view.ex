@@ -5,7 +5,8 @@ defmodule PtrWeb.MaterialView do
   alias Ptr.Options.Material
 
   def link_to_show(conn, material) do
-    icon_link("eye",
+    icon_link(
+      "eye",
       title: dgettext("materials", "Show"),
       to: Routes.material_path(conn, :show, material),
       class: "button is-small is-outlined is-hidden-mobile",
@@ -14,7 +15,8 @@ defmodule PtrWeb.MaterialView do
   end
 
   def link_to_edit(conn, material) do
-    icon_link("pencil-alt",
+    icon_link(
+      "pen",
       title: dgettext("materials", "Edit"),
       to: Routes.material_path(conn, :edit, material),
       class: "button is-small is-outlined is-hidden-mobile"
@@ -22,7 +24,8 @@ defmodule PtrWeb.MaterialView do
   end
 
   def link_to_delete(conn, %Material{vessels_count: 0} = material) do
-    icon_link("trash",
+    icon_link(
+      "trash",
       title: dgettext("materials", "Delete"),
       to: Routes.material_path(conn, :delete, material),
       method: :delete,

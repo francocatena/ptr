@@ -16,7 +16,7 @@ defmodule PtrWeb.LotView do
 
   def link_to_edit(conn, lot) do
     icon_link(
-      "pencil-alt",
+      "pen",
       title: dgettext("lots", "Edit"),
       to: Routes.lot_path(conn, :edit, lot),
       class: "button is-small is-outlined is-hidden-mobile"

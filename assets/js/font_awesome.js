@@ -6,7 +6,7 @@ import {
   faEye,
   faHome,
   faLock,
-  faPencilAlt,
+  faPen,
   faSignOutAlt,
   faTrash,
   faUser
@@ -22,7 +22,7 @@ library.add(
   faEye,
   faHome,
   faLock,
-  faPencilAlt,
+  faPen,
   faSignOutAlt,
   faTrash,
   faUser
