@@ -11,10 +11,23 @@ defmodule Mix.Tasks.Ptr.Gen.Schema do
 
   The generated schema above will contain:
 
-    * a schema file in lib/my_app/blog/post.ex, with a `blog_posts` table.
+    * a schema file in `lib/my_app/blog/post.ex`, with a `blog_posts` table
     * a migration file for the repository
 
   The generated migration can be skipped with `--no-migration`.
+
+  ## Contexts
+
+  Your schemas can be generated and added to a separate OTP app.
+  Make sure your configuration is properly setup or manually
+  specify the context app with the `--context-app` option with
+  the CLI.
+
+      # Via config
+      config :marketing_web, :generators, context_app: :marketing
+
+      # Via CLI
+      mix ptr.gen.schema Blog.Post blog_posts title:string views:integer --context-app marketing
 
   ## Attributes
 
@@ -81,7 +94,13 @@ defmodule Mix.Tasks.Ptr.Gen.Schema do
 
   alias Mix.Phoenix.Schema
 
-  @switches [migration: :boolean, binary_id: :boolean, table: :string, web: :string]
+  @switches [
+    migration: :boolean,
+    binary_id: :boolean,
+    table: :string,
+    web: :string,
+    context_app: :string
+  ]
 
   @doc false
   def run(args) do
@@ -109,10 +128,21 @@ defmodule Mix.Tasks.Ptr.Gen.Schema do
   def build(args, parent_opts, help \\ __MODULE__) do
     {schema_opts, parsed, _} = OptionParser.parse(args, switches: @switches)
     [schema_name, plural | attrs] = validate_args!(parsed, help)
-    opts = Keyword.merge(parent_opts, schema_opts)
+
+    opts =
+      parent_opts
+      |> Keyword.merge(schema_opts)
+      |> put_context_app(schema_opts[:context_app])
+
     schema = Schema.new(schema_name, plural, attrs, opts)
 
     schema
+  end
+
+  defp put_context_app(opts, nil), do: opts
+
+  defp put_context_app(opts, string) do
+    Keyword.put(opts, :context_app, String.to_atom(string))
   end
 
   @doc false

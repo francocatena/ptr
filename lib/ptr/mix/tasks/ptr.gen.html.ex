@@ -12,19 +12,21 @@ defmodule Mix.Tasks.Ptr.Gen.Html do
   The context is an Elixir module that serves as an API boundary for
   the given resource. A context often holds many related resources.
   Therefore, if the context already exists, it will be augmented with
-  functions for the given resource. Note a resource may also be split
-  over distinct contexts (such as Accounts.User and Payments.User).
+  functions for the given resource.
+
+  > Note: A resource may also be split
+  > over distinct contexts (such as `Accounts.User` and `Payments.User`).
 
   The schema is responsible for mapping the database fields into an
   Elixir struct.
 
   Overall, this generator will add the following files to `lib/`:
 
-    * a context module in lib/app/accounts/accounts.ex for the accounts API
-    * a schema in lib/app/accounts/user.ex, with an `users` table
-    * a view in lib/app_web/views/user_view.ex
-    * a controller in lib/app_web/controllers/user_controller.ex
-    * default CRUD templates in lib/app_web/templates/user
+    * a context module in `lib/app/accounts/accounts.ex` for the accounts API
+    * a schema in `lib/app/accounts/user.ex`, with an `users` table
+    * a view in `lib/app_web/views/user_view.ex`
+    * a controller in `lib/app_web/controllers/user_controller.ex`
+    * default CRUD templates in `lib/app_web/templates/user`
 
   A migration file for the repository and test files for the context and
   controller features will also be generated.
@@ -53,12 +55,12 @@ defmodule Mix.Tasks.Ptr.Gen.Html do
 
       mix ptr.gen.html Sales User users --web Sales
 
-  Which would geneate a `lib/app_web/controllers/sales/user_controller.ex` and
+  Which would generate a `lib/app_web/controllers/sales/user_controller.ex` and
   `lib/app_web/views/sales/user_view.ex`.
 
   ## Generating without a schema or context file
 
-  In some cases, you may wish to boostrap HTML templates, controllers, and
+  In some cases, you may wish to bootstrap HTML templates, controllers, and
   controller tests, but leave internal implementation of the context or schema
   to yourself. You can use the `--no-context` and `--no-schema` flags for
   file generation control.
@@ -105,6 +107,8 @@ defmodule Mix.Tasks.Ptr.Gen.Html do
     end
 
     {context, schema} = Gen.Context.build(args)
+    Gen.Context.prompt_for_code_injection(context)
+
     binding = [context: context, schema: schema, inputs: inputs(schema)]
     paths = Mix.Phoenix.generator_paths()
 
@@ -196,53 +200,51 @@ defmodule Mix.Tasks.Ptr.Gen.Html do
 
   defp inputs(%Schema{} = schema) do
     Enum.map(schema.attrs, fn
-      {_, {:array, _}} ->
-        {nil, nil, nil}
-
       {_, {:references, _}} ->
         {nil, nil, nil}
 
       {key, :integer} ->
-        {label(key), ~s(<%= number_input f, #{inspect(key)}, class: "form-control" %>),
-         error(key)}
+        {label(key), ~s(<%= number_input f, #{inspect(key)} %>), error(key)}
 
       {key, :float} ->
-        {label(key),
-         ~s(<%= number_input f, #{inspect(key)}, step: "any", class: "form-control" %>),
-         error(key)}
+        {label(key), ~s(<%= number_input f, #{inspect(key)}, step: "any" %>), error(key)}
 
       {key, :decimal} ->
-        {label(key),
-         ~s(<%= number_input f, #{inspect(key)}, step: "any", class: "form-control" %>),
-         error(key)}
+        {label(key), ~s(<%= number_input f, #{inspect(key)}, step: "any" %>), error(key)}
 
       {key, :boolean} ->
-        {label(key), ~s(<%= checkbox f, #{inspect(key)}, class: "checkbox" %>), error(key)}
+        {label(key), ~s(<%= checkbox f, #{inspect(key)} %>), error(key)}
 
       {key, :text} ->
-        {label(key), ~s(<%= textarea f, #{inspect(key)}, class: "form-control" %>), error(key)}
+        {label(key), ~s(<%= textarea f, #{inspect(key)} %>), error(key)}
 
       {key, :date} ->
-        {label(key), ~s(<%= date_select f, #{inspect(key)}, class: "form-control" %>), error(key)}
+        {label(key), ~s(<%= date_select f, #{inspect(key)} %>), error(key)}
 
       {key, :time} ->
-        {label(key), ~s(<%= time_select f, #{inspect(key)}, class: "form-control" %>), error(key)}
+        {label(key), ~s(<%= time_select f, #{inspect(key)} %>), error(key)}
 
       {key, :utc_datetime} ->
-        {label(key), ~s(<%= datetime_select f, #{inspect(key)}, class: "form-control" %>),
-         error(key)}
+        {label(key), ~s(<%= datetime_select f, #{inspect(key)} %>), error(key)}
 
       {key, :naive_datetime} ->
-        {label(key), ~s(<%= datetime_select f, #{inspect(key)}, class: "form-control" %>),
+        {label(key), ~s(<%= datetime_select f, #{inspect(key)} %>), error(key)}
+
+      {key, {:array, :integer}} ->
+        {label(key), ~s(<%= multiple_select f, #{inspect(key)}, ["1": 1, "2": 2] %>), error(key)}
+
+      {key, {:array, _}} ->
+        {label(key),
+         ~s(<%= multiple_select f, #{inspect(key)}, ["Option 1": "option1", "Option 2": "option2"] %>),
          error(key)}
 
       {key, _} ->
-        {label(key), ~s(<%= text_input f, #{inspect(key)}, class: "form-control" %>), error(key)}
+        {label(key), ~s(<%= text_input f, #{inspect(key)} %>), error(key)}
     end)
   end
 
   defp label(key) do
-    ~s(<%= label f, #{inspect(key)}, class: "control-label" %>)
+    ~s(<%= label f, #{inspect(key)} %>)
   end
 
   defp error(field) do
