@@ -41,7 +41,8 @@ defmodule PtrWeb.VesselView do
   end
 
   def submit_button(vessel) do
-    submit_label(vessel)
+    vessel
+    |> submit_label()
     |> submit(class: "button is-medium is-white is-paddingless card-footer-item")
   end
 

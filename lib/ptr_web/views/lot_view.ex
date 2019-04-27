@@ -41,7 +41,8 @@ defmodule PtrWeb.LotView do
   end
 
   def submit_button(lot) do
-    submit_label(lot)
+    lot
+    |> submit_label()
     |> submit(class: "button is-medium is-white is-paddingless card-footer-item")
   end
 

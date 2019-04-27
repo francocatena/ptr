@@ -43,7 +43,8 @@ defmodule PtrWeb.CellarView do
   end
 
   def submit_button(cellar) do
-    submit_label(cellar)
+    cellar
+    |> submit_label()
     |> submit(class: "button is-medium is-white is-paddingless card-footer-item")
   end
 

@@ -45,7 +45,8 @@ defmodule PtrWeb.UserView do
   end
 
   def submit_button(user) do
-    submit_label(user)
+    user
+    |> submit_label()
     |> submit(class: "button is-medium is-white is-paddingless card-footer-item")
   end
 

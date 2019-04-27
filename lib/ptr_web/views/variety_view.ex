@@ -43,7 +43,8 @@ defmodule PtrWeb.VarietyView do
   end
 
   def submit_button(variety) do
-    submit_label(variety)
+    variety
+    |> submit_label()
     |> submit(class: "button is-medium is-white is-paddingless card-footer-item")
   end
 

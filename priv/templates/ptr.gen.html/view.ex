@@ -38,7 +38,8 @@ defmodule <%= inspect context.web_module %>.<%= inspect Module.concat(schema.web
   end
 
   def submit_button(<%= schema.singular %>) do
-    submit_label(<%= schema.singular %>)
+    <%= schema.singular %>
+    |> submit_label()
     |> submit(class: "button is-medium is-white is-paddingless card-footer-item")
   end
 

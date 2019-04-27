@@ -43,7 +43,8 @@ defmodule PtrWeb.OwnerView do
   end
 
   def submit_button(owner) do
-    submit_label(owner)
+    owner
+    |> submit_label()
     |> submit(class: "button is-medium is-white is-paddingless card-footer-item")
   end
 

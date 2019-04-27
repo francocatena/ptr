@@ -43,7 +43,8 @@ defmodule PtrWeb.MaterialView do
   end
 
   def submit_button(material) do
-    submit_label(material)
+    material
+    |> submit_label()
     |> submit(class: "button is-medium is-white is-paddingless card-footer-item")
   end
 
