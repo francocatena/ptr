@@ -2,7 +2,7 @@
   "repository": {},
   "license": "MIT",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack -p",
     "watch": "webpack --watch-stdin --progress --color",
     "lint": "eslint --quiet"
   },
