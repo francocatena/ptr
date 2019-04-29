@@ -1,4 +1,4 @@
-ARG APP_HOME=/app
+ARG APP_HOME=/opt/app
 
 # ----------------------
 # --- Assets builder ---
@@ -9,7 +9,7 @@ LABEL stage=intermediate
 
 ARG APP_HOME
 
-RUN mkdir $APP_HOME
+RUN mkdir -p $APP_HOME
 
 WORKDIR $APP_HOME/assets
 
@@ -29,7 +29,7 @@ ENV MIX_ENV prod
 
 RUN apk add --update --no-cache build-base
 
-RUN mkdir $APP_HOME
+RUN mkdir -p $APP_HOME
 
 WORKDIR $APP_HOME
 
@@ -47,7 +47,7 @@ FROM alpine:latest
 ARG APP_HOME
 
 RUN apk add --update --no-cache bash openssl
-RUN mkdir $APP_HOME && chown -R nobody: $APP_HOME
+RUN mkdir -p $APP_HOME && chown -R nobody: $APP_HOME
 
 WORKDIR $APP_HOME
 
