@@ -9,13 +9,20 @@ LABEL stage=intermediate
 
 ARG APP_HOME
 
-RUN mkdir -p $APP_HOME
+RUN mkdir -p $APP_HOME/assets && mkdir -p $APP_HOME/deps
+
+ADD assets/package.json $APP_HOME/assets
+ADD assets/yarn.lock $APP_HOME/assets
+ADD deps/phoenix $APP_HOME/deps/phoenix
+ADD deps/phoenix_html $APP_HOME/deps/phoenix_html
 
 WORKDIR $APP_HOME/assets
 
+RUN yarn install
+
 ADD . $APP_HOME
 
-RUN yarn install && yarn build
+RUN yarn build
 
 # ----------------------
 # ---- App builder -----
@@ -33,11 +40,13 @@ RUN mkdir -p $APP_HOME
 
 WORKDIR $APP_HOME
 
-RUN mix local.hex --force && mix local.rebar --force
+ADD mix.* $APP_HOME/
+
+RUN mix local.hex --force && mix local.rebar --force && mix deps.get
 
 ADD . $APP_HOME
 COPY --from=assets_build $APP_HOME/priv/static ./priv/static
-RUN mix deps.get && mix phx.digest && mix release --no-tar
+RUN mix phx.digest && mix distillery.release --no-tar
 
 # ----------------------
 # --- Release image ----

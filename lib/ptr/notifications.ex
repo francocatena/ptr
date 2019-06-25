@@ -3,7 +3,8 @@ defmodule Ptr.Notifications do
   alias Ptr.Notifications.{Mailer, Email}
 
   def send_password_reset(%User{} = user) do
-    Email.password_reset(user)
+    user
+    |> Email.password_reset()
     |> Mailer.deliver_later()
   end
 end
