@@ -1,4 +1,3 @@
-# _Extracted_ from: https://hexdocs.pm/distillery/guides/running_migrations.html
 defmodule Ptr.Tasks.Release do
   @start_apps [
     :crypto,
@@ -10,13 +9,13 @@ defmodule Ptr.Tasks.Release do
 
   @repos Application.get_env(:ptr, :ecto_repos, [])
 
-  def migrate(_argv) do
+  def migrate() do
     start_services()
     run_migrations()
     stop_services()
   end
 
-  def seed(_argv) do
+  def seed() do
     start_services()
     run_migrations()
     run_seeds()

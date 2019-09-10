@@ -5,12 +5,13 @@ defmodule Ptr.Mixfile do
     [
       app: :ptr,
       version: "0.0.1",
-      elixir: "~> 1.8",
+      elixir: "~> 1.9",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      releases: releases()
     ]
   end
 
@@ -37,19 +38,17 @@ defmodule Ptr.Mixfile do
       {:phoenix_pubsub, ">= 1.1.0"},
       {:phoenix_html, ">= 2.13.0"},
       {:phoenix_ecto, ">= 4.0.0"},
-      {:ecto_sql, ">= 3.1.0"},
+      {:ecto_sql, ">= 3.2.0"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_live_reload, ">= 1.2.0", only: :dev},
       {:jason, ">= 1.1.0"},
       {:gettext, ">= 0.17.0"},
-      {:plug_cowboy, ">= 2.0.0"},
+      {:plug_cowboy, ">= 2.1.0"},
       {:argon2_elixir, ">= 2.0.0"},
       {:scrivener_ecto, ">= 2.2.0"},
       {:scrivener_html, ">= 1.8.0"},
-      {:bamboo, ">= 1.2.0"},
-      {:bamboo_smtp, ">= 1.7.0"},
-      {:paper_trail, ">= 0.8.0"},
-      {:distillery, ">= 2.1.0"}
+      {:bamboo, ">= 1.3.0"},
+      {:paper_trail, ">= 0.8.0"}
     ]
   end
 
@@ -64,6 +63,15 @@ defmodule Ptr.Mixfile do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate", "run priv/repo/test_seeds.exs", "test"]
+    ]
+  end
+
+  defp releases do
+    [
+      ptr: [
+        include_executables_for: [:unix],
+        applications: [runtime_tools: :permanent]
+      ]
     ]
   end
 end
