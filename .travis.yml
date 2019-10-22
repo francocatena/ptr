@@ -1,10 +1,9 @@
 language: elixir
-dist: xenial
-sudo: false
+dist: bionic
 elixir:
   - 1.9
 otp_release:
-  - 22.0
+  - 22.1
 addons:
   postgresql: 10
 services:
